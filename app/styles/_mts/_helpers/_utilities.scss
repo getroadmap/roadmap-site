@@ -1,0 +1,260 @@
+%u-pos-a {
+  position: absolute;
+}
+
+%u-pos-r {
+  position: relative;
+}
+
+%u-pos-os {
+  @extend %u-pos-a;
+  left: -99999px;
+}
+
+%u-pos-s {
+  position: static;
+}
+
+%u-pos-reset {
+  @extend %u-pos-s;
+  top: auto;
+  right: auto;
+  bottom: auto;
+  left: auto;
+}
+
+
+%z-image {
+  z-index: $z-image;
+}
+
+%z-base {
+  z-index: $z-base;
+}
+
+%z-content {
+  z-index: $z-content;
+}
+
+%z-nav {
+  z-index: $z-nav;
+}
+
+%z-modal {
+  z-index: $z-modal;
+}
+
+
+%u-d-b {
+  display: block;
+}
+
+%u-d-ib {
+  display: inline-block;
+
+  .lt-ie9 & {
+    @extend %u-d-i;
+    zoom: 1;
+  }
+}
+
+%u-d-i {
+  display: inline;
+}
+
+%u-d-n {
+  display: none;
+}
+
+
+%u-visV {
+  visibility: visible;
+}
+
+%u-visH {
+  visibility: hidden;
+}
+
+
+%u-ov-h {
+  overflow: hidden;
+}
+
+%u-ov-v {
+  overflow: visible;
+}
+
+%u-w-100 {
+  width: 100%;
+}
+
+%u-w-50 {
+  width: 50%;
+}
+
+%u-w-25 {
+  width: 25%;
+}
+
+%u-w-reset {
+  width: auto;
+}
+
+%u-mw-100 {
+  max-width: 100%;
+  height: auto;
+}
+
+
+%u-reset {
+  margin: 0;
+  padding: 0;
+}
+
+%u-reset_layout {
+  @extend %u-reset;
+  border: 0;
+}
+
+%u-reset_list {
+  @extend %u-reset;
+  list-style: none;
+}
+
+%u-reset_inputs {
+  @extend %u-reset;
+  border: none;
+  background: none;
+}
+
+%u-m-0 {
+  margin: 0;
+}
+
+%u-m-0-a {
+  margin: 0 auto;
+}
+
+
+%u-p-0 {
+  padding: 0;
+}
+
+%u-ta-l {
+  text-align: left;
+}
+
+%u-ta-c {
+  text-align: center;
+}
+
+%u-ta-r {
+  text-align: right;
+}
+
+%u-ta-j {
+  text-align: justify;
+}
+
+%u-td-n {
+  text-decoration: none;
+}
+
+
+%u-tt-u {
+  text-transform: uppercase;
+}
+
+//
+// @TODO: Add docs to u-vacuum!
+// removes text size from parent element
+//
+%u-vacuum {
+  font-size: 0px;
+  line-height: 1;
+}
+
+//
+// @TODO: Add docs to u-extend_bg!
+//
+@mixin u-extend_bg {
+  padding-bottom: 99999em;
+  margin-bottom: -99999em;
+}
+
+%u-extend_bg {
+  @include u-extend_bg;
+}
+
+
+%u-disable-hover {
+  pointer-events: none;
+}
+
+%u-pullLeft {
+  float: left;
+}
+
+%u-pullRight {
+  @extend %u-d-i;
+  float: right;
+}
+
+%u-h {
+  display: none !important;
+  visibility: hidden;
+}
+
+//
+// @TODO: Add docs to visuallyhidden!
+//
+@mixin visuallyhidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+
+  &.-focus {
+    &:active,
+    &:focus {
+      clip: auto;
+      height: auto;
+      margin: 0;
+      overflow: visible;
+      position: static;
+      width: auto;
+    }
+  }
+}
+
+%u-vh {
+  @include visuallyhidden;
+}
+
+.visuallyhidden {
+  @extend %u-vh;
+}
+
+%u-ht {
+  //@include hide-text;
+}
+
+%u-cf {
+  &:before,
+  &:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+  }
+
+  &:after {
+    clear: both;
+  }
+}
+
+.clearfix {
+  @extend %u-cf;
+}

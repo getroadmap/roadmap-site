@@ -1,0 +1,77 @@
+// More Character
+$more-char: '»';
+
+// Typography
+$f-copy: 'encode_sans_normal', helvetica, arial, sans-serif;
+$f-head: 'encode_sans_compressed', tahoma, helvetica, arial, sans-serif;
+$f-size: 16px;
+$fs: $f-size;
+$f-lead: 1.5;
+$fl-px: $fs*$f-lead+0px;
+$fl-em: $fl-px/$fs+0em;
+$vs: $fl-px;
+
+$fs-milli : $fs * .6875;
+$fs-centi : $fs * 0.75;
+$fs-deci  : $fs * 0.875;
+$fs-deca  : $fs * 1;
+$fs-hecto : $fs * 1.098; //17.578125
+$fs-kilo  : $fs * 1.098; //17.578125
+$fs-mega  : $fs * 1.37; //21.92
+$fs-giga  : $fs * 1.71; //27.36
+$fs-tera  : $fs * 2.15; //34.4
+
+// // Colors
+$palettes: (
+  white: (
+    base: #fff,
+    off: #f5f5f5
+  ),
+  black: (
+    base  : #2a230f,
+    eternity: #201B0D
+  ),
+  gray: (
+    base      : #878787,
+    porcelain : #eaeeee,
+    alto      : #d7d7d7,
+    silver    : #bababa,
+    chalice   : #ababab,
+    bitter    : #8b8b81,
+    nevada    : #6E7479,
+    scorpion  : #656060,
+  ),
+  red: (
+    base  : #ba0d16,
+    error : #911
+  ),
+  green: (
+    base  : #3e8866
+  ),
+  blue: (
+    base : #2e6187
+  )
+);
+
+$ui-c  : palette(black);
+$ui-ho : palette(black);
+$ui-bg : palette(gray, base);
+
+
+// Layout
+$susy: (
+  columns: 6,
+  gutter: 12px/38px,
+  container: auto,
+);
+
+$l-lg: (
+  columns: 16,
+  gutter: 30px/48px,
+  container: auto
+);
+
+// Breakpoints
+$bp-md: 40em;
+$bp-lg: 47em;
+$bp-max: 76em;

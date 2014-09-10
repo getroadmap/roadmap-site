@@ -1,0 +1,28 @@
+//
+// @TODO: Add docs to mts-flyout!
+//
+@mixin mts-flyout {
+  ._flyout {
+    @extend %u-pos-r;
+    @extend %u-ov-h;
+
+    &:hover {
+      @extend %u-ov-v;
+    }
+  }
+
+  ._flyout-content {
+    @extend %u-pos-os;
+    top: 100%;
+
+    :hover > & {
+      @extend %u-ov-v;
+      left: 0;
+    }
+
+    .-alt:hover > &{
+      top: 0;
+      left: 100%;
+    }
+  }
+}
