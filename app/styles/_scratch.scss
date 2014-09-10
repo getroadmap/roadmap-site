@@ -615,3 +615,39 @@ body {
     }
   }
 }
+
+
+
+
+
+._lo-int {
+  background: url(../images/bg-gridline.png) left top repeat;
+
+  .pg {
+    @include pad(1);
+
+    @include susy-breakpoint($bp-lg, $l-lg) {
+      @include pad(1);
+      width: span(12);
+      margin: 0 auto;
+    }
+  }
+}
+
+
+
+
+
+._lo-su {
+  .pg {
+    @include susy-breakpoint($bp-lg, $l-lg) {
+      width: span(6);
+      padding: 0;
+      margin: 0 auto;
+    }
+  }
+
+  .pg-hdr {
+    text-align: center;
+  }
+}
