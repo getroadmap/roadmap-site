@@ -4,6 +4,10 @@ body {
 }
 
 
+.st-wp {
+  min-height: 100%;
+}
+
 
 
 
@@ -63,6 +67,7 @@ body {
   @include susy-breakpoint($bp-lg, $l-lg) {
     @include container;
     padding: 0 24px;
+    overflow: hidden;
   }
 }
 
@@ -135,27 +140,53 @@ body {
 
 .mh-ut {
   @include susy-breakpoint($bp-lg, $l-lg) {
-    @include span(last 2);
+    @include span(last 5);
 
     padding-top: 12px;
 
     text-align: right;
   }
 
+  ._nav-alt {
+    a {
+
+      &:link,
+      &:active,
+      &:visited {
+        color: palette(gray, dusty);
+      }
+
+      &:hover,
+      &:focus {
+        color: palette(black);
+        background-color: palette(yellow, tulip);
+      }
+    }
+  }
+
+  li {
+    margin-left: gutter();
+  }
 
   a {
+    padding: .25em .5em;
+    border-radius: 4px;
+
     @include breakpoint($bp-lg) {
       font-size: $fs-deci;
     }
 
     &:link,
-    &:active {
-      color: palette(gray, dusty);
+    &:active,
+    &:visited {
+      color: palette(black);
+      background-color: transparent;
     }
 
     &:hover,
     &:focus {
-      color: palette(black);
+      color: palette(white);
+      background-color: palette(blue);
     }
   }
 }
@@ -164,7 +195,7 @@ body {
 
 
 .st-m {
-  margin-bottom: $vs*3;
+  margin-bottom: $vs*1;
 }
 
 
@@ -198,8 +229,7 @@ body {
   ._ho-tx {
     @include susy-breakpoint($bp-lg, $l-lg) {
       position: relative;
-      top: 50%;
-      transform: translateY(-50%);
+      top: 25%;
 
       width: span(12);
       margin: 0 auto;
@@ -268,9 +298,12 @@ body {
 
 
   .nw-wr {
+    overflow: hidden;
+
     padding: $vs*.5 0;
 
     border-top: 1px solid $ui-bo;
+    background-color: palette(white);
   }
 
 
@@ -290,6 +323,10 @@ body {
     &:hover,
     &:focus {
       color: palette(blue);
+
+      .dt-published {
+        color: $ui-c;
+      }
     }
   }
 
@@ -354,8 +391,18 @@ body {
     }
 
     .lk--su {
-      color: palette(white);
-      background-color: palette(blue);
+      &:link,
+      &:active,
+      &:visited {
+        color: palette(white);
+        background-color: palette(red);
+      }
+
+      &:hover,
+      &:focus {
+        color: palette(white);
+        background-color: palette(blue);
+      }
     }
   }
 
@@ -365,6 +412,21 @@ body {
     ._md-att,
     .pt--bq {
       border-color: palette(white);
+    }
+
+    .lk--su {
+      &:link,
+      &:active,
+      &:visited {
+        color: palette(white);
+        background-color: palette(blue);
+      }
+
+      &:hover,
+      &:focus {
+        color: palette(black);
+        background-color: palette(yellow);
+      }
     }
   }
 }
@@ -464,8 +526,7 @@ body {
   border-top: 6px solid palette(white);
 
   @include susy-breakpoint($bp-lg, $l-lg) {
-    @include span(break);
-    width: 100%;
+    @include span(break 12 of 12);
   }
 
   p {
@@ -488,5 +549,69 @@ body {
   .lk--su {
     color: palette(black);
     background-color: palette(yellow, tulip);
+  }
+}
+
+
+
+
+
+@include mts-o-stickyFooter(96px, 48px, ".st", ".st-wp", ".st-c", ".st-ft");
+
+
+.st-ft {
+  padding: $vs 0;
+  color: palette(white, off);
+  background-color: palette(black);
+
+  a {
+    font-size: $fs-centi;
+
+    &:link,
+    &:active,
+    &:visited {
+      color: palette(white, off);
+    }
+
+    &:hover,
+    &:focus {
+      color: palette(yellow);
+    }
+  }
+
+  .ft-lg {
+    @include susy-breakpoint($bp-lg, $l-lg) {
+      @include span(6);
+      @include pre(2);
+    }
+  }
+
+    .lg-cr {
+      margin: 0 0 $vs*.5;
+
+      font-size: $fs-centi;
+    }
+
+    .nv-lg {
+      li {
+        margin-left: gutter();
+
+        &:first-child {
+          margin-left: 0;
+        }
+      }
+    }
+
+
+  .ft-ut {
+    @include susy-breakpoint($bp-lg, $l-lg) {
+      @include span(last 6);
+      @include post(2);
+      text-align: right;
+    }
+
+    li {
+      margin-left: gutter();
+    }
   }
 }
