@@ -1,0 +1,24 @@
+{
+  "name": "rdm-website-dev",
+  "version": "0.1.0",
+  "authors": [
+    "Ben Kutil <ben@make-things.com>"
+  ],
+  "description": "Roadmap website",
+  "main": "index.html",
+  "license": "MIT",
+  "homepage": "http://ppmroadmap.com",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/vendor",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "picturefill": "~2.1.0",
+    "html5shiv": "~3.7.2"
+  }
+}

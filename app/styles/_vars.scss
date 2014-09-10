@@ -22,53 +22,50 @@ $fs-giga  : $fs * 1.71; //27.36
 $fs-tera  : $fs * 2.15; //34.4
 
 // // Colors
-$palettes: (
-  white: (
-    base: #fff,
-    off: #f5f5f5
+$palettes   : (
+  white     : (
+    base    : #fff,
+    green   : #e6e5da,
+    mercury : #e9e9e9,
+    off     : #f5f5f5,
   ),
-  black: (
-    base  : #2a230f,
-    eternity: #201B0D
+  black     : (
+    base    : #363226
   ),
-  gray: (
-    base      : #878787,
-    porcelain : #eaeeee,
-    alto      : #d7d7d7,
-    silver    : #bababa,
-    chalice   : #ababab,
-    bitter    : #8b8b81,
-    nevada    : #6E7479,
-    scorpion  : #656060,
+  blue      : (
+    base : #26aad4,
+    curious: #26aad4,
   ),
-  red: (
-    base  : #ba0d16,
-    error : #911
+  gray      : (
+    base    : #878787,
+    dusty   : #969696
   ),
-  green: (
-    base  : #3e8866
+  red       : (
+    base    : #f16469,
+    froly   : #f16469
   ),
-  blue: (
-    base : #2e6187
+  yellow    : (
+    saffron : #fbc351,
+    tulip   : #eaad4b
   )
 );
 
 $ui-c  : palette(black);
 $ui-ho : palette(black);
+$ui-bo : palette(gray);
 $ui-bg : palette(gray, base);
+
+@include print-palettes($palettes);
+
+
+
 
 
 // Layout
-$susy: (
-  columns: 6,
-  gutter: 12px/38px,
-  container: auto,
-);
-
 $l-lg: (
   columns: 16,
-  gutter: 30px/48px,
-  container: auto
+  gutters: 24px/54px,
+  container: 76em
 );
 
 // Breakpoints

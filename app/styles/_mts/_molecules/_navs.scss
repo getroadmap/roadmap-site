@@ -2,8 +2,8 @@
 // @TODO: Add docs to mts-m-nav!
 //
 @mixin mts-m-navs {
-  nav[role="navigation"] {
-    strong {
+  ._nv {
+    ._nv-hd {
       @extend %u-vh;
     }
   }

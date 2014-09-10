@@ -1,75 +1,73 @@
-/*
- * HTML5 Boilerplate
- *
- * What follows is the result of much research on cross-browser styling.
- * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
- * Kroc Camen, and the H5BP dev community and team.
- */
+//
+// @TODO: Add docs to mts-a-h5bp!
+//
+@mixin mts-a-h5bp {
+  /*
+   * HTML5 Boilerplate
+   *
+   * What follows is the result of much research on cross-browser styling.
+   * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
+   * Kroc Camen, and the H5BP dev community and team.
+   */
 
-/* ==========================================================================
-   Base styles: opinionated defaults
-   ========================================================================== */
+  /* ==========================================================================
+     Base styles: opinionated defaults
+     ========================================================================== */
 
-html,
-button,
-input,
-select,
-textarea {
-  color: #222;
-}
+  html,
+  button,
+  input,
+  select,
+  textarea {
+    color: #222;
+  }
 
-body {
-  font-size: 1em;
-  line-height: 1.4;
-}
+  body {
+    font-size: 1em;
+    line-height: 1.4;
+  }
 
-a {
-  color: #00e;
-}
+  a {
+    color: #00e;
+  }
 
-a:visited {
-  color: #551a8b;
-}
+  a:visited {
+    color: #551a8b;
+  }
 
-a:hover {
-  color: #06e;
-}
+  a:hover {
+    color: #06e;
+  }
 
-/*
- * Remove the gap between images and the bottom of their containers: h5bp.com/i/440
- */
+  /*
+   * Remove the gap between images and the bottom of their containers: h5bp.com/i/440
+   */
 
-img {
-  vertical-align: middle;
-}
+  img {
+    vertical-align: middle;
+  }
 
-/*
- * Remove default fieldset styles.
- */
+  /*
+   * Remove default fieldset styles.
+   */
 
-fieldset {
-  border: 0;
-  margin: 0;
-  padding: 0;
-}
+  fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+  }
 
-/*
- * Allow only vertical resizing of textareas.
- */
+  /*
+   * Allow only vertical resizing of textareas.
+   */
 
-textarea {
-  resize: vertical;
-}
+  textarea {
+    resize: vertical;
+  }
 
-/* ==========================================================================
-   Author's custom styles
-   ========================================================================== */
-
-
-
-
-
-
+  /* ==========================================================================
+     Author's custom styles
+     ========================================================================== */
 
 
 
@@ -82,126 +80,134 @@ textarea {
 
 
 
-/* ==========================================================================
-   Helper classes
-   ========================================================================== */
 
-/* Prevent callout */
 
-.nocallout {
-  -webkit-touch-callout: none;
-}
 
-.pressed {
-  background-color: rgba(0, 0, 0, 0.7);
-}
 
-/* A hack for HTML5 contenteditable attribute on mobile */
 
-textarea[contenteditable] {
-  -webkit-appearance: none;
-}
 
-/* A workaround for S60 3.x and 5.0 devices which do not animated gif images if
-   they have been set as display: none */
+  /* ==========================================================================
+     Helper classes
+     ========================================================================== */
 
-.gifhidden {
-  position: absolute;
-  left: -100%;
-}
+  /* Prevent callout */
 
-/*
- * Image replacement
- */
+  .nocallout {
+    -webkit-touch-callout: none;
+  }
 
-.ir {
-  background-color: transparent;
-  background-repeat: no-repeat;
-  border: 0;
-  direction: ltr;
-  display: block;
-  overflow: hidden;
-  text-align: left;
-  text-indent: -999em;
-}
+  .pressed {
+    background-color: rgba(0, 0, 0, 0.7);
+  }
 
-.ir br {
-  display: none;
-}
+  /* A hack for HTML5 contenteditable attribute on mobile */
 
-/*
- * Hide from both screenreaders and browsers: h5bp.com/u
- */
+  textarea[contenteditable] {
+    -webkit-appearance: none;
+  }
 
-.hidden {
-  display: none !important;
-  visibility: hidden;
-}
+  /* A workaround for S60 3.x and 5.0 devices which do not animated gif images if
+     they have been set as display: none */
 
-/*
- * Hide only visually, but have it available for screenreaders: h5bp.com/v
- */
+  .gifhidden {
+    position: absolute;
+    left: -100%;
+  }
 
-.visuallyhidden {
-  border: 0;
-  clip: rect(0 0 0 0);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  width: 1px;
-}
+  /*
+   * Image replacement
+   */
 
-/*
- * Extends the .visuallyhidden class to allow the element to be focusable
- * when navigated to via the keyboard: h5bp.com/p
- */
+  .ir {
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: 0;
+    direction: ltr;
+    display: block;
+    overflow: hidden;
+    text-align: left;
+    text-indent: -999em;
+  }
 
-.visuallyhidden.focusable:active,
-.visuallyhidden.focusable:focus {
-  clip: auto;
-  height: auto;
-  margin: 0;
-  overflow: visible;
-  position: static;
-  width: auto;
-}
+  .ir br {
+    display: none;
+  }
 
-/*
- * Hide visually and from screenreaders, but maintain layout
- */
+  /*
+   * Hide from both screenreaders and browsers: h5bp.com/u
+   */
 
-.invisible {
-  visibility: hidden;
-}
+  .hidden {
+    display: none !important;
+    visibility: hidden;
+  }
 
-/**
- * Clearfix helper
- * Used to contain floats: h5bp.com/q
- */
+  /*
+   * Hide only visually, but have it available for screenreaders: h5bp.com/v
+   */
 
-.clearfix::before,
-.clearfix::after {
-  content: "";
-  display: table;
-}
+  .visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
 
-.clearfix::after {
-  clear: both;
-}
+  /*
+   * Extends the .visuallyhidden class to allow the element to be focusable
+   * when navigated to via the keyboard: h5bp.com/p
+   */
 
-/* ==========================================================================
-   EXAMPLE Media Queries for Responsive Design.
-   Theses examples override the primary ('mobile first') styles.
-   Modify as content requires.
-   ========================================================================== */
+  .visuallyhidden.focusable:active,
+  .visuallyhidden.focusable:focus {
+    clip: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    position: static;
+    width: auto;
+  }
 
-@media only screen and (min-width: 800px) {
-  /* Style adjustments for viewports that meet the condition */
-}
+  /*
+   * Hide visually and from screenreaders, but maintain layout
+   */
 
-@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
-     only screen and (min-resolution: 144dpi) {
-  /* Style adjustments for viewports that meet the condition */
+  .invisible {
+    visibility: hidden;
+  }
+
+  /**
+   * Clearfix helper
+   * Used to contain floats: h5bp.com/q
+   */
+
+  .clearfix::before,
+  .clearfix::after {
+    content: "";
+    display: table;
+  }
+
+  .clearfix::after {
+    clear: both;
+  }
+
+  /* ==========================================================================
+     EXAMPLE Media Queries for Responsive Design.
+     Theses examples override the primary ('mobile first') styles.
+     Modify as content requires.
+     ========================================================================== */
+
+  @media only screen and (min-width: 800px) {
+    /* Style adjustments for viewports that meet the condition */
+  }
+
+  @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+       only screen and (min-resolution: 144dpi) {
+    /* Style adjustments for viewports that meet the condition */
+  }
+
 }
