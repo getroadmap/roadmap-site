@@ -281,7 +281,7 @@ body {
 
 
 .mh-br {
-  margin: 0 auto;
+  margin: 0 auto $vs*1.25;
 
   @include susy-breakpoint($bp-lg, $l-lg) {
     float: left;
@@ -289,6 +289,7 @@ body {
     position: relative;
     left: 50%;
 
+    margin-bottom: 0;
     margin-left: (197px/2)*-1;
   }
 
@@ -319,6 +320,8 @@ body {
 
 
 .mh-ut {
+  text-align: center;
+
   @include susy-breakpoint($bp-lg, $l-lg) {
     @include span(last 5);
 
@@ -327,6 +330,7 @@ body {
     text-align: right;
   }
   ._nav-alt {
+
     a {
       &:link,
       &:active,
@@ -366,14 +370,23 @@ body {
 }
 
 
+#mh-ut-su,
+#mh-ut-si {
+  display: none;
 
-
-.st-m {
-  margin-bottom: $vs*1;
+  @include breakpoint($bp-md) {
+    display: inline-block;
+  }
 }
 
 
+
+
+
 .st-m.has-ho {
+  position: relative;
+  height: 100%;
+
   @include susy-breakpoint($bp-lg, $l-lg) {
     position: relative;
 
@@ -384,6 +397,10 @@ body {
   ._ho-tx {
     position: relative;
     z-index: $z-content;
+  }
+
+  .mh-bn {
+    height: 175px;
   }
 }
 
@@ -409,9 +426,10 @@ body {
   ._ho-hd {
     margin-bottom: 0;
 
-    font-size: $fs-tera;
+    font-size: $fs-mega;
   }
   ._ho-cp {
+    @extend %u-vh;
     margin-bottom: $vs;
 
     font-size: $fs-kilo;
@@ -420,6 +438,7 @@ body {
     }
   }
   ._co-lk {
+    font-size: $fs-centi;
     color: palette(black);
     background-color: palette(red, froly);
     &:hover,
@@ -428,7 +447,8 @@ body {
       background-color: palette(blue);
     }
   }
-  ._ho-att {
+  ._ho-att,
+  ._ho-src {
     position: absolute;
     top: 0;
     left: 0;
@@ -436,10 +456,6 @@ body {
 
     width: 100%;
     height: 100%;
-
-    background-repeat: none;
-    background-position: center bottom;
-    background-size: cover;
   }
 }
 
@@ -448,6 +464,8 @@ body {
 
 
 .mh-nw {
+  display: none;
+
   @include breakpoint($bp-lg) {
     position: absolute;
     bottom: 0;
@@ -630,8 +648,11 @@ body {
 
 
 .pt {
+  margin-bottom: $vs;
+
   @include susy-breakpoint($bp-lg, $l-lg) {
     @include span(last 4 of 12);
+    margin-bottom: 0
   }
   .p-name {
     font-size: $fs-kilo;
@@ -643,22 +664,25 @@ body {
 }
 
 .pt--ho {
+  margin-bottom: $vs;
   @include susy-breakpoint($bp-lg, $l-lg) {
     @include span(8 of 12);
+    margin-bottom: 0;
   }
 }
 
 .pt--bq {
-  @include susy-breakpoint($bp-lg, $l-lg) {
-    @include span(break 12 of 12);
-  }
 
   padding-top: $vs*.5;
-  margin: $vs*2 0 0;
+  margin: 0 0 $vs*.5;
 
   font-size: $fs-mega;
 
   border-top: 6px solid palette(white);
+  @include susy-breakpoint($bp-lg, $l-lg) {
+    @include span(break 12 of 12);
+    margin: $vs*2 0 0;
+  }
   p {
     margin: 0;
   }
@@ -758,6 +782,10 @@ body {
 
 ._lo-su {
   .pg {
+    width: 100%;
+    padding-right: 0;
+    padding-left: 0;
+
     @include susy-breakpoint($bp-lg, $l-lg) {
       width: span(6);
       padding: 0;
