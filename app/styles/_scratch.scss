@@ -1,4 +1,17 @@
 html,
+button,
+input,
+select,
+textarea,
+.pure-g [class *= 'pure-u'] {
+  /* Set your content font stack here: */
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+}
+
+
+
+
+html,
 body {
   height: 100%;
 }
@@ -29,6 +42,37 @@ body {
 
 
 
+._btn {
+  padding: $vs*.25;
+
+  font-weight: bold;
+
+  border: none;
+
+  color: contrast-color($ui-bg);
+  background-color: $ui-bg;
+}
+
+
+._btn--lg {
+  padding: $vs*.5;
+}
+
+
+._btn--uno {
+  color: contrast-color(palette(yellow));
+  background-color: palette(yellow);
+
+  &:hover,
+  &:focus {
+    color: contrast-color(palette(black));
+    background-color: palette(black);
+  }
+}
+
+
+
+
 ._co {
   display: block;
 }
@@ -49,7 +93,6 @@ body {
 
 .lk--mr {
   padding: 0;
-
   &:after {
     content: '\00a0\203A';
   }
@@ -59,15 +102,147 @@ body {
 
 
 ._ct {
+  @include susy-breakpoint($bp-lg, $l-lg) {
+    @include container;
+
+    overflow: hidden;
+
+    padding: 0 24px;
+  }
+
   position: relative;
 
   max-width: 80%;
   margin: 0 auto;
+}
 
-  @include susy-breakpoint($bp-lg, $l-lg) {
-    @include container;
-    padding: 0 24px;
-    overflow: hidden;
+
+
+
+
+._col-grp {
+  overflow: hidden;
+}
+
+
+._col-md-2 {
+  ._col {
+    @include breakpoint($bp-md) {
+      @include span(49%);
+
+      margin-right: 0;
+    }
+    &:last-child {
+      @include breakpoint($bp-md) {
+        float: right;
+      }
+    }
+  }
+}
+
+
+
+
+
+._pnl,
+._pnl-hdr,
+._pnl-cnt {
+  padding: $vs*.75 $vs $vs;
+}
+
+._pnl {
+  padding-bottom: $vs*2;
+
+  background-color: palette(white, green);
+}
+
+._pnl.hs-chld {
+  padding: 0;
+
+  ._pnl-cnt {
+    padding-bottom: $vs*2;
+  }
+}
+
+
+._pnl-hdr {
+  padding-bottom: $vs*.5;
+
+  background-color: darken(palette(white, green), 10%);
+}
+
+
+
+
+
+._lb--st {
+  label {
+    display: block;
+  }
+}
+
+
+
+
+
+._fm-fs {
+  overflow: hidden;
+
+  margin-bottom: $vs;
+
+  & > :last-child {
+    margin-bottom: 0;
+  }
+}
+
+
+
+
+
+._fd {
+  margin-bottom: $vs*.5;
+
+  label {
+    font-weight: bold;
+    font-size: $fs-deci;
+  }
+
+  input,
+  select,
+  textarea {
+    display: block;
+
+    width: 100%;
+    max-width: 100%;
+
+    padding: 4px 6px;
+
+    line-height: 1;
+  }
+
+  input,
+  textarea {
+    &:focus {
+      outline-color: palette(gray, dusty);
+    }
+  }
+
+  input[type="checkbox"],
+  input[type="radio"] {
+    display: inline-block;
+    width: inherit;
+  }
+}
+
+
+
+
+
+.error-textbox {
+  border: 1px solid palette(red, tamarillo);
+
+  &:focus {
+    outline: none;
   }
 }
 
@@ -91,7 +266,6 @@ body {
   margin-left: 0;
 
   list-style: none;
-
   > li {
     padding-top: $vs*.5;
     padding-right: $vs*.5;
@@ -107,11 +281,7 @@ body {
 
 
 .mh-br {
-  width: 197px;
-  height: 51px;
   margin: 0 auto;
-
-  background: url(../images/roadmap-logo.png) center center no-repeat;
 
   @include susy-breakpoint($bp-lg, $l-lg) {
     float: left;
@@ -120,6 +290,16 @@ body {
     left: 50%;
 
     margin-left: (197px/2)*-1;
+  }
+
+  &,
+  & ._br-lk {
+    width: 197px;
+    height: 51px;
+  }
+
+  ._br-lk {
+    background: url(../images/roadmap-logo.png) center center no-repeat;
   }
 }
 
@@ -146,16 +326,13 @@ body {
 
     text-align: right;
   }
-
   ._nav-alt {
     a {
-
       &:link,
       &:active,
       &:visited {
         color: palette(gray, dusty);
       }
-
       &:hover,
       &:focus {
         color: palette(black);
@@ -163,26 +340,23 @@ body {
       }
     }
   }
-
   li {
     margin-left: gutter();
   }
-
   a {
-    padding: .25em .5em;
-    border-radius: 4px;
-
     @include breakpoint($bp-lg) {
       font-size: $fs-deci;
     }
 
+    padding: .25em .5em;
+
+    border-radius: 4px;
     &:link,
     &:active,
     &:visited {
       color: palette(black);
       background-color: transparent;
     }
-
     &:hover,
     &:focus {
       color: palette(white);
@@ -206,7 +380,6 @@ body {
     height: 60%;
     min-height: 560px;
   }
-
   .mh-bn,
   ._ho-tx {
     position: relative;
@@ -224,8 +397,6 @@ body {
 
     height: 100%;
   }
-
-
   ._ho-tx {
     @include susy-breakpoint($bp-lg, $l-lg) {
       position: relative;
@@ -235,37 +406,28 @@ body {
       margin: 0 auto;
     }
   }
-
-
   ._ho-hd {
     margin-bottom: 0;
+
     font-size: $fs-tera;
   }
-
-
   ._ho-cp {
     margin-bottom: $vs;
 
     font-size: $fs-kilo;
-
     p {
       margin: 0;
     }
   }
-
-
   ._co-lk {
     color: palette(black);
     background-color: palette(red, froly);
-
     &:hover,
     &:focus {
       color: palette(white, mercury);
       background-color: palette(blue);
     }
   }
-
-
   ._ho-att {
     position: absolute;
     top: 0;
@@ -286,7 +448,6 @@ body {
 
 
 .mh-nw {
-
   @include breakpoint($bp-lg) {
     position: absolute;
     bottom: 0;
@@ -295,8 +456,6 @@ body {
 
     width: 100%;
   }
-
-
   .nw-wr {
     overflow: hidden;
 
@@ -305,70 +464,56 @@ body {
     border-top: 1px solid $ui-bo;
     background-color: palette(white);
   }
-
-
   .nw-ct {
     @include susy-breakpoint($bp-lg, $l-lg) {
       @include span(14);
+
       margin: 0;
     }
   }
-
-
   .u-url {
     text-decoration: none;
 
     color: $ui-c;
-
     &:hover,
     &:focus {
       color: palette(blue);
-
       .dt-published {
         color: $ui-c;
       }
     }
   }
-
-
   .p-name,
   .dt-published,
   ._co-lk {
     line-height: $vs;
   }
-
-
   .p-name {
-    margin: 0;
-
-    font-size: $fs;
-
     @include susy-breakpoint($bp-lg, $l-lg) {
       @include span(last 12 of 14);
       @include suffix(1 of 14);
     }
+
+    margin: 0;
+
+    font-size: $fs;
   }
-
-
   .dt-published {
-    font-size: $fs-centi;
-
     @include susy-breakpoint($bp-lg, $l-lg) {
       @include span(2 of 14);
+
       margin-right: 0;
     }
+
+    font-size: $fs-centi;
   }
-
-
   .nw-co {
     @include susy-breakpoint($bp-lg, $l-lg) {
       @include span(last 2);
     }
   }
-
   .lk--mr {
     color: palette(gray, dusty);
-
     &:hover,
     &:active {
       color: palette(blue);
@@ -384,12 +529,10 @@ body {
   .fe {
     padding-top: $vs*2;
     padding-bottom: $vs*2;
-
     ._md-att,
     .pt--bq {
       border-color: palette(white, mercury);
     }
-
     .lk--su {
       &:link,
       &:active,
@@ -397,7 +540,6 @@ body {
         color: palette(white);
         background-color: palette(red);
       }
-
       &:hover,
       &:focus {
         color: palette(white);
@@ -405,15 +547,12 @@ body {
       }
     }
   }
-
   .fe--alt {
     background-color: palette(white, mercury);
-
     ._md-att,
     .pt--bq {
       border-color: palette(white);
     }
-
     .lk--su {
       &:link,
       &:active,
@@ -421,7 +560,6 @@ body {
         color: palette(white);
         background-color: palette(blue);
       }
-
       &:hover,
       &:focus {
         color: palette(black);
@@ -438,7 +576,6 @@ body {
     margin-right: auto;
     margin-left: auto;
   }
-
   .p-summary {
     font-size: $fs-mega;
   }
@@ -451,6 +588,7 @@ body {
 
 .fe-hd {
   margin: 0;
+
   font-size: $fs-tera;
 }
 
@@ -471,24 +609,20 @@ body {
 
 .pl {
   overflow: hidden;
-
   ._md-att,
   ._md-tx {
     margin: 0 0 $vs*.25;
   }
-
   ._md-att {
     position: relative;
 
     border: 9px solid ;
   }
-
   ._md-ct {
     & > :last-child {
       margin-bottom: 0;
     }
   }
-
   ._md-hd {
     margin: 0;
   }
@@ -496,19 +630,15 @@ body {
 
 
 .pt {
-
+  @include susy-breakpoint($bp-lg, $l-lg) {
+    @include span(last 4 of 12);
+  }
   .p-name {
     font-size: $fs-kilo;
     line-height: $vs;
   }
-
   .p-summary {
     font-size: $fs-deci;
-
-  }
-
-  @include susy-breakpoint($bp-lg, $l-lg) {
-    @include span(last 4 of 12);
   }
 }
 
@@ -519,20 +649,19 @@ body {
 }
 
 .pt--bq {
-  padding-top: $vs*.5;
-  margin: $vs*2 0 0;
-  font-size: $fs-mega;
-
-  border-top: 6px solid palette(white);
-
   @include susy-breakpoint($bp-lg, $l-lg) {
     @include span(break 12 of 12);
   }
 
+  padding-top: $vs*.5;
+  margin: $vs*2 0 0;
+
+  font-size: $fs-mega;
+
+  border-top: 6px solid palette(white);
   p {
     margin: 0;
   }
-
   ._bq-ci {
     font-size: $fs-deci;
   }
@@ -542,10 +671,8 @@ body {
 .fe-ft {
   @include susy-breakpoint($bp-lg, $l-lg) {
     width: span(12);
-
     margin: $vs auto 0;
   }
-
   .lk--su {
     color: palette(black);
     background-color: palette(yellow, tulip);
@@ -556,60 +683,52 @@ body {
 
 
 
-@include mts-o-stickyFooter(96px, 48px, ".st", ".st-wp", ".st-c", ".st-ft");
+@include mts-o-stickyFooter(96px, 48px, '.st', '.st-wp', '.st-c', '.st-ft');
 
 
 .st-ft {
   padding: $vs 0;
+
   color: palette(white, off);
   background-color: palette(black);
-
   a {
     font-size: $fs-centi;
-
     &:link,
     &:active,
     &:visited {
       color: palette(white, off);
     }
-
     &:hover,
     &:focus {
       color: palette(yellow);
     }
   }
-
   .ft-lg {
     @include susy-breakpoint($bp-lg, $l-lg) {
       @include span(6);
       @include pre(2);
     }
   }
+  .lg-cr {
+    margin: 0 0 $vs*.5;
 
-    .lg-cr {
-      margin: 0 0 $vs*.5;
-
-      font-size: $fs-centi;
-    }
-
-    .nv-lg {
-      li {
-        margin-left: gutter();
-
-        &:first-child {
-          margin-left: 0;
-        }
+    font-size: $fs-centi;
+  }
+  .nv-lg {
+    li {
+      margin-left: gutter();
+      &:first-child {
+        margin-left: 0;
       }
     }
-
-
+  }
   .ft-ut {
     @include susy-breakpoint($bp-lg, $l-lg) {
       @include span(last 6);
       @include post(2);
+
       text-align: right;
     }
-
     li {
       margin-left: gutter();
     }
@@ -622,12 +741,11 @@ body {
 
 ._lo-int {
   background: url(../images/bg-gridline.png) left top repeat;
-
   .pg {
     @include pad(1);
-
     @include susy-breakpoint($bp-lg, $l-lg) {
       @include pad(1);
+
       width: span(12);
       margin: 0 auto;
     }
@@ -646,7 +764,6 @@ body {
       margin: 0 auto;
     }
   }
-
   .pg-hdr {
     text-align: center;
   }
