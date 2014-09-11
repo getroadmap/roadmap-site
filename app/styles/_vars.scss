@@ -71,7 +71,8 @@ $l-lg: (
   container: 76em
 );
 
+$breakpoint-no-query-fallbacks: true;
 // Breakpoints
 $bp-md: 40em;
-$bp-lg: 47em;
+$bp-lg: 47em, 'no-query' '.lt-ie9';
 $bp-max: 76em;
