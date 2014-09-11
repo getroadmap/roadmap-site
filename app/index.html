@@ -26,11 +26,8 @@
     <link rel="canonical" href="http://www.example.com/">
     -->
 
-
-    <!--[if lt IE 9]>
     <script src="vendor/html5shiv/dist/html5shiv.min.js"></script>
-    <![endif]-->
-
+    <script src="vendor/picturefill/dist/picturefill.js" async></script>
 
     <link rel="stylesheet" href="styles/main.css">
   </head>
@@ -58,13 +55,16 @@
 
             <nav class="_nv mh-ut"> <strong class="_nv-hd">Site Navigation</strong>
               <ul class="_nav">
-                <li class="">
+                <li class="" id="mh-ut-ft">
+                  <a href="features.html" title="See Roadmap's Amazing Features">Features</a>
+                </li>
+                <li class="" id="mh-ut-pr">
                   <a href="pricing.html" title="See Roadmap's High-value Pricing Plans">Pricing Plans</a>
                 </li>
-                <li>
+                <li id="mh-ut-su">
                   <a href="signup.html" title="Free 30 day Trial">30-day Trial</a>
                 </li>
-                <li class="_nav-alt">
+                <li class="_nav-alt" id="mh-ut-si">
                   <a href="https://app.ppmroadmap.com" title="Sign In to your Roadmap Account">Sign In</a>
                 </li>
               </ul>
@@ -85,7 +85,14 @@
               </div><!-- /._ho-co -->
             </div><!-- /._ct -->
           </div><!-- /._ho-tx -->
-          <div class="_ho-att" style="background-image: url(images/hero-roadmap.jpg);"></div>
+          <div class="_ho-att">
+            <picture class="_ho-src">
+              <!--[if IE 9]><video style="display: none;"><![endif]-->
+              <source srcset="examples/images/large.jpg, examples/images/extralarge.jpg 2x" media="(min-width: 800px)">
+              <!--[if IE 9]></video><![endif]-->
+              <img class="_ho-src" srcset="images/hero-gantt-mobile.jpg, images/hero-gantt-mobile@2x.jpg 2x" alt="Visualize your projects as gantt charts">
+            </picture>
+          </div>
         </div><!-- /._ho mh-ho -->
 
 
@@ -121,7 +128,14 @@
 
               <aside class="e-content fe-cp pl">
                 <article class="h-entry pt--ho">
-                  <div class="_md-att"><img class="_md-src" src="images/views/roadmap-view-dashboard.png" height="750" width="1251" alt="Roadmap Dashboard provides a quick look into your project universe."></div>
+                  <div class="_md-att">
+                    <picture class="_md-src">
+                      <!--[if IE 9]><video style="display: none;"><![endif]-->
+                      <source srcset="examples/images/large.jpg, examples/images/extralarge.jpg 2x" media="(min-width: 800px)">
+                      <!--[if IE 9]></video><![endif]-->
+                      <img class="_md-src" srcset="images/views/roadmap-view-visualize-dashboard-mobile.png, images/views/roadmap-view-visualize-dashboard-mobile@2x.png 2x" width="238" alt="Visualize your projects as gantt charts">
+                    </picture>
+                  </div>
                   <div class="_md-ct">
                     <h3 class="p-name _md-hd">Dashboards</h3>
                     <p class="p-summary _md-tx">Create up-to-date snapshots of your projects and people, shared with colleagues or customers.</p>
@@ -130,7 +144,14 @@
 
 
                 <article class="h-entry pt">
-                  <div class="_md-att"><img class="_md-src" src="images/views/roadmap-view-gantt-alt.png" height="690" width="566" alt="Work visually on your projects using the Gantt."></div>
+                  <div class="_md-att">
+                    <picture class="_md-src">
+                      <!--[if IE 9]><video style="display: none;"><![endif]-->
+                      <source srcset="examples/images/large.jpg, examples/images/extralarge.jpg 2x" media="(min-width: 800px)">
+                      <!--[if IE 9]></video><![endif]-->
+                      <img class="_md-src" srcset="images/views/roadmap-view-visualize-gantt-mobile.png, images/views/roadmap-view-visualize-gantt-mobile@2x.png 2x" width="238" alt="Visualize your projects as gantt charts">
+                    </picture>
+                  </div>
                   <div class="_md-ct">
                     <h3 class="p-name _md-hd">Gantt</h3>
                     <p class="p-summary _md-tx">Create project plans and timelines with simple drag-and-drop scheduling, down to the tiniest To Do.</p>
@@ -161,7 +182,14 @@
 
               <aside class="e-content fe-cp pl">
                 <article class="h-entry pt--ho">
-                  <div class="_md-att"><img class="_md-src" src="images/views/roadmap-view-extension.png" alt="Roadmap Dashboard provides a quick look into your project universe."></div>
+                  <div class="_md-att">
+                    <picture class="_md-src">
+                      <!--[if IE 9]><video style="display: none;"><![endif]-->
+                      <source srcset="examples/images/large.jpg, examples/images/extralarge.jpg 2x" media="(min-width: 800px)">
+                      <!--[if IE 9]></video><![endif]-->
+                      <img class="_md-src" srcset="images/views/roadmap-view-align-extension-mobile.png, images/views/roadmap-view-align-extension-mobile@2x.png 2x" width="238" alt="Visualize your projects as gantt charts">
+                    </picture>
+                  </div>
                   <div class="_md-ct">
                     <h3 class="p-name _md-hd">Chrome Extension</h3>
                     <p class="p-summary _md-tx">Enter and view vital project information in Basecamp, and soon many more webapps, without interrupting your workflow.</p>
@@ -170,7 +198,14 @@
 
 
                 <article class="h-entry pt">
-                  <div class="_md-att"><img class="_md-src" src="images/views/roadmap-view-email.png" height="1271" width="1041" alt="Receive daily email updates."></div>
+                  <div class="_md-att">
+                    <picture class="_md-src">
+                      <!--[if IE 9]><video style="display: none;"><![endif]-->
+                      <source srcset="examples/images/large.jpg, examples/images/extralarge.jpg 2x" media="(min-width: 800px)">
+                      <!--[if IE 9]></video><![endif]-->
+                      <img class="_md-src" srcset="images/views/roadmap-view-align-email-mobile.png, images/views/roadmap-view-align-email-mobile@2x.png 2x" width="238" alt="Visualize your projects as gantt charts">
+                    </picture>
+                  </div>
                   <div class="_md-ct">
                     <h3 class="p-name _md-hd">Daily Agendas</h3>
                     <p class="p-summary _md-tx">Give information to your team where they spend the most time. Daily emails highlight tasks requiring your attention.</p>
@@ -201,7 +236,14 @@
 
               <aside class="e-content fe-cp pl">
                 <article class="h-entry pt--ho">
-                  <div class="_md-att"><img class="_md-src" src="images/views/roadmap-view-resources.png" height="1047" width="1854" alt="Get detailed views of your Resources utlization and tasks"></div>
+                  <div class="_md-att">
+                    <picture class="_md-src">
+                      <!--[if IE 9]><video style="display: none;"><![endif]-->
+                      <source srcset="examples/images/large.jpg, examples/images/extralarge.jpg 2x" media="(min-width: 800px)">
+                      <!--[if IE 9]></video><![endif]-->
+                      <img class="_md-src" srcset="images/views/roadmap-view-forecast-resource-mobile.png, images/views/roadmap-view-forecast-resource-mobile@2x.png 2x" width="238" alt="Visualize your projects as gantt charts">
+                    </picture>
+                  </div>
                   <div class="_md-ct">
                     <h3 class="p-name _md-hd">Resource Reports</h3>
                     <p class="p-summary _md-tx">Easily manage and track utilization of your resources and roles. Assign resources by availability and skill.</p>
@@ -210,7 +252,14 @@
 
 
                 <article class="h-entry pt">
-                  <div class="_md-att"><img class="_md-src" src="images/views/roadmap-view-planned_actual.png" height="690" width="566" alt="Work visually on your projects using the Gantt."></div>
+                  <div class="_md-att">
+                    <picture class="_md-src">
+                      <!--[if IE 9]><video style="display: none;"><![endif]-->
+                      <source srcset="examples/images/large.jpg, examples/images/extralarge.jpg 2x" media="(min-width: 800px)">
+                      <!--[if IE 9]></video><![endif]-->
+                      <img class="_md-src" srcset="images/views/roadmap-view-forecast-planned_actual-mobile.png, images/views/roadmap-view-forecast-planned_actual-mobile@2x.png 2x" width="238" alt="Visualize your projects as gantt charts">
+                    </picture>
+                  </div>
                   <div class="_md-ct">
                     <h3 class="p-name _md-hd">Accurate Timelines</h3>
                     <p class="p-summary _md-tx">Measure your project's health, and get real-time feedback on your estimated finish date.</p>
@@ -241,7 +290,14 @@
 
               <aside class="e-content fe-cp pl">
                 <article class="h-entry pt--ho">
-                  <div class="_md-att"><img class="_md-src" src="images/views/roadmap-view-budget.png" height="1008" width="1782" alt="Keep track of project budgets"></div>
+                  <div class="_md-att">
+                    <picture class="_md-src">
+                      <!--[if IE 9]><video style="display: none;"><![endif]-->
+                      <source srcset="examples/images/large.jpg, examples/images/extralarge.jpg 2x" media="(min-width: 800px)">
+                      <!--[if IE 9]></video><![endif]-->
+                      <img class="_md-src" srcset="images/views/roadmap-view-manage-budget-mobile.png, images/views/roadmap-view-manage-budget-mobile@2x.png 2x" width="238" alt="Visualize your projects as gantt charts">
+                    </picture>
+                  </div>
                   <div class="_md-ct">
                     <h3 class="p-name _md-hd">Flexible Project Budgets</h3>
                     <p class="p-summary _md-tx">Calculate project budgets from task estimates, and make adjustments to meet stakeholder needs.</p>
@@ -250,7 +306,14 @@
 
 
                 <article class="h-entry pt">
-                  <div class="_md-att"><img class="_md-src" src="images/views/roadmap-view-effeciency.png" height="897" width="735" alt="Work visually on your projects using the Gantt."></div>
+                  <div class="_md-att">
+                    <picture class="_md-src">
+                      <!--[if IE 9]><video style="display: none;"><![endif]-->
+                      <source srcset="examples/images/large.jpg, examples/images/extralarge.jpg 2x" media="(min-width: 800px)">
+                      <!--[if IE 9]></video><![endif]-->
+                      <img class="_md-src" srcset="images/views/roadmap-view-manage-effeciency.png, images/views/roadmap-view-manage-effeciency@2x.png 2x" width="238" alt="Visualize your projects as gantt charts">
+                    </picture>
+                  </div>
                   <div class="_md-ct">
                     <h3 class="p-name _md-hd">Powerful Reporting</h3>
                     <p class="p-summary _md-tx">Detailed reporting tools and change tracking gives insight into your project portfolio.</p>
