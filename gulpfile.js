@@ -84,9 +84,9 @@ gulp.task('styles', function () {
   // For best performance, don't add Sass partials to `gulp.src`
   return gulp.src([
       'app/styles/*.scss',
-      'app/styles/**/*.css',
-      'app/styles/components/components.scss'
+      'app/styles/**/*.css'
     ])
+    .pipe($.plumber())
     .pipe($.changed('styles', {extension: '.scss'}))
     .pipe($.rubySass({
         style: 'expanded',
@@ -103,8 +103,9 @@ gulp.task('styles', function () {
     .pipe($.size({title: 'styles'}));
 });
 
+
 // Scan Your HTML For Assets & Optimize Them
-gulp.task('html', function () {
+gulp.task('html:build', function () {
   var assets = $.useref.assets({searchPath: '{.tmp,app}'});
 
   return gulp.src('app/**/*.html')
@@ -140,11 +141,24 @@ gulp.task('html', function () {
     .pipe($.size({title: 'html'}));
 });
 
+
+gulp.task('html:jekyll', function () {
+    gulp.src(['./app/index.html', './app/_layouts/*.html', './app/_posts/*.{markdown,md}'])
+        .pipe($.plumber())
+        .pipe($.jekyll({
+            source: './app/',
+            destination: './.tmp/',
+            bundleExec: true
+        }))
+        .pipe(gulp.dest('./dist/'));
+});
+
+
 // Clean Output Directory
 gulp.task('clean', del.bind(null, ['.tmp', 'dist/*', '!dist/.git']));
 
 // Watch Files For Changes & Reload
-gulp.task('serve', ['styles'], function () {
+gulp.task('serve', ['html:jekyll','styles'], function () {
   browserSync({
     notify: false,
     // Run as an https by uncommenting 'https: true'
@@ -154,10 +168,11 @@ gulp.task('serve', ['styles'], function () {
     server: ['.tmp', 'app']
   });
 
-  gulp.watch(['app/**/*.html'], reload);
-  gulp.watch(['app/styles/**/*.{scss,css}'], ['styles', reload]);
+  gulp.watch(['app/**/*.html'], ['html:jekyll', 'styles']);
+  gulp.watch(['app/styles/**/*.{scss,css}'], ['styles']);
   gulp.watch(['app/scripts/**/*.js'], ['jshint']);
   gulp.watch(['app/images/**/*'], reload);
+  gulp.watch(['.tmp/**'], reload);
 });
 
 // Build and serve the output from the dist build
