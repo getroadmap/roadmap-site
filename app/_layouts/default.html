@@ -1,0 +1,21 @@
+<!doctype html>
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+  <head>
+  {% include _head.html %}
+  </head>
+
+  <body class="st{% if page.class %} {{ page.class }}{% endif %}">
+    {% include _gtm.html %}
+    <header class="st-m">
+      {% include _st-mh.html %}
+    </header><!-- /.site-masthead -->
+
+    {{ content }}
+
+    {% include _st-ft.html %}
+  </body>
+</html>
