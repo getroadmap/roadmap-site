@@ -819,3 +819,17 @@ body {
     text-align: center;
   }
 }
+
+
+
+
+
+// iButton Fix
+.ibutton-container,
+.ibutton-handle,
+.ibutton-label-off,
+.ibutton-label-on,
+.ibutton-padding-left,
+.ibutton-padding-right {
+  box-sizing: content-box;
+}
