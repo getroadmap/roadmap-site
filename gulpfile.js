@@ -63,9 +63,8 @@ gulp.task('images', function () {
 // Copy All Files At The Root Level (app)
 gulp.task('copy', function () {
   return gulp.src([
-    'app/*.*',
-    '!app/*.yml',
-    '!app/*.html',
+    '.tmp/*',
+    '!.tmp/*.html',
     'node_modules/apache-server-configs/dist/.htaccess'
   ], {
     dot: true
@@ -106,10 +105,11 @@ gulp.task('styles', function () {
 
 
 // Scan Your HTML For Assets & Optimize Them
-gulp.task('html', ['html:jekyll'],function () {
+
+gulp.task('html' ,function () {
   var assets = $.useref.assets({searchPath: '{.tmp,app}'});
 
-  return gulp.src('app/**/*.html')
+  return gulp.src('.tmp/**/*.html')
     .pipe(assets)
     // Concatenate And Minify JavaScript
     .pipe($.if('*.js', $.uglify({preserveComments: 'some'})))
@@ -118,9 +118,11 @@ gulp.task('html', ['html:jekyll'],function () {
     // the next line to only include styles your project uses.
     .pipe($.if('*.css', $.uncss({
       html: [
-        'app/index.html',
-        'app/signup.html',
-        'app/tos.html'
+        '.tmp/index.html',
+        '.tmp/sign-up/index.html',
+        '.tmp/privacy-policy/index.html',
+        '.tmp/plans-pricing/index.html',
+        '.tmp/terms-of-service/index.html'
       ],
       // CSS Selectors for UnCSS to ignore
       ignore: [
@@ -134,7 +136,7 @@ gulp.task('html', ['html:jekyll'],function () {
     .pipe(assets.restore())
     .pipe($.useref())
     // Update Production Style Guide Paths
-    .pipe($.replace('components/components.css', 'components/main.min.css'))
+    //.pipe($.replace('components/components.css', 'components/main.min.css'))
     // Minify Any HTML
     .pipe($.if('*.html', $.minifyHtml()))
     // Output Files
@@ -191,8 +193,8 @@ gulp.task('serve:dist', ['default'], function () {
 });
 
 // Build Production Files, the Default Task
-gulp.task('default', ['clean'], function (cb) {
-  runSequence('styles', ['jshint', 'html', 'images', 'fonts', 'copy'], cb);
+gulp.task('default', ['clean', 'html:jekyll'], function (cb) {
+  runSequence('styles',['html', 'jshint', 'images', 'fonts', 'copy'], cb);
 });
 
 // Run PageSpeed Insights
