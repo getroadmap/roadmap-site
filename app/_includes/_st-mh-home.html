@@ -45,12 +45,14 @@
       </div><!-- /._ct -->
     </div><!-- /._ho-tx -->
     <div class="_ho-att">
-      <picture class="_ho-src">
-        <!--[if IE 9]><video style="display: none;"><![endif]-->
-        <source class="_ho-src" srcset="images/hero-gantt.jpg, images/hero-gantt@2x.jpg 2x" media="(min-width: 47em)">
-        <!--[if IE 9]></video><![endif]-->
-        <img class="_ho-src" srcset="images/hero-gantt-mobile.jpg, images/hero-gantt-mobile@2x.jpg 2x" alt="Visualize your projects as gantt charts">
-      </picture>
+      <span class="_ho-src" data-picture data-alt="Visualize your projects as gantt charts">
+        <span data-src="/images/hero-gantt-mobile@2x.jpg" data-media="(min-device-pixel-ratio: 2.0)"></span>
+        <span data-src="/images/hero-gantt@2x.jpg"        data-media="(min-device-pixel-ratio: 2.0)"></span>
+        <!-- Fallback content for non-JS browsers. Same img src as the initial, unqualified source element. -->
+        <noscript>
+            <img src="/images/hero-gantt-mobile.jpg" alt="Visualize your projects as gantt charts">
+        </noscript>
+    </span>
     </div>
   </div><!-- /._ho mh-ho -->
 
