@@ -410,6 +410,9 @@ body {
 
 
 .mh-ho {
+  background: url('/images/hero-gantt-mobile.jpg') center top no-repeat;
+  background-size: cover;
+
   @include susy-breakpoint($bp-lg, $l-lg) {
     position: absolute;
     top: 0;
@@ -418,7 +421,11 @@ body {
 
     width: 100%;
     height: 100%;
+
+    background: url('/images/hero-gantt.jpg') center top no-repeat;
+    background-size: cover;
   }
+
   ._ho-tx {
     @include susy-breakpoint($bp-lg, $l-lg) {
       position: relative;
@@ -464,15 +471,21 @@ body {
       background-color: palette(blue);
     }
   }
-  ._ho-att,
-  ._ho-src {
+  ._ho-att {
     position: absolute;
     bottom: 0;
     left: 0;
     z-index: $z-base;
 
     width: 100%;
-    height: auto;
+  }
+
+  ._ho-src {
+    &,
+    img {
+      display: block;
+      margin: 0 auto;
+    }
   }
 }
 
