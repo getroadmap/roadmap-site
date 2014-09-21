@@ -862,7 +862,12 @@ body {
   display: block;
   text-decoration: none;
 
-  color: palette(black);
+  &:link,
+  &:visited,
+  &:active {
+    color: palette(black);
+  }
+
   &:hover,
   &:focus {
     color: palette(black);
@@ -970,7 +975,7 @@ body {
   }
 
   .plan-link {
-    padding: $vs gutter();
+    padding: $vs*.5;
   }
 }
 
@@ -980,6 +985,7 @@ body {
     display: block;
   }
   .plan {
+    padding: $vs*.5;
     &:hover,
     &:focus {
       box-shadow: none;

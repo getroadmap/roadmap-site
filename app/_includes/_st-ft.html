@@ -5,10 +5,10 @@
       <nav class="_nv nv-lg"> <strong class="_nv-hd">Legal Navigation</strong>
         <ul class="_nav">
           <li>
-            <a href="#">Terms of Service</a>
+            <a href="/terms-of-service">Terms of Service</a>
           </li>
           <li>
-            <a href="#">Privacy Policy</a>
+            <a href="/privacy-policy">Privacy Policy</a>
           </li>
         </ul>
       </nav>
@@ -17,18 +17,12 @@
 
     <nav class="_nv ft-ut"> <strong class="_nv-hd">Site Navigation</strong>
       <ul class="_nav">
+        {% comment %}
         <li>
-          <a href="news.html" title="Roadmap News">News</a>
+          <a href="/news" title="Roadmap News">News</a>
         </li>
-        <li class="">
-          <a href="pricing.html" title="See Roadmap's High-value Pricing Plans">Pricing Plans</a>
-        </li>
-        <li>
-          <a href="signup.html" title="Free 30 day Trial">30-day Trial</a>
-        </li>
-        <li class="_nav-alt">
-          <a href="https://app.ppmroadmap.com" title="Sign In to your Roadmap Account">Sign In</a>
-        </li>
+        {% endcomment %}
+        {% include _ut-nav-items.html %}
       </ul>
     </nav>
   </div><!-- /._ct -->
