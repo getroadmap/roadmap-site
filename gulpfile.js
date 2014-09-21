@@ -63,7 +63,8 @@ gulp.task('images', function () {
 // Copy All Files At The Root Level (app)
 gulp.task('copy', function () {
   return gulp.src([
-    'app/*',
+    'app/*.*',
+    '!app/*.yml',
     '!app/*.html',
     'node_modules/apache-server-configs/dist/.htaccess'
   ], {
@@ -105,7 +106,7 @@ gulp.task('styles', function () {
 
 
 // Scan Your HTML For Assets & Optimize Them
-gulp.task('html:build', function () {
+gulp.task('html', ['html:jekyll'],function () {
   var assets = $.useref.assets({searchPath: '{.tmp,app}'});
 
   return gulp.src('app/**/*.html')
