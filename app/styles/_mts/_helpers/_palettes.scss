@@ -14,11 +14,11 @@ $contrasted-light-default: white !default;
   @each $palette, $tones in $map {
     @if type-of($tones) == 'map' {
       @each $tone, $value in $tones {
-        .pt-c-#{$palette}-#{$tone} {
+        .pt-c-#{inspect($palette)}-#{inspect($tone)} {
           color: $value;
         }
 
-        .pt-bg-#{$palette}-#{$tone} {
+        .pt-bg-#{inspect($palette)}-#{inspect($tone)} {
           color: contrast-color($value);
           background-color: $value;
         }
