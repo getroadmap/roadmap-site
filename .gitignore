@@ -3,3 +3,5 @@ node_modules
 dist
 .tmp
 app/vendor
+*.sublime-workspace
+Gemfile.lock

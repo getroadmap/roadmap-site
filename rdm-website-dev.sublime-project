@@ -10,7 +10,7 @@
       "follow_symlinks": true,
       "path": ".",
       "name": "config",
-      "folder_exclude_patterns": ["node_modules", ".tmp", "app", "dist", "docs"],
+      "folder_exclude_patterns": ["node_modules", "app", "dist", "docs"],
       "file_exclude_patterns": ["*.sublime-workspace", "Gemfile.lock"]
     }
 	]
