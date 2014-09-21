@@ -1,0 +1,20 @@
+//
+// @TODO: Add docs to mts-m-block!
+//
+@mixin mts-m-block {
+  ._block {
+    list-style:none;
+    margin-left:0;
+    border-top-width:1px;
+
+    &,
+    > * {
+      border: 0 solid $ui-c;
+    }
+
+    > * {
+      border-bottom-width:1px;
+      padding: $vs*.5;
+    }
+  }
+}

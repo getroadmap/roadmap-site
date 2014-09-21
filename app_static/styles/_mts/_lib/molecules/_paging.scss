@@ -1,0 +1,13 @@
+//
+// @TODO: Add docs to mts-pagination!
+// requires _nav
+//
+@mixin mts-pagination {
+  ._paging {
+    text-align:center;
+
+    a {
+      padding: $line-height/2;
+    }
+  }
+}
