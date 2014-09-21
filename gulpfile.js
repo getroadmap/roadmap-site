@@ -168,7 +168,9 @@ gulp.task('serve', ['html:jekyll','styles'], function () {
     server: ['.tmp', 'app']
   });
 
+
   gulp.watch(['app/**/*.html'], ['html:jekyll', 'styles']);
+  gulp.watch(['app/**/*.{html,md,markdown}'], ['html:jekyll', 'styles']);
   gulp.watch(['app/styles/**/*.{scss,css}'], ['styles']);
   gulp.watch(['app/scripts/**/*.js'], ['jshint']);
   gulp.watch(['app/images/**/*'], reload);

@@ -12,3 +12,8 @@ gem "susy", "~> 2.1.1"
 gem "compass", "~> 1.0.0"
 gem "compass-import-once", "~> 1.0.3"
 gem "jekyll"
+<<<<<<< HEAD
+=======
+gem "jekyll-import"
+gem "hpricot"
+>>>>>>> tasks/jekyll

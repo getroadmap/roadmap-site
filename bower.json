@@ -18,8 +18,11 @@
     "tests"
   ],
   "devDependencies": {
-    "picturefill": "~2.1.0",
+    "picturefill": "1.2.1",
     "html5shiv": "~3.7.2",
     "pure": "~0.5.0"
+  },
+  "resolutions": {
+    "picturefill": "1.2.1"
   }
 }
