@@ -79,6 +79,7 @@ gulp.task('fonts', function () {
     .pipe($.size({title: 'fonts'}));
 });
 
+
 // Compile and Automatically Prefix Stylesheets
 gulp.task('styles', function () {
   // For best performance, don't add Sass partials to `gulp.src`
@@ -97,17 +98,26 @@ gulp.task('styles', function () {
     )
     .pipe($.autoprefixer(AUTOPREFIXER_BROWSERS))
     .pipe(gulp.dest('.tmp/styles'))
-    // Concatenate And Minify Styles
-    .pipe($.if('*.css', $.csso()))
-    .pipe(gulp.dest('dist/styles'))
     .pipe($.size({title: 'styles'}));
+});
+
+
+gulp.task('cmq', function () {
+  gulp.src('./dist/styles/*.css')
+    .pipe($.combineMediaQueries({
+          log: true
+    }))
+    // Concatenate And Minify Styles
+    .pipe($.csso())
+    .pipe(gulp.dest('dist/styles'))
+    .pipe($.size({title: 'Media Queries'}));
 });
 
 
 // Scan Your HTML For Assets & Optimize Them
 
 gulp.task('html' ,function () {
-  var assets = $.useref.assets({searchPath: '{.tmp,app}'});
+  var assets = $.useref.assets({searchPath: '.tmp'});
 
   return gulp.src('.tmp/**/*.html')
     .pipe(assets)
@@ -200,8 +210,8 @@ gulp.task('serve:dist', ['default'], function () {
 });
 
 // Build Production Files, the Default Task
-gulp.task('default', ['clean', 'html:jekyll'], function (cb) {
-  runSequence('html:inline', 'styles',['html', 'jshint', 'images', 'fonts', 'copy'], cb);
+gulp.task('default', ['clean'], function (cb) {
+  runSequence('html:jekyll', 'styles', ['html', 'jshint', 'images', 'fonts', 'copy'], 'html:inline', 'cmq', cb);
 });
 
 // Run PageSpeed Insights
