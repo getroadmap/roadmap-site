@@ -227,5 +227,23 @@ gulp.task('pagespeed', pagespeed.bind(null, {
   strategy: 'mobile'
 }));
 
+gulp.task('bump:major', function () {
+  gulp.src(['./package.json'])
+    .pipe($.bump({type:'major'}))
+    .pipe(gulp.dest('./'));
+});
+
+gulp.task('bump:minor', function () {
+  gulp.src(['./bower.json', './package.json'])
+    .pipe($.bump({type:'minor'}))
+    .pipe(gulp.dest('./'));
+});
+
+gulp.task('bump:patch', function () {
+  gulp.src(['./bower.json', './package.json'])
+    .pipe($.bump({type:'patch'}))
+    .pipe(gulp.dest('./'));
+});
+
 // Load custom tasks from the `tasks` directory
 try { require('require-dir')('tasks'); } catch (err) {}

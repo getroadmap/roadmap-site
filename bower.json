@@ -1,14 +1,12 @@
 {
   "name": "rdm-website-dev",
-  "version": "0.1.0",
+  "version": "2.0.0",
   "authors": [
     "Ben Kutil <ben@make-things.com>"
   ],
-  "description": "Roadmap website",
-  "main": "index.html",
+  "main": "gulpfile.js",
   "license": "MIT",
-  "homepage": "http://ppmroadmap.com",
-  "private": true,
+  "homepage": "https://ppmroadmap.com",
   "ignore": [
     "**/.*",
     "node_modules",
@@ -17,11 +15,9 @@
     "test",
     "tests"
   ],
-  "devDependencies": {
-    "picturefill": "1.2.1",
+  "dependencies": {
     "html5shiv": "~3.7.2",
-  },
-  "resolutions": {
-    "picturefill": "1.2.1"
+    "picturefill": "1.2.1",
+    "pure": "~0.5.0"
   }
 }
