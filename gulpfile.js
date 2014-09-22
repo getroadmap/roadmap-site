@@ -145,6 +145,13 @@ gulp.task('html' ,function () {
 });
 
 
+gulp.task('html:inline', function () {
+    return gulp.src('./.tmp/**/*.html')
+        .pipe($.inlineSource('./app'))
+        .pipe(gulp.dest('./dist'));
+});
+
+
 gulp.task('html:jekyll', function () {
     gulp.src(['./app/index.html', './app/_layouts/*.html', './app/_posts/*.{markdown,md}'])
         .pipe($.plumber())
@@ -194,7 +201,7 @@ gulp.task('serve:dist', ['default'], function () {
 
 // Build Production Files, the Default Task
 gulp.task('default', ['clean', 'html:jekyll'], function (cb) {
-  runSequence('styles',['html', 'jshint', 'images', 'fonts', 'copy'], cb);
+  runSequence('html:inline', 'styles',['html', 'jshint', 'images', 'fonts', 'copy'], cb);
 });
 
 // Run PageSpeed Insights
