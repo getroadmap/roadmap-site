@@ -1,0 +1,169 @@
+.links li{ z-index: expression( runtimeStyle.zIndex = 1, this == parentNode.firstChild ? (className += " first-child") : 0 ); }
+* html .bar .btn-prev a{
+	filter:progid:dximagetransform.microsoft.alphaimageloader(src='images/btn-prev.png', sizingmethod='crop');
+	background-position: -9999px -9999px;
+}
+* html .bar .btn-prev a:hover{
+	filter:progid:dximagetransform.microsoft.alphaimageloader(src='images/btn-prev-hov.png', sizingmethod='crop');
+	background-position: -9999px -9999px;
+}
+* html .testimonials .btn-prev a:hover{
+	filter:progid:dximagetransform.microsoft.alphaimageloader(src='images/btn-prev-hov.png', sizingmethod='crop');
+	background-position: -9999px -9999px;
+}
+* html .bar .btn-next a{
+	filter:progid:dximagetransform.microsoft.alphaimageloader(src='images/btn-next.png', sizingmethod='crop');
+	background-position: -9999px -9999px;
+}
+* html .bar .btn-next a:hover{
+	filter:progid:dximagetransform.microsoft.alphaimageloader(src='images/btn-next-hov.png', sizingmethod='crop');
+	background-position: -9999px -9999px;
+}
+* html .testimonials .btn-next a:hover{
+	filter:progid:dximagetransform.microsoft.alphaimageloader(src='images/btn-next-hov.png', sizingmethod='crop');
+	background-position: -9999px -9999px;
+}
+* html .switcher a{
+	filter:progid:dximagetransform.microsoft.alphaimageloader(src='images/bg-switcher.png', sizingmethod='crop');
+	background-position: -9999px -9999px;
+}
+* html .switcher a:hover{
+	filter:progid:dximagetransform.microsoft.alphaimageloader(src='images/bg-switcher-hov.png', sizingmethod='crop');
+	background-position: -9999px -9999px;
+}
+* html .switcher .active a{
+	filter:progid:dximagetransform.microsoft.alphaimageloader(src='images/bg-switcher-act.png', sizingmethod='crop') !important;
+	background-position: -9999px -9999px;
+}
+* html .switcher .home{
+	filter:progid:dximagetransform.microsoft.alphaimageloader(src='images/bg-switcher-home.png', sizingmethod='crop');
+	background-position: -9999px -9999px;
+}
+* html .switcher .home:hover{
+	filter:progid:dximagetransform.microsoft.alphaimageloader(src='images/bg-switcher-home-hov.png', sizingmethod='crop');
+	background-position: -9999px -9999px;
+}
+* html .switcher .active .home{
+	filter:progid:dximagetransform.microsoft.alphaimageloader(src='images/bg-switcher-home-act.png', sizingmethod='crop') !important;
+	background-position: -9999px -9999px;
+}
+* html .button .l{
+	filter:progid:dximagetransform.microsoft.alphaimageloader(src='images/bg-button-l.png', sizingmethod='crop');
+	background-position: -9999px -9999px;
+}
+* html .button .r{
+	filter:progid:dximagetransform.microsoft.alphaimageloader(src='images/bg-button-r.png', sizingmethod='crop');
+	background-position: -9999px -9999px;
+}
+* html .button:hover .l{
+	filter:progid:dximagetransform.microsoft.alphaimageloader(src='images/bg-button-l-hov.png', sizingmethod='crop');
+	background-position: -9999px -9999px;
+}
+* html .button:hover .r{
+	filter:progid:dximagetransform.microsoft.alphaimageloader(src='images/bg-button-r-hov.png', sizingmethod='crop');
+	background-position: -9999px -9999px;
+}
+* html .btn-close a{
+	filter:progid:dximagetransform.microsoft.alphaimageloader(src='images/btn-close.png', sizingmethod='crop');
+	background-position: -9999px -9999px;
+}
+* html .btn-close a:hover{
+	filter:progid:dximagetransform.microsoft.alphaimageloader(src='images/btn-close-hov.png', sizingmethod='crop');
+	background-position: -9999px -9999px;
+}
+* html .btn-trial .l{
+	filter:progid:dximagetransform.microsoft.alphaimageloader(src='images/btn-trial-l.png', sizingmethod='crop');
+	background-position: -9999px -9999px;
+}
+* html .btn-trial .r{
+	filter:progid:dximagetransform.microsoft.alphaimageloader(src='images/btn-trial-r.png', sizingmethod='crop');
+	background-position: -9999px -9999px;
+}
+* html .sign-in-btn .l{
+	filter:progid:dximagetransform.microsoft.alphaimageloader(src='images/btn-sign-in-l.png', sizingmethod='crop');
+	background-position: -9999px -9999px;
+}
+* html .sign-in-btn .r{
+	filter:progid:dximagetransform.microsoft.alphaimageloader(src='images/btn-sign-in-r.png', sizingmethod='crop');
+	background-position: -9999px -9999px;
+}
+* html .sign-in-btn:hover .l{
+	filter:progid:dximagetransform.microsoft.alphaimageloader(src='images/btn-sign-in-l-hov.png', sizingmethod='crop');
+	background-position: -9999px -9999px;
+}
+* html .sign-in-btn:hover .r{
+	filter:progid:dximagetransform.microsoft.alphaimageloader(src='images/btn-sign-in-r-hov.png', sizingmethod='crop');
+	background-position: -9999px -9999px;
+}
+* html .plans .btn-sign-up{
+	filter:progid:dximagetransform.microsoft.alphaimageloader(src='images/btn-sign-up.png', sizingmethod='crop');
+	background-position: -9999px -9999px;
+}
+* html .plans .hover .btn-sign-up{
+	filter:progid:dximagetransform.microsoft.alphaimageloader(src='images/btn-sign-up-hov.png', sizingmethod='crop');
+	background-position: -9999px -9999px;
+}
+* html .plans .active .btn-sign-up {
+	filter:progid:dximagetransform.microsoft.alphaimageloader(src='images/btn-sign-up-hov.png', sizingmethod='crop');
+	background-position: -9999px -9999px;
+}
+* html .about .article .btn-trial{
+	filter:progid:dximagetransform.microsoft.alphaimageloader(src='images/btn-trial-article.png', sizingmethod='crop');
+	background-position: -9999px -9999px;
+}
+* html .mask{
+	filter:progid:dximagetransform.microsoft.alphaimageloader(src='images/bg-mask-l.png', sizingmethod='scale');
+	background-position: -9999px -9999px;
+}
+* html .right{
+	filter:progid:dximagetransform.microsoft.alphaimageloader(src='images/bg-mask.png', sizingmethod='scale');
+	background-position: -9999px -9999px;
+}
+* html .popup-t{
+	filter:progid:dximagetransform.microsoft.alphaimageloader(src='images/bg-popup-t.png', sizingmethod='crop');
+	background-position: -9999px -9999px;
+}
+* html .popup-b{
+	filter:progid:dximagetransform.microsoft.alphaimageloader(src='images/bg-popup-b.png', sizingmethod='crop');
+	background-position: -9999px -9999px;
+}
+* html .popup-c{
+	filter:progid:dximagetransform.microsoft.alphaimageloader(src='images/bg-popup.png', sizingmethod='scale');
+	background-position: -9999px -9999px;
+}
+* html .inner-road .popup-c{
+	background-position:-9999px -9999px;
+	filter:progid:dximagetransform.microsoft.alphaimageloader(src='images/bg-popup2-c.png', sizingmethod='scale');
+}
+* html .inner-road .popup-t{
+	background-position:-9999px -9999px;
+	filter:progid:dximagetransform.microsoft.alphaimageloader(src='images/bg-popup2-t.png', sizingmethod='crop');
+}
+* html .inner-road .popup-b{
+	background-position:-9999px -9999px;
+	filter:progid:dximagetransform.microsoft.alphaimageloader(src='images/bg-popup2-b.png', sizingmethod='crop');
+}
+* html .switch a:hover,
+* html .switch a.active{
+	background-position:-9999px -9999px;
+	filter:progid:dximagetransform.microsoft.alphaimageloader(src='images/bg-switch-active.png', sizingmethod='crop');
+}
+* html .switch a{
+	background-position:-9999px -9999px;
+	filter:progid:dximagetransform.microsoft.alphaimageloader(src='images/bg-switch.png', sizingmethod='crop');
+}
+* html .png,
+* html .webinars-section .image img{
+	behavior: expression((this.runtimeStyle.behavior="none")&&(this.pngSet?this.pngSet=true:(this.nodeName == "IMG" && this.src.toLowerCase().indexOf('.png')>-1?(this.runtimeStyle.backgroundImage = "none",
+	this.runtimeStyle.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='" + this.src + "', sizingMethod='image')",
+	this.src = "images/transparent.gif"):(this.origBg = this.origBg? this.origBg :this.currentStyle.backgroundImage.toString().replace('url("','').replace('")',''),
+	this.runtimeStyle.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='" + this.origBg + "', sizingMethod='crop')",
+	this.runtimeStyle.backgroundImage = "none")),this.pngSet=true)
+	);
+}
+* html .inner-road .sign-in-btn .l{
+	filter:none;
+}
+* html  .inner-road .sign-in-btn .r{
+	filter:none;
+}
