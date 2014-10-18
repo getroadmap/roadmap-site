@@ -1,6 +1,7 @@
 # App Settings
 source: ./app/
 destination: ./.tmp/
+exclude: [vendor]
 
 
 # Site settings

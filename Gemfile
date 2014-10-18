@@ -2,16 +2,17 @@
 source "https://rubygems.org"
 
 # gem "rails"
-gem 'capistrano', '2.15.4'
-gem 'railsless-deploy'
-gem 'capistrano-ext'
-gem 'sass'
-gem "sassy-maps"
 gem "breakpoint"
-gem "susy"
 gem "compass"
 gem "compass-import-once"
+gem "hpricot"
+gem "html-proofer"
 gem "jekyll"
 gem "jekyll-import"
-gem "hpricot"
+gem "sassy-maps"
+gem "susy"
 gem "travis"
+gem 'capistrano', '2.15.4'
+gem 'capistrano-ext'
+gem 'railsless-deploy'
+gem 'sass'
