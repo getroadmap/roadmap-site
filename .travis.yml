@@ -1,5 +1,12 @@
 language: ruby
 rvm:
  - 2.1.0
+before_install:
+  - openssl aes-256-cbc -K $encrypted_64cd943d900c_key -iv $encrypted_64cd943d900c_iv -in travis.enc -out .travis/deploy_key -d
 install: bundle install
 script: bundle exec jekyll build
+after_success:
+  - chmod 600 .travis/deploy_key.pem # this key should have push access
+  - ssh-add .travis/deploy_key.pem
+  - git remote add deploy DEPLOY_REPO_URI_GOES_HERE
+  - git push deploy
