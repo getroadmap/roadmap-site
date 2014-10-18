@@ -168,8 +168,9 @@ gulp.task('html:jekyll', function () {
     gulp.src(['./app/index.html', './app/_layouts/*.html', './app/_posts/*.{markdown,md}', './app/_customers/*.{markdown,md}'])
         .pipe($.plumber())
         .pipe($.jekyll({
-            source: './app/',
+            source: './app',
             destination: './.tmp/',
+            config: '_config.yml',
             bundleExec: true
         }))
         .on('error', console.error.bind(console))
