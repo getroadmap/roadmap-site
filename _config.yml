@@ -1,7 +1,7 @@
 # App Settings
 source: ./app/
 destination: ./.tmp/
-exclude: [vendor]
+exclude: ['app/styles/*.scss']
 
 
 # Site settings
@@ -31,4 +31,3 @@ github_username:  getroadmap
 
 # Build settings
 markdown: kramdown
-exclude: ['styles', 'scripts', 'vendor', 'images']
