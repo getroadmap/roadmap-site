@@ -1,3 +1,8 @@
+# App Settings
+source: ./app/
+destination: ./.tmp/
+
+
 # Site settings
 title: > #
   Roadmap - Intelligent Project Management, Scheduling, Time Tracking, and Resource Planning
