@@ -165,13 +165,14 @@ gulp.task('html:inline', function () {
 
 
 gulp.task('html:jekyll', function () {
-    gulp.src(['./app/index.html', './app/_layouts/*.html', './app/_posts/*.{markdown,md}'])
+    gulp.src(['./app/index.html', './app/_layouts/*.html', './app/_posts/*.{markdown,md}', './app/_customers/*.{markdown,md}'])
         .pipe($.plumber())
         .pipe($.jekyll({
             source: './app/',
             destination: './.tmp/',
             bundleExec: true
         }))
+        .on('error', console.error.bind(console))
         .pipe(gulp.dest('./dist/'));
 });
 
