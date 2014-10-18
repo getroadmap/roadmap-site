@@ -15,6 +15,9 @@ permalink: /news/:year/:month/:day/:title/
 collections:
   features:
     output: true
+  customers:
+    output: true
+    permalink: /customers/:path/
 
 email: support@ppmroadmap.com
 twitter_username: ppmroadmap
