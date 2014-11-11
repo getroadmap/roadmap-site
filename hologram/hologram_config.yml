@@ -2,7 +2,7 @@
 source: ../.tmp/styles/
 
 # Directory to build the styleguide
-destination: ../app/styleguide
+destination: ../.tmp/styleguide
 
 # Hologram theme
 documentation_assets: ../app/vendor/Cortana
