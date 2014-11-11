@@ -220,7 +220,7 @@ gulp.task('serve:dist', ['default'], function () {
 
 // Build Production Files, the Default Task
 gulp.task('default', ['clean'], function (cb) {
-  runSequence('html:jekyll', 'styles', ['html', 'jshint', 'images', 'fonts', 'copy'], 'html:inline', 'cmq', cb);
+  runSequence('html:jekyll','styles', 'hologram',['html', 'jshint', 'images', 'fonts', 'copy'], 'html:inline', 'cmq', cb);
 });
 
 // Run PageSpeed Insights
