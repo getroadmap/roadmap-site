@@ -181,8 +181,7 @@ gulp.task('html:jekyll', function () {
 // Clean Output Directory
 gulp.task('clean', del.bind(null, ['.tmp', 'dist/*', '!dist/.git']));
 
-// Watch Files For Changes & Reload
-gulp.task('serve', ['html:jekyll','styles'], function () {
+gulp.task('serve', function () {
   browserSync({
     notify: false,
     // Run as an https by uncommenting 'https: true'
@@ -191,11 +190,17 @@ gulp.task('serve', ['html:jekyll','styles'], function () {
     // https: true,
     server: ['.tmp', 'app']
   });
+});
+
+// Watch Files For Changes & Reload
+gulp.task('watch', ['serve','html:jekyll','styles'], function () {
+
 
 
   gulp.watch(['app/**/*.html'], ['html:jekyll', 'styles']);
   gulp.watch(['app/**/*.{html,md,markdown}'], ['html:jekyll', 'styles']);
   gulp.watch(['app/styles/**/*.{scss,css}'], ['styles']);
+  gulp.watch(['app/styles/**/*.{scss,css}'], ['hologram']);
   gulp.watch(['app/scripts/**/*.js'], ['jshint']);
   gulp.watch(['app/images/**/*'], reload);
   gulp.watch(['.tmp/**'], reload);
@@ -245,6 +250,16 @@ gulp.task('bump:patch', function () {
   gulp.src(['./bower.json', './package.json'])
     .pipe($.bump({type:'patch'}))
     .pipe(gulp.dest('./'));
+});
+
+gulp.task('hologram', function () {
+  gulp.src('hologram/hologram_config.yml')
+    .pipe($.hologram({bundler:true, logging:true}));
+});
+
+gulp.task('watch:hologram', ['serve', 'styles', 'hologram'], function () {
+  gulp.watch(['app/styles/**/*.{scss,css}'], ['styles']);
+  gulp.watch(['.tmp/styles/**/*.{scss,css}'], ['hologram']);
 });
 
 // Load custom tasks from the `tasks` directory
