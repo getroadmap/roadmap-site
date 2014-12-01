@@ -944,7 +944,6 @@ category: Components - Pricing Table
 
 .plan-content {
   @include breakpoint($bp-lg) {
-    min-height: 10em;
     margin-bottom: $vs;
   }
 }
@@ -1015,6 +1014,7 @@ category: Components - Pricing Table
   margin-bottom: $vs;
   .plan {
     @include susy-breakpoint($bp-lg, $l-lg) {
+      position: relative;
       display: table-cell;
       width: 33%;
       height: 100%;
@@ -1022,7 +1022,15 @@ category: Components - Pricing Table
   }
 
   .plan-link {
-    padding: $vs*.5;
+    padding: $vs*.5 $vs*.5 $vs*2;
+  }
+
+  .plan-footer {
+    @include breakpoint($bp-lg) {
+      position: absolute;
+      bottom: $vs*.5;
+      left: $vs*.5;
+    }
   }
 }
 
