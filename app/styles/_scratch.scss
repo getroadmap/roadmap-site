@@ -858,12 +858,52 @@ body {
 
 
 
+/*doc
+---
+title: Pricing Plan Table
+category: Components - Pricing Table
+---
+
+```html_example
+<div class="plans slat-list">
+  <div class="slat plan -basic">
+    <a class="plan-link" href="#">
+      <header class="plan-header">
+        <h2 class="plan-heading">Basic</h2>
+        <p class="plan-price">$25/mo or $250/yr</p>
+        <p class="plan-teaser">Priced affordably for small teams</p>
+      </header>
+      <div class="plan-content">
+        <ul class="plan-features">
+          <li> <strong>25</strong>
+            projects
+          </li>
+          <li>Unlimited Resources &amp; Users</li>
+          <li>Resource Forecasting</li>
+        </ul>
+      </div>
+      <footer class="plan-footer">
+        <span class="_co-lk lk--su">Start Trial</span>
+      </footer>
+    </a>
+  </div>
+</div>
+```
+ */
+
 .plan {
+  transition: all .3s ease-in-out;
   border: 1px solid palette(white);
-  &:hover .lk--su,
-  &:focus .lk--su {
-    color: palette(white);
-    background-color: palette(blue);
+
+  &:hover,
+  &:focus {
+    transition-duration: 150;
+    box-shadow: inset 0 0 0 3px palette(yellow, buttercup);
+
+    & .lk--su {
+      color: palette(white);
+      background-color: palette(blue);
+    }
   }
 
   .lk--su {
@@ -875,6 +915,8 @@ body {
 
 .plan-link {
   display: block;
+  width: 100%;
+  height: 100%;
   text-decoration: none;
 
   &:link,
@@ -886,7 +928,6 @@ body {
   &:hover,
   &:focus {
     color: palette(black);
-    box-shadow: inset 0 0 0 3px palette(yellow, buttercup);
   }
 }
 
@@ -923,15 +964,12 @@ body {
 
 
 .plan.-basic {
-
-  .plan-link {
     background-color: palette(gray, desert);
 
     &:hover,
     &:focus {
       background-color: darken(palette(gray, desert), 5%);
     }
-  }
 
   .plan-features li {
     border-top-color: darken(palette(gray, desert), 20%);
@@ -940,15 +978,12 @@ body {
 
 
 .plan.-plus {
-
-  .plan-link {
     background-color: palette(gray, storm);
 
     &:hover,
     &:focus {
       background-color: darken(palette(gray, storm), 5%);
     }
-  }
 
   .plan-features li {
     border-top-color: darken(palette(gray, storm), 20%);
@@ -957,14 +992,11 @@ body {
 
 
 .plan.-pro {
+  background-color: palette(gray, cararra);
 
-  .plan-link {
-    background-color: palette(gray, cararra);
-
-    &:hover,
-    &:focus {
-      background-color: darken(palette(gray, cararra), 5%);
-    }
+  &:hover,
+  &:focus {
+    background-color: darken(palette(gray, cararra), 5%);
   }
 
   .plan-features li {
@@ -984,8 +1016,8 @@ body {
   .plan {
     @include susy-breakpoint($bp-lg, $l-lg) {
       display: table-cell;
-
       width: 33%;
+      height: 100%;
     }
   }
 
@@ -1062,7 +1094,7 @@ body {
 /*doc
 ---
 title: Message Styles
-category: Component - Messaging
+category: Modules - Messaging
 ---
 ```html_example
 <div class="message">
