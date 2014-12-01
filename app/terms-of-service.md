@@ -38,7 +38,7 @@ Our Privacy Policy is an integral part of our Terms of Service, and is available
 
 ## Trials, Payments, Refunds, Upgrading and Downgrading
 
-1. If you do not upgrade to a paying account within 30-days, your trial account will expire. Upon expiration, all users will continue to have access but will be limited to read-only permissions. The account owner will also be limited to read-only permissions but with the proviso of being able to access Account | Roadmap Plan in order to upgrade to a paid account plan.
+1. If you do not upgrade to a paying account within 30-days, your trial account will expire. Upon expiration, all users will continue to have access but will be limited to read-only permissions. The account owner will also be limited to read-only permissions but with the proviso of being able to access Account/Roadmap Plan in order to upgrade to a paid account plan.
 1. Two (2) weeks after a trial account has expired, the account and all the Content will be deleted from the Service.
 1. An upgrade to a paying plan during the 30-day trial period will end your trial. You will be billed for your first month immediately upon upgrading.
 1. Following an upgrade to a paying plan, the service is billed in advance on a monthly basis and is non-refundable. Upgrading to a prepaid annual or equivalent plan is also non-refundable. There will be no refunds or credits for partial months of service, upgrade/downgrade refunds, or refunds for months unused with an open account. In order to treat everyone equally, no exceptions will be made.
