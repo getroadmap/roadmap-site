@@ -1,5 +1,4 @@
 ---
-layout: customer
 title: Roadmap Increased Collaboration Reverberation Studio’s Throughput
 callout:
 - customer: An Internationally distributed Full Service Agency, Collaboration Reverberation (CR) specializes in brand story telling, graphic design, and web development.

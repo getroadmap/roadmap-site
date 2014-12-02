@@ -25,6 +25,24 @@ collections:
     output: true
     permalink: /customers/:path/
 
+
+# Default Settings
+defaults:
+  -
+    scope:
+      path: ""
+      type: customers   # <= here you can specify a collection now!
+    values:
+      layout: page
+      class: _lo-customers
+  -
+    scope:
+      path: ""
+      type: posts   # <= here you can specify a collection now!
+    values:
+      layout: post
+      class: _lo-posts
+
 email: support@ppmroadmap.com
 twitter_username: ppmroadmap
 github_username:  getroadmap

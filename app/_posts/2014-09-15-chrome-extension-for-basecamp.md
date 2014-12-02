@@ -1,5 +1,4 @@
 ---
-layout: post
 title:  "Introducing Roadmap H.U.D., bringing Roadmap into Basecamp"
 date:   2014-09-15 09:30:00
 ---
