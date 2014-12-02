@@ -203,7 +203,7 @@ gulp.task('watch', ['serve','html:jekyll','styles'], function () {
   gulp.watch(['app/styles/**/*.{scss,css}'], ['hologram']);
   gulp.watch(['app/scripts/**/*.js'], ['jshint']);
   gulp.watch(['app/images/**/*'], reload);
-  gulp.watch(['.tmp/**'], reload);
+  gulp.watch(['.tmp/**'], reload({once: true}));
 });
 
 // Build and serve the output from the dist build
