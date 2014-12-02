@@ -1,4 +1,0 @@
-[submodule "dist"]
-	path = dist
-	url = git@github.com:getroadmap/roadmap-site.git
-	branch = gh-pages
