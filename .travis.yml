@@ -9,7 +9,7 @@ before_install:
   - bower install
   - mkdir ./.travis
   - openssl aes-256-cbc -K $encrypted_64cd943d900c_key -iv $encrypted_64cd943d900c_iv -in travis.enc -out .travis/deploy_key -d
-install: bundle install
+install: bundle install && bundle update
 script: bundle exec compass compile -c config.rb && jekyll build && htmlproof ./.tmp
 after_success:
   - chmod 600 .travis/deploy_key
