@@ -10,21 +10,22 @@ before_install:
   - mkdir ./.travis
   - openssl aes-256-cbc -K $encrypted_64cd943d900c_key -iv $encrypted_64cd943d900c_iv -in travis.enc -out .travis/deploy_key -d
 install: bundle install && bundle update && npm install && npm update
-script: gulp build && htmlproof
+script: gulp build && htmlproof dist
 after_success:
   - gulp build:gh-pages
   - chmod 600 .travis/deploy_key
   - ssh-add .travis/deploy_key
-  - cd ./.tmp
-  - git init && remote add deploy git@github.com:getroadmap/roadmap-site.git
+  - cd ./gh-pages
+  - git init && git remote add deploy git@github.com:getroadmap/roadmap-site.git
   - git add .
   - git commit -m "Development Build from ${TRAVIS_COMMIT}"
-  - git push deploy HEAD:gh-pages
+  - git push -f deploy HEAD:gh-pages
   - cd ../dist
-  - git init && remote add deploy git@github.com:getroadmap/roadmap-site.git
+  - git init && git remote add deploy git@github.com:getroadmap/roadmap-site.git
   - git add .
   - git commit -m "Production Build from ${TRAVIS_COMMIT}"
-  - git push deploy HEAD:dist
+  - git push -f deploy HEAD:dist
+  - cap production deploy
 branches:
   only:
     - master
