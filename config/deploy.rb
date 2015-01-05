@@ -25,14 +25,11 @@ set :use_sudo, false
 namespace :app  do
   desc 'change permissions'
   task :permissions do
-    run "chgrp -R www-data #{current_path}"
-    run "find #{current_path} -type d -exec chmod 775 {} +"
-    run "find #{current_path} -type f -exec chmod 664 {} +"
+    run "chgrp -R www-data #{deploy_to}"
+    run "find #{deploy_to} -type d -exec chmod 775 {} +"
+    run "find #{deploy_to} -type f -exec chmod 664 {} +"
   end
 end
 
 # after 'deploy:create_symlink', 'app:symlink'
 after 'deploy:update', 'deploy:cleanup'
-after 'deploy:update', 'app:permissions'
-
-
