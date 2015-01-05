@@ -21,8 +21,7 @@ role  :db,  dest_server, :primary => true
 
 set :keep_releases, 3
 
-set(:deploy_to) {"/var/www/ppmroadmap.com/#{rails_env}/htdocs"}
+set(:deploy_to) {"/var/www/ppmroadmap.com/#{rails_env}"}
 
 
-after 'deploy:create_symlink', 'app:robots'
-after 'deploy:create_symlink', 'app:symlink'
+after 'deploy:update', 'app:permissions'
