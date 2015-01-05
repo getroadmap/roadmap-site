@@ -19,6 +19,11 @@ after_success:
   - git add .
   - git commit -m "Development Build from ${TRAVIS_COMMIT}"
   - git push deploy HEAD:gh-pages
+  - cd ../dist
+  - git init && remote add deploy git@github.com:getroadmap/roadmap-site.git
+  - git add .
+  - git commit -m "Production Build from ${TRAVIS_COMMIT}"
+  - git push deploy HEAD:dist
 branches:
   only:
     - master
