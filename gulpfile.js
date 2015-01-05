@@ -171,7 +171,7 @@ gulp.task('bump:patch', function () {
    § Clean
    ========================================================================== */
 
-gulp.task('clean', del.bind(null, ['.tmp', 'dist/*', '!dist/.git']));
+gulp.task('clean', del.bind(null, ['.tmp', 'dist/*', '!dist/.git', 'gh-pages/*', '!gh-pages/.git']));
 
 
 
@@ -300,6 +300,10 @@ gulp.task('pagespeed', pagespeed.bind(null, {
    § Rev
    ========================================================================== */
 
+/*
+   §§ Rev - Default
+   ========================================================================== */
+
 gulp.task('rev', function () {
   return gulp.src(['.tmp/**', ])
     .pipe($.revAll({
@@ -313,6 +317,10 @@ gulp.task('rev', function () {
     .pipe(gulp.dest('dist'));
 });
 
+
+/*
+   §§ Rev - GH-Pages
+   ========================================================================== */
 gulp.task('rev:gh-pages', function () {
   return gulp.src(['.tmp/**', ])
     .pipe($.revAll({
@@ -463,7 +471,7 @@ gulp.task('build', ['clean'], function (cb) {
    §§ Build - GH-Pages
    ========================================================================== */
 gulp.task('build:gh-pages', ['clean'], function (cb) {
-  runSequence('jekyll','styles', 's', 'rev:gh-pages');
+  runSequence('jekyll','styles', 'styles:cmq', 'hologram', ['jshint', 'images', 'fonts', 'copy'], 'assets', 'assets:inline', 'rev:gh-pages', cb);
 });
 
 
