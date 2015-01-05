@@ -203,7 +203,7 @@ gulp.task('watch', ['serve','html:jekyll','styles'], function () {
   gulp.watch(['app/styles/**/*.{scss,css}'], ['hologram']);
   gulp.watch(['app/scripts/**/*.js'], ['jshint']);
   gulp.watch(['app/images/**/*'], reload);
-  gulp.watch(['.tmp/**'], reload({once: true}));
+  gulp.watch(['.tmp/**'], reload);
 });
 
 // Build and serve the output from the dist build
@@ -221,6 +221,10 @@ gulp.task('serve:dist', ['default'], function () {
 // Build Production Files, the Default Task
 gulp.task('default', ['clean'], function (cb) {
   runSequence('html:jekyll','styles', 'hologram',['html', 'jshint', 'images', 'fonts', 'copy'], 'html:inline', 'cmq', cb);
+});
+
+gulp.task('build', function (cb) {
+  runSequence('hologram',['html', 'jshint', 'images', 'fonts', 'copy'], 'html:inline', 'cmq', cb);
 });
 
 // Run PageSpeed Insights
