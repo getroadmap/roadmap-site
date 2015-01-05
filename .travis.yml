@@ -19,3 +19,6 @@ after_success:
   - git add .
   - git commit -m "Development Build from ${TRAVIS_COMMIT}"
   - git push deploy HEAD:gh-pages
+branches:
+  only:
+    - master
