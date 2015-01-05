@@ -413,7 +413,7 @@ body {
 .mh-ho {
   position: relative;
   padding-top: 1px;
-  background: url('/images/hero-gantt.jpg') center top no-repeat;
+  background: url('../images/hero-gantt.jpg') center top no-repeat;
 
 
   @include susy-breakpoint($bp-lg, $l-lg) {
