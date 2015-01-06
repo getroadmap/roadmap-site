@@ -12,6 +12,10 @@ before_install:
 - git config --global user.name "${GIT_NAME}"
 - git config --global user.email "${GIT_EMAIL}"
 - openssl aes-256-cbc -K $encrypted_64cd943d900c_key -iv $encrypted_64cd943d900c_iv -in config/deploy_id_rsa_enc_travis -out config/deploy_id_rsa -d
+- openssl aes-256-cbc -K $encrypted_64cd943d900c_key -iv $encrypted_64cd943d900c_iv -in config/deploy_id_rsa_enc_travis -out ~/.ssh/id_rsa -d
+- chmod 600 ~/.ssh/id_rsa
+- eval "$(ssh-agent)"
+- ssh-add
 install:
 - bundle install
 - npm install -g npm@2
