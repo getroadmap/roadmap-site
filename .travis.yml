@@ -4,17 +4,15 @@ rvm:
 env:
   global:
   - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
-  - secure: W30J7oqS67BQIRwUJiPhdKW3J5X0WDkVHLhe9RFReE5nrEqKjOrsNoASl18gQBlFcLvHwQdt8U3WyO/m8YZqm9AvruX6r0kRMG1k4ocbpdFmZUOQy8+Jj/dl5X0q0Nxdhh4bnn3YkAki/vtLL70FuiDt+LyKkQ+ZKnxNbyT2aVw=
-  - secure: R9WZ6skFYo86uQdSgUcxyKzHVT/M5lgYJaX5WfjsyvG6b3CrCcqHbj3tVw5uUnr3/+IISShyDdjmzUFaoVcVVHwJNAMC1UN4Gf6MSi7Qaw2/o38eP0qT+taAfaQzzztv4SFVa4cXE0/xE5JA0LVqMLFC3Lh09rRGm01zTiyFazI=
+  - secure: Yk3lxBxcAskQ4hRp3WtVFc5uTjQhWypsaRLLtOFgA5f+f5mZQiVp74HxECYW4qT8rzoQmKWa59uAW4Oks2z5z8QVAZTYNMqUitSLrjXsXHF9it95J8iaZn4NAzudcN9+vRqVi3QB/v0BpvAoIrTUExvUPQjcMDLkkPby7mxKKig=
+  - secure: cvfopDMJY8Z/lplUzPJwizhEXy6U7cDkUnAehXnYclnkYUq+nanbEBtOV+d1KZNbvOLfC8kRt3ThXH9SjsQvWTKdyqWXXQsyKUdQnx4M5geI9OChF05bxclO9+Q7/ELX3r8VZDVAQ/BlepYNSJYWWesiYa6CR/PlXlCh/LCxYDg=
 before_install:
 - npm install -g bower
 - bower install
 - git config user.name "${GIT_NAME}"
 - git config user.email "${GIT_EMAIL}"
-- openssl aes-256-cbc -k "${DEPLOY_KEY}" -in config/deploy_id_rsa_enc_travis -d -a -out
-  config/deploy_id_rsa
-- openssl aes-256-cbc -k "${DEPLOY_KEY}" -in config/deploy_id_rsa_enc_travis -d -a -out
-  ~/.ssh/id_rsa
+- openssl aes-256-cbc -k '$KEY_PASS' -in config/deploy_id_rsa_enc_travis -d -a -out config/deploy_id_rsa
+- openssl aes-256-cbc -k '$KEY_PASS' -in config/deploy_id_rsa_enc_travis -d -a -out ~/.ssh/id_rsa
 - chmod 600 ~/.ssh/id_rsa
 - eval "$(ssh-agent)"
 - ssh-add
