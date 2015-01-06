@@ -28,7 +28,6 @@ after_success:
 - git add .
 - git commit -m "Production Build from ${TRAVIS_COMMIT}"
 - git push -f deploy HEAD:dist
-- "openssl aes-256-cbc -k '$DEPLOY_KEY' -in config/deploy_id_rsa_enc_travis -d -a -out config/deploy_id_rsa"
 - "bundle exec cap production deploy"
 branches:
   only:
