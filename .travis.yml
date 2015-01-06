@@ -14,6 +14,7 @@ before_install:
 install:
 - bundle install
 - npm install -g npm@2
+- npm install && bower install
 script: gulp build && htmlproof dist
 after_success:
 - gulp build:gh-pages
