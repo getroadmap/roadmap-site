@@ -16,20 +16,19 @@ before_install:
 install:
 - bundle install
 - bundle update
-- npm install
-- npm update
+- npm install && npm update
 script: gulp build && htmlproof dist
 after_success:
 - gulp build:gh-pages
 - chmod 600 .travis/deploy_key
 - ssh-add .travis/deploy_key
 - cd ./gh-pages
-- git init && git remote add deploy "https://$GH_TOKEN@github.com/getroadmap/roadmap-site.git"
+- git init && git remote add deploy "https://${GH_TOKEN}@github.com/getroadmap/roadmap-site.git"
 - git add .
 - git commit -m "Development Build from ${TRAVIS_COMMIT}"
 - git push -f deploy HEAD:gh-pages
 - cd ../dist
-- git init && git remote add deploy "https://$GH_TOKEN@github.com/getroadmap/roadmap-site.git"
+- git init && git remote add deploy "https://${GH_TOKEN}@github.com/getroadmap/roadmap-site.git"
 - git add .
 - git commit -m "Production Build from ${TRAVIS_COMMIT}"
 - git push -f deploy HEAD:dist
