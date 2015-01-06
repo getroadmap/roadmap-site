@@ -29,7 +29,11 @@ namespace :app  do
     run "find #{deploy_to} -type d -exec chmod 775 {} +"
     run "find #{deploy_to} -type f -exec chmod 664 {} +"
   end
+  desc 'symlink content'
+  task :symlink do
+    run "ln -sF #{shared_path}/wp-content #{current_path}/wp-content"
+  end
 end
 
-# after 'deploy:create_symlink', 'app:symlink'
+after 'deploy:create_symlink', 'app:symlink'
 after 'deploy:update', 'deploy:cleanup'
