@@ -14,7 +14,6 @@ set :copy_exclude, ['.git']
 
 # SSH
 set :ssh_options, {:forward_agent => true}
-set :ssh_options, keys: ["config/deploy_id_rsa"] if File.exist?("config/deploy_id_rsa")
 
 
 #Global Config
