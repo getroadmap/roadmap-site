@@ -171,7 +171,8 @@ gulp.task('bump:patch', function () {
    § Clean
    ========================================================================== */
 
-gulp.task('clean', del.bind(null, ['.tmp', 'dist/*', '!dist/.git', 'gh-pages/*', '!gh-pages/.git']));
+gulp.task('clean', del.bind(null, ['.tmp', 'dist/*', '!dist/.git']));
+gulp.task('clean:gh-pages', del.bind(null, ['.tmp', 'gh-pages/*', '!gh-pages/.git']));
 
 
 
@@ -486,7 +487,7 @@ gulp.task('build', ['clean'], function (cb) {
 /*
    §§ Build - GH-Pages
    ========================================================================== */
-gulp.task('build:gh-pages', ['clean'], function (cb) {
+gulp.task('build:gh-pages', ['clean:gh-pages'], function (cb) {
   runSequence('jekyll','styles', 'styles:cmq', 'hologram', ['jshint', 'images', 'fonts', 'copy'], 'assets:inline', 'rev:gh-pages', cb);
 });
 
