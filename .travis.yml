@@ -30,6 +30,7 @@ script:
 - git push -f deploy HEAD:dist
 - bundle exec cap production deploy
 after_success:
+- cd ../
 - gulp build:gh-pages
 - cd ./gh-pages
 - git init && git remote add deploy "https://${GH_TOKEN}@github.com/getroadmap/roadmap-site.git"
