@@ -406,6 +406,7 @@ gulp.task('serve', ['jekyll', 'styles'], function () {
   });
 });
 
+
 /*
    §§ Serve - Dist
    ========================================================================== */
@@ -417,6 +418,21 @@ gulp.task('serve:dist', ['build'], function () {
     //       will present a certificate warning in the browser.
     // https: true,
     server: ['dist']
+  });
+});
+
+
+/*
+   §§ Serve - GH-Pages
+   ========================================================================== */
+gulp.task('serve:gh-pages', ['build:gh-pages'], function () {
+  browserSync({
+    notify: false,
+    // Run as an https by uncommenting 'https: true'
+    // Note: this uses an unsigned certificate which on first access
+    //       will present a certificate warning in the browser.
+    // https: true,
+    server: ['gh-pages']
   });
 });
 
@@ -471,7 +487,7 @@ gulp.task('build', ['clean'], function (cb) {
    §§ Build - GH-Pages
    ========================================================================== */
 gulp.task('build:gh-pages', ['clean'], function (cb) {
-  runSequence('jekyll','styles', 'styles:cmq', 'hologram', ['jshint', 'images', 'fonts', 'copy'], 'assets', 'assets:inline', 'rev:gh-pages', cb);
+  runSequence('jekyll','styles', 'styles:cmq', 'hologram', ['jshint', 'images', 'fonts', 'copy'], 'assets:inline', 'rev:gh-pages', cb);
 });
 
 
