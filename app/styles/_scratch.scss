@@ -310,7 +310,7 @@ body {
 
 .mh-ut {
   @include susy-breakpoint($bp-lg, $l-lg) {
-    @include span(last 5);
+    @include span(last 6);
 
     padding-top: 12px;
 
