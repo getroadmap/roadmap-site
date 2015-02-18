@@ -1007,6 +1007,7 @@ category: Components - Pricing Table
 .plans {
   @include breakpoint($bp-lg) {
     display: table;
+    width: 100%;
   }
 
   overflow: hidden;
