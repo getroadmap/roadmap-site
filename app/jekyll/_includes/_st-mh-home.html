@@ -51,16 +51,8 @@
 <div class="nw mh-nw">
   <div class="_ct">
     <div class="nw-wr">
-      {% assign periodicalArray = site.periodicals %}
-      {% for post in site.posts %}
-        {% assign periodicalArray = periodicalArray | push: post %}
-      {% endfor %}
 
-      {% for blog in site.blog %}
-        {% assign periodicalArray = periodicalArray | push: blog %}
-      {% endfor %}
-
-      {% assign sorted = periodicalArray | sort: "date" | reverse %}
+      {% assign sorted = site.posts | sort: "date" | reverse %}
 
       {% for post in sorted limit:1 %}
       <ul class="_ls-ui nw-ct">
@@ -75,7 +67,7 @@
           </a>
         </li>
       </ul>
-      <div class="_co nw-co"><a href="/{{ post.collection }}" title="Read More {{ post.collection | capitalize }}" class="_co-lk lk--mr">More {{ post.collection | capitalize }} Posts</a></div><!-- /._co nw-co -->
+      <div class="_co nw-co"><a href="/updates" title="Read More News &amp; Updates" class="_co-lk lk--mr">More Updates</a></div><!-- /._co nw-co -->
       {% endfor %}
     </div><!-- /.nw-wr -->
   </div> <!-- /._ct -->

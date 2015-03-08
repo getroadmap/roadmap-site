@@ -2,12 +2,16 @@
 layout: default
 ---
 
-<div class="h-entry post">
+<div class="h-entry post page pg">
   <header class="post-header">
-    <h1 class="post-title">{{ page.title }}</h1>
     <p class="post-meta">{{ page.date | date: "%b %-d, %Y" }}{% if page.author %} • {{ page.author }}{% endif %}{% if page.meta %} • {{ page.meta }}{% endif %}</p>
+    <h1 class="post-title">{{ page.title }}</h1>
   </header>
-
+  {% if page.thumbnail %}
+  <figure class="post-hero">
+    <img src="{{ page.thumbnail }}" alt="{{ page.thumbnail_alt }}" class="entry-src">
+  </figure>
+  {% endif %}
   <article class="post-content">
     {{ content }}
   </article>

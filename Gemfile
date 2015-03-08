@@ -19,3 +19,4 @@ gem "sassy-maps"
 gem "susy"
 gem "travis"
 gem "mini_magick"
+gem 'jekyll-paginate'
