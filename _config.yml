@@ -15,7 +15,11 @@ description: > # this means to ignore newlines until "baseurl:"
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://www.ppmroadmap.com" # the base hostname & protocol for your site
 
-permalink: /news/:year/:month/:day/:title/
+permalink: /news/:year/:month/:day/:title.html
+excerpt_separator: <!--more-->
+
+# Combine Periodicals
+periodicals: []
 
 
 # Collections
@@ -25,6 +29,9 @@ collections:
   customers:
     output: true
     permalink: /customers/:path/
+  blog:
+    output: true
+    permalink: /blog/:title.html
 
 
 # Default Settings
@@ -50,3 +57,36 @@ github_username:  getroadmap
 
 # Build settings
 markdown: kramdown
+
+picture:
+  source: "uploads/_fullsize"
+  output: "generated"
+  markup: "picture"
+
+
+gems: ['jekyll/itafroma/archive']
+archive:
+  - path: /news/:year
+    layout: archive_blog
+    title: Blog archive — :year
+    include:
+      tags: ['PHP']
+    exclude:
+      categories: ['news']
+      tags: ['drafts']
+  - path: /news/:year/:month
+    layout: archive_blog
+    title: Blog archive — :month :year
+    include:
+      tags: ['PHP']
+    exclude:
+      categories: ['news']
+      tags: ['drafts']
+  - path: /news/:year/:month/:day
+    layout: archive_blog
+    title: Blog archive — :month :day, :year
+    include:
+      tags: ['PHP']
+    exclude:
+      categories: ['news']
+      tags: ['drafts']

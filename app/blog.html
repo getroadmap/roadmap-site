@@ -1,0 +1,37 @@
+---
+layout: default
+class: _lo-p
+title: Roadmap Blog
+permalink: /blog/
+---
+
+<div class="pg">
+  <section class="c-periodical-list">
+    <h1>{{ page.collection | capitalize }}</h1>
+    <ul class="_ls-ui _ls-bl">
+      {% for post in site.blog %}
+        <li class="h-entry nw-entry{% if post.thumbnail %} has-image{% endif %}">
+          {% if post.thumbnail %}
+          <a href="{{ post.url }}" title="{{ post.title }}" class="entry-attach u-url">
+          <img src="{{ post.thumbnail }}" alt="" class="entry-src">
+          </a>
+          {% endif %}
+            <div class="entry-body">
+              <div class="entry-header">
+                <time class="dt-published" datetime="{{ post.date | date_to_rfc822 }}">
+                  {{ post.date | date: "%b %-d, %Y" }}
+                </time>
+                <h3 class="p-name">
+                  <a href="{{ post.url }}" title="{{ post.title }}" class="entry-permalink u-url">{{ post.title }}</a>
+                </h3>
+
+              </div>
+              <div class="entry-content">
+                <p>{{ post.excerpt | remove: '<p>' | remove: '</p>' }}</p>
+              </div>
+            </div>
+        </li>
+      {% endfor %}
+    </ul>
+  </section>
+</div>
