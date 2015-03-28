@@ -3,15 +3,31 @@
 	[
 		{
 			"follow_symlinks": true,
-			"path": "./app",
-      "name": "app"
+			"name": "app",
+			"path": "./app"
 		},
-    {
-      "follow_symlinks": true,
-      "path": ".",
-      "name": "config",
-      "folder_exclude_patterns": ["node_modules", "app", "dist", "docs"],
-      "file_exclude_patterns": ["*.sublime-workspace", "Gemfile.lock"]
-    }
-	]
+		{
+			"file_exclude_patterns":
+			[
+				"*.sublime-workspace",
+				"Gemfile.lock"
+			],
+			"folder_exclude_patterns":
+			[
+				"node_modules",
+				"app",
+				"dist",
+				"docs"
+			],
+			"follow_symlinks": true,
+			"name": "config",
+			"path": "."
+		}
+	],
+	"settings":
+	{
+		"FuzzyFilePath":
+		{
+		}
+	}
 }
