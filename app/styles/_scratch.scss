@@ -412,6 +412,7 @@ body {
 
 .mh-ho {
   position: relative;
+  overflow: hidden;
   padding-top: 1px;
   background: url('../images/hero-gantt.jpg') center top no-repeat;
 
@@ -481,7 +482,7 @@ body {
   ._ho-att {
     @include breakpoint($bp-lg) {
       position: absolute;
-      bottom: 0;
+      bottom: -3.5em;
       left: 0;
       z-index: $z-base;
 
