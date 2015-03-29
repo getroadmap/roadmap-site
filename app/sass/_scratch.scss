@@ -43,7 +43,25 @@ h1 {
 }
 
 
+._bq {
 
+}
+
+
+._bq-tx {
+  &:before,
+  &:after {
+    display: inline-block;
+    font-family: georgia, serif;
+  }
+  &:before {
+    content: '“';
+    margin-left: -.55em;
+  }
+  &:after {
+    content: '”';
+  }
+}
 
 
 ._btn {
@@ -678,7 +696,7 @@ h1 {
 
 
 .pl {
-  overflow: hidden;
+  @extend %u-cf;
   ._md-att,
   ._md-tx {
     margin: 0 0 $vs*.25;
