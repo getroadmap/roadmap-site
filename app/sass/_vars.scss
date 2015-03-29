@@ -63,7 +63,7 @@ $ui-ho : palette(black);
 $ui-bo : palette(gray);
 $ui-bg : palette(gray, base);
 
-@include print-palettes($palettes);
+// @include print-palettes($palettes);
 
 
 
@@ -72,9 +72,12 @@ $ui-bg : palette(gray, base);
 // Layout
 $l-lg: (
   columns: 16,
-  gutters: 24px/54px,
+  gutters: (.444444444),
   container: 76em
 );
+
+$susy: $l-lg;
+
 
 $breakpoint-no-query-fallbacks: true;
 // Breakpoints

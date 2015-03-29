@@ -44,10 +44,8 @@ body {
 
 ._btn {
   padding: $vs*.25;
-
   font-weight: bold;
-
-  color: contrast-color($ui-bg);
+  color: $ui-c;
   border: none;
   background-color: $ui-bg;
 }
@@ -59,11 +57,11 @@ body {
 
 
 ._btn--uno {
-  color: contrast-color(palette(yellow));
+  color: $ui-c;
   background-color: palette(yellow);
   &:hover,
   &:focus {
-    color: contrast-color(palette(black));
+    color: palette(yellow);
     background-color: palette(black);
   }
 }
