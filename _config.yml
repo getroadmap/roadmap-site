@@ -1,7 +1,7 @@
 # App Settings
-source: ./app/
+source: ./app/jekyll/
 destination: ./.tmp/
-exclude: ['app/styles/*.scss']
+# exclude: ['app/styles/*.scss']
 
 
 # Site settings
