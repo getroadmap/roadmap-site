@@ -245,6 +245,7 @@ gulp.task('images', function () {
       progressive: true,
       interlaced: true
     })))
+    .pipe(gulp.dest('app/jekyll/images'))
     .pipe(gulp.dest('.tmp/images'))
     .pipe($.size({title: 'images'}));
 });
@@ -278,9 +279,9 @@ gulp.task('jekyll:rebuild', ['jekyll'], function () {
 
 gulp.task('jshint', function () {
   return gulp.src('app/scripts/**/*.js')
-    .pipe(reload({stream: true, once: true}))
     .pipe($.jshint())
     .pipe($.jshint.reporter('jshint-stylish'))
+    .pipe(gulp.dest('.tmp/scripts'))
     .pipe($.if(!browserSync.active, $.jshint.reporter('fail')));
 });
 
@@ -358,7 +359,7 @@ gulp.task('rev:gh-pages', function () {
 
 gulp.task('styles', function () {
   // For best performance, don't add Sass partials to `gulp.src`
-  return gulp.src('app/styles/*.scss')
+  return gulp.src('app/sass/*.scss')
     .pipe($.plumber())
     .pipe($.sourcemaps.init())
     .pipe($.sass({
@@ -369,6 +370,7 @@ gulp.task('styles', function () {
     .pipe($.postcss(processors))
     .pipe($.sourcemaps.write())
     .pipe(gulp.dest('.tmp/styles'))
+    .pipe(reload({stream:true}))
     .pipe(gulp.dest('app/jekyll/styles'))
     .pipe($.size({title: 'styles'}));
 });
@@ -410,7 +412,12 @@ gulp.task('serve', ['jekyll', 'styles'], function () {
     // Note: this uses an unsigned certificate which on first access
     //       will present a certificate warning in the browser.
     // https: true,
-    server: ['.tmp', 'app']
+    server: {
+      baseDir: ['.tmp'],
+      routes: {
+        '/bower_components': 'bower_components'
+      }
+    }
   });
 });
 
@@ -458,9 +465,8 @@ gulp.task('serve:gh-pages', ['build:gh-pages'], function () {
 gulp.task('watch', ['serve','jekyll','styles'], function () {
   gulp.watch(['app/jekyll/**/*.{html,md,markdown}'], ['jekyll:rebuild']);
   gulp.watch(['app/sass/**/*.{scss,css}'], ['styles']);
-  gulp.watch(['app/sass/**/*.{scss,css}'], ['hologram']);
   gulp.watch(['app/scripts/**/*.js'], ['jshint']);
-  gulp.watch(['app/images/**/*'], reload);
+  gulp.watch(['app/images/**/*'], ['images']);
   gulp.watch(['.tmp/**'], reload);
 });
 
