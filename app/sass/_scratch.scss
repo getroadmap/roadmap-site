@@ -16,6 +16,10 @@ body {
   height: 100%;
 }
 
+h1 {
+  margin-top: 0;
+}
+
 
 .st-wp {
   min-height: 100%;
@@ -524,7 +528,7 @@ body {
   }
   .nw-ct {
     @include susy-breakpoint($bp-lg, $l-lg) {
-      @include span(14);
+      @include span(13);
 
       margin: 0;
     }
@@ -546,28 +550,30 @@ body {
   ._co-lk {
     line-height: $vs;
   }
-  .p-name {
-    @include susy-breakpoint($bp-lg, $l-lg) {
-      @include span(last 12 of 14);
-      @include suffix(1 of 14);
+  .nw-entry {
+    line-height: $vs;
+    .p-name {
+      @include susy-breakpoint($bp-lg, $l-lg) {
+        @include span(last 11 of 13);
+        @include suffix(1 of 13);
+      }
+
+      margin: 0;
+      font-size: $fs;
     }
-
-    margin: 0;
-
-    font-size: $fs;
   }
   .dt-published {
     @include susy-breakpoint($bp-lg, $l-lg) {
-      @include span(2 of 14);
-
+      @include span(2 of 13);
       margin-right: 0;
+      line-height: 26px;
     }
 
     font-size: $fs-centi;
   }
   .nw-co {
     @include susy-breakpoint($bp-lg, $l-lg) {
-      @include span(last 2);
+      @include span(last 3);
     }
   }
   .lk--mr {
@@ -854,11 +860,34 @@ body {
   background: url(../images/bg-gridline.png) left top repeat;
   .pg {
     @include pad(1);
+    overflow: hidden;
+    padding-top: ($vs*2);
+    padding-bottom: ($vs*2);
+
     @include susy-breakpoint($bp-lg, $l-lg) {
       @include pad(1);
 
       width: span(12);
       margin: 0 auto;
+    }
+  }
+}
+
+
+
+// Post listing
+._lo-p {
+  .pg {
+  }
+  .c-periodical-list {
+    @include susy-breakpoint($bp-lg, $l-lg) {
+
+    }
+  }
+
+  .entry-attach {
+    @include susy-breakpoint($bp-lg, $l-lg) {
+      @include span(3 of 9);
     }
   }
 }
@@ -1196,4 +1225,137 @@ category: Modules - Messaging
   color: #fff;
   border-color: palette(red, tamarillo);
   background-color: palette(red, froly);
+}
+
+
+
+
+
+/*doc
+---
+title: Periodical Listing
+category: Modules - Listing
+---
+```html_example
+<li class="h-entry nw-entry">
+  <a href="#" title="" class="u-url">
+    <div class="entry-body">
+      <div class="entry-header">
+        <h3 class="p-name">
+          Lorem ipsum dolor sit amet
+        </h3>
+        <time class="dt-published" datetime="{{ post.date | date_to_rfc822 }}">
+          Mar 7, 2015
+        </time>
+      </div>
+      <div class="entry-content">
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia explicabo error perspiciatis qui illum consequuntur officiis sed. Tempora commodi perferendis sequi earum, blanditiis iste quia cupiditate facere sapiente velit autem!</p>
+      </div>
+    </div>
+  </a>
+</li>
+```
+ */
+
+.nw-entry {
+  overflow: hidden;
+
+  .entry-attach {
+    @include breakpoint($bp-lg) {
+      float: left;
+      margin-top: 0;
+      margin-bottom: 0;
+      margin-left: 0;
+    }
+  }
+
+  .entry-body {
+    overflow: hidden;
+  }
+
+  .entry-content {
+    p {
+      margin: 0;
+      font-size: $fs-deci;
+    }
+  }
+
+  .p-name {
+    margin: 0 0 ($vs/4);
+    font-size: $fs;
+  }
+
+  .dt-published {
+    font-size: $fs-milli;
+  }
+
+  .u-url {
+    text-decoration: none;
+
+    color: $ui-c;
+    &:hover,
+    &:focus {
+      color: palette(blue);
+      .dt-published {
+        color: $ui-c;
+      }
+    }
+  }
+}
+
+
+.c-periodical-list {
+  .dt-published,
+  .p-name {
+    line-height: 1;
+  }
+}
+
+.pagination {
+  padding: ($vs*.5);
+  border-top: 1px solid $ui-bo;
+  background-color: palette(white, mercury);
+}
+
+.pagination-current {
+  font-weight: bold;
+  font-style: normal;
+}
+
+.pagination-link {
+  text-decoration: none;
+  color: palette(blue);
+
+  &:hover,
+  &:focus {
+    color: palette(red);
+  }
+
+  span {
+    display: none;
+  }
+}
+
+.pagination-page {
+  + .pagination-page {
+    margin-left: ($vs*.5);
+  }
+}
+
+
+
+.h-entry.pg {
+  .post-meta {
+    margin: 0;
+  }
+  .post-title {
+    margin: 0;
+  }
+  .post-hero {
+    margin: 0;
+  }
+
+  .post-content {
+    margin-top: $vs;
+  }
 }
