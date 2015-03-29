@@ -1,6 +1,6 @@
 {
   "name": "rdm-website-dev",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "devDependencies": {
     "autoprefixer-core": "^5.1.8",
     "browser-sync": "^1.3.0",
