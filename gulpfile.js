@@ -34,6 +34,8 @@
 // Include Gulp & Tools We'll Use
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
+var autoprefixer = require('autoprefixer-core');
+var cp = require('child_process');
 var del = require('del');
 var runSequence = require('run-sequence');
 var browserSync = require('browser-sync');
@@ -61,6 +63,15 @@ var AUTOPREFIXER_BROWSERS = [
  'bb >= 10'
 ];
 
+
+var messages = {
+    jekyllBuild: '<span style="color: grey">Running:</span> $ jekyll build'
+};
+
+
+var processors = [
+  autoprefixer(AUTOPREFIXER_BROWSERS)
+];
 
 
 
@@ -246,16 +257,15 @@ gulp.task('images', function () {
    § Jekyll
    ========================================================================== */
 
-gulp.task('jekyll', function () {
-  gulp.src(['./app/index.html', './app/_layouts/*.html', './app/_posts/*.{markdown,md}', './app/_customers/*.{markdown,md}'])
-    .pipe($.plumber())
-    .pipe($.jekyll({
-        source: './app',
-        destination: './.tmp/',
-        config: '_config.yml',
-        bundleExec: true
-    }))
-    .on('error', console.error.bind(console))
+gulp.task('jekyll', function (done) {
+  browserSync.notify(messages.jekyllBuild);
+  return cp.spawn('jekyll', ['build'], {stdio: 'inherit'})
+          .on('close', done);
+});
+
+
+gulp.task('jekyll:rebuild', ['jekyll'], function () {
+    reload();
 });
 
 
@@ -348,21 +358,18 @@ gulp.task('rev:gh-pages', function () {
 
 gulp.task('styles', function () {
   // For best performance, don't add Sass partials to `gulp.src`
-  return gulp.src([
-      'app/styles/*.scss',
-      'app/styles/**/*.css'
-    ])
+  return gulp.src('app/styles/*.scss')
     .pipe($.plumber())
-    .pipe($.changed('styles', {extension: '.scss'}))
-    .pipe($.rubySass({
-        style: 'expanded',
-        precision: 10,
-        compass: true
-      })
-      .on('error', console.error.bind(console))
-    )
-    .pipe($.autoprefixer(AUTOPREFIXER_BROWSERS))
+    .pipe($.sourcemaps.init())
+    .pipe($.sass({
+      includePaths: [
+        'bower_components'
+      ]
+    }))
+    .pipe($.postcss(processors))
+    .pipe($.sourcemaps.write())
     .pipe(gulp.dest('.tmp/styles'))
+    .pipe(gulp.dest('app/jekyll/styles'))
     .pipe($.size({title: 'styles'}));
 });
 
@@ -449,10 +456,9 @@ gulp.task('serve:gh-pages', ['build:gh-pages'], function () {
    §§ Watch - Default
    ========================================================================== */
 gulp.task('watch', ['serve','jekyll','styles'], function () {
-  gulp.watch(['app/**/*.html'], ['jekyll', 'styles']);
-  gulp.watch(['app/**/*.{html,md,markdown}'], ['jekyll', 'styles']);
-  gulp.watch(['app/styles/**/*.{scss,css}'], ['styles']);
-  gulp.watch(['app/styles/**/*.{scss,css}'], ['hologram']);
+  gulp.watch(['app/jekyll/**/*.{html,md,markdown}'], ['jekyll:rebuild']);
+  gulp.watch(['app/sass/**/*.{scss,css}'], ['styles']);
+  gulp.watch(['app/sass/**/*.{scss,css}'], ['hologram']);
   gulp.watch(['app/scripts/**/*.js'], ['jshint']);
   gulp.watch(['app/images/**/*'], reload);
   gulp.watch(['.tmp/**'], reload);
