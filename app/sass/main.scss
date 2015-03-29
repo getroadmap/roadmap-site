@@ -5,11 +5,11 @@
  * Web Starter Kit team.
  *
  */
-@import "compass";
-@import "breakpoint";
-@import "susy";
+
+@import "sassy-maps/sass/_memo.scss";
+@import "breakpoint-sass/stylesheets/_breakpoint.scss";
+@import "susy/sass/_susy.scss";
   @include border-box-sizing;
-@import "memo";
 
 
 
