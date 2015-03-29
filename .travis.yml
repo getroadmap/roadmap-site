@@ -29,14 +29,14 @@ script:
     git commit -m "Development Build from ${TRAVIS_COMMIT}";
     git push -f deploy HEAD:gh-pages;
   else
-    gulp build
-    htmlproof dist
-    cd ./dist
-    git init && git remote add deploy "https://${GH_TOKEN}@github.com/getroadmap/roadmap-site.git"
-    git add .
-    git commit -m "Production Build from ${TRAVIS_COMMIT}"
-    git push -f deploy HEAD:dist
-    bundle exec cap production deploy
+    gulp build;
+    htmlproof dist;
+    cd ./dist;
+    git init && git remote add deploy "https://${GH_TOKEN}@github.com/getroadmap/roadmap-site.git";
+    git add .;
+    git commit -m "Production Build from ${TRAVIS_COMMIT}";
+    git push -f deploy HEAD:dist;
+    bundle exec cap production deploy;
   fi
 branches:
   only:
