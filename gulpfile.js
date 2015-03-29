@@ -34,6 +34,8 @@
 // Include Gulp & Tools We'll Use
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
+var autoprefixer = require('autoprefixer-core');
+var cp = require('child_process');
 var del = require('del');
 var runSequence = require('run-sequence');
 var browserSync = require('browser-sync');
@@ -61,6 +63,15 @@ var AUTOPREFIXER_BROWSERS = [
  'bb >= 10'
 ];
 
+
+var messages = {
+    jekyllBuild: '<span style="color: grey">Running:</span> $ jekyll build'
+};
+
+
+var processors = [
+  autoprefixer(AUTOPREFIXER_BROWSERS)
+];
 
 
 
@@ -234,6 +245,7 @@ gulp.task('images', function () {
       progressive: true,
       interlaced: true
     })))
+    .pipe(gulp.dest('app/jekyll/images'))
     .pipe(gulp.dest('.tmp/images'))
     .pipe($.size({title: 'images'}));
 });
@@ -246,16 +258,29 @@ gulp.task('images', function () {
    § Jekyll
    ========================================================================== */
 
-gulp.task('jekyll', function () {
-  gulp.src(['./app/index.html', './app/_layouts/*.html', './app/_posts/*.{markdown,md}', './app/_customers/*.{markdown,md}'])
-    .pipe($.plumber())
-    .pipe($.jekyll({
-        source: './app',
-        destination: './.tmp/',
-        config: '_config.yml',
-        bundleExec: true
-    }))
-    .on('error', console.error.bind(console))
+gulp.task('jekyll', function (done) {
+  browserSync.notify(messages.jekyllBuild);
+  return cp.spawn('jekyll', ['build', '--config', '_config.yml,_config_dev.yml'], {stdio: 'inherit'})
+          .on('close', done);
+});
+
+
+gulp.task('jekyll:production', function (done) {
+  browserSync.notify(messages.jekyllBuild);
+  return cp.spawn('jekyll', ['build', '--config', '_config.yml'], {stdio: 'inherit'})
+          .on('close', done);
+});
+
+
+gulp.task('jekyll:gh-pages', function (done) {
+  browserSync.notify(messages.jekyllBuild);
+  return cp.spawn('jekyll', ['build', '--config', '_config.yml,_config_ghpages.yml'], {stdio: 'inherit'})
+          .on('close', done);
+});
+
+
+gulp.task('jekyll:rebuild', ['jekyll'], function () {
+    reload();
 });
 
 
@@ -268,9 +293,9 @@ gulp.task('jekyll', function () {
 
 gulp.task('jshint', function () {
   return gulp.src('app/scripts/**/*.js')
-    .pipe(reload({stream: true, once: true}))
     .pipe($.jshint())
     .pipe($.jshint.reporter('jshint-stylish'))
+    .pipe(gulp.dest('.tmp/scripts'))
     .pipe($.if(!browserSync.active, $.jshint.reporter('fail')));
 });
 
@@ -348,21 +373,19 @@ gulp.task('rev:gh-pages', function () {
 
 gulp.task('styles', function () {
   // For best performance, don't add Sass partials to `gulp.src`
-  return gulp.src([
-      'app/styles/*.scss',
-      'app/styles/**/*.css'
-    ])
+  return gulp.src('app/sass/*.scss')
     .pipe($.plumber())
-    .pipe($.changed('styles', {extension: '.scss'}))
-    .pipe($.rubySass({
-        style: 'expanded',
-        precision: 10,
-        compass: true
-      })
-      .on('error', console.error.bind(console))
-    )
-    .pipe($.autoprefixer(AUTOPREFIXER_BROWSERS))
+    .pipe($.sourcemaps.init())
+    .pipe($.sass({
+      includePaths: [
+        'bower_components'
+      ]
+    }))
+    .pipe($.postcss(processors))
+    .pipe($.sourcemaps.write())
     .pipe(gulp.dest('.tmp/styles'))
+    .pipe(reload({stream:true}))
+    .pipe(gulp.dest('app/jekyll/styles'))
     .pipe($.size({title: 'styles'}));
 });
 
@@ -403,7 +426,12 @@ gulp.task('serve', ['jekyll', 'styles'], function () {
     // Note: this uses an unsigned certificate which on first access
     //       will present a certificate warning in the browser.
     // https: true,
-    server: ['.tmp', 'app']
+    server: {
+      baseDir: ['.tmp'],
+      routes: {
+        '/bower_components': 'bower_components'
+      }
+    }
   });
 });
 
@@ -449,12 +477,10 @@ gulp.task('serve:gh-pages', ['build:gh-pages'], function () {
    §§ Watch - Default
    ========================================================================== */
 gulp.task('watch', ['serve','jekyll','styles'], function () {
-  gulp.watch(['app/**/*.html'], ['jekyll', 'styles']);
-  gulp.watch(['app/**/*.{html,md,markdown}'], ['jekyll', 'styles']);
-  gulp.watch(['app/styles/**/*.{scss,css}'], ['styles']);
-  gulp.watch(['app/styles/**/*.{scss,css}'], ['hologram']);
+  gulp.watch(['app/jekyll/**/*.{html,md,markdown}'], ['jekyll:rebuild']);
+  gulp.watch(['app/sass/**/*.{scss,css}'], ['styles']);
   gulp.watch(['app/scripts/**/*.js'], ['jshint']);
-  gulp.watch(['app/images/**/*'], reload);
+  gulp.watch(['app/images/**/*'], ['images']);
   gulp.watch(['.tmp/**'], reload);
 });
 
@@ -480,7 +506,7 @@ gulp.task('watch:hologram', ['serve', 'styles', 'hologram'], function () {
    §§ Build - Default
    ========================================================================== */
 gulp.task('build', ['clean'], function (cb) {
-  runSequence('jekyll','styles', 'styles:cmq', 'hologram', ['jshint', 'images', 'fonts', 'copy'], 'assets', 'assets:inline', 'rev', cb);
+  runSequence('jekyll:production','styles', 'styles:cmq', 'hologram', ['jshint', 'images', 'fonts', 'copy'], 'assets', 'assets:inline', 'rev', cb);
 });
 
 
@@ -488,7 +514,7 @@ gulp.task('build', ['clean'], function (cb) {
    §§ Build - GH-Pages
    ========================================================================== */
 gulp.task('build:gh-pages', ['clean:gh-pages'], function (cb) {
-  runSequence('jekyll','styles', 'styles:cmq', 'hologram', ['jshint', 'images', 'fonts', 'copy'], 'assets:inline', 'rev:gh-pages', cb);
+  runSequence('jekyll:gh-pages','styles', 'styles:cmq', 'hologram', ['jshint', 'images', 'fonts', 'copy'], 'assets:inline', 'rev:gh-pages', cb);
 });
 
 

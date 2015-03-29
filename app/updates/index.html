@@ -1,0 +1,60 @@
+---
+layout: default
+class: _lo-p
+title: Roadmap News &amp; Updates
+---
+
+{% assign sorted = site.posts | sort: "date" | reverse %}
+
+<div class="pg">
+  <section class="c-periodical-list">
+    <h1>Roadmap News &amp; Updates</h1>
+    <ul class="_ls-ui _ls-bl">
+      {% for post in paginator.posts %}
+        <li class="h-entry nw-entry{% if post.thumbnail %} has-image{% endif %}">
+          {% if post.thumbnail %}
+          <a href="{{ post.url }}" title="{{ post.title }}" class="entry-attach u-url">
+          <img src="{{ post.thumbnail }}" alt="" class="entry-src">
+          </a>
+          {% endif %}
+            <div class="entry-body">
+              <div class="entry-header">
+                <time class="dt-published" datetime="{{ post.date | date_to_rfc822 }}">
+                  {{ post.date | date: "%b %-d, %Y" }}
+                </time>
+                <h3 class="p-name">
+                  <a href="{{ post.url }}" title="{{ post.title }}" class="entry-permalink u-url">{{ post.title }}</a>
+                </h3>
+
+              </div>
+              <div class="entry-content">
+                <p>{{ post.excerpt | remove: '<p>' | remove: '</p>' }}</p>
+              </div>
+            </div>
+        </li>
+      {% endfor %}
+    </ul>
+    <!-- Pagination links -->
+    {% if paginator.total_pages > 1 %}
+    <nav class="pagination">
+      {% if paginator.previous_page %}
+        <a class="pagination-link pagination-prev pagination-page" href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">Prev<span>ious Page</span></a>
+      {% endif %}
+
+      {% for page in (1..paginator.total_pages) %}
+        {% if page == paginator.page %}
+          <em class="pagination-current pagination-page">{{ page }}</em>
+        {% elsif page == 1 %}
+          <a class="pagination-link pagination-page" href="{{ '/index.html' | prepend: site.baseurl | replace: '//', '/' }}">{{ page }}</a>
+        {% else %}
+          <a class="pagination-link pagination-page" href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
+        {% endif %}
+      {% endfor %}
+
+      {% if paginator.next_page %}
+        <a class="pagination-link pagination-next pagination-page" href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Next<span> Page</span></a>
+      {% endif %}
+    </nav>
+    {% endif %}
+  </section>
+</div>

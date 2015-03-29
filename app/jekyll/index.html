@@ -1,0 +1,109 @@
+---
+layout: blank
+---
+
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+  <head>
+
+  {% if jekyll.environment != 'development' %}
+  <!-- Google Analytics Content Experiment code -->
+  <script>function utmx_section(){}function utmx(){}(function(){var
+  k='36135238-0',d=document,l=d.location,c=d.cookie;
+  if(l.search.indexOf('utm_expid='+k)>0)return;
+  function f(n){if(c){var i=c.indexOf(n+'=');if(i>-1){var j=c.
+  indexOf(';',i);return escape(c.substring(i+n.length+1,j<0?c.
+  length:j))}}}var x=f('__utmx'),xx=f('__utmxx'),h=l.hash;d.write(
+  '<sc'+'ript src="'+'http'+(l.protocol=='https:'?'s://ssl':
+  '://www')+'.google-analytics.com/ga_exp.js?'+'utmxkey='+k+
+  '&utmx='+(x?x:'')+'&utmxx='+(xx?xx:'')+'&utmxtime='+new Date().
+  valueOf()+(h?'&utmxhash='+escape(h.substr(1)):'')+
+  '" type="text/javascript" charset="utf-8"><\/sc'+'ript>')})();
+  </script><script>utmx('url','A/B');</script>
+  <!-- End of Google Analytics Content Experiment code -->
+  {% endif %}
+  {% include _head.html %}
+  </head>
+
+  <body class="st _lo-home">
+    {% include _gtm.html %}
+
+
+
+
+
+    <header class="st-m -has-ho">
+
+      <div class="mh-bn">
+        <div class="_ct">
+          <div class="_br mh-br">
+            <a class="_br-lk ir" href="/" title="Roadmap - Intelligent Project Management, Scheduling, Time Tracking, and Resource Planning">
+              Roadmap <strong class="_vh">Intelligent Project Management, Scheduling, Time Tracking, and Resource Planning</strong>
+            </a>
+          </div> <!-- /._br mh-br -->
+
+
+
+
+
+          {% include _mh-nav.html %}
+        </div><!-- /._ct -->
+      </div><!-- /.mh-bn -->
+
+
+
+
+
+      <div class="_ho mh-ho">
+        <div class="_ho-tx">
+          <div class="_ct">
+            <h2 class="_ho-hd">Your Roadmap to successful projects</h2>
+            <div class="_ho-cp">
+              <p>See your project through its twists and turns to success. Visualize, align, forecast and manage one project or an entire campaign, all integrated with Basecamp.</p>
+            </div>
+            <div class="_co _ho-co">
+              <a class="_co-lk" href="https://app.ppmroadmap.com/AccountRegistration.aspx?utm_source=Marketing%20Website&amp;utm_medium=website&amp;utm_content=roadmap&amp;utm_campaign=hero">Plan more successful projects now.</a>
+            </div><!-- /._ho-co -->
+          </div><!-- /._ct -->
+        </div><!-- /._ho-tx -->
+        <div class="_ho-att">
+          <span class="_ho-src" data-picture data-alt="Visualize your projects as gantt charts">
+            <span data-src="/images/hero-gantt-mobile.jpg"></span>
+            <span data-src="/images/hero-gantt-app.png" data-media="(min-width: 47em)"></span>
+            <span data-src="/images/hero-gantt-mobile@2x.jpg" data-media="(min-device-pixel-ratio: 2.0)"></span>
+            <span data-src="/images/hero-gantt-app@2x.png" data-media="(min-device-pixel-ratio: 2.0)"></span>
+            <!-- Fallback content for non-JS browsers. Same img src as the initial, unqualified source element. -->
+            <noscript>
+              <img src="/images/hero-gantt-mobile.jpg" alt="Visualize your projects as gantt charts"></noscript>
+          </span>
+        </div>
+      </div><!-- /._ho mh-ho -->
+
+
+
+
+
+      {% include _home-mh-news.html %}
+
+    </header><!-- /.site-masthead -->
+
+
+
+
+
+    <div class="st-wp">
+      <main class="st-c">
+        {% include _home-content.html %}
+      </main> <!-- /.st-c -->
+    </div> <!-- /.st-wp -->
+
+
+
+
+
+    {% include _st-ft.html %}
+  </body>
+</html>

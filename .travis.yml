@@ -21,22 +21,24 @@ install:
 - npm install -g npm@2
 - npm install && bower install
 script:
-- gulp build
-- htmlproof dist
-- cd ./dist
-- git init && git remote add deploy "https://${GH_TOKEN}@github.com/getroadmap/roadmap-site.git"
-- git add .
-- git commit -m "Production Build from ${TRAVIS_COMMIT}"
-- git push -f deploy HEAD:dist
-- bundle exec cap production deploy
-after_success:
-- cd ../
-- gulp build:gh-pages
-- cd ./gh-pages
-- git init && git remote add deploy "https://${GH_TOKEN}@github.com/getroadmap/roadmap-site.git"
-- git add .
-- git commit -m "Development Build from ${TRAVIS_COMMIT}"
-- git push -f deploy HEAD:gh-pages
+- if [ $TRAVIS_BRANCH = 'develop' ]; then
+    gulp build:gh-pages;
+    cd ./gh-pages;
+    git init && git remote add deploy "https://${GH_TOKEN}@github.com/getroadmap/roadmap-site.git";
+    git add .;
+    git commit -m "Development Build from ${TRAVIS_COMMIT}";
+    git push -f deploy HEAD:gh-pages;
+  else
+    gulp build;
+    htmlproof dist;
+    cd ./dist;
+    git init && git remote add deploy "https://${GH_TOKEN}@github.com/getroadmap/roadmap-site.git";
+    git add .;
+    git commit -m "Production Build from ${TRAVIS_COMMIT}";
+    git push -f deploy HEAD:dist;
+    bundle exec cap production deploy;
+  fi
 branches:
   only:
   - master
+  - develop
