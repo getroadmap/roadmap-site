@@ -5,3 +5,4 @@ dist
 app/vendor
 *.sublime-workspace
 Gemfile.lock
+bower_components
