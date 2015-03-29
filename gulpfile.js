@@ -241,10 +241,10 @@ gulp.task('hologram', function () {
 
 gulp.task('images', function () {
   return gulp.src('app/images/**/*')
-    .pipe($.cache($.imagemin({
+    .pipe($.imagemin({
       progressive: true,
       interlaced: true
-    })))
+    }))
     .pipe(gulp.dest('app/jekyll/images'))
     .pipe(gulp.dest('.tmp/images'))
     .pipe($.size({title: 'images'}));
@@ -467,7 +467,7 @@ gulp.task('watch', ['serve','jekyll','styles'], function () {
   gulp.watch(['app/sass/**/*.{scss,css}'], ['styles']);
   gulp.watch(['app/scripts/**/*.js'], ['jshint']);
   gulp.watch(['app/images/**/*'], ['images']);
-  gulp.watch(['.tmp/**'], reload);
+  gulp.watch(['.tmp/**'], reload({once: true}));
 });
 
 
