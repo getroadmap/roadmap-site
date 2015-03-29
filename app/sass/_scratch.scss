@@ -713,6 +713,20 @@ body {
   .p-summary {
     font-size: $fs-deci;
   }
+
+  ._md-att {
+    position: relative;
+    height: 0;
+    overflow: hidden;
+    padding-top: percentage(330/275);
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: auto;
+    }
+  }
 }
 
 .pt--ho {
@@ -723,6 +737,24 @@ body {
   }
 
   margin-bottom: $vs;
+
+  ._md-att {
+    position: relative;
+    height: 0;
+    overflow: hidden;
+    padding-top: percentage(330/275);
+    @include susy-breakpoint($bp-lg, $l-lg) {
+      padding-top: percentage(330/573);
+    }
+
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: auto;
+    }
+  }
 }
 
 .pt--bq {
