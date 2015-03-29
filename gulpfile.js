@@ -260,7 +260,7 @@ gulp.task('images', function () {
 
 gulp.task('jekyll', function (done) {
   browserSync.notify(messages.jekyllBuild);
-  return cp.spawn('jekyll', ['build'], {stdio: 'inherit'})
+  return cp.spawn('jekyll', ['build', '--config', '_config.yml,_config_dev.yml'], {stdio: 'inherit'})
           .on('close', done);
 });
 

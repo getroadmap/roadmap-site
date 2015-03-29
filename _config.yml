@@ -2,6 +2,7 @@
 source: ./app/jekyll/
 destination: ./.tmp/
 # exclude: ['app/styles/*.scss']
+environment: production
 
 
 # Site settings
