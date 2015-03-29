@@ -265,6 +265,20 @@ gulp.task('jekyll', function (done) {
 });
 
 
+gulp.task('jekyll:production', function (done) {
+  browserSync.notify(messages.jekyllBuild);
+  return cp.spawn('jekyll', ['build', '--config', '_config.yml'], {stdio: 'inherit'})
+          .on('close', done);
+});
+
+
+gulp.task('jekyll:gh-pages', function (done) {
+  browserSync.notify(messages.jekyllBuild);
+  return cp.spawn('jekyll', ['build', '--config', '_config.yml,_config_ghpages.yml'], {stdio: 'inherit'})
+          .on('close', done);
+});
+
+
 gulp.task('jekyll:rebuild', ['jekyll'], function () {
     reload();
 });
@@ -492,7 +506,7 @@ gulp.task('watch:hologram', ['serve', 'styles', 'hologram'], function () {
    §§ Build - Default
    ========================================================================== */
 gulp.task('build', ['clean'], function (cb) {
-  runSequence('jekyll','styles', 'styles:cmq', 'hologram', ['jshint', 'images', 'fonts', 'copy'], 'assets', 'assets:inline', 'rev', cb);
+  runSequence('jekyll:production','styles', 'styles:cmq', 'hologram', ['jshint', 'images', 'fonts', 'copy'], 'assets', 'assets:inline', 'rev', cb);
 });
 
 
@@ -500,7 +514,7 @@ gulp.task('build', ['clean'], function (cb) {
    §§ Build - GH-Pages
    ========================================================================== */
 gulp.task('build:gh-pages', ['clean:gh-pages'], function (cb) {
-  runSequence('jekyll','styles', 'styles:cmq', 'hologram', ['jshint', 'images', 'fonts', 'copy'], 'assets:inline', 'rev:gh-pages', cb);
+  runSequence('jekyll:gh-pages','styles', 'styles:cmq', 'hologram', ['jshint', 'images', 'fonts', 'copy'], 'assets:inline', 'rev:gh-pages', cb);
 });
 
 
