@@ -1,8 +1,9 @@
-node_modules
-.sass-cache
-dist
-.tmp
-app/vendor
 *.sublime-workspace
-Gemfile.lock
+.sass-cache
+.tmp
 bower_components
+dist
+Gemfile.lock
+node_modules
+app/jekyll/styles
+app/jekyll/images
