@@ -1,6 +1,6 @@
 # App Settings
-source: ./app/jekyll/
-destination: ./.tmp/
+source: app/jekyll/
+destination: .tmp/
 # exclude: ['app/styles/*.scss']
 environment: production
 
@@ -54,7 +54,7 @@ markdown: kramdown
 
 # Prose Settings
 prose:
-  rooturl: '_posts'
+  rooturl: 'app/jekyll/_posts'
   siteurl: 'https://ppmroadmap.com/'
   #relativeLinks: 'http://ppmroadmap.com/links.jsonp'
   media: 'media'
