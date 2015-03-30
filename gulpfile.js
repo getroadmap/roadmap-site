@@ -133,14 +133,7 @@ gulp.task('assets' ,function () {
 gulp.task('assets:inline', function () {
     return gulp.src('./.tmp/**/*.html')
         .pipe($.inlineSource())
-        .pipe(gulp.dest('./dist'));
-});
-
-
-gulp.task('assets:inline:gh-pages', function () {
-    return gulp.src('./.tmp/**/*.html')
-        .pipe($.inlineSource())
-        .pipe(gulp.dest('./gh-pages'));
+        .pipe(gulp.dest('./.tmp'));
 });
 
 
@@ -528,7 +521,14 @@ gulp.task('build', ['clean'], function (cb) {
    §§ Build - GH-Pages
    ========================================================================== */
 gulp.task('build:gh-pages', ['clean:gh-pages'], function (cb) {
-  runSequence('jekyll:gh-pages','styles', 'styles:cmq', 'hologram', ['jshint', 'images', 'fonts', 'copy'], 'assets','assets:inline:gh-pages', 'rev:gh-pages', cb);
+  runSequence('jekyll:gh-pages',
+              'styles',
+              'styles:cmq',
+              'hologram',
+              ['jshint', 'images', 'fonts', 'copy'],
+              'assets',
+              'assets:inline',
+              'rev:gh-pages', cb);
 });
 
 
