@@ -96,7 +96,9 @@ gulp.task('assets' ,function () {
         '.tmp/sign-up/index.html',
         '.tmp/privacy-policy/index.html',
         '.tmp/plans-pricing/index.html',
-        '.tmp/terms-of-service/index.html'
+        '.tmp/terms-of-service/index.html',
+        '.tmp/updates/index.html',
+        '.tmp/updates/chrome-extension-for-basecamp.html'
       ],
       // CSS Selectors for UnCSS to ignore
       ignore: [
@@ -130,8 +132,15 @@ gulp.task('assets' ,function () {
 
 gulp.task('assets:inline', function () {
     return gulp.src('./.tmp/**/*.html')
-        .pipe($.inlineSource('./app'))
+        .pipe($.inlineSource())
         .pipe(gulp.dest('./dist'));
+});
+
+
+gulp.task('assets:inline:gh-pages', function () {
+    return gulp.src('./.tmp/**/*.html')
+        .pipe($.inlineSource())
+        .pipe(gulp.dest('./gh-pages'));
 });
 
 
@@ -461,7 +470,12 @@ gulp.task('serve:gh-pages', ['build:gh-pages'], function () {
     // Note: this uses an unsigned certificate which on first access
     //       will present a certificate warning in the browser.
     // https: true,
-    server: ['gh-pages']
+    server: {
+      baseDir: ['gh-pages'],
+      routes: {
+        '/roadmap-site': '.'
+      }
+    }
   });
 });
 
@@ -514,7 +528,7 @@ gulp.task('build', ['clean'], function (cb) {
    §§ Build - GH-Pages
    ========================================================================== */
 gulp.task('build:gh-pages', ['clean:gh-pages'], function (cb) {
-  runSequence('jekyll:gh-pages','styles', 'styles:cmq', 'hologram', ['jshint', 'images', 'fonts', 'copy'], 'assets:inline', 'rev:gh-pages', cb);
+  runSequence('jekyll:gh-pages','styles', 'styles:cmq', 'hologram', ['jshint', 'images', 'fonts', 'copy'], 'assets','assets:inline:gh-pages', 'rev:gh-pages', cb);
 });
 
 
