@@ -50,5 +50,39 @@ email: support@ppmroadmap.com
 twitter_username: ppmroadmap
 github_username:  getroadmap
 
-# Build settings
+# Editing settings
 markdown: kramdown
+
+# Prose Settings
+prose:
+  rooturl: '_posts'
+  siteurl: 'https://ppmroadmap.com/'
+  #relativeLinks: 'http://ppmroadmap.com/links.jsonp'
+  media: 'media'
+  ignore:
+    - index.md
+    - _config.yml
+    - /_layouts
+    - /_includes
+  metadata:
+    _posts:
+      - name: "layout"
+        field:
+          element: "hidden"
+          value: "post"
+      - name: "title"
+        field:
+          element: "text"
+          label: "title"
+      - name: "tags"
+        field:
+          element: "multiselect"
+          label: "Add Tags"
+          placeholder: "Choose Tags"
+          options:
+            - name: "Features"
+              value: "features"
+            - name: "Releases"
+              value: "bananas"
+            - name: "How To"
+              value: "how-to"
