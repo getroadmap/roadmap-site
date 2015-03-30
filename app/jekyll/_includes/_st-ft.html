@@ -5,10 +5,10 @@
       <nav class="_nv nv-lg"> <strong class="_nv-hd">Legal Navigation</strong>
         <ul class="_nav">
           <li>
-            <a href="/terms-of-service">Terms of Service</a>
+            <a href="{{ site.url }}/terms-of-service">Terms of Service</a>
           </li>
           <li>
-            <a href="/privacy-policy">Privacy Policy</a>
+            <a href="{{ site.url }}/privacy-policy">Privacy Policy</a>
           </li>
           <li>
             <a href="https://ppmroadmap.uservoice.com/knowledgebase/articles/529159-release-notes-march-28-2015" title="Latest Release Notes">Release Notes</a>
@@ -20,11 +20,6 @@
 
     <nav class="_nv ft-ut"> <strong class="_nv-hd">Site Navigation</strong>
       <ul class="_nav">
-        {% comment %}
-        <li>
-          <a href="/news" title="Roadmap News">News</a>
-        </li>
-        {% endcomment %}
         {% include _ut-nav-items.html %}
       </ul>
     </nav>

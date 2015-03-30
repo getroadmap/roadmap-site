@@ -20,7 +20,7 @@ The Service is offered in several plan-levels:
 - Plus
 - Basic
 
-<p>Please see the <a href="/plans-pricing">Plans &amp; Pricing page</a> for details on the differences between these plans.</p>
+<p>Please see the <a href="{{ site.url }}/plans-pricing">Plans &amp; Pricing page</a> for details on the differences between these plans.</p>
 
 ## Privacy
 
