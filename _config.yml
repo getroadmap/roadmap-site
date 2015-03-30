@@ -64,7 +64,7 @@ prose:
     - /_layouts
     - /_includes
   metadata:
-    _posts:
+    app/jekyll/_posts:
       - name: "layout"
         field:
           element: "hidden"
