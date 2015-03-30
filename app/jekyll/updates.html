@@ -1,0 +1,23 @@
+---
+layout: page
+title:  "Updates from Roadmap"
+permalink: /updates/
+---
+
+{% assign sorted = site.posts | sort: "date" | reverse %}
+
+
+<ul class="_ls-ui nw-ct nw-ct--list">
+{% for post in sorted %}
+  <li class="h-entry nw-entry">
+    <a href="{{ post.url }}" title="{{ post.title }}" class="u-url">
+      <h3 class="p-name">
+        {{ post.title }}
+      </h3>
+      <time class="dt-published" datetime="{{ post.date | date_to_rfc822 }}">
+        {{ post.date | date: "%b %-d, %Y" }}
+      </time>
+    </a>
+  </li>
+{% endfor %}
+</ul>
