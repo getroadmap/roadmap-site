@@ -4,7 +4,6 @@ destination: ./.tmp/
 # exclude: ['app/styles/*.scss']
 environment: production
 
-
 # Site settings
 title: > #
   Roadmap - Intelligent Project Management, Scheduling, Time Tracking, and Resource Planning
@@ -13,7 +12,7 @@ description: > # this means to ignore newlines until "baseurl:"
   Visualize project plans, resource scheduling, and timesheets.
   Become a Project Management superstar.
 baseurl: "" # the subpath of your site, e.g. /blog/
-url: "http://www.ppmroadmap.com" # the base hostname & protocol for your site
+url: https://ppmroadmap.com
 
 permalink: /updates/:title.html
 paginate: 10
