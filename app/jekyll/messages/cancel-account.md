@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Privacy Policy
-permalink: /messagse/cancel-account/
+permalink: /messages/cancel-account/
 ---
 
 # Thank You
