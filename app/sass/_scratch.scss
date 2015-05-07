@@ -1292,6 +1292,10 @@ category: Modules - Messaging
 }
 
 
+.message--no-radius {
+  border-radius: 0;
+}
+
 .message--info {
   border-color: palette(blue);
   background-color: mix(white, palette(blue), 50%);
