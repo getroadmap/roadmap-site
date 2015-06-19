@@ -3,16 +3,16 @@ title: "It’s Time to Talk"
 date: 2015-06-19 02:00:00
 ---
 
-Time. Time management is the foundation of any efficient project. It’s how we determine how much effort that needs to be allotted. It might even be the metric that determines how much we’re paid. 
+Time. Time management is the foundation of any efficient project. It’s how we determine how much effort to allot. It might even be the metric that determines how much we’re paid. 
 
-Sometimes we have too little, other times too much. But let’s be honest, we really hate logging it. That’s why we created **Odometer**, the new stand-alone time tracker for Roadmap.
+Sometimes we have too little, other times too much. But let’s be honest, we hate logging it. That’s why we created **Odometer**, the new stand-alone time tracker for Roadmap.
 
 Odometer makes it easy to track time. Any time, any place (it even works on your mobile phone!).  Here’s a sneak preview. [Ping us](mailto:support@roadmap.mail.intercom.io?subject=Odometer beta participation) if you’d like to be a beta tester.
 
 ![Odometer 1.png]({{site.baseurl}}/media/Odometer 1.png)
 
 
-Create a running timer for various projects. 
+Create a running timer for projects. 
 
 ![Odometer 2.png]({{site.baseurl}}/media/Odometer 2.png)
 
@@ -36,7 +36,7 @@ Interested in giving Odometer a spin? Let us [know](mailto:support@roadmap.mail.
 
 ## What’s down the road? 
 
-Your favorite Roadies have been hard at work compiling user suggestions and product reports in order to make Roadmap better, faster and more valuable – regardless of the path. In the upcoming weeks we’ll have blog series covering the following 
+Your favorite Roadies have been hard at work compiling user suggestions and product reports to make Roadmap better, faster and more valuable – regardless of the path. In the upcoming weeks we’ll have blog series covering the following 
 
 - Design approach
 - Technology use
