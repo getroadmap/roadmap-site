@@ -1,4 +1,7 @@
-##It’s time to talk 
+---
+title: "It’s Time to Talk"
+date: 2015-06-19 02:00:00
+---
 
 Time. Time management is the foundation of any efficient project. It’s how we determine how much effort that needs to be allotted. It might even be the metric that determines how much we’re paid. 
 
