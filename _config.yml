@@ -57,7 +57,7 @@ prose:
   rooturl: 'app/jekyll/_posts'
   siteurl: 'https://ppmroadmap.com/'
   #relativeLinks: 'http://ppmroadmap.com/links.jsonp'
-  media: 'media'
+  media: 'app/jekyll/media'
   ignore:
     - index.md
     - _config.yml
