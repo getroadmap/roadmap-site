@@ -9,27 +9,22 @@ Sometimes we have too little, other times too much. But let’s be honest, we ha
 
 Odometer makes it easy to track time. Any time, any place (it even works on your mobile phone!).  Here’s a sneak preview. [Ping us](mailto:support@roadmap.mail.intercom.io?subject=Odometer beta participation) if you’d like to be a beta tester.
 
-![Odometer 1.png]({{site.baseurl}}/images/media/Odometer 1.png)
-
-
-Create a running timer for projects. 
-
-![Odometer 2.png]({{site.baseurl}}/images/media/Odometer 2.png)
+![Odometer is focused on helping you enter time.]({{site.baseurl}}/images/media/odometer-1.png)
 
 
 Feeling proud of your work? Report it to your boss. 
 
-![Odometer 3.png]({{site.baseurl}}/images/media/Odometer 3.png)
+![Sometimes, tracking time isn't good enough. Odometer has you covered with the ability to add work descriptions.]({{site.baseurl}}/images/media/odometer-3.png)
 
 
 Close it when you’re done for the day. 
 
-![Odometer 4.png]({{site.baseurl}}/images/media/Odometer 4.png)
+![Odometer 4.png]({{site.baseurl}}/images/media/odometer-4.png)
 
 
 Is the project closed? Stop the clock.  
 
-![Odometer 5.png]({{site.baseurl}}/images/media/Odometer 5.png)
+![Odometer 5.png]({{site.baseurl}}/images/media/odometer-5.png)
 
 
 Interested in giving Odometer a spin? Let us [know](mailto:support@roadmap.mail.intercom.io?subject=Odometer beta participation) if you'd like to be a beta tester.
