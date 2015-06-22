@@ -41,3 +41,6 @@ Check back here from time-to-time (no pun intended) to get the behind-the-scene 
 
 
 <a href="http://ctt.ec/62nf7"><img src="http://clicktotweet.com/img/tweet-graphic-trans.png" alt="Tweet: Checkout how @ppmRoadmap is making time-tracking and reporting sweet and simple in their latest blog. http://ctt.ec/62nf7+" /></a>
+
+
+Was this helpful? [Send out a pre-populated Tweet](http://ctt.ec/62nf7) 
