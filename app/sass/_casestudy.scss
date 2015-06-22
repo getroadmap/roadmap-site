@@ -72,10 +72,10 @@ $light-grey:#979797;
       width: 115%;
 
       h5 {
-        color: red;
+        color: $highlight;
         &:before {
           content: '“';
-          margin-left: -.45em;
+          margin-left: -.35em;
         }
         &:after {
           content: '”';
