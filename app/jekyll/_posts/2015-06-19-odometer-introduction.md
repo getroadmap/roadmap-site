@@ -38,3 +38,6 @@ Your favorite Roadies have been hard at work compiling user suggestions and prod
 - Increased speed
 
 Check back here from time-to-time (no pun intended) to get the behind-the-scene scoop from the Roadies, including **tip of the week** and more beta user opportunities. Foreshadowing alert: Do you use **GitHub**?
+
+
+<a href="http://ctt.ec/62nf7"><img src="http://clicktotweet.com/img/tweet-graphic-trans.png" alt="Tweet: Checkout how @ppmRoadmap is making time-tracking and reporting sweet and simple in their latest blog. http://ctt.ec/62nf7+" /></a>
