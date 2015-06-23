@@ -36,6 +36,14 @@ $light-grey:#979797;
       margin: 50px 0 10px;
   }
 
+  h3 {
+      color: $highlight;
+      font-size: 1.250em;
+      font-weight: 400;
+      margin-top: 10px;
+      margin-bottom: 5px;
+  }
+
   h4 {
       color: $med-grey;
       font-size: 1em;
@@ -49,14 +57,6 @@ $light-grey:#979797;
       font-size: .875em;
       font-weight: 500;
       margin-top: 0;
-      margin-bottom: 5px;
-  }
-
-  h3 {
-      color: $highlight;
-      font-size: 1.250em;
-      font-weight: 400;
-      margin-top: 10px;
       margin-bottom: 5px;
   }
 
