@@ -7,16 +7,28 @@ $light-grey:#979797;
     font-family: helvetica;
     margin: 0px 300px;
 
-  h1 {
+    .pg{
+        overflow: visible;
+        &:before,
+        &:after {
+          content: " ";
+          display: table;
+        }
+        &:after {
+          clear:both;
+        }
+    }
+
+  h1{
       color: $med-grey;
       text-align: center;
       font-size: 1.875em;
       font-weight: 500;
       margin-top: 2em;
-      margin-bottom: .5em;
+      margin-bottom: 0em;
   }
 
-  h2 {
+  h2{
       color: $light-grey;
       text-align: center;
       font-size: 1.250em;
@@ -24,29 +36,37 @@ $light-grey:#979797;
       margin: 50px 0 10px;
   }
 
-  h3{
-    color: $med-grey;
-    font-size: 1em;
-    font-weight: 500;
-    margin-top: 24px;
-    margin-bottom: .5em;
+  h3 {
+      color: $med-grey;
+      font-size: 1em;
+      font-weight: 500;
+      margin-top: 24px;
+      margin-bottom: .5em;
   }
 
-  h4{
-    color: $med-grey;
-    text-align: center;
-    font-size: .875em;
-    font-weight: 200;
-    margin-top: 10px;
-    margin-bottom: 0px;
+  h4 {
+      color: $light-grey;
+      font-size: .875em;
+      font-weight: 500;
+      margin-top: 0;
+      margin-bottom: 5px;
   }
 
-  h5{
-    color: $highlight;
-    font-size: 1.250em;
-    font-weight: 500;
-    margin-top: 10px;
-    margin-bottom: 5px;
+  h5 {
+      color: $highlight;
+      font-size: 1.250em;
+      font-weight: 500;
+      margin-top: 10px;
+      margin-bottom: 5px;
+  }
+
+  h6 {
+      color: $med-grey;
+      text-align: center;
+      font-size: .875em;
+      font-weight: 200;
+      margin-top: 10px;
+      margin-bottom: -5px;
   }
 
   p {
@@ -59,7 +79,7 @@ $light-grey:#979797;
 
   hr {
     width: 100px;
-    height: 3px;
+    height: 2px;
     background-color: $highlight;
     color:$highlight;
     border: 0 none;
@@ -70,9 +90,9 @@ $light-grey:#979797;
       margin: 1.5em 2em 0em 1.5em;
       padding: 0em 10px;
       width: 115%;
+      overflow: visible;
 
       h5 {
-        color: $highlight;
         &:before {
           content: '“';
           margin-left: -.35em;
@@ -82,10 +102,10 @@ $light-grey:#979797;
         }
       }
 
-      em{
+      em {
         font-style: normal;
         color: $light-grey;
       }
-}
+  }
 
 }
