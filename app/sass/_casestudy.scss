@@ -1,111 +1,99 @@
-$highlight:#5FC3AD;
-$dark-grey:#4A4A4A;
-$med-grey:#6D6E70;
-$light-grey:#979797;
+$highlight: #5fc3ad;
+$dark-grey: #4a4a4a;
+$med-grey: #6d6e70;
+$light-grey: #979797;
 
-._lo-customers{
-    font-family: helvetica;
-    margin: 0px 300px;
 
-    .pg{
-        overflow: visible;
-        &:before,
-        &:after {
-          content: " ";
-          display: table;
-        }
-        &:after {
-          clear:both;
-        }
+._lo-customers {
+  margin: 0 300px;
+  font-family: helvetica;
+  .pg {
+    overflow: visible;
+    &:before,
+    &:after {
+      content: ' ';
+      display: table;
     }
-
-  h1{
-      color: $med-grey;
-      text-align: center;
-      font-size: 1.875em;
-      font-weight: 500;
-      margin-top: 2em;
-      margin-bottom: 0em;
+    &:after {
+      clear: both;
+    }
   }
-
-  h2{
-      color: $light-grey;
-      text-align: center;
-      font-size: 1.35em;
-      font-weight: 500;
-      margin: 50px 0 10px;
+  h1 {
+    margin-top: 2em;
+    margin-bottom: 0;
+    font-size: 1.875em;
+    font-weight: 500;
+    text-align: center;
+    color: $med-grey;
   }
-
+  h2 {
+    margin: 50px 0 10px;
+    font-size: 1.35em;
+    font-weight: 500;
+    text-align: center;
+    color: $light-grey;
+  }
   h3 {
-      color: $highlight;
-      font-size: 1.250em;
-      font-weight: 400;
-      margin-top: 10px;
-      margin-bottom: 5px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-size: 1.250em;
+    font-weight: 400;
+    color: $highlight;
   }
-
   h4 {
-      color: $med-grey;
-      font-size: 1em;
-      font-weight: 500;
-      margin-top: 24px;
-      margin-bottom: .5em;
+    margin-top: 24px;
+    margin-bottom: 0.5em;
+    font-size: 1em;
+    font-weight: 500;
+    color: $med-grey;
   }
-
   h5 {
-      color: $light-grey;
-      font-size: .875em;
-      font-weight: 500;
-      margin-top: 0;
-      margin-bottom: 5px;
+    margin-top: 0;
+    margin-bottom: 5px;
+    font-size: 0.875em;
+    font-weight: 500;
+    color: $light-grey;
   }
-
   h6 {
-      color: $med-grey;
-      text-align: center;
-      font-size: .875em;
-      font-weight: 200;
-      margin-top: 10px;
-      margin-bottom: -5px;
+    margin-top: 10px;
+    margin-bottom: -5px;
+    font-size: 0.875em;
+    font-weight: 200;
+    text-align: center;
+    color: $med-grey;
   }
-
   p {
-      color: $dark-grey;
-      font-size: .875em;
-      font-weight: 200;
-      line-height: 25px;
-      margin: 0 0 1.5em 0;
+    margin: 0 0 1.5em 0;
+    font-size: 0.875em;
+    font-weight: 200;
+    line-height: 25px;
+    color: $dark-grey;
   }
-
   hr {
     width: 100px;
     height: 2px;
-    background-color: $highlight;
-    color:$highlight;
+    color: $highlight;
     border: 0 none;
+    background-color: $highlight;
   }
-
   blockquote {
-      border-top: 2px solid $light-grey;
-      margin: 1.5em 2em 0em 1.5em;
-      padding: 0em 10px;
-      width: 115%;
-      overflow: visible;
-
-      h5 {
-        &:before {
-          content: '“';
-          margin-left: -.35em;
-        }
-        &:after {
-          content: '”';
-        }
+    overflow: visible;
+    width: 115%;
+    padding: 0 10px;
+    margin: 1.5em 2em 0 1.5em;
+    border-top: 2px solid $light-grey;
+    h5 {
+      &:before {
+        content: '“';
+        margin-left: -0.35em;
       }
-
-      em {
-        font-style: normal;
-        color: $light-grey;
+      &:after {
+        content: '”';
       }
+    }
+    em {
+      font-style: normal;
+      color: $light-grey;
+    }
   }
-
 }
