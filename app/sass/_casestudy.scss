@@ -19,7 +19,7 @@ $light-grey: #979797;
     }
   }
   h1 {
-    margin-top: 2em;
+    margin-top: 1.875em;
     margin-bottom: 0;
     font-size: 1.875em;
     font-weight: 500;
@@ -27,7 +27,7 @@ $light-grey: #979797;
     color: $med-grey;
   }
   h2 {
-    margin: 50px 0 10px;
+    margin: 45px 0 10px;
     font-size: 1.35em;
     font-weight: 500;
     text-align: center;
@@ -55,8 +55,8 @@ $light-grey: #979797;
     color: $light-grey;
   }
   h6 {
-    margin-top: 10px;
-    margin-bottom: -5px;
+    margin-top: 15px;
+    margin-bottom: 5px;
     font-size: 0.875em;
     font-weight: 200;
     text-align: center;
@@ -66,7 +66,7 @@ $light-grey: #979797;
     margin: 0 0 1.5em 0;
     font-size: 0.875em;
     font-weight: 200;
-    line-height: 25px;
+    line-height: 24px;
     color: $dark-grey;
   }
   hr {
