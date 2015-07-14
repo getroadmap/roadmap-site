@@ -6,6 +6,7 @@ published: true
 ---
 
 
+
 Everyone wants to do what their good at. Whether in a large organization or a small agency, finding the right person for a job is key to successful projects.
 
 Roadmap’s **Resource Attributes** is one way for you to remember the ways that your team members can contribute to projects.
@@ -27,7 +28,7 @@ We have an important bug to fix, but our developer, Herbert, has no available ti
  
 Don’t have developers or a need for assigning program languages? Not a problem. Resource attributes can be anything you want – as long as you’re working smarter. That’s the Roadmap way.
  
-Did we get you excited about resource attributes? Here’s how to create them.
+Did we get you excited about resource attributes? 
 
 <a href="http://ctt.ec/fsvAq"><img src="http://clicktotweet.com/img/tweet-graphic-trans.png" alt="Tweet: Learn how a Roadmap customer decreased project lag time by 80% in their latest blog http://ctt.ec/fsvAq+" /></a>
  
