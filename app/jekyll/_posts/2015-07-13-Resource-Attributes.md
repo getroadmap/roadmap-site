@@ -1,17 +1,18 @@
 ---
 layout: post
 title: Resource Attributes Are Key
-date: {}
+date: 2015-07-14 04:00:00
 published: true
 ---
 
 
 
-Everyone wants to do what their good at. Whether in a large organization or a small agency, finding the right person for a job is key to successful projects.
+Writing, coding, designing, or researching. Whatever our forte, we each bring something unique to a project.
+Whether you’re managing projects at a large organization or a small agency, finding the right person for the task is key to successful projects.
 
 Roadmap’s **Resource Attributes** is one way for you to remember the ways that your team members can contribute to projects.
 
-One customer decreased lag time between project phases 80% by more effectively scheduling their teammates. 
+One customer decreased lag time between project phases 80% by better scheduling their teammates using resource attributes. 
  
 ![Roadmap Resource Attributes ]({{site.baseurl}}/images/media/roadmap-impact-of-resource-attributes.png)
  
