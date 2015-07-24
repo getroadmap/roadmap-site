@@ -513,7 +513,7 @@ gulp.task('watch:hologram', ['serve', 'styles', 'hologram'], function () {
    §§ Build - Default
    ========================================================================== */
 gulp.task('build', ['clean'], function (cb) {
-  runSequence('jekyll:production','styles', 'styles:cmq', 'hologram', ['jshint', 'images', 'fonts', 'copy'], 'assets', 'assets:inline', 'rev', cb);
+  runSequence('jekyll:production','styles', 'styles:cmq', ['jshint', 'images', 'fonts', 'copy'], 'assets', 'assets:inline', 'rev', cb);
 });
 
 
