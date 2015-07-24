@@ -525,7 +525,6 @@ gulp.task('build:gh-pages', ['clean:gh-pages'], function (cb) {
   runSequence('jekyll:gh-pages',
               'styles',
               'styles:cmq',
-              'hologram',
               ['jshint', 'images', 'fonts', 'copy'],
               'assets',
               'assets:inline',
