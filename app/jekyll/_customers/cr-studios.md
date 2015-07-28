@@ -1,46 +1,44 @@
 ---
-title: Roadmap Increased Collaboration Reverberation Studio’s Throughput
+title: Roadmap Increased BLVR's Productivity 26%
 callout:
-- customer: An Internationally distributed Full Service Agency, Collaboration Reverberation (CR) specializes in brand story telling, graphic design, and web development.
-- pain: We had the good problem of growing too quickly, but found ourselves struggling to manage complex projects in Basecamp’s limited interface.
-- solution: Through Roadmap’s resource forecasting and Milestones with dependency tracking, we increased our productivity by 26%, and reduced missed deadlines by 60%.
-lede: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam nesciunt vitae minima vel est? Error dignissimos, excepturi magnam aspernatur rem pariatur recusandae inventore ut tenetur doloribus qui fugiat quaerat, eveniet.
+- customer: [BLVR](http://blvr.com/) is a brand development & design consultancy (formerly [CR Studio](http://thecrstudio.com)).
+- pain: We had the good problem of growing too quickly, but found ourselves struggling to manage complex projects in Basecamp alone.
+- solution: Through Roadmap’s resource forecasting, custom reporting, and work item dependencies, increased productivity by 26%, and reduced missed deadlines by 60%, and reduced active (concurrent) projects by 25%.
 ---
 
-# Roadmap Case Study - Heading 1
+## Roadmap Case Study - BLVR
 
-###### June 16, 2015
+###### July 28, 2015
 ***
 
-## Heading 2
+### Pain Points
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sit amet tincidunt nunc. Sed aliquet ex at nibh blandit scelerisque. Duis in suscipit nulla. Nullam ac purus in nisi ultricies pulvinar. Sed laoreet nibh ut lorem tempor, in pellentesque odio luctus. Vestibulum non massa et odio faucibus vestibulum eget ut massa. Nullam scelerisque consequat libero ut venenatis. Pellentesque ac porta mauris. Maecenas pulvinar, nisi sit amet elementum dignissim, velit diam convallis risus, non elementum eros dolor ac tellus. Suspendisse sit amet hendrerit mauris.
+* Infrastructure could not support our growth
+* Use Basecamp for collaboration and communications; struggled to manage complex projects
+* With Basecamp, there is no way to determine project progress, nor what projects needed attention. We were completely reactionary.
+* Basecamp lacks custom fields and values to provide custom reports
 
-###Heading 3
+### Solution
 
-Mauris euismod laoreet ex, vitae auctor sem. Aliquam id est bibendum, malesuada purus ac, placerat eros. Vestibulum aliquam tincidunt nisl, eget consectetur est molestie et. Integer porttitor, lorem at porttitor malesuada, turpis erat vulputate mi, nec porta urna nisi vel orci. Duis efficitur rutrum sem quis tristique. Cras pellentesque convallis libero, eu pretium neque venenatis non. Cras at mollis est. Nulla dapibus imperdiet nulla eget scelerisque. Vivamus dolor mauris, lobortis eget facilisis non, laoreet non libero. Ut id enim at mi sollicitudin dictum placerat eget magna. Maecenas nibh metus, aliquam ac lectus ac, bibendum euismod nunc. Suspendisse potenti. Nulla et fringilla turpis. Morbi lacus arcu, malesuada a consequat ut, tempus eget nulla. Aliquam et mollis ex.
+* Roadmap integrated seamlessly with Basecamp
+* Introduced sophisticated tools:
+ * Resource forecasting
+ * Milestones
+ * Dependencies
+* Now have confidence in estimates to clients
+* Roadmap prompted us to re-think about how we operate
+* Quick to integrate and start using
+* Added custom views such as:
+ * Deployment checklist
+ * CRM system
 
-![image](http://fillmurray.com/650/300)
+### Benefits
 
-Vestibulum iaculis mauris a leo rhoncus pulvinar. Integer suscipit nisl semper sapien rhoncus efficitur. In lobortis dapibus maximus. Pellentesque gravida ipsum quis ante molestie pulvinar. Mauris aliquam purus vulputate feugiat eleifend. Maecenas quis ex neque. Fusce pharetra nisl at nunc eleifend, eu vestibulum quam posuere. Nulla a nibh congue, blandit neque id, pellentesque ipsum. Ut nisi sem, volutpat et massa vel, lobortis sodales quam.
+* **26% increase in total project capacity** by reducing schedule “slack”. How we did it: Decreased lag time between project phases by 80% with more efficient resource slotting.
+* **60% reduction in overdue milestones**. How we did it: Using purpose-built views that alert management before dates slip (from reactive to proactive).
+* **25% reduction in active (concurrent) projects**. How we did it: The increased project velocity or throughput – because we’re more efficient – means we close project faster. Less moving parts at any one time reduces the potential for mistakes.
 
-> ### Every time I meet with senior management, I bring only one handout — the Roadmap Gantt chart. Nulla a nibh congue, blandit neque id, pellentesque ipsum. Ut nisi sem, volutpat et massa vel, lobortis sodales quam.
->Bill King, _Roadmap_
+**Watch customer presentation and demo:**
 
-Vestibulum iaculis mauris a leo rhoncus pulvinar. Integer suscipit nisl semper sapien rhoncus efficitur. In lobortis dapibus maximus. Pellentesque gravida ipsum quis ante molestie pulvinar. Mauris aliquam purus vulputate feugiat eleifend. Maecenas quis ex neque. Fusce pharetra nisl at nunc eleifend, eu vestibulum quam posuere. Nulla a nibh congue, blandit neque id, pellentesque ipsum. Ut nisi sem, volutpat et massa vel, lobortis sodales quam.
-
-#### Heading 4
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sit amet tincidunt nunc. Sed aliquet ex at nibh blandit scelerisque. Duis in suscipit nulla. Nullam ac purus in nisi ultricies pulvinar. Sed laoreet nibh ut lorem tempor, in pellentesque odio luctus. Vestibulum non massa et odio faucibus vestibulum eget ut massa. Nullam scelerisque consequat libero ut venenatis. Pellentesque ac porta mauris. Maecenas pulvinar, nisi sit amet elementum dignissim, velit diam convallis risus, non elementum eros dolor ac tellus. Suspendisse sit amet hendrerit mauris.
-
-Maecenas nibh metus, aliquam ac lectus ac, bibendum euismod nunc. Suspendisse potenti. Nulla et fringilla turpis. Morbi lacus arcu, malesuada a consequat ut, tempus eget nulla. Aliquam et mollis ex.
-
-##### Heading 5
-
-Mauris euismod laoreet ex, vitae auctor sem. Aliquam id est bibendum, malesuada purus ac, placerat eros. Vestibulum aliquam tincidunt nisl, eget consectetur est molestie et. Integer porttitor, lorem at porttitor malesuada, turpis erat vulputate mi, nec porta urna nisi vel orci. Duis efficitur rutrum sem quis tristique. Cras pellentesque convallis libero, eu pretium neque venenatis non. Cras at mollis est. Nulla dapibus imperdiet nulla eget scelerisque. Vivamus dolor mauris, lobortis eget facilisis non, laoreet non libero. Ut id enim at mi sollicitudin dictum placerat eget magna. Maecenas nibh metus, aliquam ac lectus ac, bibendum euismod nunc. Suspendisse potenti. Nulla et fringilla turpis. Morbi lacus arcu, malesuada a consequat ut, tempus eget nulla. Aliquam et mollis ex.
-2
-
-###### Heading 6 (used for date)
-
-Mauris euismod laoreet ex, vitae auctor sem. Aliquam id est bibendum, malesuada purus ac, placerat eros. Vestibulum aliquam tincidunt nisl, eget consectetur est molestie et. Integer porttitor, lorem at porttitor malesuada, turpis erat vulputate mi, nec porta urna nisi vel orci. Duis efficitur rutrum sem quis tristique. Cras pellentesque convallis libero, eu pretium neque venenatis non. Cras at mollis est. Nulla dapibus imperdiet nulla eget scelerisque. Vivamus dolor mauris, lobortis eget facilisis non, laoreet non libero. Ut id enim at mi sollicitudin dictum placerat eget magna. Maecenas nibh metus, aliquam ac lectus ac, bibendum euismod nunc. Suspendisse potenti. Nulla et fringilla turpis. Morbi lacus arcu, malesuada a consequat ut, tempus eget nulla. Aliquam et mollis ex.
-2
+<a href="https://vimeo.com/134662336" target="_blank"><img src="https://i.vimeocdn.com/video/465038564_1280x720.jpg" 
+alt="BLVR Case Study" width="500" height="281" border="10" /></a>
