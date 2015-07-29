@@ -9,7 +9,6 @@ callout:
 ## Roadmap Case Study - BLVR
 
 ###### July 28, 2015
-***
 
 ### Pain Points
 
@@ -40,5 +39,4 @@ callout:
 
 **Watch customer presentation and demo:**
 
-<a href="https://vimeo.com/134662336" target="_blank"><img src="https://i.vimeocdn.com/video/465038564_1280x720.jpg" 
-alt="BLVR Case Study" width="500" height="281" border="10" /></a>
+<iframe src="https://player.vimeo.com/video/134662336?title=0&byline=0&portrait=0" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> <p><a href="https://vimeo.com/134662336">BLVR Case Study</a> from <a href="https://vimeo.com/ppmroadmap">Roadmap</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
