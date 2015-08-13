@@ -45,7 +45,7 @@ AJS.toInit(function () {
         var submitBtn = AJS.$('#addon-config #update-config');
         
         request({
-            url: '/ant/rest/atlassian-connect/1/addons/com.roadmap/properties/config',
+            url: '/rest/atlassian-connect/1/addons/com.roadmap/properties/config',
             success: function(response) {
                 var respValue;
                 
