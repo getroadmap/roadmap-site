@@ -1,0 +1,58 @@
+/**
+ * Roadmap JIRA Connect Add-on - Project styles
+ * 
+ * Author: Anton Maslo
+ * Created: 2015-07-06
+ */
+
+body {
+    background: transparent;
+}
+
+#roadmap-issue-name {
+    font-weight: bold;
+}
+
+#roadmap-current-time {
+    width: 100%;
+    margin-top: 0;
+    text-align: center;
+    font-size: 70px;
+    font-weight: bold;
+}
+
+.network-error #rm-integration-status {
+    display: none;
+}
+
+#rm-integration-status {
+    margin-top: 10px;
+}
+
+#rm-integration-status > div {
+    display: none;
+}
+
+#rm-integration-status.checking > .checking-display {
+    display: block;
+}
+
+#rm-integration-status.integrated > .integrated-display {
+    display: block;
+}
+
+#rm-integration-status.not-integrated > .not-integrated-display {
+    display: block;
+}
+
+#rm-integration-status.integration-absent > .integration-absent-display {
+    display: block;
+}
+
+.integrated-display .aui-icon {
+    color: #14892c;
+}
+
+.integration-absent-display .aui-icon {
+    color: #815b3a
+}

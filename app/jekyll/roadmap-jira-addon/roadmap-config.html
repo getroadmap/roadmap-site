@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+     <link rel="stylesheet" href="aui/css/aui.min.css" media="all">
+     <link rel="stylesheet" href="aui/css/aui-experimental.min.css" media="all">
+     
+     <link rel="stylesheet" href="css/roadmap-config.css" media="all">
+     
+     <script src="js/jquery-2.1.4.min.js"></script>
+     <script src="js/jquery-migrate-1.2.1.min.js"></script>
+     <script src="js/almond.js"></script> <!-- AMD loader, needed for AUI Experimental -->
+     
+     <script src="aui/js/aui.min.js"></script>
+     <script src="aui/js/aui-experimental.min.js"></script>
+     
+     <script src="js/roadmap-alerts.js" type="text/javascript"></script>
+     <script src="js/roadmap-api.js" type="text/javascript"></script>
+     <script src="js/roadmap-config.js" type="text/javascript"></script>
+ </head>
+    
+ <body class="loading-config">
+     <section id="content" role="main" class="ac-content">
+        <header class="aui-page-header">
+            <div class="aui-page-header-inner">
+                <div class="aui-page-header-image">
+                    <span class="aui-avatar aui-avatar-large aui-avatar-project">
+                        <span class="aui-avatar-inner">
+                        </span>
+                    </span>
+                </div>
+                <div class="aui-page-header-main">
+                    <ol class="aui-nav aui-nav-breadcrumbs">
+                        <li><a id="manage-plugins-link" href="#" target="_blank">Manage add-ons</a></li> <!-- Populated by JS code -->
+                    </ol>
+                    <h1>Roadmap Configuration</h1>
+                </div>
+            </div>
+        </header>
+
+        <div class="aui-page-panel">
+          <div class="aui-page-panel-inner">
+            <section id="main-page-content" class="aui-page-panel-content">
+
+                <div id="aui-message-bar"></div>
+                
+                <p id="config-loading-display">
+                    <span class="aui-icon aui-icon-wait"></span>&nbsp;
+                    <span class="message-text">Retrieving configuration&hellip;</span>
+                </p>
+
+                <form id="addon-config" class="aui">
+                    <div class="field-group">
+                        <label for="rm-admin-token">Admin RM Token</label>
+                        <input type="text" id="rm-admin-token" name="rm-admin-token" class="text" value=""
+                            data-aui-validation-field
+                            data-aui-validation-required
+                            data-aui-form-notification-position="bottom">
+                        <span class="aui-icon icon-inline-help"><span>Help</span></span>
+                        <span class="field-help hidden">
+                            This token is used for configuration tasks, e.g. custom field mapping, project integration. Get Roadmap token on your 
+                            <a id="rm-account-link" href="https://app.ppmroadmap.com/Account.aspx" target="_blank">Account Settings page</a>.
+                        </span>
+                    </div>
+                    <div class="field-group">
+                        <label for="app-url">RM App URL</label>
+                        <input type="text" id="app-url" name="app-url" class="text" value=""
+                            data-aui-validation-field
+                            data-aui-validation-required>
+                    </div>
+                    <div class="field-group">
+                        <label for="api-url">RM API URL</label>
+                        <input type="text" id="api-url" name="api-url" class="text" value=""
+                            data-aui-validation-field
+                            data-aui-validation-required>
+                    </div>
+                    <div class="field-group">
+                        <label for="custom-field-start-date">Start Date field</label>
+                        <select class="select" id="custom-field-start-date" name="custom-field-start-date">
+                            <option value="">&lt; Select or Add new &gt;</option>
+                        </select>
+                        <button id="create-start-date-field" 
+                                type="button" class="aui-button" 
+                                title="Add custom field to use for Roadmap Start Date">
+                            <span class="aui-icon aui-icon-small aui-iconfont-add"></span>&nbsp;Add Custom Field
+                        </button>
+                        <a id="start-date-config-reminder" 
+                           class="aui-label" href="#" target="_blank">Enable the field for <strong>Create Issue</strong> &amp; <strong>Edit Issue</strong> screens.</a>
+                        <a id="start-date-auto-select" class="aui-label" href="#">Start Date field found, click to select.</a>
+                        <span class="aui-icon icon-inline-help"><span>Help</span></span>
+                        <span class="field-help hidden">Select JIRA custom field for Roadmap to use as Start Date on issue import.</span>
+                    </div>
+                    <div class="buttons-container">
+                        <div class="buttons">
+                            <button type="submit" id="update-config" class="aui-button aui-button-primary">Update</button>
+                        </div>
+                    </div>
+                </form>
+
+                <!--br>
+                <div class="aui-tabs horizontal-tabs">
+                    <ul class="tabs-menu">
+                        <li class="menu-item active-tab">
+                            <a href="#tabs-resources"><strong>Resources</strong></a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="#tabs-projects"><strong>Projects</strong></a>
+                        </li>
+                    </ul>
+                    <div class="tabs-pane active-pane" id="tabs-resources">
+                        <table class="aui">
+                            <thead><tr>
+                                <th>JIRA User</th>
+                                <th>E-mail</th>
+                                <th>Roadmap Resource</th>
+                                <th>&nbsp;</th>
+                            </tr></thead>
+
+                            #foreach($user in $jiraUsers)
+                                <tr>
+                                    <td>$user.getDisplayName()</td>
+                                    <td>$user.getEmailAddress()</td>
+                                    <td>&hellip;</td>
+                                    <td><a href="#"><span class="aui-icon aui-icon-small aui-iconfont-edit">Edit</span></a></td>
+                                </tr>
+                            #end
+                        </table>
+                    </div>
+                    <div class="tabs-pane" id="tabs-projects">
+                        <table class="aui">
+                            <thead><tr><th id="project">Project</th><th id="enabled">Integrate</th></tr></thead>
+
+                            #foreach($project in $jiraProjects)
+                                <tr><td>$project.name</td><td><a href="#"><span class="aui-icon aui-icon-small aui-iconfont-close-dialog"></span></a></td></tr>
+                            #end
+                        </table>
+                    </div>
+                </div-->
+            </section>
+            </div>
+        </div>
+    </section>
+ </body>
+</html>
