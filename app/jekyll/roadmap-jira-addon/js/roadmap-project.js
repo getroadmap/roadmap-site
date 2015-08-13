@@ -98,7 +98,7 @@ AJS.toInit(function () {
             getAddonConfig(function(addonConfig) {
                 if(addonConfig && addonConfig.appURL)
                     elemIntegration.find('.rm-project-link')
-                        .prop('href', addonConfig.appURL + '/IndProject.aspx?id=' + rmProjectID);
+                        .prop('href', trimTrailingSlash(addonConfig.appURL) + '/IndProject.aspx?id=' + rmProjectID);
                 
                 // Display Roadmap project name
                 callRMAPI(

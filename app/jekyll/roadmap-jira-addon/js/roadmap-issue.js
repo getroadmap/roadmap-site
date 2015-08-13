@@ -309,8 +309,9 @@ AJS.toInit(function () {
 
                             html += '<li title="' + resource.ResourceName + '"'
                                 + ' data-roadmap-id="' + resource.ResourceID + '"><span class="user-icon">'
-                                + '<img alt="' + resource.ResourceName + '" title="' + resource.ResourceName
-                                + '" src="/images/default-avatar-small.png">' // Initially show default avatar
+                                + '<img width="24" height="24" ' 
+                                + 'alt="' + resource.ResourceName + '" title="' + resource.ResourceName
+                                + '" src="images/default-avatar-small.png">' // Initially show default avatar
                                 + '</span>'
                                 + resource.ResourceName + '<br>' + getUtilizationChart(utilArr) + '</li>';
 
