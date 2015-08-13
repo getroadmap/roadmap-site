@@ -1,8 +1,8 @@
 {
     "name": "Roadmap",
-    "description": "Roadmap add-on",
+    "description": "Roadmap JIRA Addon",
     "key": "com.roadmap",
-    "baseUrl": "http://localhost:8000",
+    "baseUrl": "https://ppmroadmap.com/roadmap-jira-addon/",
     "vendor": {
         "name": "PPMLite, LLC",
         "url": "https://ppmroadmap.com/"
@@ -19,7 +19,7 @@
     "apiVersion": 1,
     "modules": {
         "configurePage": {
-            "url": "/roadmap-config.html",
+            "url": "roadmap-config.html",
             "key": "roadmap-config-page",
             "name": {
                 "value": "Roadmap Configure Page"
@@ -32,7 +32,7 @@
         ],
         "webPanels": [
             {
-            "url": "/roadmap-issue-panel.html?issueKey={issue.key}&issueID={issue.id}&projectKey={project.key}&projectID={project.id}",
+            "url": "roadmap-issue-panel.html?issueKey={issue.key}&issueID={issue.id}&projectKey={project.key}&projectID={project.id}",
                 "location": "atl.jira.view.issue.right.context",
                 "weight": 50,
                 "key": "roadmap-issue-panel",
@@ -41,7 +41,7 @@
                 }
             },
             {
-                "url": "/roadmap-project-admin-panel.html?issueKey={issue.key}&issueID={issue.id}&projectKey={project.key}&projectID={project.id}",
+                "url": "roadmap-project-admin-panel.html?issueKey={issue.key}&issueID={issue.id}&projectKey={project.key}&projectID={project.id}",
                 "location": "webpanels.admin.summary.right-panels",
                 "weight": 50,
                 "key": "roadmap-project-admin-panel",
@@ -51,7 +51,7 @@
                 "icon": {
                     "width": 20,
                     "height": 20,
-                    "url": "/images/roadmap_icon.png"
+                    "url": "images/roadmap_icon.png"
                 }
             }
         ]
