@@ -10,6 +10,17 @@ var addonConfig,
     rmUser,
     rmRoles;
 
+function checkJIRAContext() {    
+    if(!window.location.search.match('xdm_e') || !window.location.search.match('cp')) {
+        $('body > *').remove();
+        $('body').append('<h3>Roadmap JIRA Addon</h3>' 
+            + '<p><strong>Error:</strong> Attempt to access Roadmap JIRA addon outside of proper context.</p>');
+        return false;
+    }
+    
+    return true;
+}
+
 function getHostInfo(baseUrl) {
     return {
         Type: 4,

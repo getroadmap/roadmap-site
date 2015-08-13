@@ -6,6 +6,9 @@
  */
 
 AJS.toInit(function () {
+    if(!checkJIRAContext())
+        return;
+    
     // Enhance page
     AJS.inlineHelp();
     

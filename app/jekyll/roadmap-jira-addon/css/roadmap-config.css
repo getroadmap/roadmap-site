@@ -15,7 +15,7 @@
 
 .aui-page-header-image .aui-avatar-inner {
 	margin-top: 1px;
-	background: transparent url(/images/roadmap_logo.png) top left no-repeat;
+	background: transparent url(../images/roadmap_logo.png) top left no-repeat;
 	background-size: 48px 48px;
 }
 

@@ -6,6 +6,9 @@
  */
 
 AJS.toInit(function () {
+    if(!checkJIRAContext())
+        return;
+    
     // https://docs.atlassian.com/aui/latest/docs/form-validation.html
     require(['aui/form-validation']);
     
