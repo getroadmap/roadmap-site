@@ -45,7 +45,7 @@ AJS.toInit(function () {
         var submitBtn = AJS.$('#addon-config #update-config');
         
         request({
-            url: '/rest/atlassian-connect/1/addons/com.roadmap/properties/config',
+            url: '/ant/rest/atlassian-connect/1/addons/com.roadmap/properties/config',
             success: function(response) {
                 var respValue;
                 
@@ -58,32 +58,38 @@ AJS.toInit(function () {
                     if(typeof respValue === 'string')
                         respValue = JSON.parse(respValue);
                     
-                    AJS.$('#rm-admin-token').val(respValue.rmAdminToken);
-                    AJS.$('#app-url').val(respValue.appURL || 'https://app.ppmroadmap.com');
-                    AJS.$('#api-url').val(respValue.apiURL || 'https://api.ppmroadmap.com');
-                    AJS.$('#custom-field-start-date').val(respValue.startDateFieldKey).change();
-                    
-                    AJS.$('#rm-account-link').prop('href', 
-                       (respValue.appURL || 'https://app.ppmroadmap.com') + '/Account.aspx');
-                    
-                    AJS.$('body').removeClass();
-                    
-                    // Check RM API for admin token validity
-                    checkRMToken();
+                    displayConfig(respValue);
+                } else {
+                    displayConfig();
                 }
             },
             error: function() {
-                AJS.$('body').removeClass();
-                
-                showAlert({ 
-                    title: 'Error: ' + arguments[0].statusText,
-                    message: 'Error retrieving addon congiguration, please try again later.',
-                    prependTo: '#main-page-content',
-                    bodyClass: 'network-error'
-                });
+                // No configuration yet
+                displayConfig();
             }
         });
 	}
+    
+    function displayConfig(configData) {
+        if(configData) {
+            if(configData.apiURL)
+                AJS.$('#api-url').val(configData.apiURL);
+            
+            AJS.$('#custom-field-start-date').val(configData.startDateFieldKey).change();
+
+            if(configData.appURL) {
+                AJS.$('#app-url').val(configData.appURL);
+                AJS.$('#rm-account-link').prop('href', configData.appURL + '/Account.aspx');
+            }
+            
+            if(configData.rmAdminToken) {
+                AJS.$('#rm-admin-token').val(configData.rmAdminToken);
+                checkRMToken();
+            }
+        }
+
+        AJS.$('body').removeClass();
+    }
 
     function saveConfig(request) {
         var submitBtn = AJS.$('#addon-config #update-config'),
