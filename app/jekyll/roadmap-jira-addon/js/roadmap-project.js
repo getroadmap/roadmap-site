@@ -15,11 +15,6 @@ AJS.toInit(function () {
     // Make AP object available
     // https://developer.atlassian.com/static/connect/docs/latest/guides/connect-cookbook.html#all.js
     // https://developer.atlassian.com/static/connect/docs/latest/javascript/module-AP.html
-    var getUrlParam = function (param) {
-        var codedParam = (new RegExp(param + '=([^&]+)')).exec(window.location.search)[1];
-        return decodeURIComponent(codedParam);
-    };
-
     var baseUrl = getUrlParam('xdm_e') + getUrlParam('cp');
     var jiraProjectKey = getUrlParam('projectKey');
     var jiraProjectID = getUrlParam('projectID');

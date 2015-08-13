@@ -21,6 +21,16 @@ function checkJIRAContext() {
     return true;
 }
 
+function getUrlParam(param) {
+    var codedParam = '',
+        matchResult = (new RegExp(param + '=([^&]+)')).exec(window.location.search);
+    
+    if(matchResult && matchResult.length > 1)
+        codedParam = matchResult[1];
+    
+    return decodeURIComponent(codedParam);
+};
+
 function getHostInfo(baseUrl) {
     return {
         Type: 4,
