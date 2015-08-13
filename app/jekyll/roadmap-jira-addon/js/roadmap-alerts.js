@@ -6,7 +6,7 @@
  */
 
 function clearAlerts() {
-    AJS.$('#rm-alert, .aui-message').remove();
+    AJS.$('#rm-alert, #aui-message-bar .aui-message').remove();
 }
 
 function showAlert(options) {
