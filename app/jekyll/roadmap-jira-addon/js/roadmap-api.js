@@ -115,7 +115,7 @@ function getUserConfig(userKey, callback, errorCallback) {
                 },
                 error: function() {
                     if(typeof errorCallback === 'function')
-                        errorCallback();
+                        errorCallback('[JIRA]' + url, arguments[0], arguments[1], arguments[2]);
                 }
             });
         });
@@ -129,6 +129,7 @@ function getRmUser(callback) {
         callRMAPI(
             'GET', 
             '/v1.1/ext/getme',
+            false,
             null,
             callback,
             networkError
@@ -143,6 +144,7 @@ function getRmRoles(callback) {
         callRMAPI(
             'GET', 
             '/v1.1/ext/role',
+            false,
             null,
             callback,
             networkError
@@ -150,7 +152,7 @@ function getRmRoles(callback) {
     }
 }
 
-function callRMAPI(method, url, data, successCallback, errorCallback) {
+function callRMAPI(method, url, isAdmin, data, successCallback, errorCallback) {
     // Ensure connection info is available
     if(!addonConfig || !addonConfig.apiURL || !addonConfig.rmAdminToken) {
         // Connection info is not available, retrieve it
@@ -161,20 +163,20 @@ function callRMAPI(method, url, data, successCallback, errorCallback) {
                 appURL: AJS.$('#app-url').val(),
                 apiURL: AJS.$('#api-url').val()
             };
-            
-            makeAPICall(method, url, data, successCallback, errorCallback);
         } else {
             // Another page - request JIRA for connection values
-            getAddonConfig(function() {
-                makeAPICall(method, url, data, successCallback, errorCallback);
+            return getAddonConfig(function() {
+                checkUserTokenBeforeAPICall(method, url, isAdmin, data, successCallback, errorCallback);
             }, errorCallback);
         }
-    } else {
-        // Connection info is ready, make the call
-        makeAPICall(method, url, data, successCallback, errorCallback);
     }
     
+    // Connection info is ready, make the call
+    checkUserTokenBeforeAPICall(method, url, isAdmin, data, successCallback, errorCallback);
+    
     return;
+    
+    
     
     
     
@@ -182,16 +184,36 @@ function callRMAPI(method, url, data, successCallback, errorCallback) {
      *  Helper functions
      */
     
-    function makeAPICall(method, url, data, successCallback, errorCallback) {
+    function checkUserTokenBeforeAPICall(method, url, isAdmin, data, successCallback, errorCallback) {
+        var userKey;
+        
+        if(isAdmin) {
+            // User information is not needed, make the call
+            makeAPICall(method, url, isAdmin, data, successCallback, errorCallback);
+        } else {
+            // Make the call after user information is retrieved
+            AP.getUser(function(user) {
+                getUserConfig(user.key, function() {
+                    makeAPICall(method, url, isAdmin, data, successCallback, errorCallback);
+                }, errorCallback);
+            });
+        }
+    }
+    
+    // Make sure addonConfig and userConfig are available before calling this
+    function makeAPICall(method, url, isAdmin, data, successCallback, errorCallback) {
         var base64 = new Base64(),
             callUrl = trimTrailingSlash(addonConfig.apiURL) + url;
-
+        
+        // TODO: Throw err if addonConfig / userConfig not available?
+        
         $.ajax({
             url: callUrl,
             method: method,
             headers: {
-                'Authorization': 'Basic ' + base64.encode(addonConfig.rmAdminToken + ':anypassword'),
-                //'User-Agent-Ext': 'Roadmap JIRA Extension'
+                'Authorization': 'Basic ' + base64.encode(
+                    (isAdmin ? addonConfig.rmAdminToken : userConfig.rmToken)
+                    + ':anypassword')
             },
             contentType: 'application/json',
             data: JSON.stringify(data),

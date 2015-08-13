@@ -70,8 +70,6 @@ AJS.toInit(function () {
                         function(userConfig) {
                             AJS.$('#rm-token').val(userConfig.rmToken);
                             
-                            // TODO: Now use it for API requests!
-                            
                             getRmTodoMapping(request);
                         }, 
                         function() {
@@ -152,10 +150,14 @@ AJS.toInit(function () {
         
         clearAlerts();
         
+        userConfig = {
+            rmToken: rmToken
+        };
+        
         request({
             url: '/rest/atlassian-connect/1/addons/com.roadmap/properties/user-config-' + userKey,
             type: 'PUT',
-            data: '{ "rmToken": "' + rmToken + '" }',
+            data: JSON.stringify(userConfig),
             contentType: "application/json",
             success: function(response) {
                 AJS.messages.success({
@@ -170,6 +172,8 @@ AJS.toInit(function () {
                 getRmTodoMapping(request);
             },
             error: function() {
+                userConfig = null;
+                
                 showAlert({ 
                     title: 'Error: ' + arguments[0].statusText,
                     message: 'Error saving user congiguration.'
@@ -190,6 +194,7 @@ AJS.toInit(function () {
             callRMAPI(
                 'POST', 
                 '/v1.1/ext/mappingsext',
+                false,
                 {
                     Host: getHostInfo(baseUrl),
                     Todos: [ {
@@ -230,6 +235,7 @@ AJS.toInit(function () {
         callRMAPI(
             'GET', 
             '/v1.1/ext/todo/' + rmTodoID,
+            false,
             null,
             function(response) { 
                 populateRMInfo(response, request); 

@@ -151,6 +151,7 @@ AJS.toInit(function () {
         callRMAPI(
             'GET', 
             '/v1.2/resource/me',
+            true,
             null,
             tokenCheckOK, 
             tokenCheckErr
@@ -284,13 +285,13 @@ AJS.toInit(function () {
         callRMAPI(
             'POST',
             '/v1.1/ext/JIRA/SetStartDateField/',
+            true,
             {
                 BaseUrl: baseUrl,
                 FieldKey: startDateFieldKey !== '' ? startDateFieldKey : null
             },
             function(response) {
-                // TODO: No further actions?
-                console.log('--- SetStartDateField API call success');
+                // TODO: Save success, no further actions?
             },
             function(url, jqXHR, textStatus, errorThrown) {
                 var appURL = AJS.$('#app-url').val();

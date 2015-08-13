@@ -38,6 +38,7 @@ AJS.toInit(function () {
         callRMAPI(
             'POST', 
             '/v1.1/ext/GetIntegrationStatus',
+            true,
             { 
                 Host: getHostInfo(baseUrl),
                 SourceProjectIDs: [ jiraProjectID ]
@@ -132,6 +133,7 @@ AJS.toInit(function () {
         callRMAPI(
             'GET', 
             '/v1.2/project/' + rmProjectID,
+            true,
             null,
             function(project) {
                 if(project && project.Name)
@@ -196,7 +198,8 @@ AJS.toInit(function () {
         
         callRMAPI(
             'POST',
-            '/v1.1/ext/JIRA/IntegrateProject/', 
+            '/v1.1/ext/JIRA/IntegrateProject/',
+            true,
             {
                 BaseUrl: baseUrl,
                 SourceProjectID: jiraProjectID,

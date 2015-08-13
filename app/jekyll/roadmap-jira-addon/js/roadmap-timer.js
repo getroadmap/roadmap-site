@@ -187,7 +187,8 @@ function submitTime(request) {
     
     callRMAPI(
         'POST',
-        '/v1.1/ext/timeentry/add', 
+        '/v1.1/ext/timeentry/add',
+        false,
         logEntry, 
         function(todoData) {
             // Update actual time in todo display
