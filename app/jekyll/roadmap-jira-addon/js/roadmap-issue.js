@@ -158,7 +158,6 @@ AJS.toInit(function () {
             data: '{ "rmToken": "' + rmToken + '" }',
             contentType: "application/json",
             success: function(response) {
-                // TODO: Is there a better way than refresh?
                 AJS.messages.success({
                     body: 'User settings saved',
                     fadeout: true,
@@ -211,9 +210,10 @@ AJS.toInit(function () {
                     }
                     
                     // TODO: Remove when mapping works
-                    console.log('--- TESTING: Todo mapping returns rmTodoID = ' + rmTodoID + ', replacing with 1276515');
-                    if(!rmTodoID)
+                    /*if(!rmTodoID) {
+                        console.log('--- TESTING: Todo mapping returns rmTodoID = ' + rmTodoID + ', replacing with 1276515');
                         rmTodoID = 1276515;
+                    }*/
 
                     if(rmTodoID) {
                         getRMInfo(rmTodoID, request);

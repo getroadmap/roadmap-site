@@ -101,15 +101,7 @@ AJS.toInit(function () {
                         .prop('href', trimTrailingSlash(addonConfig.appURL) + '/IndProject.aspx?id=' + rmProjectID);
                 
                 // Display Roadmap project name
-                callRMAPI(
-                    'GET', 
-                    '/v1.2/project/' + rmProjectID,
-                    null,
-                    function(project) {
-                        if(project && project.Name)
-                            elemIntegration.find('.rm-project-link').html('&ldquo;' + project.Name + '&rdquo;');
-                    },
-                    function() {}); // No need for error handling here, RM project name will simply not be shown
+                displayRoadmapProjectName(rmProjectID);
             }, networkError);
         } else {
             // Not integrated - check if it can be
@@ -134,6 +126,18 @@ AJS.toInit(function () {
                     .addClass('integration-absent');
             }
         }
+    }
+    
+    function displayRoadmapProjectName(rmProjectID) {
+        callRMAPI(
+            'GET', 
+            '/v1.2/project/' + rmProjectID,
+            null,
+            function(project) {
+                if(project && project.Name)
+                    AJS.$('#rm-integration-status .rm-project-link').html('&ldquo;' + project.Name + '&rdquo;');
+            },
+            function() {}); // No need for error handling here, RM project name will simply not be shown
     }
     
     function prepareIntegrateForm(AP) {
@@ -206,6 +210,8 @@ AJS.toInit(function () {
 
                 elemIntegration.find('.rm-project-link')
                     .prop('href', addonConfig.appURL + '/IndProject.aspx?id=' + response.ProjectID);
+                
+                displayRoadmapProjectName(response.ProjectID);
             },
             networkError);
         
