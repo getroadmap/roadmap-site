@@ -12,6 +12,7 @@
      
      <script src="aui/js/aui.min.js"></script>
      <script src="aui/js/aui-experimental.min.js"></script>
+     <script src="aui/js/aui-soy.js"></script>
      <script src="aui/js/aui-datepicker.min.js"></script>
      
      <script src="js/roadmap-alerts.js" type="text/javascript"></script>
@@ -59,11 +60,13 @@
          <input type="hidden" id="rm-project-id">
          <input type="hidden" id="rm-todo-id">
          
-         <div class="field-group column">
-             <label>Actual Time</label><input class="text" type="text" id="rm-todo-actual" value="..." readonly>
+         <!--div class="field-group column">
+             <label>Progress</label><input class="text" type="text" id="rm-todo-actual" value="..." readonly>
          </div>
          <div class="field-group column">
              <label>Estimate</label><input class="text" type="text" id="rm-todo-estimate" value="..." readonly>
+         </div-->
+         <div id="rm-todo-progress" class="field-group">
          </div>
          <div id="rm-assignments" class="field-group">
              <h5>Assigned to</h5>

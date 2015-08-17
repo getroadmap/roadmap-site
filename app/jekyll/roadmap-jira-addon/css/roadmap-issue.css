@@ -71,6 +71,44 @@ form.aui .field-group.column input {
     max-width: 120px;
 }
 
+#rm-todo-progress .aui-progress-tracker {
+    width: 100%;
+}
+
+#rm-todo-progress .estimate-display {
+    width: 100%;
+    font-size: 12px;
+    font-weight: 700;
+    color: #8d8d8d;
+}
+
+#rm-todo-progress .estimate-value,
+#rm-todo-progress .estimate-label {
+    display: inline-block;
+    width: 50%;
+    text-align: center;
+}
+
+#rm-todo-progress .state-InProgress .estimate-value,
+#rm-todo-progress .state-InProgress .estimate-label {
+    display: inline-block;
+    width: 33%;
+    text-align: center;
+}
+
+#rm-todo-progress .estimate-value {
+    float: right;
+}
+
+.aui-progress-tracker.state-Overtime .aui-progress-tracker-step>span:before,
+.aui-progress-tracker.state-Overtime .aui-progress-tracker-step>span:after {
+    background-color: #d04437;
+}
+
+.aui-progress-tracker.state-Overtime .aui-progress-tracker-step>span:after {
+    box-shadow: -5px 0 0 -2px #d04437,5px 0 0 -2px #d04437;
+}
+
 #rm-assignments {
     display: none;
     margin-top: 20px;

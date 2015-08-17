@@ -79,7 +79,7 @@ AJS.toInit(function () {
 
             if(configData.appURL) {
                 AJS.$('#app-url').val(configData.appURL);
-                AJS.$('#rm-account-link').prop('href', configData.appURL + '/Account.aspx');
+                AJS.$('#rm-account-link').prop('href', trimTrailingSlash(configData.appURL) + '/Account.aspx');
             }
             
             if(configData.rmAdminToken) {
@@ -87,6 +87,10 @@ AJS.toInit(function () {
                 checkRMToken();
             }
         }
+        
+        AJS.$('#addon-config input.text').on('click', function() { 
+			this.select(); // Select full text when clicking inside input
+		});
 
         AJS.$('body').removeClass();
     }
@@ -224,10 +228,10 @@ AJS.toInit(function () {
                 // convert the string response to JSON
                 if(typeof response === 'string')
                     response = JSON.parse(response);
-
+                
                 // Add custom fields to dropdown
                 response.forEach(function(field) {
-                    if(field.custom) {
+                    if(field.custom && field.schema && (field.schema.type === 'date' || field.schema.type === 'datetime')) {
                         AJS.$('#custom-field-start-date').append('<option value="' + field.id + '">' + field.name + '</option>');
                     }
                 });

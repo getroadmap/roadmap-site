@@ -248,7 +248,8 @@ AJS.toInit(function () {
         if(!todoData)
             return;
         
-        var todoForm = AJS.$('#rm-todo-form');
+        var todoForm = AJS.$('#rm-todo-form'),
+            todoProgress = 0;
         
         // Used by time entry (at least)
         todoForm.find('#rm-project-id').val(todoData.ProjectID);
@@ -261,8 +262,11 @@ AJS.toInit(function () {
             linkToRMTodo();
         }
         
-        todoForm.find('#rm-todo-actual').val(todoData.Actual && todoData.Actual.Text ? todoData.Actual.Text : '0');
-        todoForm.find('#rm-todo-estimate').val(todoData.Estimate && todoData.Estimate.Text ? todoData.Estimate.Text : '0');
+        // Todo progress display
+        //todoForm.find('#rm-todo-actual').val(todoData.Actual && todoData.Actual.Text ? todoData.Actual.Text : '0');
+        //todoForm.find('#rm-todo-estimate').val(todoData.Estimate && todoData.Estimate.Text ? todoData.Estimate.Text : '0');
+        
+        AJS.$('#rm-todo-progress').html(getProgressTracker(todoData.Actual, todoData.Estimate));
         
         populateResources(todoData);
         
@@ -355,6 +359,78 @@ AJS.toInit(function () {
                     AJS.$('body').removeClass().addClass('loaded');
                 });
             });
+        }
+        
+        function getProgressTracker(actual, estimate) {
+            var html = '',
+                states = {
+                    Unknown: 'Unknown',
+                    NotStarted: 'NotStarted',
+                    InProgress: 'InProgress',
+                    Done: 'Done',
+                    Overtime: 'Overtime'
+                },
+                state = states.Unknown;
+            
+            // TODO: This is for testing of different cases, remove when done
+            /*actual = {
+                Time: 24,
+                Text: '24 hours'
+            };*/
+            
+            if(!estimate)
+                estimate = {
+                    Time: 0,
+                    Text: '0 hrs'
+                };
+            
+            // Determine todo state
+            if(!actual || actual.Time == 0) {
+                state = states.NotStarted;
+                actual = {
+                    Time: 0,
+                    Text: '0 hrs'
+                }
+            } else if(actual.Time > 0 && (estimate.Time === 0 || actual.Time < estimate.Time)) {
+                state = states.InProgress;
+            } else if(actual.Time > 0 && actual.Time == estimate.Time) {
+                state = states.Done;
+            } else if(actual.Time > 0 && actual.Time > estimate.Time) {
+                state = states.Overtime;
+            }
+            
+            // Show estimate if defined
+            if(estimate.Time > 0) {
+                html += '<div class="estimate-display state-' + state + '"><span class="estimate-label">Estimate</span>' 
+                    + '<span class="estimate-value">' + estimate.Text + '</span></div>';
+            }
+            
+            html += '<ol class="aui-progress-tracker state-' + state + '">'
+            
+            // 1st step
+            html += '<li class="aui-progress-tracker-step' 
+                + (state === states.NotStarted ? ' aui-progress-tracker-step-current' : '')
+                + '" style="width:33%"><span>'
+                + (state === states.NotStarted ? 'Not started' : 'Progress')
+                + '</span></li>';
+            
+            // In progress step (optional)
+            if(state === states.InProgress) {
+                html += '<li class="aui-progress-tracker-step aui-progress-tracker-step-current" style="width:33%"><span>' 
+                     + actual.Text
+                     + '</span></li>';
+            }
+            
+            // Done step
+            html += '<li class="aui-progress-tracker-step'
+                + (state === states.Done || state === states.Overtime ? ' aui-progress-tracker-step-current' : '')
+                + '" style="width:33%"><span>' 
+                + (state === states.Done || state === states.Overtime ? actual.Text : '&nbsp;')
+                + '</span></li>';
+                
+            html += '</ol>';
+            
+            return html;
         }
         
         // After resources are rendered, fills correct avatar URLs for each
