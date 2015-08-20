@@ -7,8 +7,13 @@
 
 var timerUpdateHandle;
 
-function updateTimerDuration(timerStart) {
-    var startDate = getProperDate(timerStart);
+// For now this is only needed to prefix static method of this file
+function Timer() {
+    return this;
+}
+
+Timer.updateDuration = function(timerStart) {
+    var startDate = Timer.getProperDate(timerStart);
     
     if(timerUpdateHandle)
         clearInterval(timerUpdateHandle);
@@ -17,7 +22,7 @@ function updateTimerDuration(timerStart) {
     timerUpdateHandle = setInterval(renderTimerDuration, 1000);
     
     function renderTimerDuration() {
-        var timeSpan = new Date(getDuration(startDate));
+        var timeSpan = new Date(Timer.getSpanDuration(startDate));
 	
 		AJS.$('#timer .timer-duration').text( // Populate the ticker with updated values
                 timeSpan.getUTCHours().pad2(10) + ':' +
@@ -25,62 +30,49 @@ function updateTimerDuration(timerStart) {
                 timeSpan.getUTCSeconds().pad2(10)
             );
     }
-}
+};
 
-function getTimer(jiraIssueKey, jiraUserKey, request) {
-    request({
-        url: '/rest/atlassian-connect/1/addons/com.roadmap/properties/timer-for-user-' + jiraUserKey,
-        success: function(response) {
-            var timerRecord;
-
-            // TODO: Move response handling/type-check/parsing to a function
-            if(typeof response === 'string')
-                response = JSON.parse(response);
-
-            if(response.value) {
-                timerRecord = typeof response.value === 'string' ? JSON.parse(response.value) : response.value;
-            }
-
+Timer.get = function(jiraIssueKey, jiraUserKey, request) {
+    API.getAddonProperty(
+        'timer-for-user-' + jiraUserKey,
+        function(timerRecord) { 
+            // Found
+            AJS.$('#timer').removeClass();
+        
             if(timerRecord && timerRecord.issueKey && timerRecord.started) {
                 AJS.$('#timer').data('timer', timerRecord);
-                
+
                 if(timerRecord.issueKey === jiraIssueKey) {
                     // Timer running for current issue
-                    AJS.$('#timer')
-                        .removeClass()
-                        .addClass('timer-running');
-                    
-                    updateTimerDuration(timerRecord.started);
+                    AJS.$('#timer').addClass('timer-running');
+
+                    Timer.updateDuration(timerRecord.started);
                 } else {
                     // Timer running for another issue
-                    AJS.$('#timer')
-                        .removeClass()
-                        .addClass('timer-running-another')
+                    // TODO: Display the other issue name?
+                    AJS.$('#timer').addClass('timer-running-another')
                         .find('.another-issue-key').text(timerRecord.issueKey);
                 }
             } else {
-                AJS.$('#timer')
-                    .removeClass()
-                    .addClass('timer-stopped');
+                AJS.$('#timer').addClass('timer-stopped');
             }
         },
-        error: function() {
-            // There is no corresponding property - i.e. there is no timer for this user
-            // TODO: Get list of properties first, to avoid error? https://developer.atlassian.com/static/connect/docs/latest/rest-apis/
+        API.networkError,
+        function() {
+            // Property not found - there is no timer for this user
             AJS.$('#timer')
                 .removeClass()
                 .addClass('timer-stopped');
-        }
-    });
-}
+        });
+};
 
-function newTimer(jiraIssueKey, jiraUserKey, request) {
+Timer.create = function(jiraIssueKey, jiraUserKey, request) {
     var timerRecord = {
         issueKey: jiraIssueKey,
         started: new Date()
     };
     
-    clearAlerts();
+    Alert.clearAll();
 
     request({
         url: '/rest/atlassian-connect/1/addons/com.roadmap/properties/timer-for-user-' + jiraUserKey,
@@ -93,10 +85,10 @@ function newTimer(jiraIssueKey, jiraUserKey, request) {
                 .addClass('timer-running');
             
             AJS.$('#timer').data('timer', timerRecord);
-            updateTimerDuration();
+            Timer.updateDuration();
         },
         error: function() {
-            showAlert({
+            Alert.show({
                 title: 'Error' 
                     + (arguments.length > 0 && arguments[0] && arguments[0].statusText ? ': ' + arguments[0].statusText : ''),
                 message: 'Error saving timer data, timer is not started.'
@@ -107,32 +99,32 @@ function newTimer(jiraIssueKey, jiraUserKey, request) {
                 .addClass('timer-stopped');
         }
     });
-}
+};
 
-function stopTimer(jiraIssueKey, jiraUserKey, request) {
+Timer.stop = function(jiraIssueKey, jiraUserKey, request) {
     var timerRecord = AJS.$('#timer').data('timer'),
         timerDuration = 0;
     
     if(timerRecord && timerRecord.started)
-        timerDuration = getDuration(timerRecord.started) / 3600000;
+        timerDuration = Timer.getSpanDuration(timerRecord.started) / 3600000;
 
-    cancelTimer(
+    Timer.cancel(
         jiraIssueKey, 
         jiraUserKey, 
-        function() { logTime(jiraIssueKey, timerDuration); },
+        function() { Timer.log(jiraIssueKey, timerDuration); },
         request, 
         true);
-}
+};
 
-function logTime(jiraIssueKey, timerDuration) {
+Timer.log = function(jiraIssueKey, timerDuration) {
     AJS.$('#timer-form-duration').val((timerDuration || 0).roundTo2());
     
-    getRmUser(function(userData) {
+    API.getRmUser(function(userData) {
         // Configure date-picker on the first call
         if(AJS.$('#timer-date').data('aui-dp-uuid') === undefined) {
             var timerDate = AJS.$('#timer-date').datePicker({
                 overrideBrowserDefault: true,
-                //dateFormat: fixDateFormat(userData.DateEntryFormat) // TODO: Not practical until there is a .getDate method
+                //dateFormat: API.fixDateFormat(userData.DateEntryFormat) // TODO: Not practical until there is a .getDate method
             });
 
             // TODO: Hacky method, created https://ecosystem.atlassian.net/browse/AUI-3688, change this when/if resolved
@@ -150,16 +142,16 @@ function logTime(jiraIssueKey, timerDuration) {
         AJS.$('#modify-resource-controls').slideDown();
     });
     
-    clearAlerts();
+    Alert.clearAll();
     
     AJS.$('#timer')
         .removeClass()
         .addClass('timer-log');
     
     AJS.$('#log-time-form input').trigger('validate');
-}
+};
 
-function submitTime(request) {
+Timer.submit = function(request) {
     if(AJS.$('#timer-form-duration').val() == 0)
         return;
     
@@ -167,13 +159,13 @@ function submitTime(request) {
         ProjectID: AJS.$('#rm-todo-form #rm-project-id').val(),
         TodoItemID: AJS.$('#rm-todo-form #rm-todo-id').val(),
         Time: AJS.$('#timer-form-duration').val(),
-        //Date: convertDateToAPI(new Date(AJS.$('#timer-date').val())),
+        //Date: API.convertDateToAPI(new Date(AJS.$('#timer-date').val())),
         Description: AJS.$('#timer-description').val(),
         ResourceID: AJS.$('#timer-resource').val(),
         RoleID: AJS.$('#timer-role').val()
     };
     
-    clearAlerts();
+    Alert.clearAll();
     
     // TODO: VERY hacky, change this after .getDate is available
     var dateString = AJS.$('#timer-date').val(),
@@ -181,11 +173,11 @@ function submitTime(request) {
         month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][parseInt(dateString.substr(5, 2)) - 1],
         day = parseInt(dateString.substr(8, 2));
     
-    logEntry.Date = convertDateToAPI(new Date(month + ' ' + day + ', ' + year));
+    logEntry.Date = API.convertDateToAPI(new Date(month + ' ' + day + ', ' + year));
     
     AJS.$('body').addClass('loading');
     
-    callRMAPI(
+    API.callRMAPI(
         'POST',
         '/v1.1/ext/timeentry/add',
         false,
@@ -204,7 +196,7 @@ function submitTime(request) {
         function(url, jqXHR, textStatus, errorThrown) {
             AJS.$('body').removeClass('loading');
             
-            showAlert({ 
+            Alert.show({ 
                 title: 'Network error', 
                 url: url,
                 message: 'Error saving time entry (message: ' + textStatus + ')',
@@ -212,11 +204,11 @@ function submitTime(request) {
             });
         }
     );
-}
+};
 
-// dontUpdateUI set to true if other process (e.g. stopTimer) called cancelTimer
-function cancelTimer(jiraIssueKey, jiraUserKey, callback, request, dontUpdateUI) {
-    clearAlerts();
+// dontUpdateUI set to true if other process (e.g. Timer.stop) called Timer.cancel
+Timer.cancel = function(jiraIssueKey, jiraUserKey, callback, request, dontUpdateUI) {
+    Alert.clearAll();
     
     request({
         url: '/rest/atlassian-connect/1/addons/com.roadmap/properties/timer-for-user-' + jiraUserKey,
@@ -236,14 +228,14 @@ function cancelTimer(jiraIssueKey, jiraUserKey, callback, request, dontUpdateUI)
         },
         error: function() {
             // Doesn't stop timer in UI either?
-            showAlert({
+            Alert.show({
                 title: 'Error' 
                     + (arguments.length > 0 && arguments[0] && arguments[0].statusText ? ': ' + arguments[0].statusText : ''),
                 message: 'Error cancelling timer. The timer is still running.'
             });
         }
     });
-}
+};
 
 Number.prototype.pad2 = function() {
 	return (this < 10 ? '0' : '') + this;
@@ -253,16 +245,16 @@ Number.prototype.roundTo2 = function() {
 	return Math.round((this + 0.00001) * 100) / 100;
 };
 
-function getProperDate(inDate) {
+Timer.getProperDate = function(inDate) {
     return (inDate ? 
          (typeof inDate === 'string' ? new Date(inDate) : inDate)
          : new Date())
 }
 
 // Returns timespan duration in milliseconds
-function getDuration(start, end) {
-    var startDate = getProperDate(start),
-        endDate = getProperDate(end);
+Timer.getSpanDuration = function(start, end) {
+    var startDate = Timer.getProperDate(start),
+        endDate = Timer.getProperDate(end);
     
     return endDate.getTime() - startDate.getTime();
 }

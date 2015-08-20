@@ -23,12 +23,12 @@
     display: none;
 }
 
-.loading-config #config-loading-display {
+.loading #config-loading-display {
     display: block;
 }
 
-.loading-config #addon-config,
-.network-error #addon-config {
+.loading #addon-tabs,
+.network-error #addon-tabs {
     display: none;
 }
 
@@ -62,4 +62,20 @@
 #start-date-auto-select {
     display: none;
     margin-left: 7px;
+}
+
+.tabs-pane {
+    padding: 20px 0;
+}
+
+#integrated-projects td .aui-icon {
+    margin-right: 5px;
+}
+
+#integrated-projects .integrated {
+    color: #14892c;
+}
+
+#integrated-projects .not-integrated {
+    color: #d04437;
 }

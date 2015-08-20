@@ -6,7 +6,7 @@
  */
 
 AJS.toInit(function () {
-    if(!checkJIRAContext())
+    if(!API.checkJIRAContext())
         return;
     
     // Enhance page
@@ -18,7 +18,7 @@ AJS.toInit(function () {
     // Make AP object available
     // https://developer.atlassian.com/static/connect/docs/latest/guides/connect-cookbook.html#all.js
     // https://developer.atlassian.com/static/connect/docs/latest/javascript/module-AP.html
-    var baseUrl = getUrlParam('xdm_e') + getUrlParam('cp');
+    var baseUrl = API.getUrlParam('xdm_e') + API.getUrlParam('cp');
     
     $('#manage-plugins-link').prop('href', baseUrl + '/plugins/servlet/upm#manage');
     
@@ -44,30 +44,8 @@ AJS.toInit(function () {
     function loadConfig(request) {
         var submitBtn = AJS.$('#addon-config #update-config');
         
-        request({
-            url: '/rest/atlassian-connect/1/addons/com.roadmap/properties/config',
-            success: function(response) {
-                var respValue;
-                
-                if(typeof response === 'string')
-                    response = JSON.parse(response);
-                
-                if(response.value) {
-                    respValue = response.value;
-                    
-                    if(typeof respValue === 'string')
-                        respValue = JSON.parse(respValue);
-                    
-                    displayConfig(respValue);
-                } else {
-                    displayConfig();
-                }
-            },
-            error: function() {
-                // No configuration yet
-                displayConfig();
-            }
-        });
+        // TODO: Check network error handling
+        API.getAddonProperty('config', displayConfig, API.networkError, displayConfig);
 	}
     
     function displayConfig(configData) {
@@ -79,7 +57,7 @@ AJS.toInit(function () {
 
             if(configData.appURL) {
                 AJS.$('#app-url').val(configData.appURL);
-                AJS.$('#rm-account-link').prop('href', trimTrailingSlash(configData.appURL) + '/Account.aspx');
+                AJS.$('#rm-account-link').prop('href', API.trimTrailingSlash(configData.appURL) + '/Account.aspx');
             }
             
             if(configData.rmAdminToken) {
@@ -105,7 +83,7 @@ AJS.toInit(function () {
         AJS.$('<span class="aui-icon aui-icon-wait"></span>').prependTo(submitBtn);
         submitBtn.prop('disabled', true);
         
-        clearAlerts();
+        Alert.clearAll();
         
         request({
             url: '/rest/atlassian-connect/1/addons/com.roadmap/properties/config',
@@ -126,7 +104,7 @@ AJS.toInit(function () {
                 submitBtn.find('.aui-icon-wait').remove();
                 submitBtn.prop('disabled', false);
                 
-                unsetAddonConfig(); // Not to use old data
+                API.unsetAddonConfig(); // Not to use old data
 				
                 checkRMToken();
                 
@@ -135,7 +113,7 @@ AJS.toInit(function () {
             error: function() {
                 AJS.$('body').removeClass();
                 
-                showAlert({ 
+                Alert.show({ 
                     title: 'Error: ' + arguments[0].statusText,
                     message: 'Error saving addon congiguration.',
                     prependTo: '#main-page-content',
@@ -144,7 +122,7 @@ AJS.toInit(function () {
                 submitBtn.find('.aui-icon-wait').remove();
                 submitBtn.prop('disabled', false);
                 
-                unsetAddonConfig();
+                API.unsetAddonConfig();
             }
         });
 	}
@@ -152,7 +130,7 @@ AJS.toInit(function () {
 	function checkRMToken() {
         var configForm = AJS.$('#addon-config');
         
-        callRMAPI(
+        API.callRMAPI(
             'GET', 
             '/v1.2/resource/me',
             true,
@@ -167,6 +145,8 @@ AJS.toInit(function () {
 				.append('<span class="aui-lozenge aui-lozenge-subtle aui-lozenge-success">' 
 					+ 'Welcome, ' + data.FirstName + ' ' + data.LastName 
 					+ '</span>');
+            
+            listIntegratedProjects();
 		}
 		
 		function tokenCheckErr(jqXHR, textStatus, errorThrown) {
@@ -225,7 +205,6 @@ AJS.toInit(function () {
         request({
             url: '/rest/api/2/field',
             success: function(response) {
-                // convert the string response to JSON
                 if(typeof response === 'string')
                     response = JSON.parse(response);
                 
@@ -241,7 +220,7 @@ AJS.toInit(function () {
             error: function() {
                 AJS.$('body').removeClass();
                 
-                showAlert({ 
+                Alert.show({ 
                     title: 'Error: ' + arguments[0].statusText,
                     message: 'Error retrieving JIRA custom fields, please try again later.',
                     prependTo: '#main-page-content',
@@ -272,7 +251,7 @@ AJS.toInit(function () {
                         .change();
                 },
                 error: function() {
-                    showAlert({ 
+                    Alert.show({ 
                         title: 'Error: ' + arguments[0].statusText,
                         message: 'Error adding a JIRA custom field, please try again later.',
                         prependTo: '#main-page-content'
@@ -286,7 +265,7 @@ AJS.toInit(function () {
     
     // Save StartDate field to Roadmap to be used for mapping (null key - unset)
     function saveStartDateField(startDateFieldKey) {
-        callRMAPI(
+        API.callRMAPI(
             'POST',
             '/v1.1/ext/JIRA/SetStartDateField/',
             true,
@@ -294,13 +273,11 @@ AJS.toInit(function () {
                 BaseUrl: baseUrl,
                 FieldKey: startDateFieldKey !== '' ? startDateFieldKey : null
             },
-            function(response) {
-                // TODO: Save success, no further actions?
-            },
+            function() {},
             function(url, jqXHR, textStatus, errorThrown) {
                 var appURL = AJS.$('#app-url').val();
                 
-                showAlert({ 
+                Alert.show({ 
                     title: 'Network error', 
                     url: url,
                     message: 'Error storing custom field configuration in Roadmap (message: ' + textStatus + ')',
@@ -309,8 +286,77 @@ AJS.toInit(function () {
                     fixLabel: 'configured in Roadmap',
                     prependTo: '#main-page-content'
                 });
-                
-                // TODO: Clear custom field selection in addon config on this error?
+            }
+        );
+    }
+    
+    function listIntegratedProjects() {
+        AJS.$('#integrated-projects')
+            .html('<span class="aui-icon aui-icon-wait"></span>&nbsp;Retrieving project integration status&hellip;');
+        
+        AP.require('request', function(request) {
+            request({
+                url: '/rest/api/2/project',
+                success: function(jiraProjects) {
+                    if(typeof jiraProjects === 'string')
+                        jiraProjects = JSON.parse(jiraProjects);
+                    
+                    if(jiraProjects && jiraProjects.length > 0) {                    
+                        API.callRMAPI(
+                            'POST', 
+                            '/v1.1/ext/GetIntegrationStatus',
+                            true,
+                            { 
+                                Host: API.getHostInfo(baseUrl),
+                                SourceProjectIDs: jiraProjects.map(function(project) { return project.id; })
+                            },
+                            function(integrationStatus) {
+                                AJS.$('#integrated-projects').html(getProjectsTable(jiraProjects, integrationStatus));
+                            }, 
+                            projectRetrievalError
+                        );
+                    }
+                },
+                error: projectRetrievalError
             });
+        });
+    }
+    
+    function getProjectsTable(jiraProjects, integrationStatus) {
+        var html;
+        
+        html = '<table class="aui"><thead><tr>'
+            + '<th>Project</th><th>Status</th><th>Administrate</th></tr></thead><tbody>';
+        
+        jiraProjects.forEach(function(jiraProject) {
+            var integrated = false;
+            
+            if(integrationStatus && integrationStatus.ProjectMappings) {
+                for(var i = 0; i < integrationStatus.ProjectMappings.length; i++) {
+                    if(jiraProject.id == integrationStatus.ProjectMappings[i].ExtID)
+                        integrated = integrationStatus.ProjectMappings[i].RmID != null;
+                }
+            }
+            
+            html += '<tr class="' + (integrated ? 'integrated' : 'not-integrated') + '"><td>' 
+                + '<a href="' + baseUrl + '/projects/' + jiraProject.key + '" target="_blank" title="Go to project">' 
+                + jiraProject.name + '</a></td>' 
+                + '<td>' + (integrated ? '<span class="aui-icon aui-icon-small aui-iconfont-approve"></span>Integrated' 
+                    : '<span class="aui-icon aui-icon-small aui-iconfont-remove"></span>Not integrated') 
+                + '</td>' 
+                + '<td><a href="' + baseUrl + '/plugins/servlet/project-config/' + jiraProject.key + '" target="_blank" ' 
+                + 'title="Administrate project"><span class="aui-icon aui-icon-small aui-iconfont-configure"></span>' 
+                + '</a></td>' 
+                + '</tr>';
+        });
+        
+        html += '</tbody></table>';
+        
+        return html;
+    }
+    
+    function projectRetrievalError() {
+        AJS.$('#integrated-projects').html('<p>Failed to retrieve project integration status.' 
+            + ' You can still view it on individual project\'s administration page.</p>');
     }
 });

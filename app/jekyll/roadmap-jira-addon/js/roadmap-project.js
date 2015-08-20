@@ -6,7 +6,7 @@
  */
 
 AJS.toInit(function () {
-    if(!checkJIRAContext())
+    if(!API.checkJIRAContext())
         return;
     
     // https://docs.atlassian.com/aui/latest/docs/form-validation.html
@@ -15,9 +15,9 @@ AJS.toInit(function () {
     // Make AP object available
     // https://developer.atlassian.com/static/connect/docs/latest/guides/connect-cookbook.html#all.js
     // https://developer.atlassian.com/static/connect/docs/latest/javascript/module-AP.html
-    var baseUrl = getUrlParam('xdm_e') + getUrlParam('cp');
-    var jiraProjectKey = getUrlParam('projectKey');
-    var jiraProjectID = getUrlParam('projectID');
+    var baseUrl = API.getUrlParam('xdm_e') + API.getUrlParam('cp');
+    var jiraProjectKey = API.getUrlParam('projectKey');
+    var jiraProjectID = API.getUrlParam('projectID');
     
     AJS.$('#rm-integration-status')
         .find('#jira-project-key').val(jiraProjectKey).end()
@@ -35,33 +35,18 @@ AJS.toInit(function () {
      */
     
     function getIntegrationStatus(jiraProjectID, AP) {
-        callRMAPI(
+        API.callRMAPI(
             'POST', 
             '/v1.1/ext/GetIntegrationStatus',
             true,
             { 
-                Host: getHostInfo(baseUrl),
+                Host: API.getHostInfo(baseUrl),
                 SourceProjectIDs: [ jiraProjectID ]
             },
             function(integrationStatus) {
-                // TODO: Emulating successful response, remove when done with testing
-                /*console.log('--- response from v1.1/ext/GetIntegrationStatus');
-                console.log(integrationStatus);
-                
-                console.log('--- emulating successful response');
-                integrationStatus = {
-                    "IntegrationEnabled": true,
-                    "CanCreateProject": true,
-                    "CanIntegrateProjects": [ jiraProjectID ],
-                    "ProjectMappings": [{ // Comment out to emulate unintegrated project
-                        "ExtID": jiraProjectID,
-                        "RmID": 324866 // 79571
-                    }]
-                };*/
-                
                 displayIntegrationStatus(integrationStatus, AP);
             }, 
-            networkError
+            API.networkError
         );
     }
     
@@ -96,14 +81,14 @@ AJS.toInit(function () {
             elemIntegration.removeClass()
                 .addClass('integrated');
             
-            getAddonConfig(function(addonConfig) {
+            API.getAddonConfig(function(addonConfig) {
                 if(addonConfig && addonConfig.appURL)
                     elemIntegration.find('.rm-project-link')
-                        .prop('href', trimTrailingSlash(addonConfig.appURL) + '/IndProject.aspx?id=' + rmProjectID);
+                        .prop('href', API.trimTrailingSlash(addonConfig.appURL) + '/IndProject.aspx?id=' + rmProjectID);
                 
                 // Display Roadmap project name
                 displayRoadmapProjectName(rmProjectID);
-            }, networkError);
+            }, API.networkError);
         } else {
             // Not integrated - check if it can be
             var canIntegrateIndex = -1;
@@ -130,7 +115,7 @@ AJS.toInit(function () {
     }
     
     function displayRoadmapProjectName(rmProjectID) {
-        callRMAPI(
+        API.callRMAPI(
             'GET', 
             '/v1.2/project/' + rmProjectID,
             true,
@@ -157,7 +142,7 @@ AJS.toInit(function () {
                 AJS.$('#integrate-project-form').on('aui-valid-submit', integrateProject);
             },
             function() {
-                showAlert({
+                Alert.show({
                     title: 'Warning',
                     message: 'Couldn\'t retrieve JIRA project information, ' 
                         + 'please make sure to enter the desired project name in the form below.',
@@ -196,7 +181,7 @@ AJS.toInit(function () {
             todoListName = elemIntegration.find('#todo-list-name').val(),
             importClosedIssues = elemIntegration.find('#import-closed-issues').prop('checked');
         
-        callRMAPI(
+        API.callRMAPI(
             'POST',
             '/v1.1/ext/JIRA/IntegrateProject/',
             true,
@@ -216,7 +201,7 @@ AJS.toInit(function () {
                 
                 displayRoadmapProjectName(response.ProjectID);
             },
-            networkError);
+            API.networkError);
         
         elemIntegration.find('.checking-display .message-text').html('Integration request sent, awaiting response&hellip;');
         

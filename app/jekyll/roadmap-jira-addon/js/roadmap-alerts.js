@@ -5,11 +5,16 @@
  *  Created: 2015-07-24
  */
 
-function clearAlerts() {
-    AJS.$('#rm-alert, #aui-message-bar .aui-message').remove();
+// Needed as a wrapper for static methods
+function Alert() {
+    return this;
 }
 
-function showAlert(options) {
+Alert.clearAll = function() {
+    AJS.$('#rm-alert, #aui-message-bar .aui-message').remove();
+};
+
+Alert.show = function(options) {
     var html = '',
         alert;
     
@@ -31,19 +36,19 @@ function showAlert(options) {
     html = '<div id="rm-alert" class="aui-message aui-message-error">' 
         + '<p class="title"><strong>' + options.title + '</strong></p>' 
         + (options.url ? '<small>' + options.url + '</small>' : '')
-        + (options.message ? '<p>' + capitalizeFirstLetter(options.message) + '</p>' : '')
+        + (options.message ? '<p>' + Alert.capitalizeFirstLetter(options.message) + '</p>' : '')
         + (options.fixMessage && options.fixUrl && options.fixLabel ? 
            '<p>' + options.fixMessage + '<a href="' + options.fixUrl + '" target="_blank">' + options.fixLabel + '</a>.</p>' : '')
         + '</div>';
     
-    clearAlerts();
+    Alert.clearAll();
     AJS.$('body').removeClass('loading').addClass(options.bodyClass);
     
     alert = AJS.$(html).prependTo(options.prependTo);
-}
+};
 
 // Taken from http://stackoverflow.com/a/1026087
-function capitalizeFirstLetter(string) {
+Alert.capitalizeFirstLetter = function(string) {
     if(string.length === 0)
         return string;
     else

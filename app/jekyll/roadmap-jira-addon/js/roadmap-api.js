@@ -10,7 +10,12 @@ var addonConfig,
     rmUser,
     rmRoles;
 
-function checkJIRAContext() {    
+// For now this class is only needed for static functions
+function API() {
+    return this;
+}
+
+API.checkJIRAContext = function() {    
     if(!window.location.search.match('xdm_e') || !window.location.search.match('cp')) {
         $('body > *').remove();
         $('body').append('<h3>Roadmap JIRA Addon</h3>' 
@@ -19,9 +24,9 @@ function checkJIRAContext() {
     }
     
     return true;
-}
+};
 
-function getUrlParam(param) {
+API.getUrlParam = function(param) {
     var codedParam = '',
         matchResult = (new RegExp(param + '=([^&]+)')).exec(window.location.search);
     
@@ -31,128 +36,195 @@ function getUrlParam(param) {
     return decodeURIComponent(codedParam);
 };
 
-function getHostInfo(baseUrl) {
+API.getHostInfo = function(baseUrl) {
     return {
         Type: 4,
         ID: baseUrl 
     };
-}
+};
 
-function networkError(url, jqXHR, textStatus, errorThrown) {
-    showAlert({ 
+API.networkError = function(url, jqXHR, textStatus, errorThrown) {
+    var alert = { 
         title: 'Network error', 
         url: url,
         message: textStatus,
         bodyClass: 'network-error'
+    };
+    
+    if(/roadmap\-config\.html/.test(window.location.href)) {
+        alert.prependTo = '#main-page-content';
+    }
+    
+    Alert.show(alert);
+};
+
+API.unsetAddonConfig = function() {
+    addonConfig = null;
+};
+
+// TODO: Separate not-found and error callbacks?
+API.getAddonProperty = function(key, callback, errorCallback, notFoundCallback) {
+    // Check full properties list
+    var url = '/rest/atlassian-connect/1/addons/com.roadmap/properties';
+    
+    AP.require('request', function(request) {    
+        request({
+            url: url,
+            success: function(properties) {
+                var found = false;
+
+                if(typeof properties === 'string')
+                    properties = JSON.parse(properties);
+
+                if(properties && properties.keys && properties.keys.length > 0) {
+                    for(var i = 0; i < properties.keys.length; i++) {
+                        if(properties.keys[i].key === key) {
+                            found = true;
+
+                            var propUrl = '/rest/atlassian-connect/1/addons/com.roadmap/properties/' + key;
+
+                            request({
+                                url: propUrl,
+                                success: function(response) {
+                                    return callback(API.getResponseValue(response));
+                                }, error: function(jqXHR, textStatus, errorThrown) { 
+                                    errorCallback('[JIRA]' + propUrl, jqXHR, textStatus, errorThrown); 
+                                }
+                            });
+                        }
+                    }
+                }
+
+                if(!found)
+                    notFoundCallback();
+            },
+            error: function(jqXHR, textStatus, errorThrown) { errorCallback('[JIRA]' + url, jqXHR, textStatus, errorThrown); }
+        });
     });
 }
 
-function unsetAddonConfig() {
-    addonConfig = null;
-}
-
-function getAddonConfig(callback, errorCallback) {
+API.getAddonConfig = function(callback, errorCallback) {
     if(addonConfig) {
         callback(addonConfig);
     } else {
-        var url = '/rest/atlassian-connect/1/addons/com.roadmap/properties/config';
-        
-        AP.require('request', function(request){
-            request({
-                url: url,
-                success: function(response) {
-                    var respValue;
-
-                    if(typeof response === 'string')
-                        response = JSON.parse(response);
-
-                    if(response.value) {
-                        respValue = response.value;
-
-                        if(typeof respValue === 'string')
-                            respValue = JSON.parse(respValue);
-                        
-                        addonConfig = respValue;
-
-                        callback(addonConfig);
-                    }
-                },
-                error: function() {
-                    if(typeof errorCallback === 'function')
-                        errorCallback('[JIRA]' + url, arguments[0], arguments[1], arguments[2]);
-                }
-            });
-        });
+        API.getAddonProperty(
+            'config', 
+            function(respValue) {
+                addonConfig = respValue;
+                callback(addonConfig)
+            },
+            errorCallback,
+            function() {
+                // Config not found
+                errorCallback(
+                    '[JIRA]/rest/atlassian-connect/1/addons/com.roadmap/properties/config', 
+                    null, 
+                    'Error getting addon configuration.', 
+                    null);
+            }
+        );
     }
-}
+};
 
-function getUserConfig(userKey, callback, errorCallback) {
+API.getUserConfig = function(userKey, callback, errorCallback) {
     if(userConfig) {
         callback(userConfig);
     } else {
-        var url = '/rest/atlassian-connect/1/addons/com.roadmap/properties/user-config-' + userKey;
-        
-        AP.require('request', function(request){
-            request({
-                url: url,
-                success: function(response) {
-                    var respValue;
-
-                    if(typeof response === 'string')
-                        response = JSON.parse(response);
-
-                    if(response.value) {
-                        respValue = response.value;
-
-                        if(typeof respValue === 'string')
-                            respValue = JSON.parse(respValue);
-                        
-                        userConfig = respValue;
-
-                        if(typeof callback === 'function')
-                            callback(userConfig);
-                    }
-                },
-                error: function() {
-                    if(typeof errorCallback === 'function')
-                        errorCallback('[JIRA]' + url, arguments[0], arguments[1], arguments[2]);
-                }
-            });
-        });
+        API.getAddonProperty(
+            'user-config-' + userKey,
+            function(respValue) {
+                userConfig = respValue;
+                callback(userConfig)
+            },
+            errorCallback,
+            function() {
+                // User config not found
+                errorCallback(
+                    '[JIRA]/rest/atlassian-connect/1/addons/com.roadmap/properties/user-config-' + userKey, 
+                    null, 
+                    'Error getting user configuration.', 
+                    null);
+            }
+        );
     }
-}
+};
 
-function getRmUser(callback) {
+// Called from the issue panel
+API.saveUserConfig = function(userKey, request) {
+    var submitBtn = AJS.$('#addon-user-config #update-config'),
+        rmToken = AJS.$('#rm-token').val();
+
+    AJS.$('<span class="aui-icon aui-icon-wait"></span>').prependTo(submitBtn);
+    submitBtn.prop('disabled', true);
+
+    Alert.clearAll();
+
+    userConfig = {
+        rmToken: rmToken
+    };
+
+    request({
+        url: '/rest/atlassian-connect/1/addons/com.roadmap/properties/user-config-' + userKey,
+        type: 'PUT',
+        data: JSON.stringify(userConfig),
+        contentType: "application/json",
+        success: function(response) {
+            AJS.messages.success({
+                body: 'User settings saved',
+                fadeout: true,
+                delay: 1000
+            });
+
+            AJS.$('body').removeClass()
+                .addClass('loading');
+
+            getRmTodoMapping(request);
+        },
+        error: function() {
+            userConfig = null;
+
+            Alert.show({ 
+                title: 'Error: ' + arguments[0].statusText,
+                message: 'Error saving user congiguration.'
+            });
+
+            submitBtn.find('.aui-icon-wait').remove();
+            submitBtn.prop('disabled', false);
+        }
+    });
+};
+
+API.getRmUser = function(callback) {
     if(rmUser) {
         callback(rmUser);
     } else {
-        callRMAPI(
+        API.callRMAPI(
             'GET', 
             '/v1.1/ext/getme',
             false,
             null,
             callback,
-            networkError
+            API.networkError
         );
     }
-}
+};
 
-function getRmRoles(callback) {
+API.getRmRoles = function(callback) {
     if(rmRoles) {
         callback(rmRoles);
     } else {
-        callRMAPI(
+        API.callRMAPI(
             'GET', 
             '/v1.1/ext/role',
             false,
             null,
             callback,
-            networkError
+            API.networkError
         );
     }
-}
+};
 
-function callRMAPI(method, url, isAdmin, data, successCallback, errorCallback) {
+API.callRMAPI = function(method, url, isAdmin, data, successCallback, errorCallback) {
     // Ensure connection info is available
     if(!addonConfig || !addonConfig.apiURL || !addonConfig.rmAdminToken) {
         // Connection info is not available, retrieve it
@@ -165,7 +237,7 @@ function callRMAPI(method, url, isAdmin, data, successCallback, errorCallback) {
             };
         } else {
             // Another page - request JIRA for connection values
-            return getAddonConfig(function() {
+            return API.getAddonConfig(function() {
                 checkUserTokenBeforeAPICall(method, url, isAdmin, data, successCallback, errorCallback);
             }, errorCallback);
         }
@@ -193,19 +265,17 @@ function callRMAPI(method, url, isAdmin, data, successCallback, errorCallback) {
         } else {
             // Make the call after user information is retrieved
             AP.getUser(function(user) {
-                getUserConfig(user.key, function() {
+                API.getUserConfig(user.key, function() {
                     makeAPICall(method, url, isAdmin, data, successCallback, errorCallback);
                 }, errorCallback);
             });
         }
     }
     
-    // Make sure addonConfig and userConfig are available before calling this
+    // Ensure addonConfig and userConfig are available before calling this
     function makeAPICall(method, url, isAdmin, data, successCallback, errorCallback) {
         var base64 = new Base64(),
-            callUrl = trimTrailingSlash(addonConfig.apiURL) + url;
-        
-        // TODO: Throw err if addonConfig / userConfig not available?
+            callUrl = API.trimTrailingSlash(addonConfig.apiURL) + url;
         
         $.ajax({
             url: callUrl,
@@ -348,23 +418,23 @@ function callRMAPI(method, url, isAdmin, data, successCallback, errorCallback) {
             return string;
         };
     }
-}
+};
 
 // Fix date format string arriving from RM for usage in JQuery Datepicker
-function fixDateFormat(sFormat) {
+API.fixDateFormat = function(sFormat) {
     // Theoretical RM formats: http://msdn.microsoft.com/en-us/library/8kb3ddd4%28v=vs.110%29.aspx
     // MM or DD from RM doesn't mean month/day name, so lower-case it
     // y in JQ means 2-digit year, yy means 4-digit year
     return sFormat.toLowerCase().replace(/yy/g, 'y');
-}
+};
 
-function trimTrailingSlash(url) {
+API.trimTrailingSlash = function(url) {
     return (url.charAt(url.length - 1) === '/' ? 
             url.substr(0, url.length - 1) : 
             url);
-}
+};
 
-function convertDateToAPI(inDate) {
+API.convertDateToAPI = function(inDate) {
     if(inDate === null)
         return null;
 
@@ -375,4 +445,18 @@ function convertDateToAPI(inDate) {
     return yyyy + '-' 
         + (mm.charAt(1) ? mm : "0" + mm.charAt(0)) + '-' 
         + (dd.charAt(1) ? dd : "0" + dd.charAt(0)); // 0-padding
-}
+};
+
+// For parsing JIRA request responses
+API.getResponseValue = function(response) {
+    var result;
+    
+    if(typeof response === 'string')
+        response = JSON.parse(response);
+    
+    if(response.value) {
+        result = typeof response.value === 'string' ? JSON.parse(response.value) : response.value;
+    }
+    
+    return result;
+};

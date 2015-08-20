@@ -6,7 +6,7 @@
  */
 
 AJS.toInit(function () {
-    if(!checkJIRAContext())
+    if(!API.checkJIRAContext())
         return;
     
     // Enhance page
@@ -30,34 +30,18 @@ AJS.toInit(function () {
     // Make AP object available
     // https://developer.atlassian.com/static/connect/docs/latest/guides/connect-cookbook.html#all.js
     // https://developer.atlassian.com/static/connect/docs/latest/javascript/module-AP.html
-    var baseUrl = getUrlParam('xdm_e') + getUrlParam('cp');
+    var baseUrl = API.getUrlParam('xdm_e') + API.getUrlParam('cp');
     
     AJS.$.getScript(baseUrl + '/atlassian-connect/all.js', function() {
         // AP object is available
         
         AP.getLocation(function(pageLocation) {
             // Get issue key
-            var jiraIssueKey = getUrlParam('issueKey');
+            var jiraIssueKey = API.getUrlParam('issueKey');
             
             AP.require('request', function(request) {
                 AJS.$('#config-btn').on('click', function(event) {
-                    // TODO: Move class toggling to a function?
-                    var prevClass;
-                    
-                    if($('body').hasClass('config')) {
-                        AJS.$('body').removeClass();
-                        
-                        prevClass = AJS.$('body').data('prev-class');
-                        
-                        if(prevClass) {
-                            AJS.$('body').addClass(prevClass);
-                            AJS.$('body').removeData('prev-class');
-                        }
-                    } else {
-                        AJS.$('body').data('prev-class', $('body').attr('class'));
-                        
-                        AJS.$('body').removeClass().addClass('config');
-                    }
+                    toggleClassBetweenOriginalAnd('config');
                     
                     event.preventDefault();
                 });
@@ -65,7 +49,7 @@ AJS.toInit(function () {
                 // request object is available
                 AP.getUser(function(user) {
                     // Check user configuration
-                    getUserConfig(
+                    API.getUserConfig(
                         user.key,
                         function(userConfig) {
                             AJS.$('#rm-token').val(userConfig.rmToken);
@@ -73,9 +57,9 @@ AJS.toInit(function () {
                             getRmTodoMapping(request);
                         }, 
                         function() {
-                            showAlert({ 
-                                title: 'Additional configuration', 
-                                message: 'Please specify your Roadmap identity token, so that we can display Roadmap data in your JIRA screens',
+                            Alert.show({ 
+                                title: 'Additional configuration',
+                                message: 'Please specify your Roadmap identity token, so that we can retrieve and display Roadmap data in JIRA.',
                                 fixMessage: null
                             });
                             
@@ -86,7 +70,7 @@ AJS.toInit(function () {
                     );
                     
                     AJS.$('#addon-user-config').on('submit', function(event) {
-                        saveUserConfig(user.key, request);
+                        API.saveUserConfig(user.key, request);
                         event.preventDefault();
                     });
                     
@@ -94,19 +78,19 @@ AJS.toInit(function () {
                     // Timer handling calls functions from roadmap-timer.js
                     
                     // Check if there is a running timer record
-                    getTimer(jiraIssueKey, user.key, request);
+                    Timer.get(jiraIssueKey, user.key, request);
                     
                     AJS.$('#start-timer').off('click').on('click', function() {
-                        newTimer(jiraIssueKey, user.key, request);
+                        Timer.create(jiraIssueKey, user.key, request);
                     });
                     
                     AJS.$('#cancel-timer').off('click').on('click', function() {
                         // No further action so passing null as callback
-                        cancelTimer(jiraIssueKey, user.key, null, request);
+                        Timer.cancel(jiraIssueKey, user.key, null, request);
                     });
                     
                     AJS.$('#stop-timer').off('click').on('click', function() {
-                        stopTimer(jiraIssueKey, user.key, request);
+                        Timer.stop(jiraIssueKey, user.key, request);
                     });
                     
                     AJS.$('#go-to-another-issue').off('click').on('click', function() {
@@ -116,13 +100,13 @@ AJS.toInit(function () {
                     });
                     
                     AJS.$('#log-time').off('click').on('click', function() {
-                        logTime(jiraIssueKey);
+                        Timer.log(jiraIssueKey);
                         AJS.$('#log-time-form input').trigger('validate');
                     });
                     
                     // Called when validation passes
                     AJS.$('#log-time-form').on('aui-valid-submit', function(event) {
-                        submitTime(request);
+                        Timer.submit(request);
                         event.preventDefault();
                     });
                     
@@ -141,65 +125,21 @@ AJS.toInit(function () {
      *  Local function definitions
      */
     
-    function saveUserConfig(userKey, request) {
-        var submitBtn = AJS.$('#addon-user-config #update-config'),
-            rmToken = AJS.$('#rm-token').val();
-		
-        AJS.$('<span class="aui-icon aui-icon-wait"></span>').prependTo(submitBtn);
-        submitBtn.prop('disabled', true);
-        
-        clearAlerts();
-        
-        userConfig = {
-            rmToken: rmToken
-        };
-        
-        request({
-            url: '/rest/atlassian-connect/1/addons/com.roadmap/properties/user-config-' + userKey,
-            type: 'PUT',
-            data: JSON.stringify(userConfig),
-            contentType: "application/json",
-            success: function(response) {
-                AJS.messages.success({
-                    body: 'User settings saved',
-                    fadeout: true,
-                    delay: 1000
-				});
-                
-                AJS.$('body').removeClass()
-                    .addClass('loading');
-                
-                getRmTodoMapping(request);
-            },
-            error: function() {
-                userConfig = null;
-                
-                showAlert({ 
-                    title: 'Error: ' + arguments[0].statusText,
-                    message: 'Error saving user congiguration.'
-                });
-                
-                submitBtn.find('.aui-icon-wait').remove();
-                submitBtn.prop('disabled', false);
-            }
-        });
-	}
-    
     function getRmTodoMapping(request) {
-        var jiraIssueID = getUrlParam('issueID');
+        var jiraIssueID = API.getUrlParam('issueID');
         
         AJS.$('body').addClass('loading');
         
         if(jiraIssueID) {
-            callRMAPI(
+            API.callRMAPI(
                 'POST', 
                 '/v1.1/ext/mappingsext',
                 false,
                 {
-                    Host: getHostInfo(baseUrl),
+                    Host: API.getHostInfo(baseUrl),
                     Todos: [ {
-                        ProjectID: getUrlParam('projectID'),
-                        ItemID: getUrlParam('issueID')
+                        ProjectID: API.getUrlParam('projectID'),
+                        ItemID: API.getUrlParam('issueID')
                     } ]
                 },
                 function(response) {
@@ -214,25 +154,19 @@ AJS.toInit(function () {
                         }
                     }
                     
-                    // TODO: Remove when mapping works
-                    /*if(!rmTodoID) {
-                        console.log('--- TESTING: Todo mapping returns rmTodoID = ' + rmTodoID + ', replacing with 1276515');
-                        rmTodoID = 1276515;
-                    }*/
-
                     if(rmTodoID) {
                         getRMInfo(rmTodoID, request);
                     } else {
                         AJS.$('body').removeClass().addClass('integration-absent');
                     }
                 },
-                networkError
+                API.networkError
             );
         }
     }
     
     function getRMInfo(rmTodoID, request) {
-        callRMAPI(
+        API.callRMAPI(
             'GET', 
             '/v1.1/ext/todo/' + rmTodoID,
             false,
@@ -240,7 +174,7 @@ AJS.toInit(function () {
             function(response) { 
                 populateRMInfo(response, request); 
             },
-            networkError
+            API.networkError
         );
     }
     
@@ -257,7 +191,7 @@ AJS.toInit(function () {
         
         // Link to issue in Roadmap
         if(!addonConfig || !addonConfig.appURL) {
-            getAddonConfig(linkToRMTodo, networkError);
+            API.getAddonConfig(linkToRMTodo, API.networkError);
         } else {
             linkToRMTodo();
         }
@@ -272,20 +206,20 @@ AJS.toInit(function () {
         
         function linkToRMTodo() {
             todoForm.find('#rm-todo-link').prop('href', 
-                trimTrailingSlash(addonConfig.appURL) + '/IndProject.aspx?id=' + todoData.ProjectID + '&wi=' + todoData.ID + '&wiType=3');
+                API.trimTrailingSlash(addonConfig.appURL) + '/IndProject.aspx?id=' + todoData.ProjectID + '&wi=' + todoData.ID + '&wiType=3');
         }
         
         function populateResources(todoData) {
             // Cleanup
             AJS.$('#timer-resource option, #timer-role option').remove();
             
-            getRmUser(function(userData) {
+            API.getRmUser(function(userData) {
                 // Add current user to Timer drop-down (as a default)
                 AJS.$('#timer-resource').append('<option value="' + userData.ID 
                     + '" data-role="' + userData.PrimaryRoleID + '" selected>' 
                     + userData.FirstName + ' ' + userData.LastName + '</option>');
                 
-                getRmRoles(function(roles) {
+                API.getRmRoles(function(roles) {
                     var html = '',
                         isCurrentUserAssigned = false,
                         elemResourceSelect = AJS.$('#timer-resource');
@@ -372,7 +306,7 @@ AJS.toInit(function () {
                 },
                 state = states.Unknown;
             
-            // TODO: This is for testing of different cases, remove when done
+            // TODO: Testing of different cases, remove when done
             /*actual = {
                 Time: 24,
                 Text: '24 hours'
@@ -490,6 +424,26 @@ AJS.toInit(function () {
                 '</div>';
 
             return barHtml;
+        }
+    }
+    
+    // Toggles between current and provided class
+    function toggleClassBetweenOriginalAnd(newClass) {
+        var prevClass;
+
+        if($('body').hasClass(newClass)) {
+            AJS.$('body').removeClass();
+
+            prevClass = AJS.$('body').data('prev-class');
+
+            if(prevClass) {
+                AJS.$('body').addClass(prevClass);
+                AJS.$('body').removeData('prev-class');
+            }
+        } else {
+            AJS.$('body').data('prev-class', $('body').attr('class'));
+
+            AJS.$('body').removeClass().addClass(newClass);
         }
     }
 });
