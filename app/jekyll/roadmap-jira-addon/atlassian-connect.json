@@ -1,10 +1,10 @@
 {
     "name": "Roadmap",
     "description": "Roadmap JIRA Addon",
-    "key": "com.roadmap",
+    "key": "roadmap",
     "baseUrl": "https://ppmroadmap.com/roadmap-jira-addon/",
     "vendor": {
-        "name": "PPMLite, LLC",
+        "name": "Roadmap",
         "url": "https://ppmroadmap.com/"
     },
     "links": {
