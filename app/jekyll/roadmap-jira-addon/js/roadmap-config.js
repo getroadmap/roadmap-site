@@ -86,7 +86,7 @@ AJS.toInit(function () {
         Alert.clearAll();
         
         request({
-            url: '/rest/atlassian-connect/1/addons/com.roadmap/properties/config',
+            url: '/rest/atlassian-connect/1/addons/roadmap/properties/config',
             type: 'PUT',
             data: '{ "rmAdminToken": "' + rmAdminToken + '", ' 
                 + '"appURL": "' + appURL + '", ' 

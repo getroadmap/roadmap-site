@@ -65,7 +65,7 @@ API.unsetAddonConfig = function() {
 // TODO: Separate not-found and error callbacks?
 API.getAddonProperty = function(key, callback, errorCallback, notFoundCallback) {
     // Check full properties list
-    var url = '/rest/atlassian-connect/1/addons/com.roadmap/properties';
+    var url = '/rest/atlassian-connect/1/addons/roadmap/properties';
     
     AP.require('request', function(request) {    
         request({
@@ -81,7 +81,7 @@ API.getAddonProperty = function(key, callback, errorCallback, notFoundCallback) 
                         if(properties.keys[i].key === key) {
                             found = true;
 
-                            var propUrl = '/rest/atlassian-connect/1/addons/com.roadmap/properties/' + key;
+                            var propUrl = '/rest/atlassian-connect/1/addons/roadmap/properties/' + key;
 
                             request({
                                 url: propUrl,
@@ -117,7 +117,7 @@ API.getAddonConfig = function(callback, errorCallback) {
             function() {
                 // Config not found
                 errorCallback(
-                    '[JIRA]/rest/atlassian-connect/1/addons/com.roadmap/properties/config', 
+                    '[JIRA]/rest/atlassian-connect/1/addons/roadmap/properties/config', 
                     null, 
                     'Error getting addon configuration.', 
                     null);
@@ -140,7 +140,7 @@ API.getUserConfig = function(userKey, callback, errorCallback) {
             function() {
                 // User config not found
                 errorCallback(
-                    '[JIRA]/rest/atlassian-connect/1/addons/com.roadmap/properties/user-config-' + userKey, 
+                    '[JIRA]/rest/atlassian-connect/1/addons/roadmap/properties/user-config-' + userKey, 
                     null, 
                     'Error getting user configuration.', 
                     null);
@@ -164,7 +164,7 @@ API.saveUserConfig = function(userKey, request) {
     };
 
     request({
-        url: '/rest/atlassian-connect/1/addons/com.roadmap/properties/user-config-' + userKey,
+        url: '/rest/atlassian-connect/1/addons/roadmap/properties/user-config-' + userKey,
         type: 'PUT',
         data: JSON.stringify(userConfig),
         contentType: "application/json",

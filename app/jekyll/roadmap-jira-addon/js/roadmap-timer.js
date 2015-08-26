@@ -75,7 +75,7 @@ Timer.create = function(jiraIssueKey, jiraUserKey, request) {
     Alert.clearAll();
 
     request({
-        url: '/rest/atlassian-connect/1/addons/com.roadmap/properties/timer-for-user-' + jiraUserKey,
+        url: '/rest/atlassian-connect/1/addons/roadmap/properties/timer-for-user-' + jiraUserKey,
         type: 'PUT',
         data: JSON.stringify(timerRecord),
         contentType: "application/json",
@@ -211,7 +211,7 @@ Timer.cancel = function(jiraIssueKey, jiraUserKey, callback, request, dontUpdate
     Alert.clearAll();
     
     request({
-        url: '/rest/atlassian-connect/1/addons/com.roadmap/properties/timer-for-user-' + jiraUserKey,
+        url: '/rest/atlassian-connect/1/addons/roadmap/properties/timer-for-user-' + jiraUserKey,
         type: 'DELETE',
         success: function(response) {
             if(!dontUpdateUI) {
