@@ -34,15 +34,19 @@
          <form id="addon-user-config" class="aui top-label">
              <div class="field-group">
                  <label for="rm-token">Roadmap Token</label>
-                 <input type="text" id="rm-token" name="rm-token" class="text" value="">
+                 <input type="text" id="rm-token" name="rm-token" class="text" value=""
+                        data-aui-validation-field
+                        data-aui-validation-required
+                        data-aui-form-notification-position="bottom">
                  <span class="aui-icon icon-inline-help"><span>Help</span></span>
                  <span class="field-help hidden">
                      Get your Roadmap token on 
-                     <a id="rm-account-link" href="https://app.ppmroadmap.com/Account.aspx" target="_blank">Account Settings page</a>.
+                     <a id="rm-account-link" href="https://app.ppmroadmap.com/Account.aspx" target="_blank">Account Settings page</a>. <!-- TODO: Update app link when known -->
                  </span>
              </div><div class="buttons-container">
                 <div class="buttons">
                     <button type="submit" id="update-user-config" class="aui-button aui-button-primary">Save</button>
+                    <button id="cancel-user-config" class="aui-button aui-button-link">Cancel</button>
                 </div>
              </div>
          </form>
@@ -51,7 +55,7 @@
      <div class="integration-absent-display">
          <!-- TODO: Link to support article -->
          <span class="aui-icon aui-icon-small aui-iconfont-warning"></span>&nbsp;Issue/todo is not available in Roadmap.
-         Please check that integration is <a href="https://ppmroadmap.uservoice.com/knowledgebase/articles/454134">configured correctly</a> and try again.
+         Please check that integration is <a href="https://ppmroadmap.uservoice.com/knowledgebase/articles/454134" target="_blank">configured correctly</a> and try again.
      </div>
      
      <form id="rm-todo-form" class="aui top-label">
@@ -59,6 +63,7 @@
          
          <input type="hidden" id="rm-project-id">
          <input type="hidden" id="rm-todo-id">
+         <input type="hidden" id="jira-user-key">
          
          <!--div class="field-group column">
              <label>Progress</label><input class="text" type="text" id="rm-todo-actual" value="..." readonly>

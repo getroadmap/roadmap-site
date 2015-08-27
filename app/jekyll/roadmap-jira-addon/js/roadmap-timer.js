@@ -32,7 +32,16 @@ Timer.updateDuration = function(timerStart) {
     }
 };
 
-Timer.get = function(jiraIssueKey, jiraUserKey, request) {
+Timer.get = function(request) {
+    var jiraIssueKey = API.getUrlParam('issueKey'),
+        jiraUserKey = AJS.$('#jira-user-key').val(), 
+        rmProjectData = AJS.$('#rm-todo-form').data('rmProjectData');
+    
+    // Check access to timer functions
+    if(rmProjectData && !rmProjectData.CanTimeTrack) {
+        AJS.$('#timer .stopped-controls, #timer .log-controls, #stop-timer').hide();
+    }
+    
     API.getAddonProperty(
         'timer-for-user-' + jiraUserKey,
         function(timerRecord) { 

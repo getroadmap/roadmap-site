@@ -40,6 +40,20 @@ AJS.toInit(function () {
             var jiraIssueKey = API.getUrlParam('issueKey');
             
             AP.require('request', function(request) {
+                // TODO: TEST CHECKING USER PERMISSIONS
+                /*request({
+                    url: '/rest/api/2/mypermissions',
+                    success: function(response) {
+                        if(typeof response === 'string')
+                            response = JSON.parse(response);
+
+                        console.log('--- mypermissions');
+                        console.log(response);
+                    }
+                });*/
+                
+                
+                
                 AJS.$('#config-btn').on('click', function(event) {
                     toggleClassBetweenOriginalAnd('config');
                     
@@ -48,6 +62,8 @@ AJS.toInit(function () {
                 
                 // request object is available
                 AP.getUser(function(user) {
+                    AJS.$('#jira-user-key').val(user.key);
+                    
                     // Check user configuration
                     API.getUserConfig(
                         user.key,
@@ -59,26 +75,25 @@ AJS.toInit(function () {
                         function() {
                             Alert.show({ 
                                 title: 'Additional configuration',
-                                message: 'Please specify your Roadmap identity token, so that we can retrieve and display Roadmap data in JIRA.',
+                                message: 'Please specify your Roadmap identity token to see Roadmap data in JIRA.',
                                 fixMessage: null
                             });
                             
-                            AJS.$('#rm-addon-actions').hide();
+                            AJS.$('#rm-addon-actions, #cancel-user-config').hide(); // TODO: Use a class instead?
                             
                             AJS.$('body').removeClass().addClass('config');
                         }
                     );
                     
-                    AJS.$('#addon-user-config').on('submit', function(event) {
-                        API.saveUserConfig(user.key, request);
+                    AJS.$('#addon-user-config').on('aui-valid-submit', function(event) {
+                        API.saveUserConfig(user.key, request, getRmTodoMapping);
                         event.preventDefault();
                     });
                     
-                    
-                    // Timer handling calls functions from roadmap-timer.js
-                    
-                    // Check if there is a running timer record
-                    Timer.get(jiraIssueKey, user.key, request);
+                    AJS.$('#cancel-user-config').on('click', function(event) {
+                        AJS.$('body').removeClass().addClass('loaded');
+                        event.preventDefault();
+                    });
                     
                     AJS.$('#start-timer').off('click').on('click', function() {
                         Timer.create(jiraIssueKey, user.key, request);
@@ -143,7 +158,8 @@ AJS.toInit(function () {
                     } ]
                 },
                 function(response) {
-                    var rmTodoID;
+                    var rmTodoID,
+                        rmProjectData;
 
                     if(response && response.TodoMappings) {
                         for(var i = 0; i < response.TodoMappings.length; i++) {
@@ -155,7 +171,13 @@ AJS.toInit(function () {
                     }
                     
                     if(rmTodoID) {
-                        getRMInfo(rmTodoID, request);
+                        // Get project info
+                        if(response.ProjectMappings && response.ProjectMappings.length > 0) {
+                            // Store project for later use (it has permissions)
+                            AJS.$('#rm-todo-form').data('rmProjectData', response.ProjectMappings[0]); // Single project is passed in
+                        }
+                        
+                        getRMInfo(rmTodoID, rmProjectData, request);
                     } else {
                         AJS.$('body').removeClass().addClass('integration-absent');
                     }
@@ -203,6 +225,14 @@ AJS.toInit(function () {
         AJS.$('#rm-todo-progress').html(getProgressTracker(todoData.Actual, todoData.Estimate));
         
         populateResources(todoData);
+        
+        // Check if there is a running timer record
+        Timer.get(request);
+        
+        
+        /**
+         *  Helper functions
+         */
         
         function linkToRMTodo() {
             todoForm.find('#rm-todo-link').prop('href', 

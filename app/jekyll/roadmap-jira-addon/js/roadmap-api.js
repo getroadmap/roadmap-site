@@ -150,7 +150,7 @@ API.getUserConfig = function(userKey, callback, errorCallback) {
 };
 
 // Called from the issue panel
-API.saveUserConfig = function(userKey, request) {
+API.saveUserConfig = function(userKey, request, callback) {
     var submitBtn = AJS.$('#addon-user-config #update-config'),
         rmToken = AJS.$('#rm-token').val();
 
@@ -177,8 +177,10 @@ API.saveUserConfig = function(userKey, request) {
 
             AJS.$('body').removeClass()
                 .addClass('loading');
+            
+            AJS.$('#rm-addon-actions, #cancel-user-config').show();
 
-            getRmTodoMapping(request);
+            callback(request);
         },
         error: function() {
             userConfig = null;
