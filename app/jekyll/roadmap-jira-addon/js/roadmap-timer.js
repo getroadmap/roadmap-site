@@ -160,7 +160,7 @@ Timer.log = function(jiraIssueKey, timerDuration) {
     AJS.$('#log-time-form input').trigger('validate');
 };
 
-Timer.submit = function(request) {
+Timer.submit = function(request, callback) {
     if(AJS.$('#timer-form-duration').val() == 0)
         return;
     
@@ -192,9 +192,8 @@ Timer.submit = function(request) {
         false,
         logEntry, 
         function(todoData) {
-            // Update actual time in todo display
-            AJS.$('#rm-todo-form').find('#rm-todo-actual').val(todoData.Actual && todoData.Actual.Text ? todoData.Actual.Text : '0').end()
-                .find('#rm-todo-estimate').val(todoData.Estimate && todoData.Estimate.Text ? todoData.Estimate.Text : '0');
+            if(todoData)
+                callback(todoData);
             
             AJS.$('#timer')
                 .removeClass()

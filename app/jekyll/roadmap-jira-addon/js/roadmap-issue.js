@@ -40,14 +40,25 @@ AJS.toInit(function () {
             var jiraIssueKey = API.getUrlParam('issueKey');
             
             AP.require('request', function(request) {
-                // TODO: TEST CHECKING USER PERMISSIONS
+                // TODO: Test checking user permissions / JIRA Configuration
                 /*request({
                     url: '/rest/api/2/mypermissions',
                     success: function(response) {
                         if(typeof response === 'string')
                             response = JSON.parse(response);
 
-                        console.log('--- mypermissions');
+                        console.log('--- /rest/api/2/mypermissions');
+                        console.log(response);
+                    }
+                });
+                
+                request({
+                    url: '/rest/api/2/configuration',
+                    success: function(response) {
+                        if(typeof response === 'string')
+                            response = JSON.parse(response);
+
+                        console.log('--- /rest/api/2/configuration');
                         console.log(response);
                     }
                 });*/
@@ -121,7 +132,9 @@ AJS.toInit(function () {
                     
                     // Called when validation passes
                     AJS.$('#log-time-form').on('aui-valid-submit', function(event) {
-                        Timer.submit(request);
+                        Timer.submit(request, function(todoData) {
+                            updateProgressTracker(todoData.Actual, todoData.Estimate);
+                        });
                         event.preventDefault();
                     });
                     
@@ -222,7 +235,7 @@ AJS.toInit(function () {
         //todoForm.find('#rm-todo-actual').val(todoData.Actual && todoData.Actual.Text ? todoData.Actual.Text : '0');
         //todoForm.find('#rm-todo-estimate').val(todoData.Estimate && todoData.Estimate.Text ? todoData.Estimate.Text : '0');
         
-        AJS.$('#rm-todo-progress').html(getProgressTracker(todoData.Actual, todoData.Estimate));
+        updateProgressTracker(todoData.Actual, todoData.Estimate);
         
         populateResources(todoData);
         
@@ -325,78 +338,6 @@ AJS.toInit(function () {
             });
         }
         
-        function getProgressTracker(actual, estimate) {
-            var html = '',
-                states = {
-                    Unknown: 'Unknown',
-                    NotStarted: 'NotStarted',
-                    InProgress: 'InProgress',
-                    Done: 'Done',
-                    Overtime: 'Overtime'
-                },
-                state = states.Unknown;
-            
-            // TODO: Testing of different cases, remove when done
-            /*actual = {
-                Time: 24,
-                Text: '24 hours'
-            };*/
-            
-            if(!estimate)
-                estimate = {
-                    Time: 0,
-                    Text: '0 hrs'
-                };
-            
-            // Determine todo state
-            if(!actual || actual.Time == 0) {
-                state = states.NotStarted;
-                actual = {
-                    Time: 0,
-                    Text: '0 hrs'
-                }
-            } else if(actual.Time > 0 && (estimate.Time === 0 || actual.Time < estimate.Time)) {
-                state = states.InProgress;
-            } else if(actual.Time > 0 && actual.Time == estimate.Time) {
-                state = states.Done;
-            } else if(actual.Time > 0 && actual.Time > estimate.Time) {
-                state = states.Overtime;
-            }
-            
-            // Show estimate if defined
-            if(estimate.Time > 0) {
-                html += '<div class="estimate-display state-' + state + '"><span class="estimate-label">Estimate</span>' 
-                    + '<span class="estimate-value">' + estimate.Text + '</span></div>';
-            }
-            
-            html += '<ol class="aui-progress-tracker state-' + state + '">'
-            
-            // 1st step
-            html += '<li class="aui-progress-tracker-step' 
-                + (state === states.NotStarted ? ' aui-progress-tracker-step-current' : '')
-                + '" style="width:33%"><span>'
-                + (state === states.NotStarted ? 'Not started' : 'Progress')
-                + '</span></li>';
-            
-            // In progress step (optional)
-            if(state === states.InProgress) {
-                html += '<li class="aui-progress-tracker-step aui-progress-tracker-step-current" style="width:33%"><span>' 
-                     + actual.Text
-                     + '</span></li>';
-            }
-            
-            // Done step
-            html += '<li class="aui-progress-tracker-step'
-                + (state === states.Done || state === states.Overtime ? ' aui-progress-tracker-step-current' : '')
-                + '" style="width:33%"><span>' 
-                + (state === states.Done || state === states.Overtime ? actual.Text : '&nbsp;')
-                + '</span></li>';
-                
-            html += '</ol>';
-            
-            return html;
-        }
-        
         // After resources are rendered, fills correct avatar URLs for each
         function populateAvatars(resourceMappings) {
             $('#rm-assignments li').each(function() {
@@ -455,6 +396,78 @@ AJS.toInit(function () {
 
             return barHtml;
         }
+    }
+    
+    function updateProgressTracker(actual, estimate) {
+        var html = '',
+            states = {
+                Unknown: 'Unknown',
+                NotStarted: 'NotStarted',
+                InProgress: 'InProgress',
+                Done: 'Done',
+                Overtime: 'Overtime'
+            },
+            state = states.Unknown;
+
+        // TODO: Testing of different cases, remove when done
+        /*actual = {
+            Time: 24,
+            Text: '24 hours'
+        };*/
+
+        if(!estimate)
+            estimate = {
+                Time: 0,
+                Text: '0 hrs'
+            };
+
+        // Determine todo state
+        if(!actual || actual.Time == 0) {
+            state = states.NotStarted;
+            actual = {
+                Time: 0,
+                Text: '0 hrs'
+            }
+        } else if(actual.Time > 0 && (estimate.Time === 0 || actual.Time < estimate.Time)) {
+            state = states.InProgress;
+        } else if(actual.Time > 0 && actual.Time == estimate.Time) {
+            state = states.Done;
+        } else if(actual.Time > 0 && actual.Time > estimate.Time) {
+            state = states.Overtime;
+        }
+
+        // Show estimate if defined
+        if(estimate.Time > 0) {
+            html += '<div class="estimate-display state-' + state + '"><span class="estimate-label">Estimate</span>' 
+                + '<span class="estimate-value">' + estimate.Text + '</span></div>';
+        }
+
+        html += '<ol class="aui-progress-tracker state-' + state + '">'
+
+        // 1st step
+        html += '<li class="aui-progress-tracker-step' 
+            + (state === states.NotStarted ? ' aui-progress-tracker-step-current' : '')
+            + '" style="width:33%"><span>'
+            + (state === states.NotStarted ? 'Not started' : 'Progress')
+            + '</span></li>';
+
+        // In progress step (optional)
+        if(state === states.InProgress) {
+            html += '<li class="aui-progress-tracker-step aui-progress-tracker-step-current" style="width:33%"><span>' 
+                 + actual.Text
+                 + '</span></li>';
+        }
+
+        // Done step
+        html += '<li class="aui-progress-tracker-step'
+            + (state === states.Done || state === states.Overtime ? ' aui-progress-tracker-step-current' : '')
+            + '" style="width:33%"><span>' 
+            + (state === states.Done || state === states.Overtime ? actual.Text : '&nbsp;')
+            + '</span></li>';
+
+        html += '</ol>';
+
+        AJS.$('#rm-todo-progress').html(html);
     }
     
     // Toggles between current and provided class
