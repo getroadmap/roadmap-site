@@ -19,51 +19,57 @@
  </head>
     
  <body>
-    <div id="rm-integration-status" class="checking">
-        <div class="checking-display">
-            <span class="aui-icon aui-icon-wait"></span>&nbsp;
-            <span class="message-text">Checking Roadmap integration</span>
-        </div>
-        
-        <div class="integrated-display">
-            <span class="aui-icon aui-icon-small aui-iconfont-approve"></span>&nbsp;JIRA's <span class="jira-project-name">current project</span> is integrated with Roadmap's <a class="rm-project-link" href="#" target="_blank" title="Click to open Roadmap project">project</a>.
-        </div>
-        
-        <div class="not-integrated-display">
-            <form id="integrate-project-form" class="aui">
-                
-                <input type="hidden" id="jira-project-key">
-                <input type="hidden" id="jira-project-id">
-                
-                <div class="field-group">
-                    <label for="project-name">Project Name</label>
-                    <input class="text medium-field" type="text" id="project-name" value="JIRA Project"
-                           data-aui-validation-field
-                           data-aui-validation-required>
-                </div>
-                <div class="field-group">
-                    <label for="todo-list-name">Todo List</label>
-                    <input class="text medium-field" type="text" id="todo-list-name" value="JIRA Issues"
-                           data-aui-validation-field
-                           data-aui-validation-required>
-                </div>
-                <div class="field-group">
-                    <div class="checkbox">
-                        <input class="checkbox" type="checkbox" name="import-closed-issues" id="import-closed-issues">
-                        <label for="import-closed-issues">Import closed issues</label>
+    <section id="content" role="main" class="ac-content">
+        <div id="rm-integration-status" class="checking">
+            <div class="checking-display">
+                <span class="aui-icon aui-icon-wait"></span>&nbsp;
+                <span class="message-text">Checking Roadmap integration</span>
+            </div>
+
+            <div class="integrated-display">
+                <span class="aui-icon aui-icon-small aui-iconfont-approve"></span>&nbsp;JIRA's <span class="jira-project-name">current project</span> is integrated with Roadmap's <a class="rm-project-link" href="#" target="_blank" title="Click to open Roadmap project">project</a>.
+            </div>
+
+            <div class="not-integrated-display">
+                <form id="integrate-project-form" class="aui">
+
+                    <input type="hidden" id="jira-project-key">
+                    <input type="hidden" id="jira-project-id">
+
+                    <div class="field-group">
+                        <label for="project-name">Project Name</label>
+                        <input class="text medium-field" type="text" id="project-name" value="JIRA Project"
+                               data-aui-validation-field
+                               data-aui-validation-required
+                               data-aui-validation-maxlength="100"
+                               data-aui-form-notification-position="bottom">
                     </div>
-                </div>
-                <div class="buttons-container">
-                    <div class="buttons">
-                        <button id="integrate" type="submit" class="aui-button aui-button-primary">Integrate</button>
+                    <div class="field-group">
+                        <label for="todo-list-name">Todo List</label>
+                        <input class="text medium-field" type="text" id="todo-list-name" value="JIRA Issues"
+                               data-aui-validation-field
+                               data-aui-validation-required
+                               data-aui-validation-maxlength="100"
+                               data-aui-form-notification-position="bottom">
                     </div>
-                </div>
-            </form>
+                    <div class="field-group">
+                        <div class="checkbox">
+                            <input class="checkbox" type="checkbox" name="import-closed-issues" id="import-closed-issues">
+                            <label for="import-closed-issues">Import closed issues</label>
+                        </div>
+                    </div>
+                    <div class="buttons-container">
+                        <div class="buttons">
+                            <button id="integrate" type="submit" class="aui-button aui-button-primary">Integrate</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="integration-absent-display">
+                <span class="aui-icon aui-icon-small aui-iconfont-warning"></span>&nbsp;Integration with Roadmap not available, please <a href="https://ppmroadmap.uservoice.com/knowledgebase/articles/725907-jira-integration-set-up" target="_blank">review configuration steps</a>.
+            </div>
         </div>
-        
-        <div class="integration-absent-display"> <!-- TODO: Link to support article -->
-            <span class="aui-icon aui-icon-small aui-iconfont-warning"></span>&nbsp;Integration with Roadmap not available, please <a href="https://ppmroadmap.uservoice.com/knowledgebase/articles/454134" target="_blank">review configuration steps</a>.
-        </div>
-    </div>
+     </section>
  </body>
 </html>

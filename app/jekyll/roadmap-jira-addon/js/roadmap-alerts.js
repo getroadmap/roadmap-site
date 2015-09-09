@@ -10,6 +10,12 @@ function Alert() {
     return this;
 }
 
+Alert.AlertTypes = {
+    Error: 'Error',
+    Warning: 'Warning',
+    Info: 'Information'
+};
+
 Alert.clearAll = function() {
     AJS.$('#rm-alert, #aui-message-bar .aui-message').remove();
 };
@@ -20,20 +26,24 @@ Alert.show = function(options) {
     
 	// Defaults
 	options = $.extend({
+            type: Alert.AlertTypes.Error,
             title: 'Error',
 			message: '',
             url: '',
 			fixMessage: 'Please try again later. If the&nbsp;issue persists, ',
-			fixUrl: 'https://ppmroadmap.uservoice.com/knowledgebase/articles/454134', // TODO: Get proper support link
+			fixUrl: 'https://ppmroadmap.uservoice.com/knowledgebase/articles/725907-jira-integration-set-up', // TODO: Get proper support link
 			fixLabel: 'report it to Roadmap support',
             bodyClass: '',
-            prependTo: 'body'
+            prependTo: '#content'
 		}, options);
     
     if(options.message === 'error')
         options.message = '';
     
-    html = '<div id="rm-alert" class="aui-message aui-message-error">' 
+    html = '<div id="rm-alert" class="aui-message' 
+        + (options.type === Alert.AlertTypes.Error ? 
+           ' aui-message-error' : (options.type === Alert.AlertTypes.Warning ? ' aui-message-warning' : '')) 
+        + '">' 
         + '<p class="title"><strong>' + options.title + '</strong></p>' 
         + (options.url ? '<small>' + options.url + '</small>' : '')
         + (options.message ? '<p>' + Alert.capitalizeFirstLetter(options.message) + '</p>' : '')

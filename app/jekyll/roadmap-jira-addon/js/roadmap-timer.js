@@ -69,9 +69,7 @@ Timer.get = function(request) {
         API.networkError,
         function() {
             // Property not found - there is no timer for this user
-            AJS.$('#timer')
-                .removeClass()
-                .addClass('timer-stopped');
+            AJS.$('#timer').removeClass().addClass('timer-stopped');
         });
 };
 
@@ -89,9 +87,7 @@ Timer.create = function(jiraIssueKey, jiraUserKey, request) {
         data: JSON.stringify(timerRecord),
         contentType: "application/json",
         success: function(response) {
-            AJS.$('#timer')
-                .removeClass()
-                .addClass('timer-running');
+            AJS.$('#timer').removeClass().addClass('timer-running');
             
             AJS.$('#timer').data('timer', timerRecord);
             Timer.updateDuration();
@@ -103,9 +99,7 @@ Timer.create = function(jiraIssueKey, jiraUserKey, request) {
                 message: 'Error saving timer data, timer is not started.'
             });
 
-            AJS.$('#roadmap-timer')
-                .removeClass()
-                .addClass('timer-stopped');
+            AJS.$('#roadmap-timer').removeClass().addClass('timer-stopped');
         }
     });
 };
@@ -153,9 +147,7 @@ Timer.log = function(jiraIssueKey, timerDuration) {
     
     Alert.clearAll();
     
-    AJS.$('#timer')
-        .removeClass()
-        .addClass('timer-log');
+    AJS.$('#timer').removeClass().addClass('timer-log');
     
     AJS.$('#log-time-form input').trigger('validate');
 };
@@ -195,9 +187,7 @@ Timer.submit = function(request, callback) {
             if(todoData)
                 callback(todoData);
             
-            AJS.$('#timer')
-                .removeClass()
-                .addClass('timer-stopped');
+            AJS.$('#timer').removeClass().addClass('timer-stopped');
             
             AJS.$('body').removeClass('loading');
         },
@@ -223,9 +213,7 @@ Timer.cancel = function(jiraIssueKey, jiraUserKey, callback, request, dontUpdate
         type: 'DELETE',
         success: function(response) {
             if(!dontUpdateUI) {
-                AJS.$('#timer')
-                    .removeClass()
-                    .addClass('timer-stopped');
+                AJS.$('#timer').removeClass().addClass('timer-stopped');
             }
             
             clearInterval(timerUpdateHandle);

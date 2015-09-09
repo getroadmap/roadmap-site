@@ -64,11 +64,21 @@ AJS.toInit(function () {
                 });*/
                 
                 
-                
                 AJS.$('#config-btn').on('click', function(event) {
                     toggleClassBetweenOriginalAnd('config');
-                    
                     event.preventDefault();
+                });
+                
+                // Update account link for user config
+                API.getAddonConfig(function(addonConfig) {
+                    if(addonConfig.appURL) {
+                        AJS.$('#rm-account-link').prop('href', API.trimTrailingSlash(addonConfig.appURL) +
+                            '/Account.aspx');
+                    }
+                });
+                
+                AJS.$('#addon-user-config input.text').on('click', function() { 
+                    this.select(); // Select full text when clicking inside input
                 });
                 
                 // request object is available
@@ -139,9 +149,7 @@ AJS.toInit(function () {
                     });
                     
                     AJS.$('#cancel-submit-time').off('click').on('click', function(event) {
-                        AJS.$('#timer')
-                            .removeClass()
-                            .addClass('timer-stopped');
+                        AJS.$('#timer').removeClass().addClass('timer-stopped');
                         event.preventDefault();
                     });
                 });
@@ -225,11 +233,7 @@ AJS.toInit(function () {
         todoForm.find('#rm-todo-id').val(todoData.ID);
         
         // Link to issue in Roadmap
-        if(!addonConfig || !addonConfig.appURL) {
-            API.getAddonConfig(linkToRMTodo, API.networkError);
-        } else {
-            linkToRMTodo();
-        }
+        API.getAddonConfig(linkToRMTodo, API.networkError);
         
         // Todo progress display
         //todoForm.find('#rm-todo-actual').val(todoData.Actual && todoData.Actual.Text ? todoData.Actual.Text : '0');
@@ -247,9 +251,12 @@ AJS.toInit(function () {
          *  Helper functions
          */
         
-        function linkToRMTodo() {
-            todoForm.find('#rm-todo-link').prop('href', 
-                API.trimTrailingSlash(addonConfig.appURL) + '/IndProject.aspx?id=' + todoData.ProjectID + '&wi=' + todoData.ID + '&wiType=3');
+        function linkToRMTodo(addonConfig) {
+            if(addonConfig.appURL) {
+                todoForm.find('#rm-todo-link').prop('href', API.trimTrailingSlash(addonConfig.appURL) +
+                    '/IndProject.aspx?id=' + todoData.ProjectID +
+                    '&wi=' + todoData.ID + '&wiType=3');
+            }
         }
         
         function populateResources(todoData) {

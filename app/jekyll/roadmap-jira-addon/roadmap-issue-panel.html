@@ -22,127 +22,128 @@
  </head>
     
  <body class="loading">
-     <div id="rm-addon-actions">
-         <a href="#" id="config-btn"><span class="aui-icon aui-icon-small aui-iconfont-configure"></span></a>
-     </div>
-     
-     <div id="aui-message-bar"></div>
-     
-     <div class="loading-display"><span class="aui-icon aui-icon-wait"></span>&nbsp;Retrieving data from Roadmap&hellip;</div>
-     
-     <div class="config-display">
-         <form id="addon-user-config" class="aui top-label">
-             <div class="field-group">
-                 <label for="rm-token">Roadmap Token</label>
-                 <input type="text" id="rm-token" name="rm-token" class="text" value=""
-                        data-aui-validation-field
-                        data-aui-validation-required
-                        data-aui-form-notification-position="bottom">
-                 <span class="aui-icon icon-inline-help"><span>Help</span></span>
-                 <span class="field-help hidden">
-                     Get your Roadmap token on 
-                     <a id="rm-account-link" href="https://app.ppmroadmap.com/Account.aspx" target="_blank">Account Settings page</a>. <!-- TODO: Update app link when known -->
-                 </span>
-             </div><div class="buttons-container">
-                <div class="buttons">
-                    <button type="submit" id="update-user-config" class="aui-button aui-button-primary">Save</button>
-                    <button id="cancel-user-config" class="aui-button aui-button-link">Cancel</button>
-                </div>
-             </div>
-         </form>
-     </div>
-     
-     <div class="integration-absent-display">
-         <!-- TODO: Link to support article -->
-         <span class="aui-icon aui-icon-small aui-iconfont-warning"></span>&nbsp;Issue/todo is not available in Roadmap.
-         Please check that integration is <a href="https://ppmroadmap.uservoice.com/knowledgebase/articles/454134" target="_blank">configured correctly</a> and try again.
-     </div>
-     
-     <form id="rm-todo-form" class="aui top-label">
-         <p><a id="rm-todo-link" href="#" target="_blank">View todo in Roadmap</a></p>
-         
-         <input type="hidden" id="rm-project-id">
-         <input type="hidden" id="rm-todo-id">
-         <input type="hidden" id="jira-user-key">
-         
-         <!--div class="field-group column">
-             <label>Progress</label><input class="text" type="text" id="rm-todo-actual" value="..." readonly>
+     <section id="content" role="main" class="ac-content">
+         <div id="rm-addon-actions">
+             <a href="#" id="config-btn"><span class="aui-icon aui-icon-small aui-iconfont-configure"></span></a>
          </div>
-         <div class="field-group column">
-             <label>Estimate</label><input class="text" type="text" id="rm-todo-estimate" value="..." readonly>
-         </div-->
-         <div id="rm-todo-progress" class="field-group">
-         </div>
-         <div id="rm-assignments" class="field-group">
-             <h5>Assigned to</h5>
-             <ul></ul>
-         </div>
-     </form>
 
-     <div id="timer">
-         <div class="running-controls aui-message aui-message-generic">
-             <p>
-                 Timer running: <strong><span class="timer-duration">...</span></strong>
-                 <span class="action-buttons">
-                     <button id="stop-timer" class="aui-button aui-button-primary">Stop Timer</button>
-                     <button id="cancel-timer" class="aui-button aui-button-link">Cancel</button>
-                 </span>
-             </p>
-         </div>
-         <div class="stopped-controls">
-             <button id="start-timer" class="aui-button aui-button-primary">Start Timer</button>
-             <button id="log-time" class="aui-button aui-button">Log Time</button>
-         </div>
-         <div class="log-controls">
-             <form id="log-time-form" class="aui top-label">
-                <h5>Log Actual Time</h5>
-                 
-                <input type="hidden" id="rm-user-id">
-                <input type="hidden" id="rm-user-primary-role-id">
-                
-                <div class="field-group column">
-                    <label>Duration, hrs</label>
-                    <input class="text" type="text" id="timer-form-duration" value="0" 
-                           data-aui-validation-field 
-                           data-aui-validation-when="validate keyup"
-                           data-aui-validation-positive
-                           data-aui-form-notification-position="bottom">
-                </div><div class="field-group column">
-                    <label>Date</label>
-                    <input class="aui-date-picker text" id="timer-date" type="date"
-                           data-aui-validation-field
-                           data-aui-validation-pattern="^\d{4}-[\d]+-[\d]+$"
-                           data-aui-validation-pattern-msg="Date format YYYY-MM-DD">
-                </div><div class="field-group">
-                    <label>Description</label>
-                    <input class="text" type="text" id="timer-description" value="">
-                </div>
-                
-                <a id="modify-resource-link" href="#">Modify resource or role</a>
-                <div id="modify-resource-controls" style="display:none">
-                    <div class="field-group">
-                        <label>Resource</label>
-                        <select class="select" id="timer-resource" name="timer-resource"></select>
-                    </div><div class="field-group">
-                        <label>Role</label>
-                        <select class="select" id="timer-role" name="timer-role"></select>
-                    </div>
-                </div>
-         
-                <div class="buttons-container">
+         <div id="aui-message-bar"></div>
+
+         <div class="loading-display"><span class="aui-icon aui-icon-wait"></span>&nbsp;Retrieving data from Roadmap&hellip;</div>
+
+         <div class="config-display">
+             <form id="addon-user-config" class="aui top-label">
+                 <div class="field-group">
+                     <label for="rm-token">Roadmap Token</label>
+                     <input type="text" id="rm-token" name="rm-token" class="text" value=""
+                            data-aui-validation-field
+                            data-aui-validation-required
+                            data-aui-form-notification-position="bottom">
+                     <span class="aui-icon icon-inline-help"><span>Help</span></span>
+                     <span class="field-help hidden">
+                         Get your Roadmap token on 
+                         <a id="rm-account-link" href="https://app.ppmroadmap.com/Account.aspx" target="_blank">Account Settings page</a>. <!-- TODO: Update app link when known -->
+                     </span>
+                 </div><div class="buttons-container">
                     <div class="buttons">
-                        <button type="submit" id="submit-time" class="aui-button aui-button-primary">Log</button>
-                        <button id="cancel-submit-time" class="aui-button aui-button-link">Cancel</button>
+                        <button type="submit" id="update-user-config" class="aui-button aui-button-primary">Save</button>
+                        <button id="cancel-user-config" class="aui-button aui-button-link">Cancel</button>
                     </div>
-                </div>
+                 </div>
              </form>
          </div>
-         <div class="running-another-controls">
-             <span class="aui-icon aui-icon-small aui-iconfont-error"></span>
-             Timer running for issue <button id="go-to-another-issue" class="aui-button aui-button-link" title="Go to the running timer">
-                #<span class="another-issue-key">...</span>
-             </button>
+
+         <div class="integration-absent-display">
+             <span class="aui-icon aui-icon-small aui-iconfont-warning"></span>&nbsp;Issue/todo is not available in Roadmap.
+             Please check that integration is <a href="https://ppmroadmap.uservoice.com/knowledgebase/articles/725907-jira-integration-set-up" target="_blank">configured correctly</a> and try again.
          </div>
-      </div>
+
+         <form id="rm-todo-form" class="aui top-label">
+             <p><a id="rm-todo-link" href="#" target="_blank">View todo in Roadmap</a></p>
+
+             <input type="hidden" id="rm-project-id">
+             <input type="hidden" id="rm-todo-id">
+             <input type="hidden" id="jira-user-key">
+
+             <!--div class="field-group column">
+                 <label>Progress</label><input class="text" type="text" id="rm-todo-actual" value="..." readonly>
+             </div>
+             <div class="field-group column">
+                 <label>Estimate</label><input class="text" type="text" id="rm-todo-estimate" value="..." readonly>
+             </div-->
+             <div id="rm-todo-progress" class="field-group">
+             </div>
+             <div id="rm-assignments" class="field-group">
+                 <h5>Assigned to</h5>
+                 <ul></ul>
+             </div>
+         </form>
+
+         <div id="timer">
+             <div class="running-controls aui-message aui-message-generic">
+                 <p>
+                     Timer running: <strong><span class="timer-duration">...</span></strong>
+                     <span class="action-buttons">
+                         <button id="stop-timer" class="aui-button aui-button-primary">Stop Timer</button>
+                         <button id="cancel-timer" class="aui-button aui-button-link">Cancel</button>
+                     </span>
+                 </p>
+             </div>
+             <div class="stopped-controls">
+                 <button id="start-timer" class="aui-button aui-button-primary">Start Timer</button>
+                 <button id="log-time" class="aui-button aui-button">Log Time</button>
+             </div>
+             <div class="log-controls">
+                 <form id="log-time-form" class="aui top-label">
+                    <h5>Log Actual Time</h5>
+
+                    <input type="hidden" id="rm-user-id">
+                    <input type="hidden" id="rm-user-primary-role-id">
+
+                    <div class="field-group column">
+                        <label>Duration, hrs</label>
+                        <input class="text" type="text" id="timer-form-duration" value="0" 
+                               data-aui-validation-field 
+                               data-aui-validation-when="validate keyup"
+                               data-aui-validation-positive
+                               data-aui-form-notification-position="bottom">
+                    </div><div class="field-group column">
+                        <label>Date</label>
+                        <input class="aui-date-picker text" id="timer-date" type="date"
+                               data-aui-validation-field
+                               data-aui-validation-pattern="^\d{4}-[\d]+-[\d]+$"
+                               data-aui-validation-pattern-msg="Date format YYYY-MM-DD">
+                    </div><div class="field-group">
+                        <label>Description</label>
+                        <input class="text" type="text" id="timer-description" value="">
+                    </div>
+
+                    <a id="modify-resource-link" href="#">Modify resource or role</a>
+                    <div id="modify-resource-controls" style="display:none">
+                        <div class="field-group">
+                            <label>Resource</label>
+                            <select class="select" id="timer-resource" name="timer-resource"></select>
+                        </div><div class="field-group">
+                            <label>Role</label>
+                            <select class="select" id="timer-role" name="timer-role"></select>
+                        </div>
+                    </div>
+
+                    <div class="buttons-container">
+                        <div class="buttons">
+                            <button type="submit" id="submit-time" class="aui-button aui-button-primary">Log</button>
+                            <button id="cancel-submit-time" class="aui-button aui-button-link">Cancel</button>
+                        </div>
+                    </div>
+                 </form>
+             </div>
+             <div class="running-another-controls">
+                 <span class="aui-icon aui-icon-small aui-iconfont-error"></span>
+                 Timer running for issue <button id="go-to-another-issue" class="aui-button aui-button-link" title="Go to the running timer">
+                    #<span class="another-issue-key">...</span>
+                 </button>
+             </div>
+          </div>
+     </section>
  </body>
 </html>

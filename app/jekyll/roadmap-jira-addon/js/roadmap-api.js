@@ -175,8 +175,7 @@ API.saveUserConfig = function(userKey, request, callback) {
                 delay: 1000
             });
 
-            AJS.$('body').removeClass()
-                .addClass('loading');
+            AJS.$('body').removeClass().addClass('loading');
             
             AJS.$('#rm-addon-actions, #cancel-user-config').show();
 
@@ -290,12 +289,12 @@ API.callRMAPI = function(method, url, isAdmin, data, successCallback, errorCallb
             contentType: 'application/json',
             data: JSON.stringify(data),
             success: function(response) {
-                if(response && (response.IsException || response.Warning)) {
+                if(response && response.IsException) {
                     errorCallback(
                         addonConfig.apiURL + url, 
                         null, 
-                        response.IsException ? response.Message : response.Warning, 
-                        response.IsException ? response.Message : response.Warning);
+                        response.Message, 
+                        response.Message);
                     return;
                 }
                 
