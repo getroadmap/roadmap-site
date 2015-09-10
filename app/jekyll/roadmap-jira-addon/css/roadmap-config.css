@@ -32,6 +32,14 @@
     display: none;
 }
 
+#addon-version {
+    display: inline-block;
+    margin-left: 10px;
+    font-size: 12px;
+    font-weight: normal;
+    color: #707070;
+}
+
 #addon-config input.text,
 #addon-config select {
     max-width: 300px;

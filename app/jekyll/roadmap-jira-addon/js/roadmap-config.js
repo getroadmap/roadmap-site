@@ -27,6 +27,8 @@ AJS.toInit(function () {
         
         // Make 'request' available
         AP.require('request', function(request) {
+            displayAddonVersion(request);
+            
             // Custom field handling (loadConfig is called when dropdown is populated)
             manageCustomFields(request, baseUrl, loadConfig);
             
@@ -40,6 +42,22 @@ AJS.toInit(function () {
     /**
      *  Local function definitions
      */
+    
+    function displayAddonVersion(request) {
+        request({
+            url: '/rest/atlassian-connect/1/addons/roadmap',
+            success: function(response) {
+                if(typeof response === 'string')
+                    response = JSON.parse(response);
+
+                if(response && response.version) {
+                    AJS.$('#addon-version').text('v' + response.version);
+                } else {
+                    AJS.$('#addon-version').text('');
+                }
+            }
+        });
+    }
     
     function loadConfig(request) {
         var submitBtn = AJS.$('#addon-config #update-config');

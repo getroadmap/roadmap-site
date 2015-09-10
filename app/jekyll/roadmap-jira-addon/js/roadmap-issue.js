@@ -41,7 +41,8 @@ AJS.toInit(function () {
             
             AP.require('request', function(request) {
                 // TODO: Test checking user permissions / JIRA Configuration
-                /*request({
+                /*
+                request({
                     url: '/rest/api/2/mypermissions',
                     success: function(response) {
                         if(typeof response === 'string')

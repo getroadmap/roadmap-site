@@ -189,8 +189,26 @@ AJS.toInit(function () {
                 ToDoListName: todoListName
             },
             function(response) {
-                if(response && response.Warning) {
-                    Alert.show({ 
+                if(!response) {
+                    API.networkError();
+                    return;
+                }
+                
+                if(response.ValidationError) {
+                    Alert.show({
+                        type: Alert.AlertTypes.Error,
+                        title: 'Validation Error',
+                        message: response.ValidationError,
+                        fixMessage: ''
+                    });
+                    
+                    elemIntegration.removeClass().addClass('not-integrated');
+                    
+                    return;
+                }
+                
+                if(response.Warning) {
+                    Alert.show({
                         type: Alert.AlertTypes.Warning,
                         title: 'Project import warning',
                         message: response.Warning,
