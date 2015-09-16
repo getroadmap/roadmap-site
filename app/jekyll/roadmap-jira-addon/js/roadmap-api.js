@@ -8,7 +8,8 @@
 var addonConfig,
     userConfig,
     rmUser,
-    rmRoles;
+    rmRoles,
+    rmResources;
 
 // For now this class is only needed for static functions
 function API() {
@@ -217,6 +218,24 @@ API.getRmRoles = function(callback) {
         API.callRMAPI(
             'GET', 
             '/v1.1/ext/role',
+            false,
+            null,
+            callback,
+            API.networkError
+        );
+    }
+};
+
+API.getRmResources = function(rmProjectID, callback) {
+    if(!rmProjectID)
+        return;
+    
+    if(rmResources) {
+        callback(rmResources);
+    } else {
+        API.callRMAPI(
+            'GET', 
+            '/v1.1/ext/project/' + rmProjectID + '/granted-resources',
             false,
             null,
             callback,

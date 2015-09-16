@@ -275,7 +275,7 @@ AJS.toInit(function () {
                         isCurrentUserAssigned = false,
                         elemResourceSelect = AJS.$('#timer-resource');
                     
-                    // Populate roles;
+                    // Populate roles
                     if(roles) {
                         roles.forEach(function(role) {
                             AJS.$('#timer-role').append('<option value="' + role.ID + '">' 
@@ -283,7 +283,7 @@ AJS.toInit(function () {
                         });
                     }
                     
-                    // Now we're ready to parse todo assigned resouces
+                    // Now ready to parse todo assigned resouces
                     todoData.Resources.forEach(function(resource) {
                         var utilDataArr,
                             utilArr = [];
@@ -327,22 +327,67 @@ AJS.toInit(function () {
 
                     populateAvatars(todoData.ResourceMappings);
                     
-                    // If current user not assigned - pre-select their primary role
+                    addGrantedResources(todoData.ProjectID);
+                    
+                    // If current user (default selection) is not assigned - pre-select their primary role
                     if(!isCurrentUserAssigned) {
                         AJS.$('#timer-role').val(userData.PrimaryRoleID);
                     }
                     
                     // On resource change select their role from the assignment
                     elemResourceSelect.off('change').on('change', function() {
-                        AJS.$('#timer-role').val($(this).find('option:selected').data('role'));
+                        var roleID = $(this).find('option:selected').data('role');
+                        
+                        if(roleID)
+                            AJS.$('#timer-role').val(roleID);
                     });
 
-                    // Display assigned resources if there are > 1
+                    // Display assigned resources if > 1
                     todoForm.find('#rm-assignments')
                         .toggle(todoData.Resources && todoData.Resources.length > 1);
                     
                     AJS.$('body').removeClass().addClass('loaded');
                 });
+            });
+        }
+        
+        // Add granted resources for project (to display as alternatives in Log Time form)
+        function addGrantedResources(rmProjectID) {
+            var elemResourceSelect = AJS.$('#timer-resource');
+            
+            API.getRmResources(rmProjectID, function(rmGrantedResources) {
+                if(rmGrantedResources && rmGrantedResources.length > 0) {
+                    var assignedResources,
+                        resourceName,
+                        html = '';
+
+                    // Get list of currently displayed resources
+                    assignedResources = elemResourceSelect.find('option').map(function() {
+                        return AJS.$(this).attr('value');
+                    }).toArray();
+
+                    // Don't sort - it's already done on the server
+
+                    for(var i = 0; i < rmGrantedResources.length; i++) {
+                        // Except for already shown resources (current + assigned)
+                        if(assignedResources.indexOf(rmGrantedResources[i].ID.toString()) === -1) {
+                            if(!html)
+                                html = '<option disabled>──────────</option>'; // separator
+
+                            // Empty first/last means Company resource
+                            resourceName = (!rmGrantedResources[i].FirstName && !rmGrantedResources[i].LastName ?
+                                rmGrantedResources[i].CompanyName :
+                                rmGrantedResources[i].FirstName + ' ' + rmGrantedResources[i].LastName);
+
+                            html += '<option value="' + rmGrantedResources[i].ID + '"' + 
+                                (rmGrantedResources[i].PrimaryRoleID ? 
+                                    ' data-role="' + rmGrantedResources[i].PrimaryRoleID + '"' : '') 
+                                + '>' + resourceName + '</option>';
+                        }
+                    }
+
+                    elemResourceSelect.append(html);
+                }
             });
         }
         

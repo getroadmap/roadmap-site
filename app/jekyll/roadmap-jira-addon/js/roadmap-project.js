@@ -219,7 +219,7 @@ AJS.toInit(function () {
                 elemIntegration.removeClass().addClass('integrated');
 
                 elemIntegration.find('.rm-project-link')
-                    .prop('href', addonConfig.appURL + '/IndProject.aspx?id=' + response.ProjectID);
+                    .prop('href', API.trimTrailingSlash(addonConfig.appURL) + '/IndProject.aspx?id=' + response.ProjectID);
                 
                 displayRoadmapProjectName(response.ProjectID);
             },
