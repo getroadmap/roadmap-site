@@ -78,8 +78,7 @@ AJS.toInit(function () {
                 function() {} // No error processing needed
             );
             
-            elemIntegration.removeClass()
-                .addClass('integrated');
+            elemIntegration.removeClass().addClass('integrated');
             
             API.getAddonConfig(function(addonConfig) {
                 if(addonConfig && addonConfig.appURL)
@@ -108,8 +107,7 @@ AJS.toInit(function () {
                 prepareIntegrateForm(AP);
             } else {
                 // Integration is not available
-                elemIntegration.removeClass()
-                    .addClass('integration-absent');
+                elemIntegration.removeClass().addClass('integration-absent');
             }
         }
     }
@@ -136,8 +134,7 @@ AJS.toInit(function () {
             function(jiraProjectName) {
                 elemIntegration.find('#project-name').val(jiraProjectName);
                 
-                elemIntegration.removeClass()
-                    .addClass('not-integrated');
+                elemIntegration.removeClass().addClass('not-integrated');
 
                 AJS.$('#integrate-project-form').on('aui-valid-submit', integrateProject);
             },
@@ -150,8 +147,7 @@ AJS.toInit(function () {
                 });
 
                 // Form is still useable
-                elemIntegration.removeClass()
-                    .addClass('not-integrated');
+                elemIntegration.removeClass().addClass('not-integrated');
 
                 AJS.$('#integrate').off('click').on('click', integrateProject);
             }
@@ -193,11 +189,37 @@ AJS.toInit(function () {
                 ToDoListName: todoListName
             },
             function(response) {
-                elemIntegration.removeClass()
-                    .addClass('integrated');
+                if(!response) {
+                    API.networkError();
+                    return;
+                }
+                
+                if(response.ValidationError) {
+                    Alert.show({
+                        type: Alert.AlertTypes.Error,
+                        title: 'Validation Error',
+                        message: response.ValidationError,
+                        fixMessage: ''
+                    });
+                    
+                    elemIntegration.removeClass().addClass('not-integrated');
+                    
+                    return;
+                }
+                
+                if(response.Warning) {
+                    Alert.show({
+                        type: Alert.AlertTypes.Warning,
+                        title: 'Project import warning',
+                        message: response.Warning,
+                        fixMessage: ''
+                    });
+                }
+                
+                elemIntegration.removeClass().addClass('integrated');
 
                 elemIntegration.find('.rm-project-link')
-                    .prop('href', addonConfig.appURL + '/IndProject.aspx?id=' + response.ProjectID);
+                    .prop('href', API.trimTrailingSlash(addonConfig.appURL) + '/IndProject.aspx?id=' + response.ProjectID);
                 
                 displayRoadmapProjectName(response.ProjectID);
             },
@@ -205,8 +227,7 @@ AJS.toInit(function () {
         
         elemIntegration.find('.checking-display .message-text').html('Integration request sent, awaiting response&hellip;');
         
-        elemIntegration.removeClass()
-            .addClass('checking');
+        elemIntegration.removeClass().addClass('checking');
         
         event.preventDefault();
     }

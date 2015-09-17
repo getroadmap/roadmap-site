@@ -40,24 +40,46 @@ AJS.toInit(function () {
             var jiraIssueKey = API.getUrlParam('issueKey');
             
             AP.require('request', function(request) {
-                // TODO: TEST CHECKING USER PERMISSIONS
-                /*request({
+                // TODO: Test checking user permissions / JIRA Configuration
+                /*
+                request({
                     url: '/rest/api/2/mypermissions',
                     success: function(response) {
                         if(typeof response === 'string')
                             response = JSON.parse(response);
 
-                        console.log('--- mypermissions');
+                        console.log('--- /rest/api/2/mypermissions');
+                        console.log(response);
+                    }
+                });
+                
+                request({
+                    url: '/rest/api/2/configuration',
+                    success: function(response) {
+                        if(typeof response === 'string')
+                            response = JSON.parse(response);
+
+                        console.log('--- /rest/api/2/configuration');
                         console.log(response);
                     }
                 });*/
                 
                 
-                
                 AJS.$('#config-btn').on('click', function(event) {
                     toggleClassBetweenOriginalAnd('config');
-                    
                     event.preventDefault();
+                });
+                
+                // Update account link for user config
+                API.getAddonConfig(function(addonConfig) {
+                    if(addonConfig.appURL) {
+                        AJS.$('#rm-account-link').prop('href', API.trimTrailingSlash(addonConfig.appURL) +
+                            '/Account.aspx');
+                    }
+                });
+                
+                AJS.$('#addon-user-config input.text').on('click', function() { 
+                    this.select(); // Select full text when clicking inside input
                 });
                 
                 // request object is available
@@ -121,14 +143,14 @@ AJS.toInit(function () {
                     
                     // Called when validation passes
                     AJS.$('#log-time-form').on('aui-valid-submit', function(event) {
-                        Timer.submit(request);
+                        Timer.submit(request, function(todoData) {
+                            updateProgressTracker(todoData.Actual, todoData.Estimate);
+                        });
                         event.preventDefault();
                     });
                     
                     AJS.$('#cancel-submit-time').off('click').on('click', function(event) {
-                        AJS.$('#timer')
-                            .removeClass()
-                            .addClass('timer-stopped');
+                        AJS.$('#timer').removeClass().addClass('timer-stopped');
                         event.preventDefault();
                     });
                 });
@@ -212,17 +234,13 @@ AJS.toInit(function () {
         todoForm.find('#rm-todo-id').val(todoData.ID);
         
         // Link to issue in Roadmap
-        if(!addonConfig || !addonConfig.appURL) {
-            API.getAddonConfig(linkToRMTodo, API.networkError);
-        } else {
-            linkToRMTodo();
-        }
+        API.getAddonConfig(linkToRMTodo, API.networkError);
         
         // Todo progress display
         //todoForm.find('#rm-todo-actual').val(todoData.Actual && todoData.Actual.Text ? todoData.Actual.Text : '0');
         //todoForm.find('#rm-todo-estimate').val(todoData.Estimate && todoData.Estimate.Text ? todoData.Estimate.Text : '0');
         
-        AJS.$('#rm-todo-progress').html(getProgressTracker(todoData.Actual, todoData.Estimate));
+        updateProgressTracker(todoData.Actual, todoData.Estimate);
         
         populateResources(todoData);
         
@@ -234,9 +252,12 @@ AJS.toInit(function () {
          *  Helper functions
          */
         
-        function linkToRMTodo() {
-            todoForm.find('#rm-todo-link').prop('href', 
-                API.trimTrailingSlash(addonConfig.appURL) + '/IndProject.aspx?id=' + todoData.ProjectID + '&wi=' + todoData.ID + '&wiType=3');
+        function linkToRMTodo(addonConfig) {
+            if(addonConfig.appURL) {
+                todoForm.find('#rm-todo-link').prop('href', API.trimTrailingSlash(addonConfig.appURL) +
+                    '/IndProject.aspx?id=' + todoData.ProjectID +
+                    '&wi=' + todoData.ID + '&wiType=3');
+            }
         }
         
         function populateResources(todoData) {
@@ -254,7 +275,7 @@ AJS.toInit(function () {
                         isCurrentUserAssigned = false,
                         elemResourceSelect = AJS.$('#timer-resource');
                     
-                    // Populate roles;
+                    // Populate roles
                     if(roles) {
                         roles.forEach(function(role) {
                             AJS.$('#timer-role').append('<option value="' + role.ID + '">' 
@@ -262,7 +283,7 @@ AJS.toInit(function () {
                         });
                     }
                     
-                    // Now we're ready to parse todo assigned resouces
+                    // Now ready to parse todo assigned resouces
                     todoData.Resources.forEach(function(resource) {
                         var utilDataArr,
                             utilArr = [];
@@ -306,17 +327,22 @@ AJS.toInit(function () {
 
                     populateAvatars(todoData.ResourceMappings);
                     
-                    // If current user not assigned - pre-select their primary role
+                    addGrantedResources(todoData.ProjectID);
+                    
+                    // If current user (default selection) is not assigned - pre-select their primary role
                     if(!isCurrentUserAssigned) {
                         AJS.$('#timer-role').val(userData.PrimaryRoleID);
                     }
                     
                     // On resource change select their role from the assignment
                     elemResourceSelect.off('change').on('change', function() {
-                        AJS.$('#timer-role').val($(this).find('option:selected').data('role'));
+                        var roleID = $(this).find('option:selected').data('role');
+                        
+                        if(roleID)
+                            AJS.$('#timer-role').val(roleID);
                     });
 
-                    // Display assigned resources if there are > 1
+                    // Display assigned resources if > 1
                     todoForm.find('#rm-assignments')
                         .toggle(todoData.Resources && todoData.Resources.length > 1);
                     
@@ -325,76 +351,44 @@ AJS.toInit(function () {
             });
         }
         
-        function getProgressTracker(actual, estimate) {
-            var html = '',
-                states = {
-                    Unknown: 'Unknown',
-                    NotStarted: 'NotStarted',
-                    InProgress: 'InProgress',
-                    Done: 'Done',
-                    Overtime: 'Overtime'
-                },
-                state = states.Unknown;
+        // Add granted resources for project (to display as alternatives in Log Time form)
+        function addGrantedResources(rmProjectID) {
+            var elemResourceSelect = AJS.$('#timer-resource');
             
-            // TODO: Testing of different cases, remove when done
-            /*actual = {
-                Time: 24,
-                Text: '24 hours'
-            };*/
-            
-            if(!estimate)
-                estimate = {
-                    Time: 0,
-                    Text: '0 hrs'
-                };
-            
-            // Determine todo state
-            if(!actual || actual.Time == 0) {
-                state = states.NotStarted;
-                actual = {
-                    Time: 0,
-                    Text: '0 hrs'
+            API.getRmResources(rmProjectID, function(rmGrantedResources) {
+                if(rmGrantedResources && rmGrantedResources.length > 0) {
+                    var assignedResources,
+                        resourceName,
+                        html = '';
+
+                    // Get list of currently displayed resources
+                    assignedResources = elemResourceSelect.find('option').map(function() {
+                        return AJS.$(this).attr('value');
+                    }).toArray();
+
+                    // Don't sort - it's already done on the server
+
+                    for(var i = 0; i < rmGrantedResources.length; i++) {
+                        // Except for already shown resources (current + assigned)
+                        if(assignedResources.indexOf(rmGrantedResources[i].ID.toString()) === -1) {
+                            if(!html)
+                                html = '<option disabled>──────────</option>'; // separator
+
+                            // Empty first/last means Company resource
+                            resourceName = (!rmGrantedResources[i].FirstName && !rmGrantedResources[i].LastName ?
+                                rmGrantedResources[i].CompanyName :
+                                rmGrantedResources[i].FirstName + ' ' + rmGrantedResources[i].LastName);
+
+                            html += '<option value="' + rmGrantedResources[i].ID + '"' + 
+                                (rmGrantedResources[i].PrimaryRoleID ? 
+                                    ' data-role="' + rmGrantedResources[i].PrimaryRoleID + '"' : '') 
+                                + '>' + resourceName + '</option>';
+                        }
+                    }
+
+                    elemResourceSelect.append(html);
                 }
-            } else if(actual.Time > 0 && (estimate.Time === 0 || actual.Time < estimate.Time)) {
-                state = states.InProgress;
-            } else if(actual.Time > 0 && actual.Time == estimate.Time) {
-                state = states.Done;
-            } else if(actual.Time > 0 && actual.Time > estimate.Time) {
-                state = states.Overtime;
-            }
-            
-            // Show estimate if defined
-            if(estimate.Time > 0) {
-                html += '<div class="estimate-display state-' + state + '"><span class="estimate-label">Estimate</span>' 
-                    + '<span class="estimate-value">' + estimate.Text + '</span></div>';
-            }
-            
-            html += '<ol class="aui-progress-tracker state-' + state + '">'
-            
-            // 1st step
-            html += '<li class="aui-progress-tracker-step' 
-                + (state === states.NotStarted ? ' aui-progress-tracker-step-current' : '')
-                + '" style="width:33%"><span>'
-                + (state === states.NotStarted ? 'Not started' : 'Progress')
-                + '</span></li>';
-            
-            // In progress step (optional)
-            if(state === states.InProgress) {
-                html += '<li class="aui-progress-tracker-step aui-progress-tracker-step-current" style="width:33%"><span>' 
-                     + actual.Text
-                     + '</span></li>';
-            }
-            
-            // Done step
-            html += '<li class="aui-progress-tracker-step'
-                + (state === states.Done || state === states.Overtime ? ' aui-progress-tracker-step-current' : '')
-                + '" style="width:33%"><span>' 
-                + (state === states.Done || state === states.Overtime ? actual.Text : '&nbsp;')
-                + '</span></li>';
-                
-            html += '</ol>';
-            
-            return html;
+            });
         }
         
         // After resources are rendered, fills correct avatar URLs for each
@@ -455,6 +449,78 @@ AJS.toInit(function () {
 
             return barHtml;
         }
+    }
+    
+    function updateProgressTracker(actual, estimate) {
+        var html = '',
+            states = {
+                Unknown: 'Unknown',
+                NotStarted: 'NotStarted',
+                InProgress: 'InProgress',
+                Done: 'Done',
+                Overtime: 'Overtime'
+            },
+            state = states.Unknown;
+
+        // TODO: Testing of different cases, remove when done
+        /*actual = {
+            Time: 24,
+            Text: '24 hours'
+        };*/
+
+        if(!estimate)
+            estimate = {
+                Time: 0,
+                Text: '0 hrs'
+            };
+
+        // Determine todo state
+        if(!actual || actual.Time == 0) {
+            state = states.NotStarted;
+            actual = {
+                Time: 0,
+                Text: '0 hrs'
+            }
+        } else if(actual.Time > 0 && (estimate.Time === 0 || actual.Time < estimate.Time)) {
+            state = states.InProgress;
+        } else if(actual.Time > 0 && actual.Time == estimate.Time) {
+            state = states.Done;
+        } else if(actual.Time > 0 && actual.Time > estimate.Time) {
+            state = states.Overtime;
+        }
+
+        // Show estimate if defined
+        if(estimate.Time > 0) {
+            html += '<div class="estimate-display state-' + state + '"><span class="estimate-label">Estimate</span>' 
+                + '<span class="estimate-value">' + estimate.Text + '</span></div>';
+        }
+
+        html += '<ol class="aui-progress-tracker state-' + state + '">'
+
+        // 1st step
+        html += '<li class="aui-progress-tracker-step' 
+            + (state === states.NotStarted ? ' aui-progress-tracker-step-current' : '')
+            + '" style="width:33%"><span>'
+            + (state === states.NotStarted ? 'Not started' : 'Progress')
+            + '</span></li>';
+
+        // In progress step (optional)
+        if(state === states.InProgress) {
+            html += '<li class="aui-progress-tracker-step aui-progress-tracker-step-current" style="width:33%"><span>' 
+                 + actual.Text
+                 + '</span></li>';
+        }
+
+        // Done step
+        html += '<li class="aui-progress-tracker-step'
+            + (state === states.Done || state === states.Overtime ? ' aui-progress-tracker-step-current' : '')
+            + '" style="width:33%"><span>' 
+            + (state === states.Done || state === states.Overtime ? actual.Text : '&nbsp;')
+            + '</span></li>';
+
+        html += '</ol>';
+
+        AJS.$('#rm-todo-progress').html(html);
     }
     
     // Toggles between current and provided class

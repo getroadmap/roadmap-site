@@ -9,6 +9,10 @@ body {
     background: transparent;
 }
 
+#content {
+    padding: 1px 0;
+}
+
 /* Issue display stages */
 
 .loading-display,
@@ -178,6 +182,10 @@ form.aui .field-group.column input {
 
 #timer.timer-log > .log-controls {
     display: block;
+}
+
+#timer .running-controls {
+    padding-right: 20px;
 }
 
 #timer .running-controls .timer-duration {
