@@ -278,8 +278,9 @@ AJS.toInit(function () {
                     // Populate roles
                     if(roles) {
                         roles.forEach(function(role) {
-                            AJS.$('#timer-role').append('<option value="' + role.ID + '">' 
-                                + role.Name + '</option>');
+                            if(!role.IsArchived)
+                                AJS.$('#timer-role').append('<option value="' + role.ID + '">' 
+                                    + role.Name + '</option>');
                         });
                     }
                     
@@ -336,10 +337,15 @@ AJS.toInit(function () {
                     
                     // On resource change select their role from the assignment
                     elemResourceSelect.off('change').on('change', function() {
-                        var roleID = $(this).find('option:selected').data('role');
+                        var roleSelect = AJS.$('#timer-role'),
+                            roleID = $(this).find('option:selected').data('role'),
+                            availableRoles;
                         
-                        if(roleID)
-                            AJS.$('#timer-role').val(roleID);
+                        availableRoles = roleSelect.find('option')
+                            .map(function() { return AJS.$(this).attr('value'); }).toArray();
+                        
+                        if(roleID && availableRoles.indexOf(roleID.toString()) !== -1)
+                            roleSelect.val(roleID);
                     });
 
                     // Display assigned resources if > 1
