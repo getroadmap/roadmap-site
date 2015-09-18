@@ -8,9 +8,9 @@ set :branch, fetch(:branch, "dist")
 set :env, fetch(:env, :rails_env)
 
 set :application, 'ppmroadmap.com'
-set :domain, '104.130.169.162'
-set :user, 'root'
-# set :port, 1002
+set :domain, 'homeland.ppmroadmap.com'
+set :user, 'berried_billheads'
+set :port, 1002
 
 set :default_server, domain
 set :dest_server, ENV['SERVER'] || default_server
