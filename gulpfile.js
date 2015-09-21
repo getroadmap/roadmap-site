@@ -340,7 +340,8 @@ gulp.task('rev', function () {
       ignore: [
         /^\/favicon.ico$/g,
         '.html',
-        '.php'
+        '.php',
+        /^\/roadmap-jira-addon\/(.*)/g
       ],
     }))
     .pipe(gulp.dest('dist'));
@@ -356,7 +357,8 @@ gulp.task('rev:gh-pages', function () {
         ignore: [
           /^\/favicon.ico$/g,
           '.html',
-          '.php'
+          '.php',
+          /^\/roadmap-jira-addon\/(.*)/g
         ],
         transformFilename: function (file, hash) {
           var ext = path.extname(file.path);
