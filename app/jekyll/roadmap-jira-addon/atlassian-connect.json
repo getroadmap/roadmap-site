@@ -25,11 +25,6 @@
                 "value": "Roadmap Configure Page"
             }
         },
-        "webhooks": [
-            {   "event": "jira:issue_created",  "url": "/jira-issue-created"    },
-            {   "event": "jira:issue_updated",  "url": "/jira-issue-updated"    },
-            {   "event": "jira:issue_deleted",  "url": "/jira-issue-deleted"    }
-        ],
         "webPanels": [
             {
             "url": "roadmap-issue-panel.html?issueKey={issue.key}&issueID={issue.id}&projectKey={project.key}&projectID={project.id}",

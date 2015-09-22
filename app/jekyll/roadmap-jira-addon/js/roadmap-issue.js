@@ -236,16 +236,14 @@ AJS.toInit(function () {
         // Link to issue in Roadmap
         API.getAddonConfig(linkToRMTodo, API.networkError);
         
-        // Todo progress display
-        //todoForm.find('#rm-todo-actual').val(todoData.Actual && todoData.Actual.Text ? todoData.Actual.Text : '0');
-        //todoForm.find('#rm-todo-estimate').val(todoData.Estimate && todoData.Estimate.Text ? todoData.Estimate.Text : '0');
-        
         updateProgressTracker(todoData.Actual, todoData.Estimate);
         
         populateResources(todoData);
         
         // Check if there is a running timer record
         Timer.get(request);
+        
+        return;
         
         
         /**
@@ -324,9 +322,10 @@ AJS.toInit(function () {
                         }
                     });
                     
-                    todoForm.find('#rm-assignments').find('ul').html(html);
-
-                    populateAvatars(todoData.ResourceMappings);
+                    if(todoData.Resources && todoData.Resources.length > 1) {
+                        todoForm.find('#rm-assignments').find('ul').html(html);
+                        populateAvatars(todoData.ResourceMappings);
+                    }
                     
                     addGrantedResources(todoData.ProjectID);
                     
