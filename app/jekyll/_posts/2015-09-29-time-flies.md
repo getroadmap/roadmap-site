@@ -13,11 +13,10 @@ Today, we’ve taken the _beta_ wraps off **[Odometer](//time.ppmroadmap.com)**,
 
 [![Screenshot 2015-09-29 22.58.41.png]({{site.baseurl}}/images/media/Screenshot 2015-09-29 22.58.41.png)](//time.ppmroadmap.com)
 
-
 We see Odometer as more than a time logger. Odometer maps out a new design and development process for us as a company. During Odometer’s development we:
 
-- updated our technology stack
-- shortened our feedback cycles between design, development, and customers validation/feedback. 
+- updated our technology stack.
+- shortened the feedback cycles between design, development, and customers validation/feedback. 
 - proved the flexibility of Roadmap’s new design system.
 
 ## Green Fields
@@ -28,19 +27,19 @@ We love working in Odometer’s technology stack. We’ve separated the technolo
 
 In the past, our development cycles followed traditional, outdated processes. _Write large requirement docs. Design from the requirements. Send “over the fence” to development._ No More!
 
-During Odometer’s development, design and development worked on the same codebase, reviewing pull requests and feature stories. We tested our initial sketches and mockups with customers, getting instant feedback to incorporate into the next iteration.
+While building Odometer, design and development worked on the same codebase, reviewing pull requests and feature stories. We tested our initial sketches and mockups with customers, getting instant feedback to incorporate into the next iteration. 
 
-We can't wait to continue these tight feedback loops as we begin working on the next version of Roadmap.
+The tighter design and development cycles put us in good position to begin our next adventure, **re-designing Roadmap**.
 
-## Pretty Pictures
+## Roadmap’s Next Stop
 
-We’ve begun the process of re-engineering Roadmap, focused on your weekly or daily use of Roadmap. Odometer showcases the new design language at the heart of our Next Version of Roadmap (NVR).
+We’ve begun the process of re-engineering Roadmap, focused on your daily and weekly use of Roadmap. Odometer showcases the new design language at the heart of our Next Version of Roadmap (NVR).
 
 I'm excited to share with you a few screens from NVR's design process.
 
-### Bringing People Into Roadmap
+### Bringing your data into Roadmap
 
-We addressed Roadmap’s onboarding process first, removing as much friction as possible for a person.
+We addressed Roadmap’s onboarding process first, removing as much friction as possible when a person configures Roadmap. Having more team members send data into Roadmap makes your project schedules more accurate. Here, we try to make adding people to your team easier.
 
 ![nvr-onboarding-people.png]({{site.baseurl}}/images/media/nvr-onboarding-people.png)
 
