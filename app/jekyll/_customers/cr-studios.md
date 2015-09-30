@@ -1,14 +1,15 @@
 ---
 title: Roadmap Increased BLVR's Productivity 26%
 callout:
-- customer: [BLVR](http://blvr.com/) is a brand development & design consultancy (formerly [CR Studio](http://thecrstudio.com)).
-- pain: We had the good problem of growing too quickly, but found ourselves struggling to manage complex projects in Basecamp alone.
-- solution: Through Roadmap’s resource forecasting, custom reporting, and work item dependencies, increased productivity by 26%, and reduced missed deadlines by 60%, and reduced active (concurrent) projects by 25%.
 ---
 
 ## Roadmap Case Study - BLVR
 
 ###### July 28, 2015
+
+- customer: [BLVR](http://blvr.com/) is a brand development & design consultancy (formerly [CR Studio](http://thecrstudio.com)).
+- pain: We had the good problem of growing too quickly, but found ourselves struggling to manage complex projects in Basecamp alone.
+- solution: Through Roadmap’s resource forecasting, custom reporting, and work item dependencies, increased productivity by 26%, and reduced missed deadlines by 60%, and reduced active (concurrent) projects by 25%.
 
 ### Pain Points
 
