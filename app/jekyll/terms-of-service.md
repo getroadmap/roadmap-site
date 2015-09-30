@@ -20,11 +20,11 @@ The Service is offered in several plan-levels:
 - Plus
 - Basic
 
-<p>Please see the <a href="{{ site.url }}/plans-pricing">Plans &amp; Pricing page</a> for details on the differences between these plans.</p>
+<p>Please see the <a href="{{ site.baseurl }}/plans-pricing">Plans &amp; Pricing page</a> for details on the differences between these plans.</p>
 
 ## Privacy
 
-Our Privacy Policy is an integral part of our Terms of Service, and is available separately at this public link: [http://www.ppmroadmap.com/privacy-policy](/privacy-policy) Please review to understand our privacy practices and terms.
+Our Privacy Policy is an integral part of our Terms of Service, and is available separately at this public link: [http://www.ppmroadmap.com/privacy-policy]({{ site.baseurl }}/privacy-policy) Please review to understand our privacy practices and terms.
 
 ## Accounts and Logins
 
