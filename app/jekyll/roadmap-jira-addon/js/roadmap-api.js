@@ -45,7 +45,6 @@ API.getHostInfo = function(baseUrl) {
 };
 
 API.networkError = function(url, jqXHR, textStatus, errorThrown) {
-    console.log(arguments);
     var alert = { 
         title: 'Network error',
         url: url,
