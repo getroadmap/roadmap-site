@@ -45,10 +45,12 @@ API.getHostInfo = function(baseUrl) {
 };
 
 API.networkError = function(url, jqXHR, textStatus, errorThrown) {
+    console.log(arguments);
     var alert = { 
-        title: 'Network error', 
+        title: 'Network error',
         url: url,
-        message: textStatus,
+        message: (textStatus && textStatus !== 'error' ? textStatus : errorThrown) 
+            + (jqXHR && jqXHR.status ? ' (' + jqXHR.status + ')' : ''),
         bodyClass: 'network-error'
     };
     
