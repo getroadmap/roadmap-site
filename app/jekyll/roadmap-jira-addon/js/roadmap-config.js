@@ -301,20 +301,25 @@ AJS.toInit(function () {
                     if(typeof jiraProjects === 'string')
                         jiraProjects = JSON.parse(jiraProjects);
                     
-                    if(jiraProjects && jiraProjects.length > 0) {                    
+                    var jiraProjectIDs = jiraProjects.map(function(project) { return project.id; });
+                    
+                    if(jiraProjectIDs && jiraProjectIDs.length > 0) {                    
                         API.callRMAPI(
                             'POST', 
                             '/v1.1/ext/GetIntegrationStatus',
                             true,
                             { 
                                 Host: API.getHostInfo(baseUrl),
-                                SourceProjectIDs: jiraProjects.map(function(project) { return project.id; })
+                                SourceProjectIDs: jiraProjectIDs
                             },
                             function(integrationStatus) {
                                 AJS.$('#integrated-projects').html(getProjectsTable(jiraProjects, integrationStatus));
                             }, 
                             projectRetrievalError
                         );
+                    } else {
+                        AJS.$('#integrated-projects').html('<p>Failed to retrieve projects from JIRA.' 
+                            + ' You can still view it on individual project\'s administration page.</p>');
                     }
                 },
                 error: projectRetrievalError

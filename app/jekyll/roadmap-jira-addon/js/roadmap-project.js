@@ -25,10 +25,25 @@ AJS.toInit(function () {
     
     $.getScript(baseUrl + '/atlassian-connect/all.js', function() {
         // AP object is available
-            
-        // Check if the project is integrated with Roadmap
-        getIntegrationStatus(jiraProjectID, AP);
+
+        if(jiraProjectID) {
+            // Check if the project is integrated with Roadmap
+            getIntegrationStatus(jiraProjectID, AP);
+        } else {
+            Alert.show({
+                title: 'Error',
+                message: 'Couldn\'t retrieve project ID from JIRA.',
+                fixMessage: 'Please refresh the page and try again. If the&nbsp;issue persists, ',
+                fixUrl: 'https://ppmroadmap.uservoice.com/knowledgebase/topics/106350-integrations-jira',
+                fixLabel: 'report it to Roadmap support',
+                bodyClass: 'network-error'
+            });
+        }
     });
+    
+    return;
+    
+    
     
     /**
      *  Local function definitions

@@ -31,7 +31,7 @@ Alert.show = function(options) {
 			message: '',
             url: '',
 			fixMessage: 'Please try again later. If the&nbsp;issue persists, ',
-			fixUrl: 'https://ppmroadmap.uservoice.com/knowledgebase/articles/725907-jira-integration-set-up', // TODO: Get proper support link
+			fixUrl: 'https://ppmroadmap.uservoice.com/knowledgebase/topics/106350-integrations-jira',
 			fixLabel: 'report it to Roadmap support',
             bodyClass: '',
             prependTo: '#content'
