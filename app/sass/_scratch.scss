@@ -1504,3 +1504,67 @@ category: Modules - Listing
   border: 0 !important;
   background: transparent !important;
 }
+
+
+
+
+
+// §§ Integrations Display
+//
+.integration-list {
+  display: block;
+  width: 100%;
+  @include breakpoint( $bp-md ) {
+    text-align: justify;
+  }
+
+  &:after {
+    @include breakpoint( $bp-md ) {
+      content: '';
+      display: inline-block;
+      width: 100%;
+    }
+  }
+}
+
+.integration-list__item {
+
+  @include breakpoint ($bp-md) {
+    display: inline-block;
+    width: 26%;
+  }
+}
+
+
+.integration-list__link {
+  display: block;
+  height: 0;
+  padding-top: 100%;
+  overflow: hidden;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  &:before {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 150%;
+  }
+}
+
+
+.integration-list__link--basecamp {
+  background: url('../images/integrations-logos-basecamp.svg')
+}
+
+
+
+.integration-list__link--github {
+  background: url('../images/integrations-logos-github.svg')
+}
+
+
+.integration-list__link--jira {
+  background: url('../images/integrations-logos-jira.svg')
+}
+
