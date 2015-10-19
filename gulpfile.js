@@ -99,7 +99,8 @@ gulp.task('assets' ,function () {
         '.tmp/terms-of-service/index.html',
         '.tmp/updates/index.html',
         '.tmp/updates/chrome-extension-for-basecamp.html',
-        '.tmp/customers/cr-studios/index.html'
+        '.tmp/customers/cr-studios/index.html',
+        '.tmp/integrations/jira/index.html'
       ],
       // CSS Selectors for UnCSS to ignore
       ignore: [
