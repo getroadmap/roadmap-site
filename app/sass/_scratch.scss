@@ -730,6 +730,20 @@ a {
         background-color: palette(blue);
       }
     }
+
+    .lk--su-alt {
+      &:link,
+      &:active,
+      &:visited {
+        color: palette(blue);
+        background-color: palette(white);
+      }
+      &:hover,
+      &:focus {
+        color: palette(white);
+        background-color: palette(red);
+      }
+    }
   }
   .fe--alt {
     background-color: palette(white, mercury);
@@ -776,7 +790,7 @@ a {
 
 .fe-hd {
   margin: 0;
-
+  max-width: 75%;
   font-size: $fs-tera;
 }
 
