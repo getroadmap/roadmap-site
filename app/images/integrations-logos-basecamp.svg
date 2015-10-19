@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="60px" height="50px" viewBox="0 0 60 50" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch Beta 3.4 (15575) - http://www.bohemiancoding.com/sketch -->
+    <title>integrations-logos-basecamp</title>
+    <desc>Created with Sketch Beta.</desc>
+    <defs></defs>
+    <g id="Third-Party-Settings-Page" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="roadmap-app-settings-third_party_connections-add" sketch:type="MSArtboardGroup" transform="translate(-51.000000, -533.000000)">
+            <g id="View" sketch:type="MSLayerGroup" transform="translate(9.000000, 108.000000)">
+                <g id="main-:-region" transform="translate(0.000000, 24.000000)" sketch:type="MSShapeGroup">
+                    <g id="Connections-:-locale" transform="translate(0.000000, 90.000000)">
+                        <g id="new-connection" transform="translate(2.000000, 228.000000)">
+                            <g id="15:0:0:0" transform="translate(0.000000, 15.000000)">
+                                <g id="basecamp-:-account" transform="translate(16.000000, 50.000000)">
+                                    <g id="integrations-logos-basecamp" transform="translate(24.000000, 18.000000)">
+                                        <path d="M29.952973,0 C13.9281081,0 1.37351351,20.2363384 0.185675676,37.3283787 C5.21432432,45.9910929 17.3408108,49.2472561 29.952973,49.2472561 C42.5643243,49.2472561 54.6916216,45.9910929 59.7178378,37.3283787 C58.53,20.2363384 45.977027,0 29.952973,0" id="Fill-1" fill="#B6DEFF"></path>
+                                        <path d="M55.5308108,33.2569675 C55.5308108,33.2569675 51.9916216,25.6622041 48.3940541,21.2310536 C44.7940541,16.7982935 40.3978378,11.9711884 37.7983784,11.9711884 C35.2005405,11.9711884 27.9381081,24.7342861 24.6064865,24.7342861 C21.2740541,24.7342861 19.5421622,18.9486811 15.4451351,18.9486811 C11.3464865,18.9486811 4.83486486,32.9004474 4.83486486,32.9004474 L4.39378378,35.2657128 C4.39378378,35.2657128 6.65594595,45.2209129 30.3227027,45.2209129 C53.9902703,45.2209129 55.8818919,35.4290843 55.8818919,35.4290843 L55.5308108,33.2569675" id="Fill-2" fill="#66CC66"></path>
+                                        <path d="M24.977027,30.1810762 C21.3016216,30.1810762 19.4172973,26.5812695 18.3956757,24.3592559 C17.477027,22.3577537 17.3181081,19.1973599 14.7113514,19.1088335 C14.9675676,19.0082353 15.2140541,18.9486811 15.4451351,18.9486811 C19.5421622,18.9486811 21.2740541,24.7342861 24.6064865,24.7342861 C27.9381081,24.7342861 35.2005405,11.9711884 37.7983784,11.9711884 C38.2881081,11.9711884 38.8394595,12.1426078 39.4378378,12.4476216 C38.9951351,12.3896771 38.4275676,12.4299163 37.9905405,12.8653054 C37.1505405,13.6990635 29.5272973,30.1810762 24.977027,30.1810762" id="Fill-3" fill="#17AD49"></path>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
