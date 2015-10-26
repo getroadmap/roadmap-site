@@ -56,3 +56,10 @@ body {
 .integration-absent-display .aui-icon {
     color: #815b3a
 }
+
+#rm-alert .url {
+    white-space: nowrap;
+    width: 90%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

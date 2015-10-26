@@ -79,3 +79,10 @@
 #integrated-projects .not-integrated {
     color: #d04437;
 }
+
+#rm-alert .url {
+    white-space: nowrap;
+    width: 90%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

@@ -45,7 +45,7 @@ Alert.show = function(options) {
            ' aui-message-error' : (options.type === Alert.AlertTypes.Warning ? ' aui-message-warning' : '')) 
         + '">' 
         + '<p class="title"><strong>' + options.title + '</strong></p>' 
-        + (options.url ? '<small>' + options.url + '</small>' : '')
+        + (options.url ? '<small class="url" title="' + options.url + '">' + options.url + '</small>' : '')
         + (options.message ? '<p>' + Alert.capitalizeFirstLetter(options.message) + '</p>' : '')
         + (options.fixMessage && options.fixUrl && options.fixLabel ? 
            '<p>' + options.fixMessage + '<a href="' + options.fixUrl + '" target="_blank">' + options.fixLabel + '</a>.</p>' : '')

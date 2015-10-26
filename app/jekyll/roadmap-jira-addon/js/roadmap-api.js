@@ -118,11 +118,22 @@ API.getAddonConfig = function(callback, errorCallback) {
             errorCallback,
             function() {
                 // Config not found
-                errorCallback(
-                    '[JIRA]/rest/atlassian-connect/1/addons/roadmap/properties/config', 
-                    null, 
-                    'Error getting addon configuration.', 
-                    null);
+                var baseUrl = API.getUrlParam('xdm_e') + API.getUrlParam('cp');
+                
+                var alert = { 
+                    title: 'Addon configuration missing',
+                    type: Alert.AlertTypes.Warning,
+                    fixMessage: 'Please ensure you\'ve configured the Roadmap authentication token on the ',
+			        fixUrl: baseUrl + '/plugins/servlet/ac/roadmap/roadmap-config-page',
+			        fixLabel: 'addon configuration page',
+                    bodyClass: 'network-error'
+                };
+
+                if(/roadmap\-config\.html/.test(window.location.href)) {
+                    alert.prependTo = '#main-page-content';
+                }
+
+                Alert.show(alert);
             }
         );
     }

@@ -212,3 +212,10 @@ form.aui .field-group.column input {
 #timer-description {
     width: 297px;
 }
+
+#rm-alert .url {
+    white-space: nowrap;
+    width: 90%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
