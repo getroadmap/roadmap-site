@@ -1,0 +1,4 @@
+sass:
+  sass_dir: app/jekyll/
+environment: development
+url: http://localhost:3000

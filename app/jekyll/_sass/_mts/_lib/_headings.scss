@@ -1,0 +1,13 @@
+@mixin headings($from: 1, $to: 6){
+  $headings_selector: "";
+  @for $i from $from through $to {
+    $headings_selector : $headings_selector + "h#{$i}";
+    @if $i < $to {
+      $headings_selector: $headings_selector + ",";
+    }
+  }
+  #{$headings_selector} {
+    @content
+  }
+}
+

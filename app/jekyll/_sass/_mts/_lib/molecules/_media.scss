@@ -1,0 +1,73 @@
+//
+// @TODO: Add docs to media!
+//
+@mixin mts-media {
+  ._media {
+    @extend %u-d-b;
+    @extend %u-cf;
+  }
+
+  ._media-attach {
+    @extend %u-d-b;
+    margin-bottom: rhythm(1);
+
+    @include breakpoint($m-s) {
+      display: inline;
+      float: left;
+      margin-right: 1em;
+      margin-bottom: 0;
+    }
+
+    .lt-ie9 & {
+      display: inline;
+      float: left;
+      margin-right: 1em;
+      margin-bottom: 0;
+    }
+
+    &.-alt {
+      @include breakpoint($m-s, '.lt-ie9') {
+        float: right;
+        margin-right: 0;
+        margin-left: 1em;
+      }
+
+      .lt-ie9 & {
+        float: right;
+        margin-right: 0;
+        margin-left: 1em;
+      }
+    }
+  }
+
+  ._media-link {
+    @extend %u-d-b;
+  }
+
+  ._media-src {
+    @extend %u-d-b;
+    @extend %u-mw-100;
+  }
+
+  ._media-content {
+    @extend %u-ov-h;
+    font-size: $base-font-size;
+    line-height: $base-line-height;
+  }
+
+  ._media-content,
+  ._media-text {
+    &,
+    & > :last-child {
+      margin-bottom: 0;
+    }
+
+  }
+
+  ._media-attach {
+  }
+
+  ._media-attach.-alt {
+  }
+
+}
