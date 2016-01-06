@@ -1,0 +1,37 @@
+//
+// @TODO: Add docs to mts-stickyFooter!
+//
+@mixin mts-o-stickyFooter(
+  $height: 180px ,
+  $spacing: 48px,
+  $viewport: ".site" ,
+  $container: ".site-wrapper" ,
+  $content: ".site-page" ,
+  $footer: ".site-footer"
+) {
+
+  @media screen and (min-width: 40em) {
+    html {
+        height: 100%;
+    }
+
+    #{$viewport} {
+      height: 100%;
+
+      & > #{$container} {
+          min-height: 100%;
+      }
+
+      #{$content} {
+          overflow: visible;
+          padding-bottom: $height+$spacing;
+      }
+
+      #{$footer} {
+          position: relative;
+          height: $height;
+          margin-top: $height * -1;
+      }
+    }
+  }
+}

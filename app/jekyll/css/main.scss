@@ -1,3 +1,7 @@
+---
+# Front matter comment to ensure Jekyll properly reads file.
+---
+
 /*
  * Web Starter Kit
  *
@@ -15,15 +19,15 @@
 
 
 
+
 // Make Things Library
 @import "_sass/_mts/_mts.scss";
 
-
-
-
-
 // Project Files
-@import "_sass/_mts/vars.scss";
+@import "_sass/_vars.scss";
+
+
+
 
 
 
@@ -41,5 +45,5 @@
 
 
 
-@import "_sass/_mts/_scratch.scss";
-@import "_sass/_mts/_casestudy.scss";
+@import "_sass/_scratch.scss";
+@import "_sass/_casestudy.scss";
