@@ -8,6 +8,8 @@ Please read the [Contributing](CONTRIBUTING.md) document for details on how to p
 1. [Requirements](#requirements)
 1. [Workflow](#workflow)
 
+- - -
+
 ## Quickstart
 
 This quickstart assumes you’ve already installed all [requirements](#requirements).
@@ -21,6 +23,8 @@ bower install
 npm start
 visit [http://localhost:9000](http://localhost:9000) 
 ```
+
+- - -
 
 ## Requirements
 
@@ -42,7 +46,7 @@ Navigate to the project folder, and use bundler to install gem dependencies.
 bundle install
 ```
 
-### [Node](https://nodejs.org/en/download/)
+### [Node](https://nodejs.org/en/download/) and its tooling.
 
 Node powers the command line build tools that the website uses.
 
@@ -69,7 +73,9 @@ npm install
 bower install
 ```
 
-### Workflow
+- - -
+
+## Workflow
 
 Once you’ve installed all dependencies, run `npm start` to kickoff the gulp task runner, which renders the pages using jekyll, builds styles, scripts, and images, serves everything on a localhost port, and watches for changes across your files.
 
