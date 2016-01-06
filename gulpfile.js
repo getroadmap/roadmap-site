@@ -98,7 +98,9 @@ gulp.task('assets' ,function () {
         '.tmp/plans-pricing/index.html',
         '.tmp/terms-of-service/index.html',
         '.tmp/updates/index.html',
-        '.tmp/updates/chrome-extension-for-basecamp.html'
+        '.tmp/updates/chrome-extension-for-basecamp.html',
+        '.tmp/customers/cr-studios/index.html',
+        '.tmp/integrations/jira/index.html'
       ],
       // CSS Selectors for UnCSS to ignore
       ignore: [
@@ -339,7 +341,8 @@ gulp.task('rev', function () {
       ignore: [
         /^\/favicon.ico$/g,
         '.html',
-        '.php'
+        '.php',
+        /^\/roadmap-jira-addon\/(.*)/g
       ],
     }))
     .pipe(gulp.dest('dist'));
@@ -355,7 +358,8 @@ gulp.task('rev:gh-pages', function () {
         ignore: [
           /^\/favicon.ico$/g,
           '.html',
-          '.php'
+          '.php',
+          /^\/roadmap-jira-addon\/(.*)/g
         ],
         transformFilename: function (file, hash) {
           var ext = path.extname(file.path);
@@ -513,7 +517,7 @@ gulp.task('watch:hologram', ['serve', 'styles', 'hologram'], function () {
    §§ Build - Default
    ========================================================================== */
 gulp.task('build', ['clean'], function (cb) {
-  runSequence('jekyll:production','styles', 'styles:cmq', 'hologram', ['jshint', 'images', 'fonts', 'copy'], 'assets', 'assets:inline', 'rev', cb);
+  runSequence('jekyll:production','styles', 'styles:cmq', ['jshint', 'images', 'fonts', 'copy'], 'assets', 'assets:inline', 'rev', cb);
 });
 
 
@@ -524,7 +528,6 @@ gulp.task('build:gh-pages', ['clean:gh-pages'], function (cb) {
   runSequence('jekyll:gh-pages',
               'styles',
               'styles:cmq',
-              'hologram',
               ['jshint', 'images', 'fonts', 'copy'],
               'assets',
               'assets:inline',

@@ -6,9 +6,9 @@
  *
  */
 
-@import "sassy-maps/sass/_memo.scss";
-@import "breakpoint-sass/stylesheets/_breakpoint.scss";
-@import "susy/sass/_susy.scss";
+@import "bower_components/sassy-maps/sass/_memo.scss";
+@import "bower_components/breakpoint-sass/stylesheets/_breakpoint.scss";
+@import "bower_components/susy/sass/_susy.scss";
   @include border-box-sizing;
 
 
@@ -16,14 +16,14 @@
 
 
 // Make Things Library
-@import "_mts/_mts.scss";
+@import "_sass/_mts/_mts.scss";
 
 
 
 
 
 // Project Files
-@import "_vars.scss";
+@import "_sass/_mts/vars.scss";
 
 
 
@@ -40,4 +40,6 @@
 
 
 
-@import "_scratch.scss";
+
+@import "_sass/_mts/_scratch.scss";
+@import "_sass/_mts/_casestudy.scss";

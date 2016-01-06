@@ -1,0 +1,44 @@
+//
+// @TODO: Add docs to mts-m-flyout!
+//
+@mixin mts-m-flyout {
+  ._flyout {
+    position: relative;
+    overflow: hidden;
+
+    &:hover {
+        overflow: visible;
+    }
+
+    &.content-is-visible {
+        overflow: visible;
+    }
+  }
+
+  ._flyout-content {
+    position: absolute;
+    top: 100%;
+    left: -99999px;
+
+    // CSS Only
+    ._flyout:hover & {
+        left: 0;
+    }
+
+    ._flyout--alt:hover & {
+        top: 0;
+        left: 100%;
+    }
+
+
+    // Class Based Flyout
+    // ._flyout &.is-visible {
+    //     left: 0;
+    // }
+
+    // ._flyout--alt &.is-visible {
+    //     top: 0;
+    //     left: 100%;
+    // }
+  }
+}

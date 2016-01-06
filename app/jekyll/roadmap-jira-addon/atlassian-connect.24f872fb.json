@@ -1,0 +1,54 @@
+{
+    "name": "Roadmap",
+    "description": "Roadmap JIRA Addon",
+    "key": "roadmap",
+    "baseUrl": "https://ppmroadmap.com/roadmap-jira-addon/",
+    "vendor": {
+        "name": "Roadmap",
+        "url": "https://ppmroadmap.com/"
+    },
+    "links": {
+        "documentation": "https://ppmroadmap.uservoice.com/"
+    },
+    "authentication": {
+        "type" : "none"
+    },
+    "scopes": [
+        "read", "write", "delete", "project_admin", "admin"
+    ],
+    "apiVersion": 1,
+    "modules": {
+        "configurePage": {
+            "url": "roadmap-config.html",
+            "key": "roadmap-config-page",
+            "name": {
+                "value": "Roadmap Configure Page"
+            }
+        },
+        "webPanels": [
+            {
+            "url": "roadmap-issue-panel.html?issueKey={issue.key}&issueID={issue.id}&projectKey={project.key}&projectID={project.id}",
+                "location": "atl.jira.view.issue.right.context",
+                "weight": 50,
+                "key": "roadmap-issue-panel",
+                "name": {
+                    "value": "Roadmap"
+                }
+            },
+            {
+                "url": "roadmap-project-admin-panel.html?issueKey={issue.key}&issueID={issue.id}&projectKey={project.key}&projectID={project.id}",
+                "location": "webpanels.admin.summary.right-panels",
+                "weight": 50,
+                "key": "roadmap-project-admin-panel",
+                "name": {
+                    "value": "Roadmap"
+                },
+                "icon": {
+                    "width": 20,
+                    "height": 20,
+                    "url": "images/roadmap_icon.png"
+                }
+            }
+        ]
+    }
+ }

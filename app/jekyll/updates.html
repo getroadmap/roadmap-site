@@ -10,7 +10,7 @@ permalink: /updates/
 <ul class="_ls-ui nw-ct nw-ct--list">
 {% for post in sorted %}
   <li class="h-entry nw-entry">
-    <a href="{{ post.url }}" title="{{ post.title }}" class="u-url">
+    <a href="{{ site.baseurl }}{{ post.url }}" title="{{ post.title }}" class="u-url">
       <h3 class="p-name">
         {{ post.title }}
       </h3>

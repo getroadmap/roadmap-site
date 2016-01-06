@@ -2,7 +2,7 @@
 layout: default
 ---
 
-<div class="h-entry post page pg">
+<article class="h-entry post page pg">
   <header class="post-header">
     <p class="post-meta">{{ page.date | date: "%b %-d, %Y" }}{% if page.author %} • {{ page.author }}{% endif %}{% if page.meta %} • {{ page.meta }}{% endif %}</p>
     <h1 class="post-title">{{ page.title }}</h1>
@@ -12,7 +12,12 @@ layout: default
     <img src="{{ page.thumbnail }}" alt="{{ page.thumbnail_alt }}" class="entry-src">
   </figure>
   {% endif %}
-  <article class="post-content">
+  <div class="post-content">
     {{ content }}
-  </article>
-</div><!-- /.h-entry pg -->
+  </div>
+
+  <footer class="post-footer">
+    {% include _mailchimp.html %}
+  </footer>
+</article><!-- /.h-entry pg -->
+
