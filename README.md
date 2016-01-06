@@ -59,7 +59,7 @@ Once you’ve installed Node, we need to install some global node tools using No
 - [Bower](https://bower.io)
 
 ```bash
-npm install -g gulp browsersync bower
+npm install -g gulp browser-sync bower
 ```
 
 #### Project Packages
