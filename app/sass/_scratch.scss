@@ -1085,7 +1085,7 @@ category: Components - Pricing Table
 
 .plan {
   transition: all .3s ease-in-out;
-  border: 1px solid palette(white);
+  border: 1px solid darken(palette(gray, storm), 60%);
 
   &:hover,
   &:focus {
@@ -1124,6 +1124,51 @@ category: Components - Pricing Table
 }
 
 
+.plan-cell {
+  font-size: 14px;
+}
+
+
+.plan-price {
+  font-size: 11px;
+}
+
+
+.plan header {
+  background-color: darken(palette(gray, storm), 20%);
+  font-weight: bold;
+}
+
+
+.plan header, .plan-cell, .plan footer {
+  padding: 5px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+
+.plan:first-child .plan-cell {
+  text-align: left;
+}
+
+
+.plan-cell:nth-child(even), .plan footer {
+  background-color: palette(gray, storm);
+}
+
+
+.plan-cell:nth-child(odd) {
+  background-color: white;
+}
+
+
+.plan-contact-us {
+  display: inline-block;
+  font-weight: bold;
+  padding: $vs*.5 0;
+}
+
+
 .plan-heading {
   margin: 0;
 }
@@ -1154,62 +1199,18 @@ category: Components - Pricing Table
 }
 
 
-.plan.-basic {
-    background-color: palette(gray, desert);
-
-    &:hover,
-    &:focus {
-      background-color: darken(palette(gray, desert), 5%);
-    }
-
-  .plan-features li {
-    border-top-color: darken(palette(gray, desert), 20%);
-  }
-}
-
-
-.plan.-plus {
-    background-color: palette(gray, storm);
-
-    &:hover,
-    &:focus {
-      background-color: darken(palette(gray, storm), 5%);
-    }
-
-  .plan-features li {
-    border-top-color: darken(palette(gray, storm), 20%);
-  }
-}
-
-
-.plan.-pro {
-  background-color: palette(gray, cararra);
-
-  &:hover,
-  &:focus {
-    background-color: darken(palette(gray, cararra), 5%);
-  }
-
-  .plan-features li {
-    border-top-color: darken(palette(gray, cararra), 20%);
-  }
-}
-
-
 .plans {
   @include breakpoint($bp-lg) {
     display: table;
     width: 100%;
+    border-collapse: collapse;
   }
-
-  overflow: hidden;
 
   margin-bottom: $vs;
   .plan {
     @include susy-breakpoint($bp-lg, $l-lg) {
       position: relative;
       display: table-cell;
-      width: 33%;
       height: 100%;
     }
   }
@@ -1256,21 +1257,6 @@ category: Components - Pricing Table
     background-color: rgba(palette(yellow), .5);
   }
 }
-
-
-.plan.-enterprise {
-  .lk--su {
-    color: palette(black);
-    background-color: palette(white, green);
-    &:hover,
-    &:focus {
-      color: palette(white);
-      background-color: palette(black);
-    }
-  }
-}
-
-
 
 
 
@@ -1645,4 +1631,3 @@ category: Modules - Listing
     background-image: url(../images/integrations-logos-jira.png)
   }
 }
-
