@@ -6,7 +6,7 @@ environment: production
 
 # Site settings
 title: > #
-  Roadmap - Intelligent Project Management, Scheduling, Time Tracking, and Resource Planning
+  Roadmap - Multiple Projects, Multiple SaaS Tools, One View
 description: > # this means to ignore newlines until "baseurl:"
   Manage your portfolio of projects with ease and intelligence.
   Visualize project plans, resource scheduling, and timesheets.
