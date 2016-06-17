@@ -445,7 +445,7 @@ a {
   .mh-bn,
   ._ho-tx {
     position: relative;
-    z-index: $z-content;
+    z-index: 3;
   }
   .mh-bn {
     @include breakpoint($bp-md) {
@@ -468,7 +468,7 @@ a {
     position: absolute;
     top: 0;
     left: 0;
-    z-index: $z-base;
+    z-index: 2;
 
     width: 100%;
     height: 100%;
@@ -537,7 +537,7 @@ a {
       position: absolute;
       bottom: -3em;
       left: 0;
-      z-index: $z-base;
+      z-index: 2;
 
       width: 100%;
     }
@@ -573,7 +573,7 @@ a {
     position: absolute;
     bottom: 0;
     left: 0;
-    z-index: $z-content;
+    z-index: 3;
 
     width: 100%;
   }

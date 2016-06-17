@@ -25,23 +25,23 @@
 
 
 %z-image {
-  z-index: $z-image;
+  z-index: 1;
 }
 
 %z-base {
-  z-index: $z-base;
+  z-index: 2;
 }
 
 %z-content {
-  z-index: $z-content;
+  z-index: 3;
 }
 
 %z-nav {
-  z-index: $z-nav;
+  z-index: 4;
 }
 
 %z-modal {
-  z-index: $z-modal;
+  z-index: 100;
 }
 
 
