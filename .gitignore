@@ -1,7 +1,6 @@
 *.sublime-workspace
 .sass-cache
 .tmp
-bower_components
 dist
 Gemfile.lock
 node_modules
