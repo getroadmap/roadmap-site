@@ -1,0 +1,25 @@
+language: ruby
+rvm:
+- 2.1.0
+before_install:
+- openssl aes-256-cbc -K $encrypted_4a8e167d8001_key -iv $encrypted_4a8e167d8001_iv
+  -in deploy-key.enc -out deploy-key -d
+- git config --global user.name "${GIT_NAME}"
+- git config --global user.email "${GIT_EMAIL}"
+- rm deploy-key.enc # Don't need it anymore
+- chmod 600 deploy-key
+- mv deploy-key ~/.ssh/id_rsa
+- echo -e "Host ppmroadmap.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+script:
+- if [ $TRAVIS_BRANCH == 'dist' ] ; then
+    git init;
+    git remote add deploy "root@ppmroadmap.com:/var/www/michael.ppmroadmap.com/production/current";
+    git add . --all;
+    git commit -m "Travis CI deployed.";
+    git push deploy dist;
+  else
+    echo "I'm not deploying since this branch isn't dist.";
+  fi
+branches:
+  only:
+  - dist

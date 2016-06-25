@@ -1,0 +1,1633 @@
+html,
+button,
+input,
+select,
+textarea,
+.pure-g [class *= 'pure-u'] {
+  /* Set your content font stack here: */
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+}
+
+
+
+
+html,
+body {
+  height: 100%;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  text-rendering: optimizeLegibility;
+}
+
+h1 {
+  margin-top: 0;
+}
+
+a {
+  &:link,
+  &:active,
+  &:visited {
+    color: palette(blue);
+  }
+
+  &:hover,
+  &:focus {
+    color: palette(red);
+  }
+}
+
+.st-wp {
+  min-height: 100%;
+}
+
+
+
+
+._br {
+  padding: 0;
+  margin: 0;
+
+  line-height: 1;
+}
+
+
+._br-lk {
+  display: block;
+
+  text-decoration: none;
+}
+
+
+._bq {
+
+}
+
+
+._bq-tx {
+  &:before,
+  &:after {
+    display: inline-block;
+    font-family: georgia, serif;
+  }
+  &:before {
+    content: '“';
+    margin-left: -.55em;
+  }
+  &:after {
+    content: '”';
+  }
+}
+
+
+._btn {
+  padding: $vs*.25;
+  font-weight: bold;
+  color: $ui-c;
+  border: none;
+  background-color: $ui-bg;
+}
+
+
+._btn--lg {
+  padding: $vs*.5;
+}
+
+
+._btn--uno {
+  color: $ui-c;
+  background-color: palette(yellow);
+  &:hover,
+  &:focus {
+    color: palette(yellow);
+    background-color: palette(black);
+  }
+}
+
+
+
+
+._co {
+  display: block;
+}
+
+
+._co-lk {
+  display: inline-block;
+
+  padding: $vs*.5;
+
+  font-weight: bold;
+  text-decoration: none;
+}
+
+
+
+
+
+.lk--mr {
+  padding: 0;
+  &:after {
+    content: '\00a0\203A';
+  }
+}
+
+
+
+
+._ct {
+  @include susy-breakpoint($bp-lg, $l-lg) {
+    @include container;
+
+    overflow: hidden;
+
+    padding: 0 24px;
+  }
+
+  position: relative;
+
+  max-width: 80%;
+  margin: 0 auto;
+}
+
+
+
+
+
+._col-grp {
+  overflow: hidden;
+}
+
+
+._col-md-2 {
+  ._col {
+    @include breakpoint($bp-md) {
+      @include span(49%);
+
+      margin-right: 0;
+    }
+    &:last-child {
+      @include breakpoint($bp-md) {
+        float: right;
+      }
+    }
+  }
+}
+
+
+
+
+
+._pnl,
+._pnl-hdr,
+._pnl-cnt {
+  padding: $vs*.75 $vs $vs;
+}
+
+._pnl {
+  padding-bottom: $vs*2;
+
+  background-color: palette(white, green);
+}
+
+._pnl.hs-chld {
+  padding: 0;
+  ._pnl-cnt {
+    padding-bottom: $vs*2;
+  }
+}
+
+
+._pnl-hdr {
+  padding-bottom: $vs*.5;
+
+  background-color: darken(palette(white, green), 10%);
+}
+
+
+
+
+
+._lb--st {
+  label {
+    display: block;
+  }
+}
+
+
+
+
+
+._fm-fs {
+  overflow: hidden;
+
+  margin-bottom: $vs;
+  & > :last-child {
+    margin-bottom: 0;
+  }
+}
+
+
+
+
+
+._fd {
+  margin-bottom: $vs*.5;
+  label {
+    font-weight: bold;
+    font-size: $fs-deci;
+  }
+  input,
+  select,
+  textarea {
+    display: block;
+
+    width: 100%;
+    max-width: 100%;
+    padding: 4px 6px;
+
+    line-height: 1;
+  }
+  input,
+  textarea {
+    &:focus {
+      outline-color: palette(gray, dusty);
+    }
+  }
+  input[type='checkbox'],
+  input[type='radio'] {
+    display: inline-block;
+
+    width: inherit;
+  }
+}
+
+
+
+
+
+.error-textbox {
+  border: 1px solid palette(red, tamarillo);
+  &:focus {
+    outline: none;
+  }
+}
+
+
+
+
+
+._ls-ui {
+  padding-left: 0;
+  margin-left: 0;
+
+  list-style: none;
+}
+
+
+
+
+
+._ls-bl {
+  padding-left: 0;
+  margin-left: 0;
+
+  list-style: none;
+  > li {
+    padding-top: $vs*.5;
+    padding-right: $vs*.5;
+    padding-left: $vs*.5;
+    margin-bottom: $vs*.5;
+
+    border-top: 1px solid $ui-bo;
+  }
+}
+
+
+
+
+
+.mh-br {
+  @include susy-breakpoint($bp-lg, $l-lg) {
+    float: left;
+
+    position: relative;
+    left: 50%;
+
+    margin-bottom: 0;
+    margin-left: (197px/2)*-1;
+  }
+
+  margin: 0 auto $vs*1.25;
+  &,
+  & ._br-lk {
+    width: 197px;
+    height: 51px;
+  }
+  ._br-lk {
+    background: url(../images/roadmap-logo.svg) center center no-repeat;
+  }
+}
+
+
+
+
+
+.mh-bn {
+  padding: 24px 0;
+
+  border-bottom: 6px solid palette(white, green);
+  background-color: #fff;
+}
+
+
+
+
+
+.mh-ut {
+  @include susy-breakpoint($bp-lg, $l-lg) {
+    @include span(last 6);
+
+    padding-top: 12px;
+
+    text-align: right;
+  }
+
+  text-align: center;
+  ._nav-alt {
+    a {
+      &:link,
+      &:active,
+      &:visited {
+        color: palette(gray, dusty);
+      }
+      &:hover,
+      &:focus {
+        color: palette(black);
+        background-color: palette(yellow, tulip);
+      }
+    }
+  }
+  li {
+    margin-left: gutter();
+  }
+  a {
+    @include breakpoint($bp-lg) {
+      font-size: $fs-deci;
+    }
+
+    padding: .25em .5em;
+
+    border-radius: 4px;
+    &:link,
+    &:active,
+    &:visited {
+      color: palette(black);
+      background-color: transparent;
+    }
+    &:hover,
+    &:focus {
+      color: palette(white);
+      background-color: palette(blue);
+    }
+  }
+  .-is-active {
+    a {
+      &,
+      &:hover,
+      &:focus {
+        color: palette(white);
+        background-color: palette(blue);
+
+        cursor: default;
+      }
+    }
+  }
+}
+
+
+#mh-ut-su,
+#mh-ut-si {
+  @include breakpoint($bp-md) {
+    display: inline-block;
+  }
+
+  display: none;
+}
+
+
+
+
+
+.st-m.-has-ho {
+  @include susy-breakpoint($bp-lg, $l-lg) {
+    position: relative;
+
+    height: 60%;
+    min-height: 38em;
+  }
+
+  &.-int {
+    @include susy-breakpoint($bp-lg, $l-lg) {
+      position: relative;
+      height: auto;
+      min-height: auto;
+    }
+  }
+
+  position: relative;
+
+  height: auto;
+
+  .mh-bn,
+  ._ho-tx {
+    position: relative;
+    z-index: $z-content;
+  }
+  .mh-bn {
+    @include breakpoint($bp-md) {
+      height: auto;
+    }
+
+    height: 175px;
+  }
+}
+
+
+.mh-ho {
+  position: relative;
+  overflow: hidden;
+  padding-top: 1px;
+  background: url('../images/hero-gantt.jpg') center top no-repeat;
+
+
+  @include susy-breakpoint($bp-lg, $l-lg) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: $z-base;
+
+    width: 100%;
+    height: 100%;
+
+    padding-top: 0;
+
+    background-size: cover;
+  }
+
+  &.-int {
+    position: static;
+    border-bottom: 6px solid palette(white, green);
+    background: palette(white, green);
+  }
+
+  ._ho-tx {
+    margin-bottom: $vs;
+    @include susy-breakpoint($bp-lg, $l-lg) {
+      position: relative;
+      top: 25%;
+
+      width: span(12);
+      margin: 0 auto;
+    }
+  }
+  ._ho-hd {
+    @include breakpoint($bp-md) {
+      font-size: $fs-tera;
+    }
+
+    margin-bottom: 0;
+
+    font-size: $fs-mega;
+  }
+  ._ho-cp {
+    @include breakpoint($bp-md) {
+      display: block;
+    }
+
+    display: none;
+
+    margin-bottom: $vs;
+
+    font-size: $fs-kilo;
+    p {
+      margin: 0;
+    }
+  }
+  ._co-lk {
+    @include breakpoint($bp-md) {
+      font-size: $fs-deca;
+    }
+
+    font-size: $fs-centi;
+
+    color: palette(black);
+    background-color: palette(red, froly);
+    &:hover,
+    &:focus {
+      color: palette(white, mercury);
+      background-color: palette(blue);
+    }
+  }
+  ._ho-att {
+    @include breakpoint($bp-lg) {
+      position: absolute;
+      bottom: -3em;
+      left: 0;
+      z-index: $z-base;
+
+      width: 100%;
+    }
+  }
+  ._ho-src {
+    &,
+    img {
+      display: block;
+
+      margin: 0 auto;
+    }
+  }
+}
+
+
+
+
+.mh-ho-att {
+  &.-int {
+    display: block;
+    max-width: 74.5%;
+    margin: 0 auto;
+  }
+}
+
+
+
+
+.mh-nw {
+  @include breakpoint($bp-lg) {
+    display: block;
+
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: $z-content;
+
+    width: 100%;
+  }
+
+  display: none;
+  .nw-wr {
+    overflow: hidden;
+
+    padding: $vs*.5 0;
+
+    border-top: 1px solid $ui-bo;
+    background-color: palette(white);
+  }
+  .nw-ct {
+    @include susy-breakpoint($bp-lg, $l-lg) {
+      @include span(13);
+
+      margin: 0;
+    }
+  }
+  .u-url {
+    text-decoration: none;
+
+    color: $ui-c;
+    &:hover,
+    &:focus {
+      color: palette(blue);
+      .dt-published {
+        color: $ui-c;
+      }
+    }
+  }
+  .p-name,
+  .dt-published,
+  ._co-lk {
+    line-height: $vs;
+  }
+  .nw-entry {
+    line-height: $vs;
+    .p-name {
+      @include susy-breakpoint($bp-lg, $l-lg) {
+        @include span(last 11 of 13);
+        @include suffix(1 of 13);
+      }
+
+      margin: 0;
+      font-size: $fs;
+    }
+  }
+  .dt-published {
+    @include susy-breakpoint($bp-lg, $l-lg) {
+      @include span(2 of 13);
+      margin-right: 0;
+      line-height: 26px;
+    }
+
+    font-size: $fs-centi;
+  }
+  .nw-co {
+    @include susy-breakpoint($bp-lg, $l-lg) {
+      @include span(last 3);
+      text-align: right;
+    }
+  }
+  .lk--mr {
+    color: palette(gray, dusty);
+    &:hover,
+    &:active {
+      color: palette(blue);
+    }
+  }
+}
+
+
+
+
+.nw-ct--list {
+  .u-url {
+    text-decoration: none;
+
+    color: $ui-c;
+    &:hover,
+    &:focus {
+      color: palette(blue);
+      .dt-published {
+        color: $ui-c;
+      }
+    }
+  }
+  .p-name,
+  .dt-published,
+  ._co-lk {
+    line-height: $vs;
+  }
+  .nw-entry {
+    line-height: $vs;
+
+    + .nw-entry {
+      padding-top: ($vs*.5);
+      margin-top: ($vs/2);
+
+      border-top: 1px solid $ui-bo;
+    }
+
+    .p-name {
+      @include susy-breakpoint($bp-lg, $l-lg) {
+        @include span(last 13 of 16);
+        @include suffix(1 of 13);
+      }
+
+      margin: 0;
+      font-size: $fs;
+    }
+  }
+  .dt-published {
+    @include susy-breakpoint($bp-lg, $l-lg) {
+      @include span(2 of 16);
+      margin-right: 0;
+      line-height: 26px;
+    }
+
+    font-size: $fs-centi;
+  }
+}
+
+
+
+
+
+.fl {
+  .fe {
+    padding-top: $vs;
+    padding-bottom: $vs;
+
+    @include breakpoint($bp-lg) {
+      padding-top: $vs*2;
+      padding-bottom: $vs*2;
+    }
+
+    ._md-att,
+    .pt--bq {
+      border-color: palette(white, mercury);
+    }
+    .lk--su {
+      &:link,
+      &:active,
+      &:visited {
+        color: palette(white);
+        background-color: palette(red);
+      }
+      &:hover,
+      &:focus {
+        color: palette(white);
+        background-color: palette(blue);
+      }
+    }
+
+    .lk--su-alt {
+      &:link,
+      &:active,
+      &:visited {
+        color: palette(blue);
+        background-color: palette(white);
+      }
+      &:hover,
+      &:focus {
+        color: palette(white);
+        background-color: palette(red);
+      }
+    }
+  }
+  .fe--alt {
+    background-color: palette(white, mercury);
+    ._md-att,
+    .pt--bq {
+      border-color: palette(white);
+    }
+    .lk--su {
+      &:link,
+      &:active,
+      &:visited {
+        color: palette(white);
+        background-color: palette(blue);
+      }
+      &:hover,
+      &:focus {
+        color: palette(black);
+        background-color: palette(yellow);
+      }
+    }
+  }
+
+  .fe-int {
+    background-color: lighten(palette(blue, base), 30%);
+  }
+}
+
+
+.fe-hdr {
+  @include susy-breakpoint($bp-lg, $l-lg) {
+    width: span(12);
+    margin-right: auto;
+    margin-left: auto;
+  }
+  .p-summary {
+    font-size: $fs-mega;
+  }
+}
+
+
+.fe-hdr {
+  margin-bottom: $vs*2;
+}
+
+.fe-hd {
+  margin: 0;
+  max-width: 75%;
+  font-size: $fs-tera;
+}
+
+.fe-hd,
+.fe-cp {
+  margin: 0;
+}
+
+
+.fe-cp {
+  @include susy-breakpoint($bp-lg, $l-lg) {
+    width: span(12);
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+
+
+.pl {
+  @extend %u-cf;
+  ._md-att,
+  ._md-tx {
+    margin: 0 0 $vs*.25;
+  }
+  ._md-att {
+    position: relative;
+
+    border: 9px solid ;
+  }
+  ._md-src {
+    display: block;
+
+    width: 100%;
+  }
+  ._md-ct {
+    & > :last-child {
+      margin-bottom: 0;
+    }
+  }
+  ._md-hd {
+    margin: 0;
+  }
+}
+
+
+.pt {
+  @include susy-breakpoint($bp-lg, $l-lg) {
+    @include span(last 4 of 12);
+
+    margin-bottom: 0;
+  }
+
+  margin-bottom: $vs;
+  .p-name {
+    font-size: $fs-kilo;
+    line-height: $vs;
+  }
+  .p-summary {
+    font-size: $fs-deci;
+  }
+
+  ._md-att {
+    position: relative;
+    height: 0;
+    overflow: hidden;
+    padding-top: percentage(330/275);
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: auto;
+    }
+  }
+}
+
+.pt--ho {
+  @include susy-breakpoint($bp-lg, $l-lg) {
+    @include span(8 of 12);
+
+    margin-bottom: 0;
+  }
+
+  margin-bottom: $vs;
+
+  ._md-att {
+    position: relative;
+    height: 0;
+    overflow: hidden;
+    padding-top: percentage(330/275);
+    @include susy-breakpoint($bp-lg, $l-lg) {
+      padding-top: percentage(330/573);
+    }
+
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: auto;
+    }
+  }
+}
+
+.pt--bq {
+  @include susy-breakpoint($bp-lg, $l-lg) {
+    @include span(break 12 of 12);
+
+    margin: $vs*2 0 0;
+  }
+
+  padding-top: $vs*.5;
+  margin: 0 0 $vs*.5;
+
+  font-size: $fs-mega;
+
+  border-top: 6px solid palette(white);
+  p {
+    margin: 0;
+  }
+  ._bq-ci {
+    font-size: $fs-deci;
+  }
+}
+
+
+.fe-ft {
+  @include susy-breakpoint($bp-lg, $l-lg) {
+    width: span(12);
+    margin: $vs auto 0;
+  }
+  .lk--su {
+    color: palette(black);
+    background-color: palette(yellow, tulip);
+  }
+}
+
+
+
+
+
+@include mts-o-stickyFooter(96px, 48px, '.st', '.st-wp', '.st-c', '.st-ft');
+
+
+.st-ft {
+  padding: $vs 0;
+
+  color: palette(white, off);
+  background-color: palette(black);
+  a {
+    font-size: $fs-centi;
+    &:link,
+    &:active,
+    &:visited {
+      color: palette(white, off);
+    }
+    &:hover,
+    &:focus {
+      color: palette(yellow);
+    }
+  }
+  .ft-lg {
+    @include susy-breakpoint($bp-lg, $l-lg) {
+      @include span(6);
+      @include pre(2);
+    }
+  }
+  .lg-cr {
+    margin: 0 0 $vs*.5;
+
+    font-size: $fs-centi;
+  }
+  .nv-lg {
+    li {
+      margin-left: gutter();
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+  }
+  .ft-ut {
+    @include susy-breakpoint($bp-lg, $l-lg) {
+      @include span(last 6);
+      @include post(2);
+
+      text-align: right;
+    }
+    li {
+      margin-left: gutter();
+    }
+  }
+}
+
+
+
+
+
+._lo-int {
+  background: url(../images/bg-gridline.png) left top repeat;
+  .pg {
+    @include pad(1);
+    overflow: hidden;
+    padding-top: ($vs*2);
+    padding-bottom: ($vs*2);
+
+    @include susy-breakpoint($bp-lg, $l-lg) {
+      @include pad(1);
+
+      width: span(12);
+      margin: 0 auto;
+    }
+  }
+}
+
+
+
+// Post listing
+._lo-p {
+  .pg {
+  }
+  .c-periodical-list {
+    @include susy-breakpoint($bp-lg, $l-lg) {
+
+    }
+  }
+
+  .entry-attach {
+    @include susy-breakpoint($bp-lg, $l-lg) {
+      @include span(3 of 9);
+    }
+  }
+}
+
+
+
+
+
+._lo-su {
+  .pg {
+    @include susy-breakpoint($bp-lg, $l-lg) {
+      width: span(6);
+      padding: 0;
+      margin: 0 auto;
+    }
+
+    width: 100%;
+    padding-right: 0;
+    padding-left: 0;
+  }
+  .pg-hdr {
+    text-align: center;
+  }
+}
+
+
+
+
+
+
+/*doc
+---
+title: Pricing Plan Table
+category: Components - Pricing Table
+---
+
+```html_example
+<div class="plans slat-list">
+  <div class="slat plan -basic" id="plan-basic">
+    <a class="plan-link" href="#plan-basic">
+      <header class="plan-header">
+        <h2 class="plan-heading">Basic</h2>
+        <p class="plan-price">$25/mo or $250/yr</p>
+        <p class="plan-teaser">Priced affordably for small teams</p>
+      </header>
+      <div class="plan-content">
+        <ul class="plan-features">
+          <li> <strong>25</strong>
+            projects
+          </li>
+          <li>Unlimited Resources &amp; Users</li>
+          <li>Resource Forecasting</li>
+        </ul>
+      </div>
+      <footer class="plan-footer">
+        <span class="_co-lk lk--su">Start Trial</span>
+      </footer>
+    </a>
+  </div>
+</div>
+```
+ */
+
+.plan {
+  transition: all .3s ease-in-out;
+  border: 1px solid darken(palette(gray, storm), 60%);
+
+  &:hover,
+  &:focus {
+    transition-duration: 150ms;
+    box-shadow: inset 0 0 0 3px palette(yellow, buttercup);
+
+    & .lk--su {
+      color: palette(white);
+      background-color: palette(blue);
+    }
+  }
+
+  .lk--su {
+    color: palette(black);
+    background-color: palette(yellow, buttercup);
+  }
+}
+
+
+.plan-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+
+  &:link,
+  &:visited,
+  &:active {
+    color: palette(black);
+  }
+
+  &:hover,
+  &:focus {
+    color: palette(black);
+  }
+}
+
+
+.plan-cell {
+  font-size: 14px;
+}
+
+
+.plan-price {
+  font-size: 11px;
+}
+
+
+.plan header {
+  background-color: darken(palette(gray, storm), 20%);
+  font-weight: bold;
+}
+
+
+.plan header, .plan-cell, .plan footer {
+  padding: 5px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+
+.plan:first-child .plan-cell {
+  text-align: left;
+}
+
+
+.plan-cell:nth-child(even), .plan footer {
+  background-color: palette(gray, storm);
+}
+
+
+.plan-cell:nth-child(odd) {
+  background-color: white;
+}
+
+
+.plan-contact-us {
+  display: inline-block;
+  font-weight: bold;
+  padding: $vs*.5 0;
+}
+
+
+.plan-heading {
+  margin: 0;
+}
+
+
+.plan-pricing {
+  color: palette(yellow, buttercup);
+}
+
+
+.plan-content {
+  @include breakpoint($bp-lg) {
+    margin-bottom: $vs;
+  }
+}
+
+
+.plan-features {
+  padding: 0;
+  margin: 0;
+
+  list-style: none;
+  li {
+    padding-top: $vs*.25;
+
+    border-top: 1px solid;
+  }
+}
+
+
+.plans {
+  @include breakpoint($bp-lg) {
+    display: table;
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  margin-bottom: $vs;
+  .plan {
+    @include susy-breakpoint($bp-lg, $l-lg) {
+      position: relative;
+      display: table-cell;
+      height: 100%;
+    }
+  }
+
+  .plan-link {
+    padding: $vs*.5 $vs*.5 $vs*2;
+  }
+
+  .plan-footer {
+    @include breakpoint($bp-lg) {
+      position: absolute;
+      bottom: $vs*.5;
+      left: $vs*.5;
+    }
+  }
+}
+
+
+.plans.-additional {
+  @include breakpoint($bp-lg) {
+    display: block;
+  }
+  .plan {
+    padding: $vs*.5;
+    &:hover,
+    &:focus {
+      box-shadow: none;
+    }
+  }
+  .plan.-enterprise {
+    @include breakpoint($bp-lg) {
+      float: left;
+
+      width: 66%;
+    }
+  }
+  .plan.-npo {
+    @include breakpoint($bp-lg) {
+      float: right;
+
+      width: 33%;
+    }
+
+    background-color: rgba(palette(yellow), .5);
+  }
+}
+
+
+
+
+// iButton Fix
+.ibutton-container,
+.ibutton-handle,
+.ibutton-label-off,
+.ibutton-label-on,
+.ibutton-padding-left,
+.ibutton-padding-right {
+  box-sizing: content-box !important; // override on page code
+}
+
+
+// Utility Navigation Fix
+#header {
+  font-size: 16px !important;
+}
+
+
+/*doc
+---
+title: Message Styles
+category: Modules - Messaging
+---
+```html_example
+<div class="message">
+  <p>Alert content to go here</p>
+</div>
+
+<div class="message message--info">
+    <div id="divPageNotFound" runat="server" visible="false">
+        <p>
+          Sorry, we can't find the page you're trying to view.
+          <span style="font-size:large">&#9785;</span>
+        </p>
+    </div>
+</div><!-- /message message--info -->
+
+<div class="message message--warning">
+    <div id="divPageNotFound" runat="server" visible="false">
+        <p>
+          Sorry, we can't find the page you're trying to view.
+          <span style="font-size:large">&#9785;</span>
+        </p>
+    </div>
+</div><!-- /message message--warning -->
+
+<div class="message message--alert">
+    <div id="divPageNotFound" runat="server" visible="false">
+        <p>
+          Sorry, we can't find the page you're trying to view.
+          <span style="font-size:large">&#9785;</span>
+        </p>
+    </div>
+</div><!-- /message message--alert -->
+```
+ */
+
+.message {
+  margin: $vs 0;
+  padding: ($vs*.25) $vs;
+  font-weight: 700;
+  border-radius: 6px;
+  border: 1px solid palette(gray);
+  background-color: palette(gray, desert);
+}
+
+
+.message--no-radius {
+  border-radius: 0;
+}
+
+.message--info {
+  border-color: palette(blue);
+  background-color: mix(white, palette(blue), 50%);
+}
+
+
+.message--warning {
+  border-color: palette(yellow);
+  background-color: palette(yellow, tulip);
+}
+
+
+.message--alert {
+  color: #fff;
+  border-color: palette(red, tamarillo);
+  background-color: palette(red, froly);
+}
+
+
+
+
+
+/*doc
+---
+title: Periodical Listing
+category: Modules - Listing
+---
+```html_example
+<li class="h-entry nw-entry">
+  <a href="#" title="" class="u-url">
+    <div class="entry-body">
+      <div class="entry-header">
+        <h3 class="p-name">
+          Lorem ipsum dolor sit amet
+        </h3>
+        <time class="dt-published" datetime="{{ post.date | date_to_rfc822 }}">
+          Mar 7, 2015
+        </time>
+      </div>
+      <div class="entry-content">
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia explicabo error perspiciatis qui illum consequuntur officiis sed. Tempora commodi perferendis sequi earum, blanditiis iste quia cupiditate facere sapiente velit autem!</p>
+      </div>
+    </div>
+  </a>
+</li>
+```
+ */
+
+.nw-entry {
+  overflow: hidden;
+
+  .entry-attach {
+    @include breakpoint($bp-lg) {
+      float: left;
+      margin-top: 0;
+      margin-bottom: 0;
+      margin-left: 0;
+    }
+  }
+
+  .entry-body {
+    overflow: hidden;
+  }
+
+  .entry-content {
+    p {
+      margin: 0;
+      font-size: $fs-deci;
+    }
+  }
+
+  .p-name {
+    margin: 0 0 ($vs/4);
+    font-size: $fs;
+  }
+
+  .dt-published {
+    font-size: $fs-milli;
+  }
+
+  .u-url {
+    text-decoration: none;
+
+    color: $ui-c;
+    &:hover,
+    &:focus {
+      color: palette(blue);
+      .dt-published {
+        color: $ui-c;
+      }
+    }
+  }
+}
+
+
+.c-periodical-list {
+  .dt-published,
+  .p-name {
+    line-height: 1;
+  }
+}
+
+.pagination {
+  padding: ($vs*.5);
+  border-top: 1px solid $ui-bo;
+  background-color: palette(white, mercury);
+}
+
+.pagination-current {
+  font-weight: bold;
+  font-style: normal;
+}
+
+.pagination-link {
+  text-decoration: none;
+  color: palette(blue);
+
+  &:hover,
+  &:focus {
+    color: palette(red);
+  }
+
+  span {
+    display: none;
+  }
+}
+
+.pagination-page {
+  + .pagination-page {
+    margin-left: ($vs*.5);
+  }
+}
+
+
+
+.h-entry.pg {
+  max-width: 60em;
+  margin-left: auto;
+  margin-right: auto;
+
+  .post-meta {
+    margin: 0;
+  }
+  .post-title {
+    margin: 0;
+  }
+  .post-hero {
+    margin: 0;
+  }
+
+  .post-content {
+    margin-top: $vs;
+  }
+}
+
+.post-content {
+
+  img,
+  video,
+  iframe {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+.c-email-signup {
+  background-color: palette(gray, desert);
+
+  #mc_embed_signup {
+    background-color: transparent;
+
+    #mce-responses {
+      width: 96%;
+      margin-right: 0;
+      margin-bottom: 20px;
+      margin-left: 0;
+      padding: 0;
+    }
+
+    .response {
+      width: 100%;
+      padding: 10px 20px;
+      margin: 0;
+      border: 2px solid;
+      border-radius: 4px;
+
+
+    }
+
+    #mc-embedded-subscribe.button {
+      transition: all .3s ease-out;
+      background-color: palette(blue, base);
+
+      &:hover,
+      &:focus {
+        background-color: darken(palette(blue, base), 20%);
+      }
+    }
+  }
+}
+
+
+// §§ Survey Monkey form display
+.smcx-embed {
+  width: 100% !important;
+  border: 0 !important;
+  background: transparent !important;
+}
+
+
+
+
+
+// §§ Integrations Display
+//
+.integration-list {
+  display: block;
+  width: 100%;
+  @include breakpoint( $bp-md ) {
+    text-align: justify;
+  }
+
+  &:after {
+    @include breakpoint( $bp-md ) {
+      content: '';
+      display: inline-block;
+      width: 100%;
+    }
+  }
+}
+
+.integration-list__item {
+
+  @include breakpoint ($bp-md) {
+    display: inline-block;
+    width: 26%;
+  }
+}
+
+
+.integration-list__link {
+  display: block;
+  height: 0;
+  padding-top: 100%;
+  overflow: hidden;
+  border-radius: 100%;
+  background-color: palette(white, base);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 50%;
+  transition: all .3s ease-out;
+
+  &:before {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 150%;
+  }
+
+  &:link,
+  &:active,
+  &:visited {
+    border: 0;
+  }
+
+  &:hover,
+  &:focus {
+    transition-duration: .15s;
+    background-size: 55%;
+    background-color: palette(blue, curious);
+  }
+}
+
+
+.integration-list__link--basecamp {
+  background-image: url(../images/integrations-logos-basecamp.svg);
+
+  .no-svg & {
+    background-image: url(../images/integrations-logos-basecamp.png)
+  }
+}
+
+
+
+.integration-list__link--github {
+  background-image: url(../images/integrations-logos-github.svg);
+
+  .no-svg & {
+    background-image: url(../images/integrations-logos-github.png);
+  }
+}
+
+
+.integration-list__link--jira {
+  background-image: url(../images/integrations-logos-jira.svg);
+
+  .no-svg & {
+    background-image: url(../images/integrations-logos-jira.png)
+  }
+}

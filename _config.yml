@@ -1,93 +1,12 @@
-# App Settings
-source: app/jekyll/
-destination: .tmp/
-# exclude: ['app/styles/*.scss']
-environment: production
-
-# Site settings
-title: > #
-  Roadmap - Intelligent Project Management, Scheduling, Time Tracking, and Resource Planning
-description: > # this means to ignore newlines until "baseurl:"
-  Manage your portfolio of projects with ease and intelligence.
-  Visualize project plans, resource scheduling, and timesheets.
-  Become a Project Management superstar.
-baseurl: "" # the subpath of your site, e.g. /blog/
-url: https://ppmroadmap.com
-
-permalink: /updates/:title.html
-paginate: 10
-paginate_path: "/updates/:num/"
-
-
-# Collections
+---
+title: Roadmap - Multiple Projects, Multiple SaaS Tools, One View
+timezone: UTC
 collections:
-  features:
+  posts:
+    title: Posts
     output: true
-  customers:
+  uploads:
+    title: Uploads
     output: true
-    permalink: /customers/:path/
-
-
-# Default Settings
-defaults:
-  -
-    scope:
-      path: ""
-      type: customers   # <= here you can specify a collection now!
-    values:
-      layout: page
-      class: _lo-customers
-  -
-    scope:
-      path: ""
-      type: posts   # <= here you can specify a collection now!
-    values:
-      layout: post
-      class: _lo-posts
-
-email: support@ppmroadmap.com
-twitter_username: ppmroadmap
-github_username:  getroadmap
-
-# Editing settings
-markdown: kramdown
-
-# Prose Settings
-prose:
-  rooturl: 'app/jekyll/_posts'
-  siteurl: 'https://ppmroadmap.com/'
-  #relativeLinks: 'http://ppmroadmap.com/links.jsonp'
-  media: 'app/jekyll/images/media'
-  ignore:
-    - index.md
-    - _config.yml
-    - /_layouts
-    - /_includes
-  metadata:
-    app/jekyll/_posts:
-      - name: "layout"
-        field:
-          element: "hidden"
-          value: "post"
-      - name: "title"
-        field:
-          element: "text"
-          label: "Title"
-          value: ""
-      - name: "permalink"
-        field:
-          element: "text"
-          label: "Permalink"
-          value: ""
-      - name: "tags"
-        field:
-          element: "multiselect"
-          label: "Add Tags"
-          placeholder: "Choose Tags"
-          options:
-            - name: "Features"
-              value: "features"
-            - name: "Releases"
-              value: "bananas"
-            - name: "How To"
-              value: "how-to"
+include:
+- ".travis.yml"

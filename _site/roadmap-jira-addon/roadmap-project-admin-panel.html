@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+     <link rel="stylesheet" href="aui/css/aui.min.css" media="all">
+     <link rel="stylesheet" href="aui/css/aui-experimental.min.css" media="all">
+     
+     <link rel="stylesheet" href="css/roadmap-project.css" media="all">
+     
+     <script src="js/jquery-2.1.4.min.js"></script>
+     <script src="js/jquery-migrate-1.2.1.min.js"></script>
+     <script src="js/almond.js"></script> <!-- AMD loader, needed for AUI Experimental -->
+     
+     <script src="aui/js/aui.min.js"></script>
+     <script src="aui/js/aui-experimental.min.js"></script>
+     
+     <script src="js/roadmap-alerts.js" type="text/javascript"></script>
+     <script src="js/roadmap-api.js" type="text/javascript"></script>
+     <script src="js/roadmap-project.js" type="text/javascript"></script>
+ </head>
+    
+ <body>
+    <section id="content" role="main" class="ac-content">
+        <div id="rm-integration-status" class="checking">
+            <div class="checking-display">
+                <span class="aui-icon aui-icon-wait"></span>&nbsp;
+                <span class="message-text">Checking Roadmap integration</span>
+            </div>
+
+            <div class="integrated-display">
+                <span class="aui-icon aui-icon-small aui-iconfont-approve"></span>&nbsp;JIRA's <span class="jira-project-name">current project</span> is integrated with Roadmap's <a class="rm-project-link" href="#" target="_blank" title="Click to open Roadmap project">project</a>.
+            </div>
+
+            <div class="not-integrated-display">
+                <form id="integrate-project-form" class="aui">
+
+                    <input type="hidden" id="jira-project-key">
+                    <input type="hidden" id="jira-project-id">
+
+                    <div class="field-group">
+                        <label for="project-name">Project Name</label>
+                        <input class="text medium-field" type="text" id="project-name" value="JIRA Project"
+                               data-aui-validation-field
+                               data-aui-validation-required
+                               data-aui-validation-maxlength="100"
+                               data-aui-form-notification-position="bottom">
+                    </div>
+                    <div class="field-group">
+                        <label for="todo-list-name">Todo List</label>
+                        <input class="text medium-field" type="text" id="todo-list-name" value="JIRA Issues"
+                               data-aui-validation-field
+                               data-aui-validation-required
+                               data-aui-validation-maxlength="500"
+                               data-aui-form-notification-position="bottom">
+                    </div>
+                    <div class="field-group">
+                        <div class="checkbox">
+                            <input class="checkbox" type="checkbox" name="import-closed-issues" id="import-closed-issues">
+                            <label for="import-closed-issues">Import closed issues</label>
+                        </div>
+                    </div>
+                    <div class="buttons-container">
+                        <div class="buttons">
+                            <button id="integrate" type="submit" class="aui-button aui-button-primary">Integrate</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="integration-absent-display">
+                <span class="aui-icon aui-icon-small aui-iconfont-warning"></span>&nbsp;Integration with Roadmap not available, please <a href="https://ppmroadmap.uservoice.com/knowledgebase/topics/106350-integrations-jira" target="_blank">review configuration steps</a>.
+            </div>
+        </div>
+     </section>
+ </body>
+</html>
