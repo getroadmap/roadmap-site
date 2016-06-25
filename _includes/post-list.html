@@ -1,0 +1,12 @@
+{% for post in site.posts limit:include.limit %}
+  <li class="h-entry nw-entry">
+    <a href="{{ post.url }}" title="{{ post.title }}" class="u-url">
+      <h3 class="p-name">
+        {{ post.title }}
+      </h3>
+      <time class="dt-published" datetime="{{ post.date | date_to_rfc822 }}">
+        {{ post.date | date: "%b %-d, %Y" }}
+      </time>
+    </a>
+  </li>
+{% endfor %}

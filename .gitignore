@@ -7,3 +7,5 @@ node_modules
 app/jekyll/styles
 app/jekyll/images
 gh-pages
+_site/
+Gemfile.lock

@@ -1,0 +1,25 @@
+<footer class="ft st-ft">
+  <div class="_ct">
+    <div class="ft-lg">
+      <p class="lg-cr">&copy; Copyright {{ site.time | date: '%Y' }} PPMLite, LLC. All rights reserved.</p>
+      <nav class="_nv nv-lg"> <strong class="_nv-hd">Legal Navigation</strong>
+        <ul class="_nav">
+          <li>
+            <a href="{{ site.baseurl }}/terms-of-service">Terms of Service</a>
+          </li>
+          <li>
+            <a href="{{ site.baseurl }}/privacy-policy">Privacy Policy</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+
+    <nav class="_nv ft-ut"> <strong class="_nv-hd">Site Navigation</strong>
+      <ul class="_nav">
+        {% include _ut-nav-items.html %}
+      </ul>
+      <a style="display: inline-block; margin-top: 1em;" href="https://mixpanel.com/f/partner" target="_blank" ><img src="//cdn.mxpnl.com/site_media/images/partner/badge_blue.png" alt="Mobile Analytics" /></a>
+    </nav>
+  </div><!-- /._ct -->
+</footer><!-- /.site-footer -->
