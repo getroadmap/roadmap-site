@@ -16,6 +16,7 @@ script:
     git remote add deploy "root@ppmroadmap.com:/var/www/michael.ppmroadmap.com/production/current";
     git add . --all;
     git commit -m "Travis CI deployed.";
+    git push deploy :dist; 
     git push deploy dist --force;
   else
     echo "I'm not deploying since this branch isn't dist.";
