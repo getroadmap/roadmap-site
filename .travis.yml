@@ -22,4 +22,4 @@ script:
   fi
 branches:
   only:
-  - dist
+  - sl-dist
