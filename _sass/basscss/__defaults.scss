@@ -1,0 +1,109 @@
+// Custom Media Query Variables
+
+$breakpoint-sm: '(min-width: 40em)' !default;
+$breakpoint-md: '(min-width: 52em)' !default;
+$breakpoint-lg: '(min-width: 64em)' !default;
+
+$aqua: #7fdbff !default;
+$blue: #0074d9 !default;
+$navy: #001f3f !default;
+$teal: #39cccc !default;
+$green: #2ecc40 !default;
+$olive: #3d9970 !default;
+$lime: #01ff70 !default;
+$yellow: #ffdc00 !default;
+$orange: #ff851b !default;
+$red: #ff4136 !default;
+$fuchsia: #f012be !default;
+$purple: #b10dc9 !default;
+$maroon: #85144b !default;
+$white: #fff !default;
+$silver: #ddd !default;
+$gray: #aaa !default;
+$black: #111 !default;
+
+$hljs-comment: $silver !default;
+$hljs-keyword: white !default;
+$hljs-number: $lime !default;
+$hljs-string: $red !default;
+$hljs-title: $red !default;
+$hljs-type: $aqua !default;
+$hljs-tag: $aqua !default;
+$hljs-attribute: $lime !default;
+$hljs-regexp: $lime !default;
+$hljs-symbol: $fuchsia !default;
+$hljs-built-in: $aqua !default;
+$hljs-preprocessor: $silver !default;
+$hljs-deletion: $fuchsia !default;
+$hljs-addition: $lime !default;
+$hljs-change: $aqua !default;
+$hljs-chunk: $gray !default;
+
+$font-family: 'Helvetica Neue', Helvetica, sans-serif;
+$line-height: 1.5;
+$line-height-1: 1 !default;
+$line-height-2: 1.125 !default;
+$line-height-3: 1.25 !default;
+$line-height-4: 2 !default;
+$letter-spacing: 1 !default;
+$caps-letter-spacing: .2em !default;
+$heading-font-family: var($font-family);
+$heading-font-weight: bold;
+$heading-line-height: 1.25;
+$monospace-font-family: 'Source Code Pro', Consolas, monospace;
+$h1: 2rem;
+$h2: 1.5rem;
+$h3: 1.25rem;
+$h4: 1rem;
+$h5: .875rem;
+$h6: .75rem;
+$bold-font-weight: bold;
+$space-1: .5rem;
+$space-2: 1rem;
+$space-3: 2rem;
+$space-4: 4rem;
+$media-object-space: $space-1;
+$form-field-font-family: inherit !default;
+$form-field-font-size: 1rem;
+$form-field-height: 2.25rem;
+$form-field-padding-y: .5rem;
+$form-field-padding-x: .5rem;
+$button-font-family: inherit !default;
+$button-font-size: inherit;
+$button-font-weight: bold;
+$button-line-height: 1.125rem;
+$button-padding-y: .5rem;
+$button-padding-x: 1rem;
+$button-color: #fff !default;
+$button-background-color: $blue !default;
+$container-width: 64em;
+
+$darken-1: rgba(0,0,0,.0625);
+$darken-2: rgba(0,0,0,.125);
+$darken-3: rgba(0,0,0,.25);
+$darken-4: rgba(0,0,0,.5);
+
+$lighten-1: rgba(255,255,255,.0625);
+$lighten-2: rgba(255,255,255,.125);
+$lighten-3: rgba(255,255,255,.25);
+$lighten-4: rgba(255,255,255,.5);
+
+$border-width: 1px;
+$border-radius: 3px;
+$border-color: var($darken-2);
+
+$range-thumb-width: $form-field-padding-x !default;
+$range-thumb-height: ( $form-field-height - ($form-field-padding-y * 2) ) !default;
+$range-track-height: ( $form-field-padding-y / 2 ) !default;
+$range-thumb-offset: ( $range-thumb-height / -2 + ($range-track-height / 2) ) !default;
+$range-thumb-pseudo-size: $form-field-height !default;
+
+$width-1: 24rem !default;
+$width-2: 32rem !default;
+$width-3: 48rem !default;
+$width-4: 64rem !default;
+
+$z1: 1 !default;
+$z2: 2 !default;
+$z3: 3 !default;
+$z4: 4 !default;
