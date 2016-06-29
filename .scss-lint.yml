@@ -1,0 +1,8 @@
+linters:
+
+  SelectorFormat:
+    enabled: true
+    convention: hyphenated_BEM
+
+  VendorPrefix:
+    enabled: false
