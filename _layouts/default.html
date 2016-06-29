@@ -1,37 +1,20 @@
 <!doctype html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
-  <head>
-  {% include _head.html %}
-  </head>
+<html class=bg-white-l>
+  {% include head.html %}
 
-  <body class="st _lo-int {% if page.class %} {{ page.class }}{% endif %}">
-    {% include _gtm.html %}
+  <body class="bg-white">
+    {% include gtm.html %}
+    {% include header.html %}
 
+    <main class="mx-auto container py4">
+      {{ content }}
+    </main>
 
-
-
-
-    <header class="st-m">
-      {% include _st-mh.html %}
-    </header><!-- /.site-masthead -->
+    {% include trial.html %}
 
 
+    {% include footer.html %}
 
-
-
-    <div class="st-wp">
-      <main class="st-c">
-        {{ content }}
-      </main> <!-- /.st-c -->
-    </div> <!-- /.st-wp -->
-
-
-
-
-
-    {% include _st-ft.html %}
   </body>
+
 </html>
