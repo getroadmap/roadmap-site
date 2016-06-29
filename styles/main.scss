@@ -1,40 +1,41 @@
 ---
 ---
 
-@import "../bower_components/sassy-maps/sass/_memo.scss";
-@import "../bower_components/breakpoint-sass/stylesheets/_breakpoint.scss";
-@import "../bower_components/susy/sass/_susy.scss";
-  @include border-box-sizing;
+//BASSCSS
+@import 'basscss/_defaults';
 
+@import 'basscss/align';
+@import 'basscss/all';
+@import 'basscss/background-colors';
+@import 'basscss/background-images';
+@import 'basscss/border-colors';
+@import 'basscss/border';
+@import 'basscss/btn-outline';
+@import 'basscss/btn-primary';
+@import 'basscss/btn';
+@import 'basscss/colors';
+@import 'basscss/darken';
+@import 'basscss/flexbox';
+@import 'basscss/forms';
+@import 'basscss/grid';
+@import 'basscss/hide';
+@import 'basscss/highlight-dark';
+@import 'basscss/highlight';
+@import 'basscss/input-range';
+@import 'basscss/layout';
+@import 'basscss/lighten';
+@import 'basscss/margin';
+@import 'basscss/media-object';
+@import 'basscss/padding';
+@import 'basscss/position';
+@import 'basscss/progress';
+@import 'basscss/responsive-margin';
+@import 'basscss/responsive-padding';
+@import 'basscss/type-scale';
+@import 'basscss/typography';
 
-
-
-
-// Make Things Library
-@import "../_sass/_mts/_mts.scss";
-
-
-
-
-
-// Project Files
-@import "../_sass/_mts/_vars.scss";
-
-
-
-
-
-@include mts-a-normalize;
-@include mts-a-h5bp;
-
-
-@include mts-m-navs;
-@include mts-m-nav;
-
-
-
-
-
-
-@import "../_sass/_mts/_scratch.scss";
-@import "../_sass/_mts/_casestudy.scss";
+//CSS
+@import '__variables';
+@import '_colors';
+@import '_typography';
+@import 'styles';

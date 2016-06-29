@@ -1,0 +1,65 @@
+body {
+  color: $gray;
+  font-size: $base-text-size;
+  font-weight: 300;
+  line-height: 1.5;
+}
+
+a {
+  color: $gray;
+  text-decoration: none;
+}
+
+.small-print { font-size: .875em; }
+.smaller-print { font-size: .75em; }
+
+.sc {
+  font-size: .875em;
+  letter-spacing: 1.3px;
+  text-transform: uppercase;
+}
+
+.sc-small {
+  font-size: .75em;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.h1 { font-size: 2rem; }
+.h2 { font-size: 1.25rem; }
+.h3 { font-size: 1.125rem; }
+.h4 { font-size: 1rem; }
+.h5 { font-size: .875rem; }
+.h6 { font-size: .75rem; }
+
+// light
+.fw1 { font-weight: 300; }
+// regular
+.fw2 { font-weight: 400; }
+// semi-bold
+.fw3 { font-weight: 600; }
+// bold
+.fw4 { font-weight: 700; }
+
+.link {
+  color: $purple;
+  text-decoration: underline;
+
+  &:hover {
+    color: $purple-dark;
+  }
+}
+
+.alt-link {
+  color: $cyan;
+  text-decoration: underline;
+
+  &:hover {
+    color: $cyan-dark;
+  }
+}
+
+.measure { max-width: 30em; }
+.measure-plus { max-width: 35em; }
+.measure-wide { max-width: 40em; }
+.measure-narrow { max-width: 20em; }
