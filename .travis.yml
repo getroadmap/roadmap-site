@@ -12,7 +12,7 @@ script:
 - if [ $TRAVIS_BRANCH == 'sl-dist' ] ; then
     git init;
     git config --global user.name "Travis CI"
-    git config --global user.email ""
+    git config --global user.email "michael@ppmroadmap.com"
     git remote add deploy "root@ppmroadmap.com:/var/www/michael.ppmroadmap.com/production/current";
     git add . --all;
     git commit -m "Travis CI deployed.";
