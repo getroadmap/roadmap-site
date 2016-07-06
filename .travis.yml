@@ -13,11 +13,6 @@ before_install:
 script:
 - if [ $TRAVIS_BRANCH == 'sl-dist' ] ; then
     scp -i ~/.ssh/id_rsa * root@ppmroadmap.com:/var/www/michael.ppmroadmap.com/production/current;
-    git init;
-    git remote add deploy "root@ppmroadmap.com:/var/www/michael.ppmroadmap.com/production/current";
-    git add . --all;
-    git commit -m "Travis CI deployed.";
-    git push deploy sl-dist;
   else
     echo "I'm not deploying since this branch isn't sl-dist.";
   fi
