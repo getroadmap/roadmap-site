@@ -12,6 +12,7 @@ before_install:
 - echo -e "Host ppmroadmap.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 script:
 - if [ $TRAVIS_BRANCH == 'sl-dist' ] ; then
+    scp * root@ppmroadmap.com:/var/www/michael.ppmroadmap.com/production/current;
     git init;
     git remote add deploy "root@ppmroadmap.com:/var/www/michael.ppmroadmap.com/production/current";
     git add . --all;
