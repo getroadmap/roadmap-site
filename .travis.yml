@@ -1,6 +1,10 @@
 language: ruby
 rvm:
 - 2.1.0
+addons:
+  apt:
+    packages:
+    - sshpass
 env:
   global:
   - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
