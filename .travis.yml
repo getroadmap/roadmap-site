@@ -8,11 +8,10 @@ before_install:
 - git config --global user.email "${GIT_EMAIL}"
 - rm deploy-key.enc # Don't need it anymore
 - chmod 600 deploy-key
-- mv deploy-key ~/.ssh/id_rsa
 - echo -e "Host ppmroadmap.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 script:
 - if [ $TRAVIS_BRANCH == 'sl-dist' ] ; then
-    git init;
+    scp -i deploy-key * root@ppmroadmap.com:/var/www/michael.ppmroadmap.com/production/current;
   else
     echo "I'm not deploying since this branch isn't sl-dist.";
   fi
