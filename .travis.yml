@@ -11,10 +11,10 @@ before_install:
 script:
 - if [ $TRAVIS_BRANCH == 'sl-dist' ] ; then
     git init;
-    git config user.name "Travis CI"
-    git config user.email "michael@ppmroadmap.com"
     git remote add deploy "root@ppmroadmap.com:/var/www/michael.ppmroadmap.com/production/current";
     git add . --all;
+    git config user.name "Travis CI"
+    git config user.email "michael@ppmroadmap.com"
     git commit -m "Travis CI deployed.";
     git push deploy dist --force;
   else
