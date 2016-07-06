@@ -5,7 +5,7 @@ before_install:
 - openssl aes-256-cbc -K $encrypted_64cd943d900c_key -iv $encrypted_64cd943d900c_iv -in deploy-key.enc -out deploy_key -d
 - rm deploy-key.enc # Don't need it anymore
 - chmod 600 deploy_key # this key should have access to server
-- mv deploy-key ~/.ssh/id_rsa
+- mv deploy_key ~/.ssh/id_rsa
 - echo -e "Host ppmroadmap.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 script:
 - if [ $TRAVIS_BRANCH == 'sl-dist' ] ; then
