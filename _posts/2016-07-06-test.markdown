@@ -1,6 +1,7 @@
 ---
 title: Test
 date: 2016-07-06 15:59:00 Z
+layout: post
 ---
 
 <blockquote class="twitter-tweet" data-conversation="none" data-lang="en"><p lang="en" dir="ltr"><a href="https://twitter.com/ColmBoohig">@ColmBoohig</a> you can embed the tweet/Facebook post, not upload the video yourself.</p>&mdash; Rob Harris (@RobHarris) <a href="https://twitter.com/RobHarris/status/750610535645868032">July 6, 2016</a></blockquote>
