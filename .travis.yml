@@ -1,17 +1,11 @@
 language: ruby
 rvm:
 - 2.1.0
-env:
-  global:
-  - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
-  - secure: Yk3lxBxcAskQ4hRp3WtVFc5uTjQhWypsaRLLtOFgA5f+f5mZQiVp74HxECYW4qT8rzoQmKWa59uAW4Oks2z5z8QVAZTYNMqUitSLrjXsXHF9it95J8iaZn4NAzudcN9+vRqVi3QB/v0BpvAoIrTUExvUPQjcMDLkkPby7mxKKig=
-  - secure: cvfopDMJY8Z/lplUzPJwizhEXy6U7cDkUnAehXnYclnkYUq+nanbEBtOV+d1KZNbvOLfC8kRt3ThXH9SjsQvWTKdyqWXXQsyKUdQnx4M5geI9OChF05bxclO9+Q7/ELX3r8VZDVAQ/BlepYNSJYWWesiYa6CR/PlXlCh/LCxYDg=
 before_install:
-- openssl aes-256-cbc -K $encrypted_64cd943d900c_key -iv $encrypted_64cd943d900c_iv -in deploy-key.enc -out deploy_key.pem -d
+- openssl aes-256-cbc -K $encrypted_64cd943d900c_key -iv $encrypted_64cd943d900c_iv -in deploy-key.enc -out deploy_key -d
 - rm deploy-key.enc # Don't need it anymore
-- chmod 600 deploy_key.pem # this key should have push access
-- eval "$(ssh-agent)"
-- ssh-add
+- chmod 600 deploy_key # this key should have access to server
+- mv deploy-key ~/.ssh/id_rsa
 - echo -e "Host ppmroadmap.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 script:
 - if [ $TRAVIS_BRANCH == 'sl-dist' ] ; then
