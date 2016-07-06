@@ -2,7 +2,7 @@ language: ruby
 rvm:
 - 2.1.0
 before_install:
-- openssl aes-256-cbc -K $encrypted_64cd943d900c_key -iv $encrypted_64cd943d900c_iv -in deploy-key.enc -out deploy_key -d
+- echo "$DEPLOY_KEY" > deploy_key
 - rm deploy-key.enc # Don't need it anymore
 - chmod 600 deploy_key # this key should have access to server
 - mv deploy_key ~/.ssh/id_rsa
