@@ -6,7 +6,8 @@ before_install:
 - chmod 600 deploy_key # this key should have access to server
 - mv deploy_key ~/.ssh/id_rsa
 - eval $(ssh-agent)
-- ssh-add ~/.ssh/id_rsa
+- touch passfile
+- cat passfile | ssh-add -p ~/.ssh/id_rsa
 - echo -e "Host ppmroadmap.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 script:
 - if [ $TRAVIS_BRANCH == 'sl-dist' ] ; then
