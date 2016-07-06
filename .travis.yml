@@ -2,9 +2,11 @@ language: ruby
 rvm:
 - 2.1.0
 before_install:
+- eval "$(ssh-agent -s)" #start the ssh agent
 - openssl aes-256-cbc -K $encrypted_64cd943d900c_key -iv $encrypted_64cd943d900c_iv -in deploy-key.enc -out ~/.ssh/id_rsa -d
 - rm deploy-key.enc # Don't need it anymore
-- chmod 600 ~/.ssh/id_rsa
+- chmod 600 ~/.ssh/id_rsa # this key should have push access
+- ssh-add ~/.ssh/id_rsa
 - echo -e "Host ppmroadmap.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 script:
 - if [ $TRAVIS_BRANCH == 'sl-dist' ] ; then
