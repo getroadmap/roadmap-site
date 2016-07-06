@@ -1,10 +1,3 @@
-language: ruby
-rvm:
-- 2.1.0
-addons:
-  apt:
-    packages:
-    - sshpass
 env:
   global:
   - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
@@ -19,8 +12,7 @@ before_install:
 - echo -e "Host ppmroadmap.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 script:
 - if [ $TRAVIS_BRANCH == 'sl-dist' ] ; then
-    export SSHPASS=$KEY_PASS;
-    sshpass -e scp .travis.yml root@ppmroadmap.com:/var/www/michael.ppmroadmap.com/production/current;
+    scp .travis.yml root@ppmroadmap.com:/var/www/michael.ppmroadmap.com/production/current;
   else
     echo "I'm not deploying since this branch isn't sl-dist.";
   fi
