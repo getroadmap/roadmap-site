@@ -5,6 +5,7 @@ before_install:
 - echo "$DEPLOY_KEY" > deploy_key
 - chmod 600 deploy_key
 - mv deploy_key ~/.ssh/id_rsa
+- echo -e "Host ppmroadmap.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 script:
 - if [ $TRAVIS_BRANCH == 'sl-dist' ] ; then
     scp -v .travis.yml root@ppmroadmap.com:/var/www/michael.ppmroadmap.com/production/current;
