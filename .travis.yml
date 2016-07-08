@@ -5,7 +5,7 @@ before_install:
 - echo "$DEPLOY_KEY" > deploy_key
 - chmod 600 deploy_key
 - mv deploy_key ~/.ssh/id_rsa
-- ssh-keygen -f ~/.ssh/id_rsa  -e -m pem > ~/.ssh/id_rsa
+- openssl rsa -in ~/.ssh/id_rsa -outform pem > ~/.ssh/id_rsa -passin pass:"$DEPLOY_PASS"
 - openssl rsa -inform PEM -in ~/.ssh/id_rsa -out ~/.ssh/id_rsa -passin pass:"$DEPLOY_PASS"
 - echo -e "Host ppmroadmap.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 script:
