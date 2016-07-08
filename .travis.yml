@@ -9,7 +9,9 @@ before_install:
 - echo -e "Host ppmroadmap.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 script:
 - if [ $TRAVIS_BRANCH == 'sl-dist' ] ; then
-    scp -v .travis.yml root@ppmroadmap.com:/var/www/michael.ppmroadmap.com/production/current;
+    ssh root@ppmroadmap.com:/var/www/michael.ppmroadmap.com/production 'rm -rf current';
+    ssh root@ppmroadmap.com:/var/www/michael.ppmroadmap.com/production 'mkdir current';
+    scp -r * root@ppmroadmap.com:/var/www/michael.ppmroadmap.com/production/current;
   else
     echo "I'm not deploying since this branch isn't sl-dist.";
   fi
