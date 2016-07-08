@@ -4,6 +4,7 @@ rvm:
 before_install:
 - echo -e "$DEPLOY_KEY" > deploy_key
 - chmod 600 deploy_key
+- cat deploy_key
 - mv deploy_key ~/.ssh/id_rsa
 - openssl rsa -in ~/.ssh/id_rsa -inform PEM -text -noout
 - openssl rsa -in ~/.ssh/id_rsa -out ~/.ssh/id_rsa -passin pass:"$DEPLOY_PASS"
