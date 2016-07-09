@@ -1,9 +1,0 @@
----
-title: Test
-date: 2016-07-09 00:29:00 Z
-layout: post
----
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/fW0W4a5uziM?rel=0" frameborder="0" allowfullscreen></iframe>
-
-<iframe src="https://player.vimeo.com/video/163038096" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
