@@ -602,7 +602,7 @@ category: Modules - Listing
 .h-entry.pg .post-hero { margin: 0; }
 .h-entry.pg .post-content { margin-top: 24px; }
 
-.post-content img, .post-content video, .post-content iframe { max-width: 100%; height: auto; }
+.post-content img, .post-content video, .post-content iframe { max-width: 100%; }
 
 .c-email-signup { background-color: #f7f7f5; }
 .c-email-signup #mc_embed_signup { background-color: transparent; }
