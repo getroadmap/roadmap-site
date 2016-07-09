@@ -1,6 +1,0 @@
----
-title: Test
-date: 2016-07-09 00:29:00 Z
----
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/fW0W4a5uziM?rel=0" frameborder="0" allowfullscreen></iframe>
