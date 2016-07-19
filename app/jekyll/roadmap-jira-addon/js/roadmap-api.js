@@ -67,9 +67,10 @@ API.unsetAddonConfig = function() {
 // TODO: Separate not-found and error callbacks?
 API.getAddonProperty = function(key, callback, errorCallback, notFoundCallback) {
     // Check full properties list
-    var url = '/rest/atlassian-connect/1/addons/roadmap/properties';
+    var url = '/rest/atlassian-connect/1/addons/roadmap/properties?jsonValue=true';
     
-    AP.require('request', function(request) {    
+    AP.require('request', function(request) {
+        // First check if property is present
         request({
             url: url,
             success: function(properties) {
@@ -81,9 +82,10 @@ API.getAddonProperty = function(key, callback, errorCallback, notFoundCallback) 
                 if(properties && properties.keys && properties.keys.length > 0) {
                     for(var i = 0; i < properties.keys.length; i++) {
                         if(properties.keys[i].key === key) {
+                            // Property is found, request its value
                             found = true;
 
-                            var propUrl = '/rest/atlassian-connect/1/addons/roadmap/properties/' + key;
+                            var propUrl = '/rest/atlassian-connect/1/addons/roadmap/properties/' + key + '?jsonValue=true';
 
                             request({
                                 url: propUrl,
@@ -177,7 +179,7 @@ API.saveUserConfig = function(userKey, request, callback) {
     };
 
     request({
-        url: '/rest/atlassian-connect/1/addons/roadmap/properties/user-config-' + userKey,
+        url: '/rest/atlassian-connect/1/addons/roadmap/properties/user-config-' + userKey + '?jsonValue=true',
         type: 'PUT',
         data: JSON.stringify(userConfig),
         contentType: "application/json",
