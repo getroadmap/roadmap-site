@@ -13,7 +13,7 @@ script:
     FolderName="$(date +%S%M%H%d%m%Y)";
     ssh root@ppmroadmap.com "cd /var/www/michael.ppmroadmap.com/production/releases; mkdir $FolderName;";
     scp roadmapsite.zip root@ppmroadmap.com:/var/www/michael.ppmroadmap.com/production/releases/$FolderName;
-    ssh root@ppmroadmap.com "cd /var/www/michael.ppmroadmap.com/production/releases/$FolderName; unzip roadmap-site.zip; rm roadmap-site.zip; ln -sf ../$FolderName ../../current;";
+    ssh root@ppmroadmap.com "cd /var/www/michael.ppmroadmap.com/production/releases/$FolderName; unzip roadmapsite.zip; rm roadmapsite.zip; ln -sf ../$FolderName ../../current;";
   else
     echo "I'm not deploying since this branch isn't sl-dist.";
   fi
