@@ -5,9 +5,28 @@
     <description></description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Fri, 22 Jul 2016 15:41:53 +0000</pubDate>
-    <lastBuildDate>Fri, 22 Jul 2016 15:41:53 +0000</lastBuildDate>
+    <pubDate>Mon, 25 Jul 2016 15:43:19 +0000</pubDate>
+    <lastBuildDate>Mon, 25 Jul 2016 15:43:19 +0000</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
+    
+      <item>
+        <title>Test Blog Post</title>
+        <description>&lt;p&gt;Sales and Marketing have their tech stack, and project-driven teams are no different (e.g. &lt;strong&gt;Basecamp, GitHub, JIRA, Trello, Asana&lt;/strong&gt;). Our customers average 3-5 siloed tools in their tech stack, meaning they lack real-time, end-to-end visibility of projects or resources. Worse, most tools do not support resource forecasting or time tracking. Today, the silos and missing data gaps are handled via spreadsheets.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/uploads/07-24-2016-lax-smoke-fire-sand-7b91e2.jpeg&quot; alt=&quot;07-24-2016-lax-smoke-fire-sand-7b91e2.jpeg&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Our vision is to allow project teams to plan their workload more realistically, balance priorities &amp;amp; risk, and analyze past performance: Using their current tech stack; Supporting future experimentation of new tools; and Not requiring users to toggle between apps because missing (gap) fields are embedded in their primary tool. Replace spreadsheets with real-time, actionable intelligence or suggestions.&lt;/p&gt;
+
+&lt;p&gt;Roadmap can become a platform for project teams: integration services and value-added features like auto-scheduling, predictive analytics (e.g. based on similar projects and people, you should push due date out 47 days), etc.&lt;/p&gt;
+
+&lt;p&gt;Everyone has projects. We want to make everyone smarter by using data they already have to make more realistic decisions.&lt;/p&gt;
+</description>
+        <pubDate>Mon, 25 Jul 2016 14:41:00 +0000</pubDate>
+        <link>/2016/07/25/test-blog-post.html</link>
+        <guid isPermaLink="true">/2016/07/25/test-blog-post.html</guid>
+        
+        
+      </item>
     
       <item>
         <title>Time Flies</title>
