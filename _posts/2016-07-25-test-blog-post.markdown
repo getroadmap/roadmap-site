@@ -1,6 +1,7 @@
 ---
 title: Test Blog Post
 date: 2016-07-25 14:41:00 Z
+layout: post
 ---
 
 Sales and Marketing have their tech stack, and project-driven teams are no different (e.g. **Basecamp, GitHub, JIRA, Trello, Asana**). Our customers average 3-5 siloed tools in their tech stack, meaning they lack real-time, end-to-end visibility of projects or resources. Worse, most tools do not support resource forecasting or time tracking. Today, the silos and missing data gaps are handled via spreadsheets.
