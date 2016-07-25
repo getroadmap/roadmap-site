@@ -14,7 +14,7 @@ script:
     ssh root@ppmroadmap.com "cd /var/www/michael.ppmroadmap.com/production/releases; mkdir $FolderName;";
     scp roadmapsite.zip root@ppmroadmap.com:/var/www/michael.ppmroadmap.com/production/releases/$FolderName;
     ssh root@ppmroadmap.com "cd /var/www/michael.ppmroadmap.com/production/releases/$FolderName; unzip roadmapsite.zip; rm roadmapsite.zip;";
-    ssh root@ppmroadmap.com "cd /var/www/michael.ppmroadmap.com/production; ln -sf releases/$FolderName/ current;";
+    ssh root@ppmroadmap.com "cd /var/www/michael.ppmroadmap.com/production; rm current; ln -sf releases/$FolderName/ current;";
   else
     echo "I'm not deploying since this branch isn't sl-dist.";
   fi
