@@ -5,9 +5,22 @@
     <description></description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 25 Jul 2016 18:30:54 +0000</pubDate>
-    <lastBuildDate>Mon, 25 Jul 2016 18:30:54 +0000</lastBuildDate>
+    <pubDate>Tue, 26 Jul 2016 21:49:51 +0000</pubDate>
+    <lastBuildDate>Tue, 26 Jul 2016 21:49:51 +0000</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
+    
+      <item>
+        <title>Beer makes you smarter (no really)</title>
+        <description>&lt;p&gt;Cliff Clavin on how beer makes you smarter&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/uploads/CoNWH8RWYAAvbCE.jpg&quot; alt=&quot;CoNWH8RWYAAvbCE.jpg&quot; /&gt;&lt;/p&gt;
+</description>
+        <pubDate>Tue, 26 Jul 2016 21:46:00 +0000</pubDate>
+        <link>/2016/07/26/beer-makes-you-smarter-no-really.html</link>
+        <guid isPermaLink="true">/2016/07/26/beer-makes-you-smarter-no-really.html</guid>
+        
+        
+      </item>
     
       <item>
         <title>Test Blog Post</title>
