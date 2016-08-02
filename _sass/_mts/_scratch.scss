@@ -916,6 +916,10 @@ a {
   }
 }
 
+.bq-na {
+  margin: 0 !important;
+}
+
 
 .fe-ft {
   @include susy-breakpoint($bp-lg, $l-lg) {
@@ -982,6 +986,10 @@ a {
       margin-left: gutter();
     }
   }
+}
+
+.st-nbp {
+    padding-bottom: 96px !important;
 }
 
 
