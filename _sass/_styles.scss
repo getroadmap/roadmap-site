@@ -74,6 +74,14 @@ textarea {
   width: $width-3;
 }
 
+.width-1225 {
+  width: 12.25rem;
+}
+
+.flex-basis-35 {
+  flex-basis: 35rem;
+}
+
 .container {
   max-width: $container-width;
 }
@@ -109,23 +117,29 @@ textarea {
   border-bottom-width: $border-width-thick;
 }
 
-.border-light {
+.border-white-d {
   border-color: $white-dark;
+}
+
+.border-gray-l {
+  border-color: $gray-light;
 }
 
 // small breakpoint
 @media #{$breakpoint-sm} {
-  .sm-inline-block {
-    display: inline;
-  }
+  .sm-inline-block { display: inline }
 
   .sm-show { display: block !important }
 
   .sm-h4 { font-size: $h4 }
 
+  .sm-h5 { font-size: $h5 }
+
   .sm-border-none { border: 0 }
 
-  .sm-top-50 { top: 50%}
+  .sm-top-50 { top: 50% }
+
+  .sm-flex-row { flex-direction: row }
 
 }
 
@@ -156,3 +170,35 @@ textarea {
   display: block !important;
 }
 ////
+
+.tooltip {
+
+  position: relative;
+
+  &::after,
+  &::before {
+    bottom: 100%;
+    left: 50%;
+    border: solid transparent;
+    content: "";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+  }
+
+  &::after {
+    border-color: transparent;
+	  border-bottom-color: $white-light;
+	  border-width: 10px;
+	  margin-left: -10px;
+  }
+
+  &::before {
+    border-color: transparent;
+	  border-bottom-color: $gray-light;
+	  border-width: 11px;
+	  margin-left: -11px;
+  }
+
+}
