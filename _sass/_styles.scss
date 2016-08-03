@@ -101,3 +101,57 @@ textarea {
 .img-right {
   transform: translateX(50%);
 }
+
+.py05 { padding-top: .25rem; padding-bottom: .25rem;  }
+
+.border-bottom-thick {
+  border-bottom-style: solid;
+  border-bottom-width: $border-width-thick;
+}
+
+.border-light {
+  border-color: $white-dark;
+}
+
+// small breakpoint
+@media #{$breakpoint-sm} {
+  .sm-inline-block {
+    display: inline;
+  }
+
+  .sm-show { display: block !important }
+
+  .sm-h4 { font-size: $h4 }
+
+  .sm-border-none { border: 0 }
+
+
+}
+
+//silly hack to have menu toggle//
+#menu-toggle:checked + #menu:after {
+  content: "Close";
+  position: absolute;
+  height: 90%;
+  width: 100%;
+  margin-top: 3px;
+  top: 0;
+  left: 0;
+  text-align: center;
+  color: $purple;
+  background: $white-light;
+}
+
+#menu-toggle:checked + #menu:hover:after {
+  color: $white;
+  background: $purple;
+}
+
+#menu {
+  margin-top: -3px;
+}
+
+#menu-toggle:checked ~ #nav-items {
+  display: block !important;
+}
+////

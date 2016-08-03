@@ -1,10 +1,13 @@
 <header class="bg-white-l p2 shadow">
 
   <div class="mx-auto container">
-    <a href="{{ site.baseurl }}/" title="Roadmap - Intelligent Project Management, Scheduling, Time Tracking, and Resource Planning">
-      <span class="h3 fw4 gray-d hover-gray logo"> ROADMAP </span>
+    <a href="{{ site.baseurl }}/" title="Roadmap - Intelligent Project Management, Scheduling, Time Tracking, and Resource Planning" class="flex-grow">
+      <span class="h3 fw4 gray-d hover-gray logo pb2"> ROADMAP </span>
       <span class="display-none">Intelligent Project Management, Scheduling, Time Tracking, and Resource Planning</span>
     </a>
+
+      <input type="checkbox" id="menu-toggle" class="display-none" />
+      <label id="menu" for="menu-toggle" class="col-right sm-hide relative px3 py05 border purple hover-white hover-bg-purple" title="Main Navigation">Menu</label>
 
     {% include nav.html %}
   </div>
