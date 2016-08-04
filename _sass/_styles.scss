@@ -82,6 +82,10 @@ textarea {
   width: 100%;
 }
 
+.width-50 {
+  width: 50%;
+}
+
 .flex-basis-40 {
   flex-basis: 40rem;
 }
@@ -154,6 +158,8 @@ textarea {
   .sm-measure-plus { max-width: 35em; }
 
   .sm-measure-wide { max-width: 40em; }
+
+  .sm-mb10 { margin-bottom: 10rem;}
 
 }
 
