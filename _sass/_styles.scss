@@ -138,6 +138,8 @@ textarea {
   border-color: $gray-light;
 }
 
+.mb10 { margin-bottom: 10rem;}
+
 
 // small breakpoint
 @media #{$breakpoint-sm} {
@@ -146,7 +148,6 @@ textarea {
   .sm-show { display: block !important }
 
   .sm-h4 { font-size: $h4 }
-
   .sm-h5 { font-size: $h5 }
 
   .sm-border-none { border: 0 }
@@ -156,10 +157,21 @@ textarea {
   .sm-flex-row { flex-direction: row }
 
   .sm-measure-plus { max-width: 35em; }
-
   .sm-measure-wide { max-width: 40em; }
+  .sm-measure-extra { max-width: 50em; }
+
 
   .sm-mb10 { margin-bottom: 10rem;}
+
+  .sm-order-0 { order: 0 }
+  .sm-order-last { order: 99999 }
+
+  .sm-width-50 { width: 50% }
+
+  .sm-left { float: left }
+  .sm-right { float: right }
+
+  .sm-all-initial { all: initial }
 
 }
 
