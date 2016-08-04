@@ -70,12 +70,20 @@ textarea {
   height: 5rem;
 }
 
+.height-28 {
+  height: 28rem;
+}
+
 .width-3 {
   width: $width-3;
 }
 
 .width-1225 {
   width: 12.25rem;
+}
+
+.width-18 {
+  width: 18rem;
 }
 
 .width-100 {
@@ -119,6 +127,11 @@ textarea {
 }
 
 .py05 { padding-top: .25rem; padding-bottom: .25rem;  }
+
+.border-bottom-medium {
+  border-bottom-style: solid;
+  border-width: 0 0 $border-width-medium 0;
+}
 
 .border-bottom-thick {
   border-bottom-style: solid;
