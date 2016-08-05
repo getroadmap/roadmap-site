@@ -86,6 +86,10 @@ textarea {
   width: 12.25rem;
 }
 
+.width-10 {
+  width: 10rem;
+}
+
 .width-18 {
   width: 18rem;
 }
@@ -176,11 +180,17 @@ textarea {
   .sm-h4 { font-size: $h4 }
   .sm-h5 { font-size: $h5 }
 
-  .sm-border-none { border: 0 }
+  .sm-border-none { border-width: 0 }
+  .sm-border-bottom {
+    border-bottom-style: solid;
+    border-bottom-width: $border-width;
+  }
 
   .sm-top-50 { top: 50% }
 
   .sm-flex-row { flex-direction: row }
+  .sm-flex-column { flex-direction: column }
+  .sm-flex-none { flex: none }
 
   .sm-measure-plus { max-width: 35em; }
   .sm-measure-wide { max-width: 40em; }
@@ -193,6 +203,8 @@ textarea {
   .sm-order-last { order: 99999 }
 
   .sm-width-50 { width: 50% }
+  .sm-width-10 { width: 10rem }
+  .sm-width-14 { width: 14rem }
 
   .sm-left { float: left }
   .sm-right { float: right }
