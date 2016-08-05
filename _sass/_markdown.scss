@@ -13,7 +13,7 @@
   }
 
   h3 {
-    font-weight: 600;
+    font-weight: 400;
     font-size: .875em;
     letter-spacing: 1.3px;
     text-transform: uppercase;
@@ -32,6 +32,14 @@
     text-decoration: underline;
   }
 
+  ol, ul {
+    margin-bottom: 2rem;
+  }
+
+  li {
+    margin-bottom: 1rem;
+  }
+
   .header {
 
   }
@@ -39,7 +47,12 @@
   .body {
 
     p {
-      margin-bottom: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    h2 {
+      margin-top: 2rem;
+      margin-bottom: 0.25rem;
     }
   }
 
