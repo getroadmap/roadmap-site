@@ -1,8 +1,8 @@
 ---
-layout: default
+layout: markdown
 ---
 
-<article class="h-entry post page pg">
+<article class="h-entry post page pg markdown">
   <header class="post-header">
     <p class="post-meta">{{ page.date | date: "%b %-d, %Y" }}{% if page.author %} • {{ page.author }}{% endif %}{% if page.meta %} • {{ page.meta }}{% endif %}</p>
     <h1 class="post-title">{{ page.title }}</h1>
@@ -20,4 +20,3 @@ layout: default
     {% include _mailchimp.html %}
   </footer>
 </article><!-- /.h-entry pg -->
-
