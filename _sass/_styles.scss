@@ -86,17 +86,12 @@ textarea {
   width: 12.25rem;
 }
 
-<<<<<<< HEAD
 .width-186 {
   width: 18.6rem;
-=======
-.width-10 {
-  width: 10rem;
 }
 
-.width-18 {
-  width: 18rem;
->>>>>>> 26511f652fb5a37fcdd66833c82f9c3c9542fdc2
+.width-10 {
+  width: 10rem;
 }
 
 .width-100 {
@@ -176,13 +171,13 @@ textarea {
   margin-bottom: -3.5rem;
 }
 
-<<<<<<< HEAD
 .mb10 {
   margin-bottom: 10rem;
 }
-=======
-.transition-1 { transition: .25s }
->>>>>>> 26511f652fb5a37fcdd66833c82f9c3c9542fdc2
+
+.transition-1 {
+  transition: .25s
+}
 
 // small breakpoint
 @media #{$breakpoint-sm} {
