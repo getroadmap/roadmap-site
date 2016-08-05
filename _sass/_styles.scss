@@ -70,8 +70,8 @@ textarea {
   height: 5rem;
 }
 
-.height-28 {
-  height: 28rem;
+.height-32 {
+  height: 32rem;
 }
 
 .width-3 {
@@ -82,8 +82,8 @@ textarea {
   width: 12.25rem;
 }
 
-.width-18 {
-  width: 18rem;
+.width-186 {
+  width: 18.6rem;
 }
 
 .width-100 {
@@ -151,8 +151,13 @@ textarea {
   border-color: $gray-light;
 }
 
-.mb10 { margin-bottom: 10rem;}
+.mb-35 {
+  margin-bottom: -3.5rem;
+}
 
+.mb10 {
+  margin-bottom: 10rem;
+}
 
 // small breakpoint
 @media #{$breakpoint-sm} {
