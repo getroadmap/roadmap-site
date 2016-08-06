@@ -1,7 +1,7 @@
 ---
 title: Privacy Policy
 permalink: "/privacy-policy/"
-layout: page
+layout: post
 ---
 
 Thank you for your interest in Roadmap! We greatly value our customers and their trust. Herein is our Privacy Policy. Learn more about Roadmap and its commitment to the Safe Harbor Framework.

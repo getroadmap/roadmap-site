@@ -1,0 +1,22 @@
+---
+layout: markdown
+---
+
+<article class="h-entry post page pg markdown">
+  <header class="post-header">
+    <p class="post-meta">{{ page.date | date: "%b %-d, %Y" }}{% if page.author %} • {{ page.author }}{% endif %}{% if page.meta %} • {{ page.meta }}{% endif %}</p>
+    <h1 class="post-title">{{ page.title }}</h1>
+  </header>
+  {% if page.thumbnail %}
+  <figure class="post-hero">
+    <img src="{{ page.thumbnail }}" alt="{{ page.thumbnail_alt }}" class="entry-src">
+  </figure>
+  {% endif %}
+  <div class="post-content">
+    {{ content }}
+  </div>
+
+  <footer class="post-footer">
+    {% include _mailchimp.html %}
+  </footer>
+</article><!-- /.h-entry pg -->

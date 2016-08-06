@@ -1,0 +1,59 @@
+.markdown {
+
+  h1 {
+    color: $purple;
+    font-weight: 300;
+    font-size: 2rem;
+    margin-bottom: .5rem;
+  }
+
+  h2 {
+    font-weight: 400;
+    font-size: 1.2rem;
+  }
+
+  h3 {
+    font-weight: 400;
+    font-size: .875em;
+    letter-spacing: 1.3px;
+    text-transform: uppercase;
+  }
+
+  strong {
+    font-weight: 600;
+  }
+
+  img {
+    margin: 1rem 0 1rem;
+  }
+
+  a {
+    color: $cyan;
+    text-decoration: underline;
+  }
+
+  ol, ul {
+    margin-bottom: 2rem;
+  }
+
+  li {
+    margin-bottom: 1rem;
+  }
+
+  .header {
+
+  }
+
+  .body {
+
+    p {
+      margin-bottom: 2rem;
+    }
+
+    h2 {
+      margin-top: 2rem;
+      margin-bottom: 0.25rem;
+    }
+  }
+
+}
