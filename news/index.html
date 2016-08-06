@@ -1,22 +1,64 @@
 ---
 title: Updates from Roadmap
-layout: page
+layout: default
 ---
 
 {% assign sorted = site.posts | sort: "date" | reverse %}
 
+<section class="measure mx-auto mb4">
+  <h1 class="h1 line-height-3 fw1 purple mb1">
+    Keep up with Roadmap’s news and updates
+  </h1>
 
-<ul class="_ls-ui nw-ct nw-ct--list">
-{% for post in sorted %}
-  <li class="h-entry nw-entry">
-    <a href="{{ site.baseurl }}{{ post.url }}" title="{{ post.title }}" class="u-url">
-      <h3 class="p-name">
-        {{ post.title }}
-      </h3>
-      <time class="dt-published" datetime="{{ post.date | date_to_rfc822 }}">
-        {{ post.date | date: "%b %-d, %Y" }}
+  <p class="measure">
+Keep up with Roadmap’s news and updates. Keep up with Roadmap’s news and updates. Keep up with Roadmap’s news and updates. Keep up with Roadmap’s news and updates.
+  </p>
+</section>
+
+<ul class="list-reset mx-auto mb4">
+  <div class="measure mx-auto">
+    <h2 class="h2 fw2 mb2">Recent Posts</h2>
+  </div>
+{% for post in sorted limit:3 %}
+  <li class="flex mb3">
+    <div class="flex-shrink flex-basis-40 mt1">
+      <time class="sc fw2 right mr1" datetime="{{ post.date | date_to_rfc822 }}">
+        {{ post.date | date: "%b %-d, %Y" }} —
       </time>
-    </a>
+    </div>
+    <div class="measure width-100 flex-none">
+      <h1 class="h1 line-height-3 fw1 purple mb1">
+        {{ post.title }}
+      </h1>
+      <p>
+      {{ post.excerpt }}
+      </p>
+      <a href="{{ site.baseurl }}{{ post.url }}" class="alt-link" title="{{ post.title }}">read more</a>
+  </div>
+  <div class="flex-shrink flex-basis-40">
+  </div>
+  </li>
+{% endfor %}
+</ul>
+
+<ul class="list-reset mx-auto">
+  <div class="measure mx-auto">
+    <h2 class="h2 fw2 mb1">Archived Posts</h2>
+  </div>
+{% for post in sorted offset:3 %}
+  <li class="flex mb1">
+    <div class="flex-shrink flex-basis-40">
+      <time class="sc fw2 right mr1" datetime="{{ post.date | date_to_rfc822 }}">
+        {{ post.date | date: "%b %-d, %Y" }} —
+      </time>
+    </div>
+    <div class="measure width-100 flex-none">
+      <a href="{{ site.baseurl }}{{ post.url }}" class="alt-link" title="{{ post.title }}">
+        {{ post.title }}
+      </a>
+  </div>
+  <div class="flex-shrink flex-basis-40">
+  </div>
   </li>
 {% endfor %}
 </ul>
