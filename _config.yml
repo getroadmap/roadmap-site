@@ -1,6 +1,5 @@
 ---
 title: Roadmap - Multiple Projects, Multiple SaaS Tools, One View
-description: Connect project goals with realities, compare planned vs. actual, load balance at-risk projects, and make custom reports, all across multiple SaaS apps for end-to-end visibility.
 timezone: UTC
 collections:
   posts:
@@ -9,5 +8,8 @@ collections:
   uploads:
     title: Uploads
     output: true
+description: Connect project goals with realities, compare planned vs. actual, load
+  balance at-risk projects, and make custom reports, all across multiple SaaS apps
+  for end-to-end visibility.
 include:
 - ".travis.yml"
