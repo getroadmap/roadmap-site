@@ -1313,5 +1313,3 @@ strong { font-weight: 600; }
 .tooltip::after, .tooltip::before { bottom: 100%; left: 50%; border: solid transparent; content: ""; height: 0; width: 0; position: absolute; pointer-events: none; }
 .tooltip::after { border-color: transparent; border-bottom-color: #fff; border-width: 10px; margin-left: -10px; }
 .tooltip::before { border-color: transparent; border-bottom-color: #979797; border-width: 11px; margin-left: -11px; }
-
-@media screen and (max-width: 1053px) { .small-screen-ml { margin-left: 4rem; } }
