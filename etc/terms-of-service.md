@@ -1,6 +1,7 @@
 ---
 title: Terms of Service
 permalink: "/terms-of-service/"
+layout: post
 ---
 
 Thank you for your interest in Roadmap! We greatly value our customers and their trust. Herein are our Terms of Service.
