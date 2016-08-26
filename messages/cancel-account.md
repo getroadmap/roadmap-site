@@ -1,8 +1,7 @@
 ---
 title: We’re sorry to see you go
 permalink: "/messages/cancel-account/"
-position: 1
-layout: page
+layout: default
 ---
 
 <h1 class="h1 fw1 purple mb1">Thank You</h1>
