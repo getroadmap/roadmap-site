@@ -290,8 +290,8 @@ strong {
 }
 
 @media only screen and (max-width: 500px) {
-    changing-fs {
-        font-size: 3;
+    .changing-fs {
+        font-size: 3em;
         position: relative;
         top: -8px
     }
