@@ -288,3 +288,9 @@ strong {
   }
 
 }
+
+@media screen and (max-width: 1053px) {
+  .small-screen-ml {
+    margin-left: $space-4;
+  }
+}
