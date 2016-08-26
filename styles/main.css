@@ -1314,4 +1314,4 @@ strong { font-weight: 600; }
 .tooltip::after { border-color: transparent; border-bottom-color: #fff; border-width: 10px; margin-left: -10px; }
 .tooltip::before { border-color: transparent; border-bottom-color: #979797; border-width: 11px; margin-left: -11px; }
 
-@media only screen and (max-width: 500px) { changing-fs { font-size: 3; position: relative; top: -8px; } }
+@media only screen and (max-width: 500px) { .changing-fs { font-size: 3em; position: relative; top: -8px; } }
