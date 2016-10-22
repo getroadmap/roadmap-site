@@ -1,6 +1,7 @@
 ---
 title: Roadmap Team
 permalink: "/team/"
+position: 2
 layout: page
 ---
 

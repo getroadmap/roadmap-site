@@ -1,6 +1,7 @@
 ---
 title: Terms of Service
 permalink: "/terms-of-service/"
+position: 4
 layout: post
 ---
 
