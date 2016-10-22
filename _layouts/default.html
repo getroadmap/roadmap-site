@@ -10,15 +10,7 @@
       {{ content }}
     </main>
 
-    {% if page.url contains "news" %}
-      {% include mailchimp.html %}
-    {% elsif page.url contains "2014" %}
-      {% include mailchimp.html %}
-    {% elsif page.url contains "2015" %}
-      {% include mailchimp.html %}
-    {% elsif page.url contains "2016" %}
-      {% include mailchimp.html %}
-    {% elsif page.url contains "2017" %}
+    {% if page.url contains "news" or page.url contains "2014" or page.url contains "2015" or page.url contains "2016" or page.url contains "2017"%}
       {% include mailchimp.html %}
     {% else %}
       {% include trial.html %}
