@@ -1,0 +1,25 @@
+{
+  "name": "roadmap-public",
+  "version": "0.0.1",
+  "description": "Multiple Projects, Multiple SaaS Tools, One View",
+  "author": "Trevor Carr",
+  "devDependencies": {
+    "grunt": "~1.0.1",
+    "grunt-autoprefixer": "~3.0.4",
+    "grunt-contrib-cssmin": "~1.0.1",
+    "grunt-contrib-htmlmin": "~2.0.0",
+    "grunt-contrib-imagemin": "~1.0.1",
+    "grunt-critical": "~0.2.1",
+    "grunt-svgmin": "~4.0.0",
+    "grunt-uncss": "~0.6.1",
+    "jit-grunt": "~0.10.0",
+    "load-grunt-tasks": "^3.5.2",
+    "time-grunt": "~1.4.0"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "dependencies": {
+    "basscss-sass": "4.0.0"
+  }
+}
