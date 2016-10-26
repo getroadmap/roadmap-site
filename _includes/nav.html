@@ -1,6 +1,6 @@
 {% assign current = page.url | downcase | split: '/' %}
 
-<nav id="nav-items" class="sm-col-right gray-l mt2 sm-mt0 border-top border-white-d display-none sm-show sm-border-none h2 sm-h4">
+<nav id="nav-items" class="md-col-right gray-l mt2 sm-mt0 border-top border-white-d display-none sm-show sm-border-none h2 sm-h4">
   <a class="py2 pr1 sm-pl1 mr2 sm-ml2 block sm-inline-block hover-cyan {% if current[1] == 'learn-more' %}border-bottom-thick cyan{% endif %}" href="{{ site.baseurl }}/learn-more" title="Learn More About What Roadmap Offers">Learn More</a>
   <a class="py2 pr1 sm-pl1 mr2 sm-ml2 block sm-inline-block hover-cyan {% if current[1] == 'pricing' %}border-bottom-thick cyan{% endif %}" href="{{ site.baseurl }}/pricing" title="See Roadmap's High-value Pricing Plans">Pricing</a>
   <a class="py2 pr1 sm-pl1 mr2 sm-ml2 block sm-inline-block hover-cyan {% if current[1] == 'services' %}border-bottom-thick cyan{% endif %}" href="{{ site.baseurl }}/services" title="Accelerate your Time-to-value with Travel Lane Solutions">Services</a>
