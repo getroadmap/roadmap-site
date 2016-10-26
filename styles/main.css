@@ -1219,6 +1219,12 @@ textarea { line-height: 1.75; padding: 0.5rem 0.5rem; }
 
 strong { font-weight: 600; }
 
+.left-50 { top: 50%; }
+
+.line-height-0 { line-height: 0; }
+
+.height-0 { height: 0rem; }
+
 .height-1 { height: 1.25rem; }
 
 .height-5 { height: 5rem; }
@@ -1231,15 +1237,19 @@ strong { font-weight: 600; }
 
 .width-1225 { width: 12.25rem; }
 
-.width-186 { width: 18.6rem; }
+.width-18 { width: 18rem; }
 
 .width-10 { width: 10rem; }
+
+.width-19 { width: 19rem; }
 
 .width-100 { width: 100%; }
 
 .width-50 { width: 50%; }
 
 .width-44 { width: 44%; }
+
+.mwidth-19 { max-width: 19rem; }
 
 .flex-basis-40 { flex-basis: 40rem; }
 
@@ -1298,6 +1308,8 @@ strong { font-weight: 600; }
   .sm-width-50 { width: 50%; }
   .sm-width-10 { width: 10rem; }
   .sm-width-14 { width: 14rem; }
+  .sm-width-18 { width: 18rem; }
+  .sm-width-19 { width: 19rem; }
   .sm-left { float: left; }
   .sm-right { float: right; }
   .sm-all-initial { all: initial; } }
