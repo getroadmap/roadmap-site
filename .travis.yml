@@ -7,12 +7,8 @@ before_install:
 - mv deploy-key ~/.ssh/id_rsa
 - openssl rsa -in ~/.ssh/id_rsa -out ~/.ssh/id_rsa -passin pass:"$DEPLOY_PASS"
 - echo -e "Host ppmroadmap.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
-install:
-- bundle install
-- npm install
 script:
 - if [ $TRAVIS_BRANCH == 'sl-dist' ] ; then
-    grunt build
     zip roadmapsite.zip -r *;
     FolderName="$(date +%S%M%H%d%m%Y)";
     ssh root@ppmroadmap.com "cd /var/www/michael.ppmroadmap.com/production/releases; mkdir $FolderName;";
