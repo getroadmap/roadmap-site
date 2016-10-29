@@ -10,8 +10,30 @@
       <label class="sc-small fw2 purple">EMAIL ADDRESS</label>
       <input class="fw1 py1 field block border-bottom-2 border-purple width-100" type="email" name="email" placeholder="bking@ppmroadmap.com"><br><br>
 
+      <input id="s" type="hidden" name="s" value="" />
+
       <button type="submit" class="btn bg-purple hover-bg-purple-l white-l width-100 fw2 not-rounded">Sign up!</button>
     </form>
   </div>
 
 </section>
+
+<script>
+  Date.prototype.yyyymmdd = function() {
+    var mm = (this.getMonth() + 1).toString(); // getMonth() is zero-based
+    var dd = this.getDate().toString();
+
+    return [this.getFullYear(), mm.length===2 ? '' : '0', mm, dd.length===2 ? '' : '0', dd].join(''); // padding
+  };
+  var date = new Date();
+  var todayString = date.yyyymmdd();
+
+  var logString = Math.log(todayString);
+
+  document.getElementById('s').value = logString;
+
+  console.log(date);
+  console.log(todayString);
+  console.log(logString);
+
+</script>
