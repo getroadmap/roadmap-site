@@ -1,12 +1,12 @@
 ---
 title: Time Flies
-date: 2015-09-30 14:00:00 Z
+date: 2016-09-30 14:00:00 Z
 tags:
 - releases
 layout: post
 ---
 
-An age old battle. How to muster end of day energy to log time. We know tracking and entering time can be painful, if not monotenuous. **We want to make that easier.**
+An age old battle. How to muster end of day energy to log time. We know tracking and entering time can be painful, if not monotonous. **We want to make that easier.**
 
 Today, we’ve taken the _beta_ wraps off **[Odometer](//time.ppmroadmap.com)**, our companion time logger for Roadmap.
 
