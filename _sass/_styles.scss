@@ -178,6 +178,11 @@ strong {
   border-width: 0 0 $border-width-thick 0;
 }
 
+.border-right-thick {
+  border-right-style: solid;
+  border-width: 0 $border-width-thick 0 0;
+}
+
 .border-bottom-2 {
   border-bottom-style: solid;
   border-width: 0 0 2px 0;
@@ -245,6 +250,19 @@ strong {
 
   .sm-all-initial { all: initial }
 
+  .sm-border-bottom-thick {
+    border-bottom-style: solid;
+    border-width: 0 0 $border-width-thick 0;
+  }
+
+}
+
+@media #{$breakpoint-md} {
+  .md-flex-row { flex-direction: row }
+  .md-flex-column { flex-direction: column }
+  .md-flex-none { flex: none }
+
+  .md-show { display: block !important }
 }
 
 //silly hack to have menu toggle//
