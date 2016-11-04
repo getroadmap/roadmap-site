@@ -1,6 +1,6 @@
 ---
 title: Resource Attributes Are Key
-date: 2015-07-14 04:00:00 Z
+date: 2016-07-14 04:00:00 Z
 layout: post
 ---
 
