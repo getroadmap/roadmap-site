@@ -11,10 +11,10 @@ script:
 - if [ $TRAVIS_BRANCH == 'sl-dist' ] ; then
     zip roadmapsite.zip -r *;
     FolderName="$(date +%S%M%H%d%m%Y)";
-    ssh root@ppmroadmap.com "cd /var/www/ppmroadmap.com/production/releases; mkdir $FolderName;";
-    scp roadmapsite.zip root@ppmroadmap.com:/var/www/michael.ppmroadmap.com/production/releases/$FolderName;
-    ssh root@ppmroadmap.com "cd /var/www/ppmroadmap.com/production/releases/$FolderName; unzip roadmapsite.zip; rm roadmapsite.zip;";
-    ssh root@ppmroadmap.com "cd /var/www/ppmroadmap.com/production; rm current; ln -sf releases/$FolderName/ current;";
+    ssh ubuntu@ppmroadmap.com "cd /var/www/ppmroadmap.com/production/releases; mkdir $FolderName;";
+    scp roadmapsite.zip ubuntu@ppmroadmap.com:/var/www/ppmroadmap.com/production/releases/$FolderName;
+    ssh ubuntu@ppmroadmap.com "cd /var/www/ppmroadmap.com/production/releases/$FolderName; unzip roadmapsite.zip; rm roadmapsite.zip;";
+    ssh ubuntu@ppmroadmap.com "cd /var/www/ppmroadmap.com/production; rm current; ln -sf releases/$FolderName/ current;";
   else
     echo "I'm not deploying since this branch isn't sl-dist.";
   fi
